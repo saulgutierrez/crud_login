@@ -76,9 +76,26 @@ header h2 a {
     text-decoration: none;
 }
 
-main > aside h3{
+main > aside h3 {
     color: #fff;
     display: flex;
     height: calc(90vh / 7);
+}
 
+summary {
+    list-style: none;
+    position: relative;
+    display: flex;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+summary:hover, p:hover {
+    background-color: #0f0f11;
+    cursor: pointer;
+}
+
+p {
+    width: 100%;
+    padding: 10px 40px;
 }

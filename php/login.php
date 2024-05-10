@@ -9,6 +9,8 @@
 </head>
 <body>
     <form action="php/data.php" method="GET" class="data-handler">
+        <img src="img/key.svg" alt="" class="key-icon">
+        <img src="img/user.svg" alt="" class="user-icon">
         <label for="user">Usuario: </label>
         <input type="text" id="user" name="user"><br>
         <label for="password" id="password" name="password">Contraseña: </label>
@@ -17,3 +19,4 @@
     </form>
 </body>
 </html>
+

@@ -15,16 +15,16 @@
     </header>
     <main>
         <aside>
-        <details>
-            <summary>Games</summary>
-            <p>Action Games</p>
-            <p>Adventure Games</p>
-        </details>
-        <details>
-            <summary>Tecnology</summary>
-            <p>3D Printers</p>
-            <p>Education</p>
-        </details>
+            <details>
+                <summary>Games</summary>
+                <p>Action Games</p>
+                <p>Adventure Games</p>
+            </details>
+            <details>
+                <summary>Tecnology</summary>
+                <p>3D Printers</p>
+                <p>Education</p>
+            </details>
         </aside>
         <figure>
 
