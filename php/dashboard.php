@@ -1,3 +1,15 @@
+<?php
+    require('conexion.php');
+    require('data.php');
+    # Si no existe varible de sesion, quiere decir que el usuario no se ha autenticado
+    # Negamos el acceso
+    if (!isset($_SESSION['user'])) {
+         header('Location: ../index.php');
+         exit;
+     }
+     # Si existe, tomamos su nombre de usuario
+    $username = $_SESSION['user'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +22,15 @@
     <header>
         <h1>Forum</h1>
         <input type="text">
-        <h2><?php echo "Bienvenido "; ?></h2>
-        <h2><a href="../index.php">Cerrar sesión</a></h2>
+        <!-- Identificamos al usuario dentro de la interfaz -->
+        <h2 class="identifier" id="identifier">Bienvenido <?php echo $username; ?></h2>
+        <div class="square"></div>
+        <div class="dropdown">
+            <p>Ver perfil</p>
+            <p>Editar perfil</p>
+            <p><a href="../php/logout.php">Cerrar sesion</a></p>
+        </div>
+        <h2><a href="">Nueva</a></h2>
     </header>
     <main>
         <aside>
@@ -35,3 +54,4 @@
     </main>
 </body>
 </html>
+<script src="../js/dashboard.js"></script>

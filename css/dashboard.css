@@ -71,6 +71,7 @@ header input {
     border-radius: 20px;
 }
 
+header div p a, 
 header h2 a {
     color: #fff;
     text-decoration: none;
@@ -98,4 +99,25 @@ summary:hover, p:hover {
 p {
     width: 100%;
     padding: 10px 40px;
+}
+
+.square {
+    position: absolute;
+    display: none;
+    background-color: #141417;
+    height: 30px;
+    width: 30px;
+    right: 32%;
+    top: 75%;
+    transform: rotate(45deg);
+}
+
+.dropdown {
+    position: absolute;
+    display: none;
+    background-color: #141417;
+    height: 110px;
+    width: 200px;
+    right: 26%;
+    top: 85%;
 }
