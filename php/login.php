@@ -15,7 +15,10 @@
         <input type="text" id="user" name="user"><br>
         <label for="password" id="password" name="password">Contraseña: </label>
         <input type="password" id="password" name="password"><br>
-        <input type="submit" value="Iniciar sesion">
+        <div class="group-buttons">
+            <input type="submit" value="Iniciar sesion">
+            <a href="php/sign-in.php">Registrate</a>
+        </div>
     </form>
 </body>
 </html>
