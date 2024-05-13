@@ -121,3 +121,9 @@ p {
     right: 26%;
     top: 85%;
 }
+
+.dropdown p:hover,
+.dropdown p a:hover {
+    letter-spacing: 2px;
+    color: red;
+}

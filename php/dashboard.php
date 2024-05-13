@@ -5,7 +5,7 @@
     # Negamos el acceso
     if (!isset($_SESSION['user'])) {
          header('Location: ../index.php');
-         exit;
+         exit();
      }
      # Si existe, tomamos su nombre de usuario
     $username = $_SESSION['user'];
@@ -26,7 +26,7 @@
         <h2 class="identifier" id="identifier">Bienvenido <?php echo $username; ?></h2>
         <div class="square"></div>
         <div class="dropdown">
-            <p>Ver perfil</p>
+            <p><a href="profile.php?user=<?php echo $username; ?>">Ver perfil</a></p>
             <p>Editar perfil</p>
             <p><a href="../php/logout.php">Cerrar sesion</a></p>
         </div>

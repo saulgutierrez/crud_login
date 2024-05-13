@@ -5,7 +5,7 @@ let identifier = document.querySelector(".identifier");
 
 identifier.addEventListener("mouseover", function() {
     square.style.display = "flex";
-    dropdown.style.display = "block"
+    dropdown.style.display = "block";
 });
 
 dropdown.addEventListener("mouseleave", function() {
