@@ -18,6 +18,7 @@
             $telefonoPerfil = $sqlGetProfile['telefono'];
             $fechaNacimientoPerfil = $sqlGetProfile['fecha_nacimiento'];
             $generoPerfil = $sqlGetProfile['genero'];
+            $foto = $sqlGetProfile['fotografia'];
         } else { # En caso de que no exista el perfil, redireccionamos a el dashboard principal
             header('Location: dashboard.php');
             exit();
@@ -41,9 +42,23 @@
 
 <body>
     <main>
-        <figure>
-            <img src="../img/saul.jpg" alt="">
-        </figure>
+        <nav>
+            <div>
+                <figure>
+                    <img src="<?php echo $foto; ?>" alt="">
+                </figure>
+                <article>
+                    <h2><?php echo $nombrePerfil. " ".$apellidoPerfil; ?></h2>
+                    <h3><?php echo $nombreUsuario; ?></h3>
+                </article>
+            </div>
+            <article>
+                <button class="edit-profile-btn">Editar perfil</button>
+            </article>
+        </nav>
+        <section>
+            <h2>Test</h2>
+        </section>
     </main>
 </body>
 </html>
