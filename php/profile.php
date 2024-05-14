@@ -33,9 +33,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/profile.css">
     <title><?php echo $nombrePerfil." ".$apellidoPerfil;?> | Forum</title>
 </head>
+
+<?php include "../includes/header.php"; ?>
+
 <body>
-    
+    <main>
+        <figure>
+            <img src="../img/saul.jpg" alt="">
+        </figure>
+    </main>
 </body>
 </html>

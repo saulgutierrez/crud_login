@@ -1,7 +1,10 @@
 <?php
     require('conexion.php');
 
-    session_start();
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    
     # Si se recibieron datos desde el frontend, los almacenamos para consulta
     if (isset($_POST['user'], $_POST['password'])) {
         $user = $_POST['user'];
@@ -12,8 +15,10 @@
         # Si existe alguna coincidencia, creamos una variable de sesion
         # para identificar al usuario y mantenerlo dentro del sistema
         if ($result->num_rows > 0) {
-            $_SESSION['user'] = $user;
-            header('Location: dashboard.php');
+            if (!isset($_SESSION['user'])) {
+                $_SESSION['user'] = $user;
+                header('Location: dashboard.php');
+            }
         } else {
             echo 'Usuario o contrasenia incorrectos';
         }   

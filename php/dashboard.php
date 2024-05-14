@@ -19,19 +19,7 @@
     <title>Home</title>
 </head>
 <body>
-    <header>
-        <h1>Forum</h1>
-        <input type="text">
-        <!-- Identificamos al usuario dentro de la interfaz -->
-        <h2 class="identifier" id="identifier">Bienvenido <?php echo $username; ?></h2>
-        <div class="square"></div>
-        <div class="dropdown">
-            <p><a href="profile.php?user=<?php echo $username; ?>">Ver perfil</a></p>
-            <p>Editar perfil</p>
-            <p><a href="../php/logout.php">Cerrar sesion</a></p>
-        </div>
-        <h2><a href="">Nueva</a></h2>
-    </header>
+    <?php include "../includes/header.php"; ?>
     <main>
         <aside>
             <details>
