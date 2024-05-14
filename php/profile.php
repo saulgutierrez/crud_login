@@ -19,6 +19,7 @@
             $fechaNacimientoPerfil = $sqlGetProfile['fecha_nacimiento'];
             $generoPerfil = $sqlGetProfile['genero'];
             $foto = $sqlGetProfile['fotografia'];
+            $rutaFotoPorDefecto = "../img/profile-default.svg";
         } else { # En caso de que no exista el perfil, redireccionamos a el dashboard principal
             header('Location: dashboard.php');
             exit();
@@ -45,10 +46,10 @@
         <nav>
             <div>
                 <figure>
-                    <img src="<?php echo $foto; ?>" alt="">
+                    <img src="<?php if ($foto !=  '') { echo $foto; } else { echo $rutaFotoPorDefecto; } ?>" alt="">
                 </figure>
                 <article>
-                    <h2><?php echo $nombrePerfil. " ".$apellidoPerfil; ?></h2>
+                    <h2><?php if ($nombrePerfil != '' && $apellidoPerfil != '') { echo $nombrePerfil. " ".$apellidoPerfil; } else { echo "anon"; } ?></h2>
                     <h3><?php echo $nombreUsuario; ?></h3>
                 </article>
             </div>
