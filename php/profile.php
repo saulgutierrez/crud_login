@@ -64,7 +64,7 @@
             </div>
             <div class="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
-                <h1>Nombre: <?php echo $nombrePerfil." ".$apellidoPerfil;?> </h1>
+                <h1>Nombre: <?php if ($nombrePerfil != '' && $apellidoPerfil != '') { echo $nombrePerfil. " ".$apellidoPerfil; } else { echo "anon"; } ?> </h1>
                 <h1>Correo: <?php echo $correoPerfil;?></h1>
                 <h1>Telefono: <?php echo $telefonoPerfil; ?></h1>
                 <h1>Fecha de Nacimiento: <?php echo $fechaNacimientoPerfil; ?></h1>
