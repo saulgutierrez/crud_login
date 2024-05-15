@@ -40,13 +40,10 @@ header input {
 }
 
 header h1 a,
-header div p a, 
+header div a, 
 header h2 a {
     color: #fff;
     text-decoration: none;
-}
-
-p {
     width: 100%;
     padding: 10px 40px;
 }
@@ -65,15 +62,25 @@ p {
 .dropdown {
     position: absolute;
     display: none;
-    background-color: #141417;
-    height: 110px;
+    background-color: #0f0f11;
+    height: 80px;
     width: 200px;
     right: 26%;
     top: 85%;
 }
 
-.dropdown p:hover,
-.dropdown p a:hover {
+.dropdown a {
+    display: flex;
+}
+
+.dropdown a:hover {
     letter-spacing: 2px;
-    color: red;
+    color: #fff;
+    background-color: #007bff;
+}
+
+.new-post:hover {
+    background-color: #007bff;
+    padding: 10px 0px;
+    border-radius: 20px;
 }

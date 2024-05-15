@@ -114,6 +114,8 @@ section {
     padding: 20px 30px;
     font-weight: 600;
     font-size: 1.8rem;
+    text-decoration: none;
+    color: #fff;
 }
 
 .menu-lateral a:hover {

@@ -59,7 +59,7 @@
         </nav>
         <section>
             <div class="menu-lateral">
-                <a class="info">Info</a>
+                <a class="info" href="profile.php">Info</a>
                 <a class="posts">Posts</a>
             </div>
             <div class="info-perfil">
