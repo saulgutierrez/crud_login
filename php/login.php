@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/login.css">
     <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/check-data.js"></script>
     <title>Login y CRUD</title>
 </head>
 <body>
@@ -22,35 +23,5 @@
         </div>
         <div id="login-result" class="login-result"></div>
     </form>
-
-    <script>
-        $(document).ready(function () {
-            $('#login').on('submit', function(event) {
-                event.preventDefault();
-                var datosEnviados = {
-                    'user'      :   $('#user').val(),
-                    'password'  :   $('#password').val()
-                };
-                $.ajax({
-                    url         :   'php/data.php',
-                    type        :   'POST',
-                    data        :   datosEnviados,
-                    dataType    :   'text',
-                    success:    function(res) {
-                        if (res == 1) {
-                            $('#login-result').html('Usuario o clave incorrecto');
-                            $('#login-result').show();
-                            setTimeout("$('#login-result').html('')", 5000);
-                            $('#user').val('');
-                            $('#password').val('');
-                        } else {
-                            location.href = "php/dashboard.php";
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-
 </body>
 </html>
