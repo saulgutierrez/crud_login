@@ -18,10 +18,10 @@
         if ($result->num_rows > 0) {
             if (!isset($_SESSION['user'])) {
                 $_SESSION['user'] = $user;
-                header('Location: dashboard.php');
+                echo 0;
             }
         } else {
-            echo 'Usuario o contrasenia incorrectos';
+            echo 1;
         }   
     }
 ?>

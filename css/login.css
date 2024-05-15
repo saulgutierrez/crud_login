@@ -50,7 +50,7 @@ form input[type=text]:focus, form input[type=password]:focus {
     background-color: #141417;
 }
 
-form input[type=submit] {
+.group-buttons button {
     background-color: #007bff;
     border: none;
     outline: none;
@@ -60,7 +60,7 @@ form input[type=submit] {
     padding: 10px 10px;
 }
 
-form input[type=submit]:hover {
+.group-buttons button:hover {
     background-color: #0069d9;
 }
 
@@ -99,6 +99,10 @@ form input[type=submit]:hover {
 
 .group-buttons a:hover {
     background-color: #218838;
+}
+
+.login-result {
+    color: red;
 }
 
 @media screen and (max-width: 576px) {
