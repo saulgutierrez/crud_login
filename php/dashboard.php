@@ -42,4 +42,3 @@
     </main>
 </body>
 </html>
-<script src="../js/dashboard.js"></script>

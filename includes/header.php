@@ -31,4 +31,4 @@
     <h2><a href="">Nueva</a></h2>
 </header>
 </html>
-<script src="../js/dashboard.js"></script>
+<script src="../js/header.js"></script>

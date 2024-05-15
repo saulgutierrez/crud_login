@@ -58,8 +58,20 @@
             </article>
         </nav>
         <section>
-            <h2>Test</h2>
+            <div class="menu-lateral">
+                <a class="info">Info</a>
+                <a class="posts">Posts</a>
+            </div>
+            <div class="info-perfil">
+                <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
+                <h1>Nombre: <?php echo $nombrePerfil." ".$apellidoPerfil;?> </h1>
+                <h1>Correo: <?php echo $correoPerfil;?></h1>
+                <h1>Telefono: <?php echo $telefonoPerfil; ?></h1>
+                <h1>Fecha de Nacimiento: <?php echo $fechaNacimientoPerfil; ?></h1>
+                <h1>Género: <?php echo $generoPerfil; ?></h1>
+            </div>
         </section>
     </main>
 </body>
 </html>
+<script src="../js/profile.js"></script>
