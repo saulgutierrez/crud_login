@@ -36,7 +36,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/profile.css">
-    <title><?php echo $nombrePerfil." ".$apellidoPerfil;?> | Forum</title>
+    <title><?php if ($nombrePerfil != '' && $apellidoPerfil != '') { echo $nombrePerfil. " ".$apellidoPerfil; } else { echo "anon"; } ?> | Forum</title>
 </head>
 
 <?php include "../includes/header.php"; ?>
