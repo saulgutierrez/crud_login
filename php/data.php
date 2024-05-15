@@ -10,8 +10,10 @@
     if (isset($_POST['user'], $_POST['password'])) {
         $user = $_POST['user'];
         $pass = $_POST['password'];
+
+        $cryptPass = sha1($pass);
         # Consultamos si los datos coinciden en la base de datos
-        $sql = "SELECT * FROM usuarios WHERE usuario = '$user' AND contrasenia = '$pass'";
+        $sql = "SELECT * FROM usuarios WHERE usuario = '$user' AND contrasenia = '$cryptPass'";
         $result = $conn->query($sql);
         # Si existe alguna coincidencia, creamos una variable de sesion
         # para identificar al usuario y mantenerlo dentro del sistema
