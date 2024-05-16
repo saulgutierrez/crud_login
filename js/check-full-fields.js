@@ -1,14 +1,33 @@
 $(document).ready(function () {
-    $('#show-message').on("click", function () {
-        var user = document.newUserForm.user.value;
-        var password = document.newUserForm.password.value;
+    $('#newUserForm').on('submit', function(event) {
+        event.preventDefault();
+        var datosEnviados = {
+            'user'      :       $('#user').val(),
+            'password'  :       $('#password').val()
+        };
 
-        if (user == "" || password == "") {
+        if ($('#user').val() == "" || $('#password').val() == "") {
+            $('#message').html('Faltan campos por llenar');
             $('#message').show();
-            setTimeout(function () {
-                $('#message').hide();
-            }, 5000);
-            event.preventDefault();
+            setTimeout("$('#message').html('')", 5000);
+        } else {
+            $.ajax({
+                url         :   'new-user.php',
+                type        :   'POST',
+                data        :   datosEnviados,
+                dataType    :   'text',
+                success:     function(res) {
+                    if (res == 1) {
+                        $('#message').html('Seleccione otro nombre de usuario');
+                        $('#message').show();
+                        setTimeout("$('#message').html('')", 5000);
+                        $('#user').val('');
+                        $('#password').val('');
+                    } else {
+                        location.href = "dashboard.php";
+                    }
+                }    
+            });
         }
     });
-})
+});

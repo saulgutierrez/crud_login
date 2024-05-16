@@ -13,13 +13,13 @@
     <title>Registrate</title>
 </head>
 <body>
-    <form action="new-user.php" method="POST" name="newUserForm" id="newUserForm">
+    <form method="POST" id="newUserForm">
         <label for="user">Usuario</label>
         <input type="text" id="user" name="user">
         <label for="password">Contraseña</label>
         <input type="password" id="password" name="password">
         <input type="submit" value="Registrarte" id="show-message">
-        <div id="message" class="message"> Faltan campos por llenar</div>
+        <div id="message" class="message"></div>
     </form>
 </body>
 </html>

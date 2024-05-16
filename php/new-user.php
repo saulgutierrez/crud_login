@@ -22,13 +22,13 @@
             
             if ($conn->query($sql) == TRUE) {
                 $_SESSION['user'] = $user;
-                header('Location: dashboard.php');
+                echo 0;
             } else {
                 echo "Error al insertar registro";
             }
             $conn->close();
         } else {
-            echo "Por favor, seleccione otro nombre de usuario";
+            echo 1;
         }
     } else {
         echo "Error de comunicacion con el servidor: ".$conn->error;
