@@ -18,7 +18,10 @@
         <input type="text" id="user" name="user">
         <label for="password">Contraseña</label>
         <input type="password" id="password" name="password">
-        <input type="submit" value="Registrarte" id="show-message">
+        <div class="group-buttons">
+            <input type="submit" value="Registrarte" id="show-message">
+            <a href="../index.php">Atrás</a>
+        </div>
         <div id="message" class="message"></div>
     </form>
 </body>

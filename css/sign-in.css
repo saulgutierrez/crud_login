@@ -70,6 +70,25 @@ form input[type=submit]:hover {
     color: red;
 }
 
+.group-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.group-buttons a {
+    text-decoration: none;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: 10px 10px;
+}
+
+.group-buttons a:hover {
+    background-color: #218838;
+}
+
 @media screen and (max-width: 576px) {
     form {
         background-color: #0f0f11;
