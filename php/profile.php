@@ -64,11 +64,26 @@
             </div>
             <div class="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
-                <h1>Nombre: <?php if ($nombrePerfil != '' && $apellidoPerfil != '') { echo $nombrePerfil. " ".$apellidoPerfil; } else { echo "anon"; } ?> </h1>
-                <h1>Correo: <?php echo $correoPerfil;?></h1>
-                <h1>Telefono: <?php echo $telefonoPerfil; ?></h1>
-                <h1>Fecha de Nacimiento: <?php echo $fechaNacimientoPerfil; ?></h1>
-                <h1>Género: <?php echo $generoPerfil; ?></h1>
+                <h1>
+                    <div>Nombre: </div> 
+                    <div> <?php if ($nombrePerfil != '' && $apellidoPerfil != '') { echo $nombrePerfil. " ".$apellidoPerfil; } else { echo "anon"; } ?> </div>
+                </h1>
+                <h1>
+                    <div>Correo: </div>
+                    <div><?php echo $correoPerfil;?></div>
+                </h1>
+                <h1>
+                    <div>Telefono: </div>
+                    <div><?php echo $telefonoPerfil; ?></div>
+                </h1>
+                <h1>
+                    <div>Fecha de Nacimiento: </div>
+                    <div><?php echo $fechaNacimientoPerfil; ?></div>
+                </h1>
+                <h1>
+                    <div>Género: </div>
+                    <div><?php echo $generoPerfil; ?></div>
+                </h1>
             </div>
         </section>
     </main>
