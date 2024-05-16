@@ -65,6 +65,11 @@ form input[type=submit]:hover {
     background-color: #0069d9;
 }
 
+.message {
+    display: none;
+    color: red;
+}
+
 @media screen and (max-width: 576px) {
     form {
         background-color: #0f0f11;
