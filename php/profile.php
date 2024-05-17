@@ -54,7 +54,7 @@
                 </article>
             </div>
             <article>
-                <button class="edit-profile-btn">Editar perfil</button>
+                <a class="edit-profile-btn" href="edit-profile.php?user=<?php echo $user;?>">Editar perfil</a>
             </article>
         </nav>
         <section>

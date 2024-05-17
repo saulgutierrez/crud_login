@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.3rem;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: calc(100% - 100px);
+    background-color: #141417;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+body form {
+    position: relative;
+    background-color: #141417;  
+    width: 60%;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(2, 250px);
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: #fff;
+}
+
+form input[type=text], form input[type=password], form input[type=number], form input[type=email], form input[type=date] {
+    background-color: #262627;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 20px;
+    height: 35px;
+    padding: 15px 10px;
+    width: 250px;
+}
+
+form input[type=text]:focus, form input[type=password]:focus, form input[type=number]:focus, form input[type=email]:focus, form input[type=date]:focus {
+    border: 1px solid #fff; 
+    background-color: #141417;
+}
+
+form button, form a {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 10px;
+    width: 60%;
+    justify-self: center;
+}
+
+form a {
+    background-color: #007bff;
+    text-align: center;
+    text-decoration: none;
+}
+
+form a:hover {
+    background-color: #0069d9;
+}
+
+form button {
+    background-color: #28a745;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+.genero-radio-buttons {
+    justify-self: center;
+}
+
+.genero {
+    display: inline;
+    margin-right: 30px;
+}
