@@ -53,8 +53,9 @@
                     <h3><?php echo $nombreUsuario; ?></h3>
                 </article>
             </div>
-            <article>
+            <article class="group-buttons">
                 <a class="edit-profile-btn" href="edit-profile.php?user=<?php echo $user;?>">Editar perfil</a>
+                <a class="delete-profile-btn" href="delete-profile.php?user=<?php echo $user;?>">Eliminar cuenta</a>
             </article>
         </nav>
         <section>

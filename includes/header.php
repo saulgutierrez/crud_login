@@ -22,7 +22,7 @@
     <h1><a href="../php/dashboard.php">Forum</a></h1>
     <input type="text">
     <!-- Identificamos al usuario dentro de la interfaz -->
-    <h2 class="identifier" id="identifier">Bienvenido <?php echo $username; ?></h2>
+    <h2 class="identifier" id="identifier"><?php echo $username; ?></h2>
     <div class="square"></div>
     <div class="dropdown">
         <a href="profile.php?user=<?php echo $username; ?>">Ver perfil</a>

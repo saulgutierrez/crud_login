@@ -26,7 +26,7 @@ $(document).ready(function () {
                 dataType    :   'text',
                 success:    function(res) {
                     if (res == 0) {
-                        location.href = "dashboard.php";
+                        location.href = "profile.php";
                     } else if (res == 1) {
                         alert('Error al actualizar');
                     } else if (res == 2) {
