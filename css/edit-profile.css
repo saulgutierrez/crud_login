@@ -89,3 +89,7 @@ form button:hover {
     display: inline;
     margin-right: 30px;
 }
+
+.edit-result {
+    color: red;
+}

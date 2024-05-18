@@ -2,6 +2,10 @@
     require('conexion.php');
     require('data.php');
 
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+
     if (isset($_SESSION['user'])) {
         $user = $_SESSION['user']; # Si el usuario esta logueado en el sistema, recibimos el nombre de usuario
         # Consultamos por el nombre de usuario en la base de datos
@@ -37,16 +41,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil | Forum</title>
     <link rel="stylesheet" href="../css/edit-profile.css">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/edit-profile.js"></script>
 </head>
 
 <?php include "../includes/header.php"; ?>
 
 <body>
     <form method="POST" id="editProfileForm">
+        <input type="hidden" id="id" name="id" value="<?php echo $idPerfil; ?>">
         <label for="user">Usuario</label>
         <input type="text" id="user" name="user" value="<?php echo $nombreUsuario; ?>">
         <label for="pass">Contraseña</label>
-        <input type="password" id="pass" name="pass">
+        <input type="password" id="password" name="password">
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" name="nombre" value="<?php echo $nombrePerfil; ?>">
         <label for="apellido">Apellido</label>
@@ -57,23 +64,14 @@
         <input type="number" id="telefono" name="telefono" value="<?php echo $telefonoPerfil; ?>">
         <label for="fechanacimiento">Fecha de nacimiento</label>
         <input type="date" id="fechanacimiento" name="fechanacimiento" value="<?php echo $fechaNacimientoPerfil; ?>">
-        <div>
-            <label for="genero">Genero</label>
-        </div>
-        <div class="genero-radio-buttons">
-            <label class="genero"> Masculino
-            <input type="radio" name="genero" value="masculino">
-            <span class="checkmark"></span>
-            </label>
-            <label class="genero"> Femenino
-            <input type="radio" name="genero" value="femenino">
-            <span class="checkmark"></span>
-            </label>
-        </div>
-        <label for="foto">Fotografia</label>
-        <input type="file" id="foto" name="foto" value="<?php if ($foto != "") { echo $foto; } else { echo $rutaFotoPorDefecto; }?>">
+        <label for="genero">Genero</label>
+        <select name="genero" id="genero" class="genero">
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+        </select>
         <a href="profile.php?user=<?php echo $nombreUsuario; ?>">Cancelar</a>
         <button value="Guardar cambios">Guardar cambios</button>
+        <div id="edit-result" class="edit-result"></div>
     </form>
 </body>
 </html>
