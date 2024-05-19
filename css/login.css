@@ -64,24 +64,6 @@ form input[type=text]:focus, form input[type=password]:focus {
     background-color: #0069d9;
 }
 
-.user-icon {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    right: 135px;
-    top: 115px;
-    filter: invert(1);
-}
-
-.key-icon {
-    position: absolute;
-    height: 20px;
-    width: 20px;
-    right: 135px;
-    top: 200px;
-    filter: invert(1);
-}
-
 .group-buttons {
     display: flex;
     gap: 20px;
@@ -108,9 +90,5 @@ form input[type=text]:focus, form input[type=password]:focus {
 @media screen and (max-width: 576px) {
     form {
         background-color: #0f0f11;
-    }
-
-    .user-icon, .key-icon {
-        right: calc(28% - 25px);
     }
 }
