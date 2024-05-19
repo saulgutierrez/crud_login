@@ -20,22 +20,27 @@
         // $foto = $_POST['foto'];
         $cryptPass = sha1($pass);
 
-        // Evitar que se repita el usuario
-        // $evitaDuplicado = "SELECT * FROM usuarios WHERE usuario = '$user'";
-        // $resultado = $conn->query($evitaDuplicado);
+        $sql_check = "SELECT COUNT(*) AS count FROM usuarios WHERE usuario = '$user'";
+        $statement_check = $conn->prepare($sql_check);
+        $statement_check->execute();
+        $result_check = $statement_check->get_result();
+        $row = $result_check->fetch_assoc();
 
-        // if ($resultado->num_rows == 0) {
+        if ($row['count'] == 0) {
             $sql = "UPDATE usuarios SET usuario = '$user', contrasenia = '$cryptPass', nombre = '$nombre', apellido = '$apellido', correo = '$correo', telefono = '$telefono', fecha_nacimiento = '$fechaNacimiento', genero = '$genero' WHERE id = '$id'";
             $result = $conn->query($sql);
-
+    
             if ($result == TRUE) {
                 $_SESSION['user'] = $user;
                 echo 0;
             } else {
                 echo 1;
             }
-        // }
+            $conn->close();
+        } else {
+            echo 2;
+        }
     } else {
-        echo 2; // Datos no llegaron desde el frontend
+        echo 3; // Datos no llegaron desde el frontend
     }
 ?>

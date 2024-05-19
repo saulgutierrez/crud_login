@@ -30,7 +30,9 @@ $(document).ready(function () {
                     } else if (res == 1) {
                         alert('Error al actualizar');
                     } else if (res == 2) {
-                        alert('El usuario ingresado ya existe');
+                        $('#edit-result').html('El usuario ingresado ya existe');
+                        $('#edit-result').show();
+                        setTimeout("$('#edit-result').html('')", 5000);
                     } else {
                         alert(res);
                     }
