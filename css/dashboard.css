@@ -35,25 +35,26 @@ main {
 
 main > aside {
     grid-area: nav;
-    background-color: #141417;
+    position: fixed;
 }
 
 main > figure {
     grid-area: main;
-    background-color: #0f0f11;
 }
 
 main > aside h3 {
     color: #fff;
     display: flex;
     height: calc(90vh / 7);
+    position: relative;
+    width: 100%;
 }
 
 summary {
     list-style: none;
     position: relative;
     display: flex;
-    width: 100%;
+    width: 200px;
     padding: 10px 20px;
 }
 

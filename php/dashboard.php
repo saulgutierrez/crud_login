@@ -9,6 +9,9 @@
      }
      # Si existe, tomamos su nombre de usuario
     $username = $_SESSION['user'];
+
+    $sql = "SELECT autor_post, titulo_post, contenido_post FROM post";
+    $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,11 +37,27 @@
             </details>
         </aside>
         <figure>
+            <?php
+                $counter = 0;
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $counter++;
+                        $autor = $row['autor_post'];
+                        $titulo = $row['titulo_post'];
+                        $contenido = $row['contenido_post'];
+                
+            ?>
 
+            <div><?php echo $autor; ?></div>
+            <div><?php echo $titulo; ?></div>
+            <div><?php echo $contenido; ?></div>
+
+
+            <?php
+                    }
+                }
+            ?>
         </figure>
-        <footer>
-
-        </footer>
     </main>
 </body>
 </html>
