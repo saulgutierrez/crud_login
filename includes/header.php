@@ -28,7 +28,7 @@
         <a href="profile.php?user=<?php echo $username; ?>">Ver perfil</a>
         <a href="../php/logout.php">Cerrar sesion</a>
     </div>
-    <h2 class="new-post"><a href="">Nueva</a></h2>
+    <h2 class="new-post"><a href="new-post.php?user=<?php echo $username; ?>">Nueva</a></h2>
 </header>
 </html>
 <script src="../js/header.js"></script>
