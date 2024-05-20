@@ -27,10 +27,15 @@
         $row = $result_check->fetch_assoc();
 
         if ($row['count'] == 0) {
+            // Actualizar datos del usuario
             $sql = "UPDATE usuarios SET usuario = '$user', contrasenia = '$cryptPass', nombre = '$nombre', apellido = '$apellido', correo = '$correo', telefono = '$telefono', fecha_nacimiento = '$fechaNacimiento', genero = '$genero' WHERE id = '$id'";
             $result = $conn->query($sql);
+
+            // Actualizar el nombre de usuario del autor de los post que ha realizado antes de cambiar su nombre
+            $sql2 = "UPDATE post SET autor_post = '$user' WHERE id_autor = '$id'";
+            $result2 = $conn->query($sql2);
     
-            if ($result == TRUE) {
+            if ($result == TRUE && $result2 == TRUE) {
                 $_SESSION['user'] = $user;
                 echo 0;
             } else {
