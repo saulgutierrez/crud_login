@@ -55,6 +55,12 @@
     }
 ?>
 
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,14 +85,15 @@
                 </article>
             </div>
             <article class="group-buttons">
-                <a class="edit-profile-btn" href="edit-profile.php?user=<?php echo $user;?>">Editar perfil</a>
-                <a class="delete-profile-btn" href="delete-profile.php?user=<?php echo $user;?>">Eliminar cuenta</a>
+                <a id="btn-1" class="edit-profile-btn" href="edit-profile.php?user=<?php echo $user;?>">Editar perfil</a>
+                <a id="btn-2" class="delete-profile-btn" href="delete-profile.php?user=<?php echo $user;?>">Eliminar cuenta</a>
             </article>
         </nav>
         <section>
             <div class="menu-lateral">
                 <a class="info" href="profile.php">Info</a>
                 <a class="posts">Posts</a>
+                <a class="comments">Comentarios</a>
             </div>
             <div class="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
@@ -116,3 +123,4 @@
 </body>
 </html>
 <script src="../js/profile.js"></script>
+<script src="../js/check-profile-or-user.js"></script>
