@@ -40,6 +40,33 @@ main > aside {
 
 main > figure {
     grid-area: main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+main > figure .post-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: #0f0f11;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+
+main > figure .post-card h2 {
+    font-weight: 600;
+}
+
+main > figure .post-card h2 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main > figure .post-card h2 a:hover {
+    color: #007bff;
 }
 
 main > aside h3 {
