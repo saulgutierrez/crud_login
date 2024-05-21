@@ -6,8 +6,10 @@
         $id = $_GET['id'];
 
         $sqlGetInfo = "SELECT * FROM usuarios WHERE id = '$id'";
-
         $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
+
+        $sqlGetPosts = "SELECT id_autor, autor_post, titulo_post, contenido_post FROM post WHERE id_autor = '$id'";
+        $result = $conn->query($sqlGetPosts);
 
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
@@ -31,7 +33,10 @@
         $user = $_SESSION['user']; # Si el usuario esta logueado en el sistema, recibimos el nombre de usuario
         # Consultamos por el nombre de usuario en la base de datos
         $sqlGetInfo = "SELECT * FROM usuarios WHERE usuario = '$user'";
-        $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
+        $queryGetInfo = $conn->query($sqlGetInfo);
+
+        $sqlGetPosts = "SELECT id_autor, autor_post, titulo_post, contenido_post FROM post WHERE autor_post = '$user'";
+        $result = $conn->query($sqlGetPosts);
 
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
@@ -55,12 +60,6 @@
     }
 ?>
 
-<style>
-    .hidden {
-        display: none;
-    }
-</style>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,6 +72,15 @@
 <?php include "../includes/header.php"; ?>
 
 <body>
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .posts-perfil {
+        display: none;
+    }
+</style>
     <main>
         <nav>
             <div>
@@ -91,11 +99,11 @@
         </nav>
         <section>
             <div class="menu-lateral">
-                <a class="info" href="profile.php">Info</a>
-                <a class="posts">Posts</a>
+                <a class="info" href="profile.php" id="info">Info</a>
+                <a class="posts" id="posts">Posts</a>
                 <a class="comments">Comentarios</a>
             </div>
-            <div class="info-perfil">
+            <div class="info-perfil" id="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
                 <h1>
                     <div>Nombre: </div> 
@@ -118,8 +126,45 @@
                     <div><?php echo $generoPerfil; ?></div>
                 </h1>
             </div>
+
+            <div class="posts-perfil" id="posts-perfil">
+                <?php
+                $counter = 0;
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $counter++;
+                        $id = $row['id_autor'];
+                        $autor = $row['autor_post'];
+                        $titulo = $row['titulo_post'];
+                        $contenido = $row['contenido_post'];
+                    }
+                }
+                ?>
+                <div class="post-card">
+                    <h2><?php echo $autor; ?></h2>
+                    <h3><?php echo $titulo; ?></h3>
+                    <div><?php echo $contenido; ?></div>
+                </div>
+            </div>
         </section>
     </main>
+    <script>
+    const infoBtn = document.getElementById('info');
+    const postsBtn = document.getElementById('posts');
+    const postsScreen = document.getElementById('posts-perfil');
+    const infoScreen = document.getElementById('info-perfil');
+
+    infoBtn.addEventListener('click', () => {
+        postsScreen.classList.add('hidden');
+        infoScreen.classList.remove('hidden');
+    });
+
+    postsBtn.addEventListener('click', () => {
+        postsScreen.classList.remove('hidden');
+        infoScreen.classList.add('hidden');
+        postsScreen.style.display = "flex";
+    });
+</script>
 </body>
 </html>
 <script src="../js/profile.js"></script>

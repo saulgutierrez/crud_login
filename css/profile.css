@@ -163,3 +163,13 @@ section {
 .delete-profile-btn:hover {
     background-color: #c82333;
 }
+
+.posts-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    background-color: #0f0f11;
+    padding: 30px 30px;
+    border-radius: 10px;
+}
