@@ -202,4 +202,50 @@ body main section {
     width: 20px;
     height: 20px;
     filter: invert(1);
+    cursor: pointer;
+}
+
+.menu-opciones {
+    position: absolute;
+    width: 160px;
+    height: 110px;
+    display: none;
+    flex-direction: column;
+    background-color: #141417;
+    top: 50px;
+    right: 0px;
+    z-index: 10000;
+}
+
+.menu-opciones.visible {
+    display: grid;
+}
+
+.menu-opciones a {
+    text-decoration: none;
+    color: #fff;
+    justify-self: center;
+    align-self: center;
+    padding: 15px 40px;
+    width: 100%;
+}
+
+.menu-opciones a:hover {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.square-menu-perfil {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 40px;
+    right: 10px;
+    background-color: #141417;
+    transform: rotate(45deg);
+    display: none;
+}
+
+.square-menu-perfil.visible {
+    display: flex;
 }

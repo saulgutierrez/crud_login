@@ -135,6 +135,11 @@
                         $contenido = $row['contenido_post'];
                 ?>
                 <div class="post-card">
+                    <div class="square-menu-perfil"></div>
+                    <div class="menu-opciones">         
+                        <a href="">Editar post</a>
+                        <a href="">Eliminar post</a>
+                    </div>
                     <img src="../svg/menu.svg" alt="" class="menu-icon">
                     <h2><?php echo $autor; ?></h2>
                     <h3><?php echo $titulo; ?></h3>
