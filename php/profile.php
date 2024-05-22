@@ -135,6 +135,7 @@
                         $contenido = $row['contenido_post'];
                 ?>
                 <div class="post-card">
+                    <img src="../svg/menu.svg" alt="" class="menu-icon">
                     <h2><?php echo $autor; ?></h2>
                     <h3><?php echo $titulo; ?></h3>
                     <div><?php echo $contenido; ?></div>

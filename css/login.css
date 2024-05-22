@@ -85,10 +85,24 @@ form input[type=text]:focus, form input[type=password]:focus {
 
 .login-result {
     color: red;
+    position: absolute;
+    top: 300px;
 }
 
-@media screen and (max-width: 576px) {
-    form {
-        background-color: #0f0f11;
-    }
+.user-icon {
+    position: absolute;
+    top: 115px;
+    left: 345px;
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+}
+
+.pass-icon {
+    position: absolute;
+    top: 198px;
+    left: 345px;
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
 }

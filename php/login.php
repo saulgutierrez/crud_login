@@ -11,6 +11,8 @@
 </head>
 <body>
     <form id="login" method="POST">
+        <img src="svg/user-fill.svg" alt="" class="user-icon">
+        <img src="svg/lock-fill.svg" alt="" class="pass-icon">
         <label for="user">Usuario: </label>
         <input type="text" id="user" name="user"><br>
         <label for="password">Contraseña: </label>
