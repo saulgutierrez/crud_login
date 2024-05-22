@@ -60,6 +60,12 @@
     }
 ?>
 
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,7 +96,7 @@
         </nav>
         <section>
             <div class="menu-lateral">
-                <a class="info" id="info" href="profile.php">Info</a>
+                <a class="info" id="info">Info</a>
                 <a class="posts" id="posts">Posts</a>
                 <a class="comments">Comentarios</a>
             </div>
@@ -117,6 +123,7 @@
                     <div><?php echo $generoPerfil; ?></div>
                 </h1>
             </div>
+            <div class="post-content">
                 <?php
                 $counter = 0;
                 if ($result->num_rows > 0) {
@@ -126,17 +133,22 @@
                         $autor = $row['autor_post'];
                         $titulo = $row['titulo_post'];
                         $contenido = $row['contenido_post'];
-                    }
-                }
                 ?>
-                <div class="post-card" id="post-card" style="display: none;">
+                <div class="post-card">
                     <h2><?php echo $autor; ?></h2>
                     <h3><?php echo $titulo; ?></h3>
                     <div><?php echo $contenido; ?></div>
                 </div>
+
+                <?php
+                    }
+                }
+                ?>
+            </div>
         </section>
     </main>
+
+    <script src="../js/check-profile-or-user.js"></script>
+    <script src="../js/profile.js"></script>
 </body>
 </html>
-<script src="../js/profile.js"></script>
-<script src="../js/check-profile-or-user.js"></script>
