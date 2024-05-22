@@ -2,6 +2,7 @@ let info = document.querySelector('.info');
 let posts = document.querySelector('.posts');
 let infoPerfil = document.querySelector('.info-perfil');
 let comments = document.querySelector('.comments');
+const postsScreen = document.getElementById('post-card');
 
     info.style.backgroundColor = "hsl(211, 100%, 50%)"; 
     info.style.borderRadius = "20px";
@@ -11,6 +12,8 @@ info.addEventListener("click", () => {
     info.style.borderRadius = "20px";
     posts.style.backgroundColor = "hsl(240, 7%, 8%)";
     comments.style.backgroundColor = "hsl(240, 7%, 8%)";
+    infoPerfil.style.display = "flex";
+    postsScreen.style.display = "none";
 });
 
 posts.addEventListener("click", () => {
@@ -18,7 +21,8 @@ posts.addEventListener("click", () => {
     posts.style.borderRadius = "20px";
     info.style.backgroundColor = "hsl(240, 7%, 8%)";
     comments.style.backgroundColor = "hsl(240, 7%, 8%)";
-    infoPerfil.innerHTML = "";
+    postsScreen.style.display = "flex";
+    infoPerfil.style.display = "none";
 });
 
 comments.addEventListener("click", () => {
