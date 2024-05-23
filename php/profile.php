@@ -137,8 +137,8 @@
                 ?>
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
-                    <div class="menu-opciones">         
-                        <a href="" class="openModalBtn">Editar post</a>
+                    <div class="menu-opciones">
+                        <a href="profile.php?user=<?php echo $user;?>?idpost=<?php echo $idPost; ?>" class="openModalBtn">Editar post</a>
                         <a href="">Eliminar post</a>
                     </div>
                     <img src="../svg/menu.svg" alt="" class="menu-icon">
@@ -154,23 +154,23 @@
             </div>
 
             <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <form id="modalForm">
-                        <label for="id">Id:</label>
-                        <input type="text" id="id" name="id" required value="<?php echo $id; ?>">
-                        <label for="id-post">Id del post:</label>
-                        <input type="text" id="id-post" name="id-post" required value="<?php echo $idPost; ?>">
-                        <label for="autor">Autor:</label>
-                        <input type="text" id="autor" name="autor" required value="<?php echo $autor;?>">
-                        <label for="titulo">Email:</label>
-                        <input type="text" id="titulo" name="titulo" required value="<?php echo $titulo;?>">
-                        <label for="contenido">Contenido:</label>
-                        <input type="text" id="contenido" name="contenido" required value="<?php echo $contenido; ?>">
-                        <button type="submit">Enviar</button>
-                    </form>
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <form id="modalForm">
+                            <label for="id">Id:</label>
+                            <input type="text" id="id" name="id" required value="<?php echo $id; ?>">
+                            <label for="id-post">Id del post:</label>
+                            <input type="text" id="id-post" name="id-post" required value="<?php echo $idPost; ?>">
+                            <label for="autor">Autor:</label>
+                            <input type="text" id="autor" name="autor" required value="<?php echo $autor;?>">
+                            <label for="titulo">Email:</label>
+                            <input type="text" id="titulo" name="titulo" required value="<?php echo $titulo;?>">
+                            <label for="contenido">Contenido:</label>
+                            <input type="text" id="contenido" name="contenido" required value="<?php echo $contenido; ?>">
+                            <button type="submit">Enviar</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
         </section>
     </main>
 
