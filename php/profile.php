@@ -137,7 +137,7 @@
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
                     <div class="menu-opciones">         
-                        <a href="">Editar post</a>
+                        <a href="" id="openModalBtn">Editar post</a>
                         <a href="">Eliminar post</a>
                     </div>
                     <img src="../svg/menu.svg" alt="" class="menu-icon">
@@ -150,6 +150,19 @@
                     }
                 }
                 ?>
+            </div>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <form id="modalForm">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        <button type="submit">Enviar</button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>

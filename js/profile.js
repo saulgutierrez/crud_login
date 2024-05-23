@@ -96,3 +96,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Obtener los elementos del DOM
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("openModalBtn");
+var span = document.getElementsByClassName("close")[0];
+var form = document.getElementById("modalForm");
+
+// Abrir el modal al hacer clic en el botón
+btn.onclick = function(event) {
+    event.preventDefault();
+    modal.style.display = "block";
+}
+
+// Cerrar el modal al hacer clic en la 'X'
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Cerrar el modal al hacer clic fuera de la ventana modal
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Prevenir el comportamiento predeterminado del formulario al enviar
+form.onsubmit = function(event) {
+    event.preventDefault();
+    // Aquí puedes agregar la lógica para manejar el formulario, como enviarlo mediante AJAX
+    console.log("Formulario enviado");
+    modal.style.display = "none"; // Cerrar el modal después de enviar el formulario
+}
