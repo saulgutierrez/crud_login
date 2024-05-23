@@ -10,7 +10,7 @@
      # Si existe, tomamos su nombre de usuario
     $username = $_SESSION['user'];
 
-    $sql = "SELECT id_autor, autor_post, titulo_post, contenido_post FROM post";
+    $sql = "SELECT id_autor, autor_post, titulo_post, contenido_post FROM post WHERE autor_post != '$username'";
     $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
