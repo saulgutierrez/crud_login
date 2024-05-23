@@ -99,15 +99,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Obtener los elementos del DOM
 var modal = document.getElementById("myModal");
-var btn = document.getElementById("openModalBtn");
 var span = document.getElementsByClassName("close")[0];
 var form = document.getElementById("modalForm");
 
-// Abrir el modal al hacer clic en el botón
-btn.onclick = function(event) {
-    event.preventDefault();
-    modal.style.display = "block";
-}
+const botones = document.querySelectorAll('.openModalBtn');
+    // Asignamos un id diferente a cada boton de editar una publicación, para abrir el modal con los datos correspondientes
+    botones.forEach((elemento, index) => {
+        
+        const id = 'btn-mostrar-form-edit-' + (index + 1);
+        elemento.id = id;
+    });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Abrir el modal al hacer clic en el botón
+
+    const botones = document.querySelectorAll('.openModalBtn');
+
+    botones.forEach(boton => {
+        boton.addEventListener('click', () => {
+            const botonID = boton.id;
+            event.preventDefault();
+            modal.style.display = "block";
+        });
+    });
+})
 
 // Cerrar el modal al hacer clic en la 'X'
 span.onclick = function() {

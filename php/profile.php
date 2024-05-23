@@ -8,7 +8,7 @@
         $sqlGetInfo = "SELECT * FROM usuarios WHERE id = '$id'";
         $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
 
-        $sqlGetPosts = "SELECT id_autor, autor_post, titulo_post, contenido_post FROM post WHERE id_autor = '$id'";
+        $sqlGetPosts = "SELECT id_post id_autor, autor_post, titulo_post, contenido_post FROM post WHERE id_autor = '$id'";
         $result = $conn->query($sqlGetPosts);
 
         # Recuperamos la informacion asociada a la consulta
@@ -35,7 +35,7 @@
         $sqlGetInfo = "SELECT * FROM usuarios WHERE usuario = '$user'";
         $queryGetInfo = $conn->query($sqlGetInfo);
 
-        $sqlGetPosts = "SELECT id_autor, autor_post, titulo_post, contenido_post FROM post WHERE autor_post = '$user'";
+        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post WHERE autor_post = '$user'";
         $result = $conn->query($sqlGetPosts);
 
         # Recuperamos la informacion asociada a la consulta
@@ -129,6 +129,7 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $counter++;
+                        $idPost = $row['id_post'];
                         $id = $row['id_autor'];
                         $autor = $row['autor_post'];
                         $titulo = $row['titulo_post'];
@@ -137,7 +138,7 @@
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
                     <div class="menu-opciones">         
-                        <a href="" id="openModalBtn">Editar post</a>
+                        <a href="" class="openModalBtn">Editar post</a>
                         <a href="">Eliminar post</a>
                     </div>
                     <img src="../svg/menu.svg" alt="" class="menu-icon">
@@ -156,10 +157,16 @@
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <form id="modalForm">
-                        <label for="name">Nombre:</label>
-                        <input type="text" id="name" name="name" required>
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="id">Id:</label>
+                        <input type="text" id="id" name="id" required value="<?php echo $id; ?>">
+                        <label for="id-post">Id del post:</label>
+                        <input type="text" id="id-post" name="id-post" required value="<?php echo $idPost; ?>">
+                        <label for="autor">Autor:</label>
+                        <input type="text" id="autor" name="autor" required value="<?php echo $autor;?>">
+                        <label for="titulo">Email:</label>
+                        <input type="text" id="titulo" name="titulo" required value="<?php echo $titulo;?>">
+                        <label for="contenido">Contenido:</label>
+                        <input type="text" id="contenido" name="contenido" required value="<?php echo $contenido; ?>">
                         <button type="submit">Enviar</button>
                     </form>
                 </div>
