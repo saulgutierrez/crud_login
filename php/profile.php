@@ -28,7 +28,6 @@
             exit();
         }
 
-
     } else if (isset($_SESSION['user'])) {
         $user = $_SESSION['user']; # Si el usuario esta logueado en el sistema, recibimos el nombre de usuario
         # Consultamos por el nombre de usuario en la base de datos
@@ -126,7 +125,7 @@
             <div class="post-content">
                 <?php
                 $counter = 0;
-                if ($result->num_rows > 0) {
+                if ($result->num_rows > 0 && !isset($_GET['id'])) {
                     while ($row = $result->fetch_assoc()) {
                         $counter++;
                         $idPost = $row['id_post'];
@@ -147,6 +146,26 @@
                     <div><?php echo $contenido; ?></div>
                 </div>
 
+                <?php
+                    }
+                ?>
+                <?php
+                } else if ($result->num_rows > 0 && isset($_GET['id'])) {
+                    $counter = 0;
+                    while ($row = $result->fetch_assoc()) {
+                        $counter++;
+                        $id = $row['id_autor'];
+                        $autor = $row['autor_post'];
+                        $titulo = $row['titulo_post'];
+                        $contenido = $row['contenido_post'];
+                    ?>
+                    <div class="post-card">
+                        <div class="square-menu-perfil"></div>
+                        <img src="../svg/menu.svg" alt="" class="menu-icon">
+                        <h2><?php echo $autor; ?></h2>
+                        <h3><?php echo $titulo; ?></h3>
+                        <div><?php echo $contenido; ?></div>
+                    </div>
                 <?php
                     }
                 }
