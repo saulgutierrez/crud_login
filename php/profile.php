@@ -122,7 +122,7 @@
                     <div><?php echo $generoPerfil; ?></div>
                 </h1>
             </div>
-            <div class="post-content">
+            <div class="post-content" id="post-content">
                 <?php
                 $counter = 0;
                 if ($result->num_rows > 0 && !isset($_GET['id'])) {
@@ -136,9 +136,9 @@
                 ?>
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
-                    <div class="menu-opciones">
+                    <div class="menu-opciones" id="menu-opciones">
                         <a href="edit-post.php?id_post=<?php echo $idPost; ?>">Editar post</a>
-                        <a href="">Eliminar post</a>
+                        <a href="" class="delete-post-btn">Eliminar post</a>
                     </div>
                     <img src="../svg/menu.svg" alt="" class="menu-icon">
                     <h2><?php echo $autor; ?></h2>
@@ -176,5 +176,13 @@
 
     <script src="../js/check-profile-or-user.js"></script>
     <script src="../js/profile.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $('.delete-post-btn').on('click', function(event) {
+            event.preventDefault();
+            $(this).closest('.post-card').remove();
+        });
+    </script>
 </body>
 </html>
