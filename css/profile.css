@@ -119,6 +119,7 @@ body main section {
     font-size: 1.8rem;
     text-decoration: none;
     color: #fff;
+    background-color: rgb(20, 20, 23);
 }
 
 .menu-lateral a:hover {
