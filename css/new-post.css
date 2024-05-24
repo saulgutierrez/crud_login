@@ -52,6 +52,7 @@ form textarea {
     color: #fff;
     border-radius: 20px;
     padding: 15px 10px;
+    resize: none;
 }
 
 form input[type=text]:focus {
