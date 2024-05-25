@@ -138,7 +138,7 @@
                     <div class="square-menu-perfil"></div>
                     <div class="menu-opciones" id="menu-opciones">
                         <a href="edit-post.php?id_post=<?php echo $idPost; ?>">Editar post</a>
-                        <a href="" class="delete-post-btn">Eliminar post</a>
+                        <a href="" class="delete-post-btn" data-id="<?php echo $idPost; ?>">Eliminar post</a>
                     </div>
                     <img src="../svg/menu.svg" alt="" class="menu-icon">
                     <h2><?php echo $autor; ?></h2>
@@ -173,16 +173,9 @@
             </div>
         </section>
     </main>
-
+    <script src="../js/jquery-3.7.1.min.js"></script>
     <script src="../js/check-profile-or-user.js"></script>
     <script src="../js/profile.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script>
-        $('.delete-post-btn').on('click', function(event) {
-            event.preventDefault();
-            $(this).closest('.post-card').remove();
-        });
-    </script>
+    <script src="../js/delete-post.js"></script>
 </body>
 </html>

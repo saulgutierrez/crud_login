@@ -7,7 +7,6 @@ const postContent = document.querySelectorAll('.post-content');
 const squareProfile = document.querySelectorAll('.square-menu-perfil');
 const menu = document.querySelectorAll('.menu-opciones');
 const menuIcon = document.querySelectorAll('.menu-icon');
-const deletePostBtn = document.querySelectorAll('.delete-post-btn');
 
     info.style.backgroundColor = "hsl(211, 100%, 50%)"; 
     info.style.borderRadius = "20px";
@@ -60,11 +59,6 @@ menu.forEach((elemento, index) => {
 
 squareProfile.forEach((elemento, index) => {
     const id = 'square-' + (index + 1);
-    elemento.id = id;
-});
-
-deletePostBtn.forEach((elemento, index) => {
-    const id = 'borra-post-' + (index + 1);
     elemento.id = id;
 });
 
