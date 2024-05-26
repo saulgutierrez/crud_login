@@ -10,7 +10,7 @@
      # Si existe, tomamos su nombre de usuario
     $username = $_SESSION['user'];
 
-    $sql = "SELECT id_autor, autor_post, titulo_post, contenido_post FROM post WHERE autor_post != '$username'";
+    $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post WHERE autor_post != '$username'";
     $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -42,12 +42,13 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         $counter++;
+                        $id_post = $row['id_post'];
                         $id = $row['id_autor'];
                         $autor = $row['autor_post'];
                         $titulo = $row['titulo_post'];
                         $contenido = $row['contenido_post'];
             ?>
-            <div class="post-card">
+            <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
                 <h2><a href="profile.php?id=<?php echo $id;?>"><?php echo $autor; ?></a></h2>
                 <h3><?php echo $titulo; ?></h3>
                 <div><?php echo $contenido; ?></div>

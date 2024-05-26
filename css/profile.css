@@ -169,7 +169,7 @@ body main section {
     position: relative;
     display: none;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
     background-color: #0f0f11;
     padding: 30px 30px;
     border-radius: 10px;
