@@ -13,7 +13,7 @@ $(document).ready(function () {
             data        :   datosEnviados,
             dataType    :   'text',
             success     :   function(res) {
-                alert(res);
+                
             }
         });
     });

@@ -58,6 +58,29 @@
                 <button value="Responder">Responder</button>
             </form>
         </div>
+        <?php
+            $sqlComments = "SELECT * FROM comentarios WHERE id_post = '$id_post'";
+            $playQuery = $conn->query($sqlComments);
+
+            $contador = 0;
+            if ($playQuery->num_rows > 0) {
+                while ($fila = $playQuery->fetch_assoc()) {
+                    $contador++;
+                    $postId = $fila['id_post'];
+                    $autorId = $fila['id_autor'];
+                    $comentarioId = $fila['id_comentario'];
+                    $autorComentario = $fila['autor_comentario'];
+                    $comentario = $fila['comentario'];
+        ?>
+
+        <div class="post-card comment">
+            <h3><?php echo $autorComentario; ?></h3>
+            <div><?php echo $comentario; ?></div>
+        </div>
+        <?php
+                }
+            }
+        ?>
     </main>
 </body>
 </html>
