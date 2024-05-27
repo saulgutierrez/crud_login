@@ -12,8 +12,13 @@ $(document).ready(function () {
             type        :   'POST',
             data        :   datosEnviados,
             dataType    :   'text',
-            success     :   function(res) {
-                
+            success     :   function() {
+                var comment = $('<div></div>').addClass('post-card comment').html('<h3>' + datosEnviados["autor-comentario"] + '</h3>' + '<div>' + datosEnviados["comment-input"] + '</div>');
+                $('#main-container').append(comment);
+                $('#comment-input').val('');
+            },
+            error       :   function() {
+                alert("Error al insertar item");
             }
         });
     });

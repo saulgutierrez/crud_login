@@ -41,7 +41,7 @@
 </head>
 <body>
     <?php include "../includes/header.php"; ?>
-    <main>
+    <main id="main-container">
         <div class="post-card">
             <a href="dashboard.php">
                 <img src="../svg/arrow-back.svg" alt="" class="arrow-back">
