@@ -193,7 +193,7 @@
                         $autorComentarioItem = $rowComments['autor_comentario'];
                         $comentarioItem = $rowComments['comentario'];
                 ?>
-                <div class="comment-card">
+                <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">
                     <div class="square-menu-perfil-comments"></div>
                     <div class="menu-opciones-comments" id="menu-opciones-comments">
                         <a href="edit-comment.php?id_comment=<?php echo $idComentarioItem;?>">Editar comentario</a>
@@ -218,7 +218,7 @@
                         $autorComentarioItem = $rowComments['autor_comentario'];
                         $comentarioItem = $rowComments['comentario'];
                 ?>
-                <div class="comment-card">
+                <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">
                     <div class="square-menu-perfil-comments"></div>
                     <div class="menu-opciones-comments" id="menu-opciones-comments">
                         <a href="edit-comment.php?id_comment=<?php echo $idComentarioItem;?>">Editar comentario</a>
