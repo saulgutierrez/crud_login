@@ -23,6 +23,10 @@
             $generoPerfil = $sqlGetProfile['genero'];
             $foto = $sqlGetProfile['fotografia'];
             $rutaFotoPorDefecto = "../img/profile-default.svg";
+
+            $sqlGetComments = "SELECT * FROM comentarios WHERE autor_comentario = '$nombreUsuario'";
+            $queryGetComments = $conn->query($sqlGetComments);
+
         } else { # En caso de que no exista el perfil, redireccionamos a el dashboard principal
             header('Location: dashboard.php');
             exit();
@@ -36,6 +40,9 @@
 
         $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post WHERE autor_post = '$user'";
         $result = $conn->query($sqlGetPosts);
+
+        $sqlProfileComments = "SELECT * FROM comentarios WHERE autor_comentario = '$user'";
+        $queryGetComments = $conn->query($sqlProfileComments);
 
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
@@ -97,7 +104,7 @@
             <div class="menu-lateral">
                 <a class="info" id="info">Info</a>
                 <a class="posts" id="posts">Posts</a>
-                <a class="comments">Comentarios</a>
+                <a class="comments" id="comments">Comentarios</a>
             </div>
             <div class="info-perfil" id="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
@@ -125,6 +132,7 @@
             <div class="post-content" id="post-content">
                 <?php
                 $counter = 0;
+                // Ver posteos de mi perfil
                 if ($result->num_rows > 0 && !isset($_GET['id'])) {
                     while ($row = $result->fetch_assoc()) {
                         $counter++;
@@ -150,6 +158,7 @@
                     }
                 ?>
                 <?php
+                // Ver posteos de otros usuarios
                 } else if ($result->num_rows > 0 && isset($_GET['id'])) {
                     $counter = 0;
                     while ($row = $result->fetch_assoc()) {
@@ -170,6 +179,60 @@
                     }
                 }
                 ?>
+            </div>
+            <div class="comment-content" id="comment-content">
+                <?php
+                // Ver comentarios de mi perfil
+                $counterComments = 0;
+                if ($queryGetComments->num_rows > 0 && !isset($_GET['id'])) {
+                    while ($rowComments = $queryGetComments->fetch_assoc()) {
+                        $counterComments++;
+                        $idPostItem = $rowComments['id_post'];
+                        $idAutorItem = $rowComments['id_autor'];
+                        $idComentarioItem = $rowComments['id_comentario'];
+                        $autorComentarioItem = $rowComments['autor_comentario'];
+                        $comentarioItem = $rowComments['comentario'];
+                ?>
+                <div class="comment-card">
+                    <div class="square-menu-perfil-comments"></div>
+                    <div class="menu-opciones-comments" id="menu-opciones-comments">
+                        <a href="edit-comment.php?id_comment=<?php echo $idComentarioItem;?>">Editar comentario</a>
+                        <a href="" class="delete-comment-btn" data-id="<?php echo $idComment; ?>">Eliminar comentario</a>
+                    </div>
+                    <img src="../svg/menu.svg" alt="" class="menu-icon-comments">
+                    <h2><?php echo $autorComentarioItem; ?></h2>
+                    <h3><?php echo $comentarioItem; ?></h3>
+                </div>
+
+                <?php
+                    }
+                ?>
+                <?php
+                // Ver comentarios de otro perfil
+                } else if ($queryGetComments->num_rows > 0 && isset($_GET['id'])) {
+                    while ($rowComments = $queryGetComments->fetch_assoc()) {
+                        $counterComments++;
+                        $idPostItem = $rowComments['id_post'];
+                        $idAutorItem = $rowComments['id_autor'];
+                        $idComentarioItem = $rowComments['id_comentario'];
+                        $autorComentarioItem = $rowComments['autor_comentario'];
+                        $comentarioItem = $rowComments['comentario'];
+                ?>
+                <div class="comment-card">
+                    <div class="square-menu-perfil-comments"></div>
+                    <div class="menu-opciones-comments" id="menu-opciones-comments">
+                        <a href="edit-comment.php?id_comment=<?php echo $idComentarioItem;?>">Editar comentario</a>
+                        <a href="" class="delete-comment-btn" data-id="<?php echo $idComment; ?>">Eliminar comentario</a>
+                    </div>
+                    <img src="../svg/menu.svg" alt="" class="menu-icon-comments">
+                    <h2><?php echo $autorComentarioItem; ?></h2>
+                    <div><?php echo $comentarioItem; ?></div>
+                </div>
+                <?php
+                    }
+                }
+                ?>
+
             </div>
         </section>
     </main>

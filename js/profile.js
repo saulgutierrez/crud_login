@@ -7,6 +7,8 @@ const postContent = document.querySelectorAll('.post-content');
 const squareProfile = document.querySelectorAll('.square-menu-perfil');
 const menu = document.querySelectorAll('.menu-opciones');
 const menuIcon = document.querySelectorAll('.menu-icon');
+const commentsScreen = document.querySelectorAll('.comment-card');
+const commentsContent = document.querySelectorAll('.comment-content');
 
     info.style.backgroundColor = "hsl(211, 100%, 50%)"; 
     info.style.borderRadius = "20px";
@@ -22,7 +24,13 @@ info.addEventListener("click", () => {
     });
     postContent.forEach(element => {
         element.style.display = "none";
-    })
+    });
+    commentsScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    commentsContent.forEach(element => {
+        element.style.display = "none";
+    });
 });
 
 posts.addEventListener("click", () => {
@@ -37,6 +45,12 @@ posts.addEventListener("click", () => {
     postContent.forEach(element =>  {
         element.style.display = "flex";
     });
+    commentsScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    commentsContent.forEach(element => {
+        element.style.display = "none";
+    });
 });
 
 comments.addEventListener("click", () => {
@@ -44,7 +58,20 @@ comments.addEventListener("click", () => {
     comments.style.borderRadius = "20px";
     info.style.backgroundColor = "hsl(240, 7%, 8%)";
     posts.style.backgroundColor = "hsl(240, 7%, 8%)";
-    infoPerfil.innerHTML = "";
+    infoPerfil.style.display = "none";
+    commentsScreen.forEach(element => {
+        element.style.display = "flex";
+    });
+    commentsContent.forEach(element => {
+        element.style.display = "flex";
+    });
+    postsScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    postContent.forEach(element => {
+        element.style.display = "none";
+    })
+
 });
 
 menuIcon.forEach((elemento, index) => {
