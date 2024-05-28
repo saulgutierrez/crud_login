@@ -282,6 +282,10 @@ body main section {
     color: #007bff;
 }
 
+.comment-card div, .comment-card h3 {
+    font-weight: 400;
+}
+
 .square-menu-perfil-comments {
     position: absolute;
     width: 20px;
