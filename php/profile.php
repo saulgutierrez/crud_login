@@ -8,7 +8,7 @@
         $sqlGetInfo = "SELECT * FROM usuarios WHERE id = '$id'";
         $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
 
-        $sqlGetPosts = "SELECT id_post id_autor, autor_post, titulo_post, contenido_post FROM post WHERE id_autor = '$id'";
+        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post WHERE id_autor = '$id'";
         $result = $conn->query($sqlGetPosts);
 
         # Recuperamos la informacion asociada a la consulta
@@ -163,12 +163,13 @@
                     $counter = 0;
                     while ($row = $result->fetch_assoc()) {
                         $counter++;
+                        $id_post = $row['id_post'];
                         $id = $row['id_autor'];
                         $autor = $row['autor_post'];
                         $titulo = $row['titulo_post'];
                         $contenido = $row['contenido_post'];
                     ?>
-                    <div class="post-card">
+                    <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
                         <div class="square-menu-perfil"></div>
                         <img src="../svg/menu.svg" alt="" class="menu-icon">
                         <h2><?php echo $autor; ?></h2>
@@ -197,7 +198,7 @@
                     <div class="square-menu-perfil-comments"></div>
                     <div class="menu-opciones-comments" id="menu-opciones-comments">
                         <a href="view-post.php?id=<?php echo $idPostItem; ?>""> Ver hilo</a>
-                        <a href="" class="delete-comment-btn" data-id="<?php echo $idComment; ?>">Eliminar comentario</a>
+                        <a href="" class="delete-comment-btn" data-id="<?php echo $idComentarioItem; ?>">Eliminar comentario</a>
                     </div>
                     <img src="../svg/menu.svg" alt="" class="menu-icon-comments">
                     <h2><?php echo $autorComentarioItem; ?></h2>
@@ -240,5 +241,6 @@
     <script src="../js/check-profile-or-user.js"></script>
     <script src="../js/profile.js"></script>
     <script src="../js/delete-post.js"></script>
+    <script src="../js/delete-comment.js"></script>
 </body>
 </html>
