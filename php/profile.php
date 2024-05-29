@@ -193,10 +193,10 @@
                         $autorComentarioItem = $rowComments['autor_comentario'];
                         $comentarioItem = $rowComments['comentario'];
                 ?>
-                <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">
+                <div class="comment-card">
                     <div class="square-menu-perfil-comments"></div>
                     <div class="menu-opciones-comments" id="menu-opciones-comments">
-                        <a href="edit-comment.php?id_comment=<?php echo $idComentarioItem;?>">Editar comentario</a>
+                        <a href="view-post.php?id=<?php echo $idPostItem; ?>""> Ver hilo</a>
                         <a href="" class="delete-comment-btn" data-id="<?php echo $idComment; ?>">Eliminar comentario</a>
                     </div>
                     <img src="../svg/menu.svg" alt="" class="menu-icon-comments">
