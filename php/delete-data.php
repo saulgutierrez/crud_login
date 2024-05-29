@@ -7,7 +7,8 @@
 
     if (isset($_POST['user'], $_POST['confirm-delete'])) {
         $user = $_POST['user'];
-        $pass = $_POST['confirm-delete'];   
+        $pass = $_POST['confirm-delete'];
+        $id = $_GET['id'];   
 
         $cryptPass = sha1($pass);
 
@@ -18,8 +19,22 @@
         $row = $result_check->fetch_assoc();
         
         if ($row['count'] == 1) {
+            // Eliminar el perfil del usuario
             $sql = "DELETE FROM usuarios WHERE usuario = '$user' AND contrasenia = '$cryptPass'";
             $result = $conn->query($sql);
+
+            // Eliminar posteos del usuario
+            $sql2 = "DELETE FROM post WHERE autor_post = '$user'";
+            $result2 = $conn->query($sql2);
+
+            // Eliminar comentarios del usuario
+            $sql3 = "DELETE FROM comentarios WHERE autor_comentario = '$user'";
+            $result3 = $conn->query($sql3);
+
+            // Eliminar comentarios en posteos del usuario
+            $sql4 = "DELETE FROM comentarios WHERE id_autor = '$id'";
+            $result4 = $conn->query($sql4);
+
             session_destroy();
             echo 0;
         } else {
