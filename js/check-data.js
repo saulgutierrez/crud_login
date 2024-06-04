@@ -12,7 +12,7 @@ $(document).ready(function () {
             setTimeout("$('#login-result').html('')", 5000);
         } else {
             $.ajax({
-                url         :   'php/data.php',
+                url         :   'data.php',
                 type        :   'POST',
                 data        :   datosEnviados,
                 dataType    :   'text',
@@ -24,7 +24,7 @@ $(document).ready(function () {
                         $('#user').val('');
                         $('#password').val('');
                     } else {
-                        location.href = "php/dashboard.php";
+                        location.href = "dashboard.php";
                     }
                 }
             });

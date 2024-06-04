@@ -22,7 +22,7 @@
         <input type="password" id="password" name="password">
         <div class="group-buttons">
             <input type="submit" value="Registrarte" id="show-message">
-            <a href="../index.php">Atrás</a>
+            <a href="login.php">Atrás</a>
         </div>
         <div id="message" class="message"></div>
     </form>
