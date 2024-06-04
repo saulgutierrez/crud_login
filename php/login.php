@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="../css/login.css">
     <script src="../js/jquery-3.7.1.min.js"></script>
     <script src="../js/check-data.js"></script>
-    <title>Login y CRUD</title>
+    <title>Foro | Games DB</title>
 </head>
 <body>
+    <?php include "../includes/navbar.php" ?>
     <form id="login" method="POST">
         <img src="../svg/user-fill.svg" alt="" class="user-icon">
         <img src="../svg/lock-fill.svg" alt="" class="pass-icon">

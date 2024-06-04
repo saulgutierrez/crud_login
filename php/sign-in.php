@@ -13,6 +13,7 @@
     <title>Registrate</title>
 </head>
 <body>
+    <?php include "../includes/navbar.php" ?>
     <form method="POST" id="newUserForm">
         <img src="../svg/user-fill.svg" alt="" class="user-icon">
         <img src="../svg/lock-fill.svg" alt="" class="pass-icon">
