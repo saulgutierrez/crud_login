@@ -6,7 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/goto-top.js"></script>
 </head>
+
 <body>
     <?php
         # Hacemos uso de una API gratuita para mostrar datos de los juegos
@@ -19,6 +22,9 @@
 
         $data = json_decode($response, TRUE);
     ?>
+    <span class="ir-arriba">
+        <img src="svg/arrow-up.svg" alt="" class="arrow-up-icon">
+    </span>
     <div class="card-container">
         <?php foreach ($data as $item): ?>
         <div class="card">

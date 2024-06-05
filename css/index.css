@@ -51,3 +51,23 @@ html {
     font-size: 0.9em;
     color: #666;
 }
+
+.ir-arriba {
+    display: none;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 200000;
+    border-radius: 50%;
+}
+
+.arrow-up-icon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+}
