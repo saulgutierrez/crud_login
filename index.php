@@ -31,10 +31,18 @@
             <?php if (!empty($item['thumbnail'])): ?>
                 <img src="<?php echo htmlspecialchars($item['thumbnail']);?>" alt="Imagen">
             <?php endif; ?>
-            <div class="card-title"><?php echo htmlspecialchars($item['title']); ?></div>
+            <div class="card-title" data-id="<?php echo htmlspecialchars($item['id'])?>"><?php echo htmlspecialchars($item['title']); ?></div>
             <div class="card-description"><?php echo htmlspecialchars($item['short_description']); ?></div>
         </div>
         <?php endforeach; ?>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('.card-title').click(function () {
+                var gameId = $(this).data('id');
+                window.location.href = 'php/game-details.php?id=' + gameId;
+            });
+        });
+    </script>
 </body>
 </html>
