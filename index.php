@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/goto-top.js"></script>
+    <script src="js/game-details.js"></script>
 </head>
 
 <body>
@@ -36,13 +37,5 @@
         </div>
         <?php endforeach; ?>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('.card-title').click(function () {
-                var gameId = $(this).data('id');
-                window.location.href = 'php/game-details.php?id=' + gameId;
-            });
-        });
-    </script>
 </body>
 </html>
