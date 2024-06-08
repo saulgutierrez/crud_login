@@ -70,10 +70,25 @@
         <?php } ?>
         
         
-        <div class="wrapper-features">
+        <div class="wrapper-features-description-images">
             <p class="game-description"><?php echo isset($gameData['description']) ? htmlspecialchars($gameData['description']) : 'Descripción no disponible'; ?></p>
 
-            <?php if (isset($gameData['minimum_system_requirements'])) { ?>
+            <div class="img-container">
+                <?php if (!empty($gameData['screenshots']) && is_array($gameData['screenshots'])) {
+                    // Verificar y mostrar cada imagen si existe
+                    for ($i = 0; $i < 3; $i++) {
+                        if (isset($gameData['screenshots'][$i]['image'])) {
+                            echo '<img src="' . htmlspecialchars($gameData['screenshots'][$i]['image']) . '" alt="Imagen del juego">';
+                        }
+                    }
+                } else { ?>
+                    No se encontraron imágenes del juego
+                <?php } ?>
+            </div>
+        </div>
+
+        <?php if (isset($gameData['minimum_system_requirements'])) { ?>
+            <h2>System requirements</h2>
                 <div class="requirements">
                     <p><?php echo isset($gameData['minimum_system_requirements']['os']) ? htmlspecialchars($gameData['minimum_system_requirements']['os']) : 'Requisitos mínimos del sistema operativo no disponibles'; ?></p>
                     <p><?php echo isset($gameData['minimum_system_requirements']['processor']) ? htmlspecialchars($gameData['minimum_system_requirements']['processor']) : 'Requisitos mínimos del procesador no disponibles'; ?></p>
@@ -86,20 +101,6 @@
                     <p>Requisitos mínimos del sistema no disponibles</p>
                 </div>
             <?php } ?>
-        </div>
-
-        <div class="img-container">
-            <?php if (!empty($gameData['screenshots']) && is_array($gameData['screenshots'])) {
-                // Verificar y mostrar cada imagen si existe
-                for ($i = 0; $i < 3; $i++) {
-                    if (isset($gameData['screenshots'][$i]['image'])) {
-                        echo '<img src="' . htmlspecialchars($gameData['screenshots'][$i]['image']) . '" alt="Imagen del juego">';
-                    }
-                }
-            } else { ?>
-                No se encontraron imágenes del juego
-            <?php } ?>
-        </div>
     </div>
 </body>
 </html>

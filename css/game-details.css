@@ -94,6 +94,7 @@ body {
     justify-content: space-evenly;
     width: 100%;
     align-items: center;
+    flex-direction: column;
 }
 
 .img-container img {
@@ -145,4 +146,37 @@ body {
 
 .genre-design {
     border-top-left-radius: 20px;
+}
+
+.wrapper-features-description-images {
+    margin-top: 50px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    gap: 50px;
+}
+
+.game-description {
+    margin-left: 8%;
+    width: 100%;
+    line-height: 2;
+}
+
+.requirements {
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    padding: 40px 0px;
+}
+
+.requirements p {
+    position: relative;
+    width: calc((100% / 5) - 20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 10px;
+    background-color: #007bff;
+    border-radius: 10px;
+    margin-right: 10px;
 }
