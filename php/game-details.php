@@ -90,11 +90,26 @@
         <?php if (isset($gameData['minimum_system_requirements'])) { ?>
             <h2>System requirements</h2>
                 <div class="requirements">
-                    <p><?php echo isset($gameData['minimum_system_requirements']['os']) ? htmlspecialchars($gameData['minimum_system_requirements']['os']) : 'Requisitos mínimos del sistema operativo no disponibles'; ?></p>
-                    <p><?php echo isset($gameData['minimum_system_requirements']['processor']) ? htmlspecialchars($gameData['minimum_system_requirements']['processor']) : 'Requisitos mínimos del procesador no disponibles'; ?></p>
-                    <p><?php echo isset($gameData['minimum_system_requirements']['memory']) ? htmlspecialchars($gameData['minimum_system_requirements']['memory']) : 'Requisitos mínimos de memoria no disponibles'; ?></p>
-                    <p><?php echo isset($gameData['minimum_system_requirements']['graphics']) ? htmlspecialchars($gameData['minimum_system_requirements']['graphics']) : 'Requisitos mínimos de gráficos no disponibles'; ?></p>
-                    <p><?php echo isset($gameData['minimum_system_requirements']['storage']) ? htmlspecialchars($gameData['minimum_system_requirements']['storage']) : 'Requisitos mínimos de almacenamiento no disponibles'; ?></p>
+                    <p>
+                        <?php echo isset($gameData['minimum_system_requirements']['os']) ? htmlspecialchars($gameData['minimum_system_requirements']['os']) : 'Requisitos mínimos del sistema operativo no disponibles'; ?>
+                        <img src="../svg/os-icon.svg" alt="" class="os-icon">
+                    </p>
+                    <p>
+                        <?php echo isset($gameData['minimum_system_requirements']['processor']) ? htmlspecialchars($gameData['minimum_system_requirements']['processor']) : 'Requisitos mínimos del procesador no disponibles'; ?>
+                        <img src="../svg/cpu-processor-icon.svg" alt="" class="processor-icon">
+                    </p>
+                    <p>
+                        <?php echo isset($gameData['minimum_system_requirements']['memory']) ? htmlspecialchars($gameData['minimum_system_requirements']['memory']) : 'Requisitos mínimos de memoria no disponibles'; ?>
+                        <img src="../svg/ram-memory-icon.svg" alt="" class="memory-icon">
+                    </p>
+                    <p>
+                        <?php echo isset($gameData['minimum_system_requirements']['graphics']) ? htmlspecialchars($gameData['minimum_system_requirements']['graphics']) : 'Requisitos mínimos de gráficos no disponibles'; ?>
+                        <img src="../svg/graphics-card-icon.svg" alt="" class="graphics-card-icon">
+                    </p>
+                    <p>
+                        <?php echo isset($gameData['minimum_system_requirements']['storage']) ? htmlspecialchars($gameData['minimum_system_requirements']['storage']) : 'Requisitos mínimos de almacenamiento no disponibles'; ?>
+                        <img src="../svg/ssd-icon.svg" alt="" class="storage-icon">
+                    </p>
                 </div>
             <?php } else { ?>
                 <div class="requirements">
