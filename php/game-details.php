@@ -41,35 +41,37 @@
                     <div class="main-image-container">
                         <img src="<?php echo htmlspecialchars($gameData['thumbnail']); ?>" alt="Imagen del juego">
                     </div>
-                    <p class="game-description"><?php echo isset($gameData['description']) ? htmlspecialchars($gameData['description']) : 'Descripción no disponible'; ?></p>
+                    <div class="wrapper-features">
+                        <div class="genre">
+                            <p class="genre-design">Genre</p>
+                            <p><?php echo isset($gameData['genre']) ? htmlspecialchars($gameData['genre']) : 'Género no disponible'; ?></p>
+                        </div>
+                        <div class="platform">
+                            <p>Platform</p>
+                            <p><?php echo isset($gameData['platform']) ? htmlspecialchars($gameData['platform']) : 'Plataforma no disponible'; ?></p>
+                        </div>
+                        <div class="publisher">
+                            <p>Publisher</p>
+                            <p class="publisher"><?php echo isset($gameData['publisher']) ? htmlspecialchars($gameData['publisher']) : 'Publicador no disponible'; ?></p>
+                        </div>
+                        <div class="developer">
+                            <p>Developer</p>
+                            <p><?php echo isset($gameData['developer']) ? htmlspecialchars($gameData['developer']) : 'Desarrollador no disponible'; ?></p>
+                        </div>
+                        <div class="release-date">
+                            <p>Release Date</p>
+                            <p class="release-date"><?php echo isset($gameData['release_date']) ? htmlspecialchars($gameData['release_date']) : 'Fecha de lanzamiento no disponible'; ?></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         <?php } else { ?>
             <p>Imagen del juego no disponible</p>
         <?php } ?>
+        
+        
         <div class="wrapper-features">
-            <div class="genre">
-                <p>Genre</p>
-                <p><?php echo isset($gameData['genre']) ? htmlspecialchars($gameData['genre']) : 'Género no disponible'; ?></p>
-            </div>
-            <div class="platform">
-                <p>Platform</p>
-                <p><?php echo isset($gameData['platform']) ? htmlspecialchars($gameData['platform']) : 'Plataforma no disponible'; ?></p>
-            </div>
-            <div class="publisher">
-                <p>Publisher</p>
-                <p><?php echo isset($gameData['publisher']) ? htmlspecialchars($gameData['publisher']) : 'Publicador no disponible'; ?></p>
-            </div>
-        </div>
-        <div class="wrapper-features">
-            <div class="developer">
-                <p>Developer</p>
-                <p><?php echo isset($gameData['developer']) ? htmlspecialchars($gameData['developer']) : 'Desarrollador no disponible'; ?></p>
-            </div>
-            <div class="release-date">
-                <p>Release Date</p>
-                <p><?php echo isset($gameData['release_date']) ? htmlspecialchars($gameData['release_date']) : 'Fecha de lanzamiento no disponible'; ?></p>
-            </div>
+            <p class="game-description"><?php echo isset($gameData['description']) ? htmlspecialchars($gameData['description']) : 'Descripción no disponible'; ?></p>
 
             <?php if (isset($gameData['minimum_system_requirements'])) { ?>
                 <div class="requirements">
