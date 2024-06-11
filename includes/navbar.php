@@ -12,7 +12,7 @@
         <a href="../index.php" class="logo">Games DB</a>
         <ul class="navbar">
             <li><a href="#">Explorar</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="php/blog-index.php">Blog</a></li>
             <li><a href="php/login.php">Foro</a></li>
         </ul>
     </nav>
