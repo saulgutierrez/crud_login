@@ -26,7 +26,7 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 40px 100px;
+    padding: 20px 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,6 +37,16 @@ nav .logo {
     text-decoration: none;
     color: #fff;
     z-index: 1000;
+}
+
+input {
+    background-color: #141417;
+    border: 1px solid #fff;
+    outline: none;
+    width: 200px;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
 }
 
 nav .navbar {

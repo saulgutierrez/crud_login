@@ -10,6 +10,7 @@
 <body>
     <nav>
         <a href="../index.php" class="logo">Games DB</a>
+        <input type="text" placeholder="Buscar">
         <ul class="navbar">
             <li><a href="#">Explorar</a></li>
             <li><a href="#">Blog</a></li>
