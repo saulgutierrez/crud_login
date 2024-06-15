@@ -76,7 +76,6 @@ body {
     color: #fff;
     text-align: justify;
     padding: 20px 10px;
-    background-color: #007bff;
 }
 
 .main-image-container img {
@@ -119,29 +118,35 @@ body {
     display: flex;
     justify-content: center;
     align-items: end;
+    border-top: 1px solid #007bff;
 }
 
 .platform {
     display: flex;
     justify-content: center;
     align-items: end;
+    border-top: 1px solid #007bff;
 }
 
 .publisher {
     display: flex;
     align-items: end;
+    border-top: 1px solid #007bff;
 }
 
 .developer {
     display: flex;
     justify-content: center;
     align-items: end;
+    border-top: 1px solid #007bff;
 }
 
 .release-date {
     display: flex;
     align-items: end;
     border-bottom-right-radius: 20px;
+    border-top: 1px solid #007bff;
+    border-bottom: 1px solid #007bff;
 }
 
 .genre-design {
@@ -176,9 +181,9 @@ body {
     justify-content: center;
     align-items: center;
     padding: 25px 10px 10px 10px;
-    background-color: #007bff;
     border-radius: 10px;
     margin-right: 10px;
+    border: 1px solid #007bff;
 }
 
 .os-icon {
