@@ -33,13 +33,14 @@
     <title>Crear Post</title>
 </head>
 <body>
-    <form method="POST" id="newPostForm">
+    <form method="POST" id="newPostForm" enctype="multipart/form-data">
         <input type="hidden" id="id_user" name="id_user" value="<?php echo $idPerfil;?>">
         <input type="hidden" id="user" name="user" value="<?php echo $user;?>">
         <label for="post-title">Titulo</label>
         <input type="text" name="post_title" id="post_title" class="post_title" placeholder="Titulo del post">
         <label for="post-content">Contenido</label>
         <textarea name="post_content" id="post_content" rows="4" cols="35"></textarea>
+        <input type="file" name="file" id="file" accept="image/*">
         <div class="group-buttons">
             <a href="profile.php?user=<?php echo $user; ?>">Cancelar</a>
             <button value="Guardar cambios">Guardar cambios</button>
