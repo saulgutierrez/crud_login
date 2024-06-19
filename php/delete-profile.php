@@ -8,6 +8,17 @@
 
     if (isset($_SESSION['user'])) {
         $user = $_SESSION['user'];
+
+        $sql = "SELECT id FROM usuarios WHERE usuario = '$user'";
+        $result = $conn->query($sql);
+
+        $counter = 0;
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $counter++;
+            $id = $row['id'];
+        }
+    }
     } else {
         header('Location: dashboard.php');
         exit();
@@ -29,6 +40,7 @@
     <form method="POST" id="deleteProfileForm">
         <label for="confirm-delete" class="delete-alert">Como medida de seguridad, para confirmar la eliminación de su cuenta, debe ingresar su contraseña.</label>
         <input type="hidden" id="user" name="user" value="<?php echo $user; ?>">
+        <input type="hidden" id="id_user" name="id_user" value="<?php echo $id; ?>">
         <input type="password" id="confirm-delete" name="confirm-delete">
         <div class="delete-result" id="delete-result"></div>
         <div class="group-buttons">

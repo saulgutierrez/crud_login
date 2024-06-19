@@ -3,6 +3,7 @@ $(document).ready(function () {
         event.preventDefault();
         var datosEnviados = {
             'user'              :   $('#user').val(),
+            'id_user'           :   $('#id_user').val(),
             'confirm-delete'    :   $('#confirm-delete').val()
         };
 

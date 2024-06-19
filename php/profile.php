@@ -8,7 +8,7 @@
         $sqlGetInfo = "SELECT * FROM usuarios WHERE id = '$id'";
         $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
 
-        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post WHERE id_autor = '$id'";
+        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post FROM post WHERE id_autor = '$id'";
         $result = $conn->query($sqlGetPosts);
 
         # Recuperamos la informacion asociada a la consulta
@@ -38,7 +38,7 @@
         $sqlGetInfo = "SELECT * FROM usuarios WHERE usuario = '$user'";
         $queryGetInfo = $conn->query($sqlGetInfo);
 
-        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post WHERE autor_post = '$user'";
+        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post FROM post WHERE autor_post = '$user'";
         $result = $conn->query($sqlGetPosts);
 
         $sqlProfileComments = "SELECT * FROM comentarios WHERE autor_comentario = '$user'";
@@ -97,7 +97,7 @@
             </div>
             <article class="group-buttons">
                 <a id="btn-1" class="edit-profile-btn" href="edit-profile.php?user=<?php echo $user;?>">Editar perfil</a>
-                <a id="btn-2" class="delete-profile-btn" href="delete-profile.php?user=<?php echo $user;?>&id=<?php echo $idPerfil;?>">Eliminar cuenta</a>
+                <a id="btn-2" class="delete-profile-btn" href="delete-profile.php">Eliminar cuenta</a>
             </article>
         </nav>
         <section>
@@ -141,6 +141,7 @@
                         $autor = $row['autor_post'];
                         $titulo = $row['titulo_post'];
                         $contenido = $row['contenido_post'];
+                        $foto = $row['foto_post'];
                 ?>
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
@@ -152,6 +153,7 @@
                     <h2><?php echo $autor; ?></h2>
                     <h3><?php echo $titulo; ?></h3>
                     <div><?php echo $contenido; ?></div>
+                    <div><img src="<?php echo $foto; ?>" alt=""></div>
                 </div>
 
                 <?php
@@ -168,6 +170,7 @@
                         $autor = $row['autor_post'];
                         $titulo = $row['titulo_post'];
                         $contenido = $row['contenido_post'];
+                        $foto = $row['foto_post'];
                     ?>
                     <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
                         <div class="square-menu-perfil"></div>
@@ -175,6 +178,7 @@
                         <h2><?php echo $autor; ?></h2>
                         <h3><?php echo $titulo; ?></h3>
                         <div><?php echo $contenido; ?></div>
+                        <div><img src="<?php echo $foto; ?>" alt=""></div>
                     </div>
                 <?php
                     }
