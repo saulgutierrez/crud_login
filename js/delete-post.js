@@ -8,12 +8,11 @@ $(document).ready(function() {
             url     :   'delete-post.php',
             type    :   'POST',
             data    :   { id: id },
-            success :   function (response) {
-                if (response == 'success') {
-                    row.remove();
-                } else {
-                    alert('Error al eliminar el registro.');
-                }
+            success :   function () {
+                row.remove();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert('Error en la solicitud: ' + textStatus);
             }
         });
     });
