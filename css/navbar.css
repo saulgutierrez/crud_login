@@ -49,6 +49,10 @@ input {
     border-radius: 20px;
 }
 
+nav li {
+    list-style: none;
+}
+
 nav .navbar {
     position: relative;
     display: flex;

@@ -20,7 +20,7 @@
 </head>
 <header>
     <h1><a href="../php/dashboard.php">Forum</a></h1>
-    <input type="text">
+    <input type="text" placeholder="Buscar">
     <!-- Identificamos al usuario dentro de la interfaz -->
     <h2 class="identifier" id="identifier"><?php echo $username; ?></h2>
     <div class="square"></div>
