@@ -8,23 +8,32 @@ $(document).ready(function () {
         formData.append('user', $('#user').val());
         formData.append('post_title', $('#post_title').val());
         formData.append('post_content', $('#post_content').val());
-        
-        $.ajax({
-            url         :   'post-data.php',
-            type        :   'POST',
-            data        :   formData,
-            contentType :   false,
-            processData :   false,
-            success:    function(response) {
-                var res = JSON.parse(response);
-                $('#new-post-result').html(res.message);
-                if (res.file_error) {
-                    $('#new-post-result').html('Codigo de error de archivo: ' + res.file_error);
+
+        if ($('#post_title').val() == "" || $('#post_content').val() == "") {
+            $('#new-post-result').html('Faltan campos por llenar');
+            $('#new-post-result').show();
+            setTimeout("$('#new-post-result').html('')", 5000);
+        } else {
+            $.ajax({
+                url         :   'post-data.php',
+                type        :   'POST',
+                data        :   formData,
+                contentType :   false,
+                processData :   false,
+                success:    function(response) {
+                    var res = JSON.parse(response);
+                    if (res.file_error) {
+                        $('#new-post-result').html(res.message);
+                        $('#new-post-result').show();
+                        setTimeout("$('#new-post-result').html('')", 5000);
+                    } else {
+                        location.href = "dashboard.php";
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#new-post-result').html('Error en la solicitud: ' + textStatus);
                 }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                $('#new-post-result').html('Error en la solicitud: ' + textStatus);
-            }
-        });
+            });
+        }
     });
 });
