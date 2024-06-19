@@ -8,7 +8,7 @@
     if (isset($_POST['user'], $_POST['confirm-delete'])) {
         $user = $_POST['user'];
         $pass = $_POST['confirm-delete'];
-        $id = $_GET['id'];   
+        $id_user = $_POST['id_user'];   
 
         $cryptPass = sha1($pass);
 
@@ -32,7 +32,7 @@
             $result3 = $conn->query($sql3);
 
             // Eliminar comentarios en posteos del usuario
-            $sql4 = "DELETE FROM comentarios WHERE id_autor = '$id'";
+            $sql4 = "DELETE FROM comentarios WHERE id_autor = '$id_user'";
             $result4 = $conn->query($sql4);
 
             session_destroy();

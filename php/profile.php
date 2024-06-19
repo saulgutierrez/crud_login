@@ -97,7 +97,7 @@
             </div>
             <article class="group-buttons">
                 <a id="btn-1" class="edit-profile-btn" href="edit-profile.php?user=<?php echo $user;?>">Editar perfil</a>
-                <a id="btn-2" class="delete-profile-btn" href="delete-profile.php?user=<?php echo $user;?>&id=<?php echo $idPerfil;?>">Eliminar cuenta</a>
+                <a id="btn-2" class="delete-profile-btn" href="delete-profile.php">Eliminar cuenta</a>
             </article>
         </nav>
         <section>
