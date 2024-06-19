@@ -53,7 +53,9 @@
                 <h2><a href="profile.php?id=<?php echo $id;?>"><?php echo $autor; ?></a></h2>
                 <h3><?php echo $titulo; ?></h3>
                 <div><?php echo $contenido; ?></div>
-                <div><img src="<?php echo $foto; ?>" alt=""></div>
+                <div class="imgBox">
+                    <img src="<?php echo $foto; ?>" alt="">
+                </div>
             </div>
             <?php
                     }

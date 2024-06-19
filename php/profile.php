@@ -153,7 +153,9 @@
                     <h2><?php echo $autor; ?></h2>
                     <h3><?php echo $titulo; ?></h3>
                     <div><?php echo $contenido; ?></div>
-                    <div><img src="<?php echo $foto; ?>" alt=""></div>
+                    <div class="imgBox">
+                        <img src="<?php echo $foto; ?>" alt="">
+                    </div>
                 </div>
 
                 <?php
@@ -178,7 +180,9 @@
                         <h2><?php echo $autor; ?></h2>
                         <h3><?php echo $titulo; ?></h3>
                         <div><?php echo $contenido; ?></div>
-                        <div><img src="<?php echo $foto; ?>" alt=""></div>
+                        <div class="imgBox">
+                            <img src="<?php echo $foto; ?>" alt="">
+                        </div>
                     </div>
                 <?php
                     }
