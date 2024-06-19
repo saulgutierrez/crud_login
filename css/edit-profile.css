@@ -64,21 +64,21 @@ form button, form a {
 }
 
 form a {
-    background-color: #007bff;
+    background-color: #dc3545;
     text-align: center;
     text-decoration: none;
 }
 
 form a:hover {
-    background-color: #0069d9;
+    background-color: #c82333;
 }
 
 form button {
-    background-color: #28a745;
+    background-color: #007bff;
 }
 
 form button:hover {
-    background-color: #218838;
+    background-color: #0069d9;
 }
 
 .custom-select {

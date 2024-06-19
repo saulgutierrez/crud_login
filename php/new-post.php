@@ -43,7 +43,7 @@
         <input type="file" name="file" id="file" accept="image/*">
         <div class="group-buttons">
             <a href="profile.php?user=<?php echo $user; ?>">Cancelar</a>
-            <button value="Guardar cambios">Guardar cambios</button>
+            <button value="Guardar cambios">Guardar</button>
         </div>
         <div id="new-post-result" class="new-post-result"></div>
     </form>

@@ -82,7 +82,7 @@ form input[type=text]:focus {
 .group-buttons a {
     text-decoration: none;
     color: #fff;
-    background-color: #28a745;
+  background-color: #dc3545;
     border: none;
     outline: none;
     border-radius: 20px;
@@ -90,7 +90,7 @@ form input[type=text]:focus {
 }
 
 .group-buttons a:hover {
-    background-color: #218838;
+    background-color: #c82333;
 }
 
 .new-post-result {
