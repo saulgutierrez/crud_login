@@ -1,5 +1,5 @@
 <?php
-    require('conexion.php');
+    require('connection.php');
     require('data.php');
 
     if (isset($_GET['id'])) {

@@ -1,5 +1,5 @@
 <?php
-    require('conexion.php');
+    require('connection.php');
     require('data.php');
     # Si no existe varible de sesion, quiere decir que el usuario no se ha autenticado
     # Negamos el acceso

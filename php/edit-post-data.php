@@ -1,5 +1,5 @@
 <?php
-    require('conexion.php');
+    require('connection.php');
 
     # Solucion a error: "ya habia iniciado una sesion ignorando session_start()"
     if (!isset($_SESSION)) {

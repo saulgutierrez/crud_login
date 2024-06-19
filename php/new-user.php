@@ -1,5 +1,5 @@
 <?php
-    require('conexion.php');
+    require('connection.php');
 
     session_start();
     # Si se recibieron datos desde el frontend, los almacenamos para insercion
