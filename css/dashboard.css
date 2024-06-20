@@ -139,3 +139,7 @@ p {
     letter-spacing: 2px;
     color: red;
 }
+
+.noImage {
+    display: none;
+}

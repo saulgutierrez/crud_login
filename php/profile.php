@@ -142,6 +142,7 @@
                         $titulo = $row['titulo_post'];
                         $contenido = $row['contenido_post'];
                         $foto = $row['foto_post'];
+                        $hasImage = !empty($foto) ? 'imgBox' : 'noImage';
                 ?>
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
@@ -153,7 +154,7 @@
                     <h2><?php echo $autor; ?></h2>
                     <h3><?php echo $titulo; ?></h3>
                     <div><?php echo $contenido; ?></div>
-                    <div class="imgBox">
+                    <div class="<?php echo $hasImage; ?>">
                         <img src="<?php echo $foto; ?>" alt="">
                     </div>
                 </div>
@@ -173,6 +174,7 @@
                         $titulo = $row['titulo_post'];
                         $contenido = $row['contenido_post'];
                         $foto = $row['foto_post'];
+                        $hasImage = !empty($foto) ? 'imgBox' : 'noImage';
                     ?>
                     <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
                         <div class="square-menu-perfil"></div>
@@ -180,7 +182,7 @@
                         <h2><?php echo $autor; ?></h2>
                         <h3><?php echo $titulo; ?></h3>
                         <div><?php echo $contenido; ?></div>
-                        <div class="imgBox">
+                        <div class="<?php echo $hasImage; ?>">
                             <img src="<?php echo $foto; ?>" alt="">
                         </div>
                     </div>

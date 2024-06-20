@@ -358,3 +358,7 @@ body main section {
     height: 100%;
     object-fit: cover;
 }
+
+.noImage {
+    display: none;
+}
