@@ -18,6 +18,8 @@
             $autorPost = $sqlGetInfoPost['autor_post'];
             $tituloPost = $sqlGetInfoPost['titulo_post'];
             $contenidoPost = $sqlGetInfoPost['contenido_post'];
+            $fotoPost = $sqlGetInfoPost['foto_post'];
+            $hasImage = !empty($fotoPost) ? 'imgLinkLabel' : 'noImage';
         } else {
             header('Location dasboard.php');
         } 
@@ -48,11 +50,22 @@
         <input type="text" name="post_title" id="post_title" class="post_title" placeholder="Titulo del post" value="<?php echo $tituloPost; ?>">
         <label for="post-content">Contenido</label>
         <textarea name="post_content" id="post_content" rows="4" cols="35"><?php echo $contenidoPost; ?></textarea>
+        <input type="file" name="file" id="file" accept="image/*">
+        <a href="#" id="openModalLink" class="<?php echo $hasImage; ?>">Ver imagen existente</a>
         <div class="group-buttons">
             <a href="profile.php?user=<?php echo $user; ?>">Cancelar</a>
             <button value="Guardar cambios">Guardar cambios</button>
         </div>
         <div id="edit-post-result" class="edit-post-result"></div>
     </form>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="<?php echo $fotoPost; ?>" style="max-width: 100%; height: auto;">
+        </div>
+    </div>
+
 </body>
+<script src="../js/view-saved-image.js"></script>
 </html>
