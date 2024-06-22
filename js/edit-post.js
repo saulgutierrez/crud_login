@@ -1,33 +1,48 @@
 $(document).ready(function () {
     $('#editPostForm').on('submit', function(event) {
-        event.preventDefault();
-        var datosEnviados = {
-            'id_post'       :   $('#id_post').val(),
-            'id_user'       :   $('#id_user').val(),
-            'user'          :   $('#user').val(),
-            'post_title'    :   $('#post_title').val(),
-            'post_content'  :   $('#post_content').val()
-        };
+        event.preventDefault(); // Prevenir el envío del formulario tradicional
 
-        if ($('#post_title').val() == "" || $('#post_content').val() == "") {
+        var formData = new FormData(this); // Crear un objeto FormData con los datos del formulario
+
+        // Validación de campos
+        if ($('#post_title').val() === "" || $('#post_content').val() === "") {
             $('#edit-post-result').html('Faltan campos por llenar');
             $('#edit-post-result').show();
-            setTimeout("$('#edit-post-result').html('')", 5000);
+            setTimeout(function() {
+                $('#edit-post-result').html('');
+            }, 5000);
         } else {
+            // Envío de la solicitud AJAX
             $.ajax({
-                url         :   'edit-post-data.php',
-                type        :   'POST',
-                data        :   datosEnviados,
-                dataType    :   'text',
-                success:    function(res) {
-                    if (res == 0) {
-                        location.href = "profile.php";
-                    } else  {
-                        alert('Error al actualizar');
-                    } 
+                url: 'edit-post-data.php', // URL del script PHP
+                type: 'POST',  // Método de la solicitud
+                data: formData, // Datos del formulario
+                contentType: false, // No establecer tipo de contenido
+                processData: false, // No procesar los datos
+                success: function(response) {
+                    try {
+                        // Intentar parsear la respuesta como JSON
+                        var res = JSON.parse(response);
+                        // Mostrar mensaje de respuesta
+                        $('#edit-post-result').html(res.message);
+                        $('#edit-post-result').show();
+                        setTimeout(function() {
+                            $('#edit-post-result').html('');
+                        }, 5000);
+                    } catch (e) {
+                        window.location = 'dashboard.php';
+                        setTimeout(function() {
+                            $('#edit-post-result').html('');
+                        }, 5000);
+                    }
                 },
-                error:  function (e) {
-                    alert('Error');
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Manejo de errores de la solicitud AJAX
+                    $('#edit-post-result').html('Error en la solicitud: ' + textStatus);
+                    $('#edit-post-result').show();
+                    setTimeout(function() {
+                        $('#edit-post-result').html('');
+                    }, 5000);
                 }
             });
         }
