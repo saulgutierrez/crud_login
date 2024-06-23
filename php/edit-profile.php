@@ -72,6 +72,8 @@
                 <option value="Masculino">Masculino</option>
             </select>
         </div>
+        <label for="file">Fotografía</label>
+        <input type="file" name="file" id="file" accept="image/*">
         <a href="profile.php?user=<?php echo $nombreUsuario; ?>">Cancelar</a>
         <button value="Guardar cambios">Guardar cambios</button>
         <div id="edit-result" class="edit-result"></div>
