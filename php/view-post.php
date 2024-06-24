@@ -28,6 +28,17 @@
             $foto = $row['foto_post'];
         }
     }
+
+    $sql2 = "SELECT id FROM usuarios WHERE usuario = '$username'";
+    $result2 = $conn->query($sql2);
+
+    $counter2 = 0;
+    if ($result2->num_rows > 0) {
+        while ($row2 = $result2->fetch_assoc()) {
+            $counter2++;
+            $idAutorComentario = $row2['id'];
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +66,7 @@
             <form class="group-comment" id="form-comment" method="POST">
                 <input type="hidden" value="<?php echo $id_post; ?>" id="id-post" name="id-post">
                 <input type="hidden" value="<?php echo $id; ?>" id="id-autor-post" name="id-autor-post">
+                <input type="hidden" value="<?php echo $idAutorComentario; ?>" id="id-autor-comentario" name="id-autor-comentario">
                 <input type="hidden" value="<?php echo $username; ?>" id="autor-comentario" name="autor-comentario">
                 <input type="text" placeholder="Escribe un comentario..." class="comment-input" id="comment-input" name="comment-input">
                 <button value="Responder">Responder</button>

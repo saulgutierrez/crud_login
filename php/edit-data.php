@@ -1,26 +1,20 @@
 <?php
 require('connection.php');
 
-// Iniciar sesion si no se ha iniciado ya
 if (!isset($_SESSION)) {
     session_start();
 }
 
-// Establecer el encabezado de contenido como JSON para asegurar que el cliente lo interprete correctamente
 header('Content-Type: application/json');
 
-// Directorio donde se almacenan las imágenes; se crea si no existe
 $target_dir = "uploads/";
-
 if (!file_exists($target_dir)) {
     mkdir($target_dir, 0777, true);
 }
 
-// Inicializacion de la respuesta
 $response = array();
 
-// Verificar si se han recibido los datos necesarios desde el frontend
-if (isset($_POST['user'], $_POST['password'])) {
+if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_POST['apellido'], $_POST['correo'], $_POST['telefono'], $_POST['fechanacimiento'], $_POST['genero'])) {
     $id = $_POST['id'];
     $user = $_POST['user'];
     $pass = $_POST['password'];
@@ -32,11 +26,9 @@ if (isset($_POST['user'], $_POST['password'])) {
     $genero = $_POST['genero'];
     $cryptPass = sha1($pass);
 
-    // Bandera para verificar si se ha subido un archivo
     $file_uploaded = false;
     $target_file = null;
 
-    // Verificar que el nombre de usuario seleccionado sea único
     $sql_check = "SELECT COUNT(*) AS count FROM usuarios WHERE usuario = ?";
     $statement_check = $conn->prepare($sql_check);
     $statement_check->bind_param('s', $user);
@@ -49,7 +41,6 @@ if (isset($_POST['user'], $_POST['password'])) {
             $filename = basename($_FILES["file"]["name"]);
             $target_file = $target_dir . $filename;
 
-            // Verificar tipo MIME del archivo
             $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif'];
             $file_mime_type = mime_content_type($_FILES['file']['tmp_name']);
 
@@ -59,7 +50,6 @@ if (isset($_POST['user'], $_POST['password'])) {
                 exit;
             }
 
-            // Mover el archivo subido a la carpeta de destino
             if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
                 $file_uploaded = true;
             } else {
@@ -71,7 +61,8 @@ if (isset($_POST['user'], $_POST['password'])) {
         }
 
         try {
-            // Preparar la consulta y vincular los parámetros
+            $conn->begin_transaction();
+
             if ($file_uploaded) {
                 $sql = $conn->prepare("UPDATE usuarios SET usuario = ?, contrasenia = ?, nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, genero = ?, fotografia = ? WHERE id = ?");
                 $sql->bind_param('sssssssssi', $user, $cryptPass, $nombre, $apellido, $correo, $telefono, $fechaNacimiento, $genero, $target_file, $id);
@@ -80,35 +71,39 @@ if (isset($_POST['user'], $_POST['password'])) {
                 $sql->bind_param('ssssssssi', $user, $cryptPass, $nombre, $apellido, $correo, $telefono, $fechaNacimiento, $genero, $id);
             }
 
+            if (!$sql->execute()) {
+                throw new Exception("Error al actualizar usuarios: " . $sql->error);
+            }
+
             $sql2 = $conn->prepare("UPDATE post SET autor_post = ? WHERE id_autor = ?");
             $sql2->bind_param('si', $user, $id);
-            $result2 = $sql2->execute();
-
-            if ($result2) {
-                $_SESSION['user'] = $user;
-                $response['status'] = 'success';
-                $response['message'] = "Se ha actualizado el nombre de usuario en sus posteos";
-            } else {
-                $response['status'] = 'error';
-                $response['message'] = "Error al actualizar el nombre de usuario en los posteos";
+            if (!$sql2->execute()) {
+                throw new Exception("Error al actualizar los post: " . $sql2->error);
             }
-            $sql2->close();
 
-            // Ejecutar la consulta
-            if ($sql->execute()) {
-                $response['status'] = 'success';
-                $response['message'] = "Los datos se han guardado en la base de datos.";
-                if ($file_uploaded) {
-                    $response['message'] .= " El archivo se ha subido correctamente.";
-                }
-            } else {
-                $response['status'] = 'error';
-                $response['message'] = "Error al ejecutar la consulta: " . $sql->error;
+            $sql3 = $conn->prepare("UPDATE comentarios SET autor_comentario = ? WHERE id_autor_comentario = ?");
+            $sql3->bind_param('si', $user, $id);
+            if (!$sql3->execute()) {
+                throw new Exception("Error al actualizar los comentarios: " . $sql3->error);
             }
-            $sql->close();
+
+            $conn->commit();
+
+            $_SESSION['user'] = $user;
+            $response['status'] = 'success';
+            $response['message'] = "Los datos se han guardado en la base de datos.";
+            if ($file_uploaded) {
+                $response['message'] .= " El archivo se ha subido correctamente.";
+            }
         } catch (Exception $e) {
+            $conn->rollback();
             $response['status'] = 'error';
             $response['message'] = "Excepción: " . $e->getMessage();
+            error_log($e->getMessage());
+        } finally {
+            $sql->close();
+            $sql2->close();
+            $sql3->close();
         }
     } else {
         $response['status'] = 'error';
@@ -120,6 +115,6 @@ if (isset($_POST['user'], $_POST['password'])) {
 }
 
 $conn->close();
-echo json_encode($response['status']);
+echo json_encode($response);
 exit;
 ?>
