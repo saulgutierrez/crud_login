@@ -32,6 +32,7 @@
     <script src="../js/new-post.js"></script>
     <title>Crear Post</title>
 </head>
+
 <body>
     <form method="POST" id="newPostForm" enctype="multipart/form-data">
         <input type="hidden" id="id_user" name="id_user" value="<?php echo $idPerfil;?>">
@@ -41,11 +42,13 @@
         <label for="post-content">Contenido</label>
         <textarea name="post_content" id="post_content" rows="4" cols="35"></textarea>
         <input type="file" name="file" id="file" accept="image/*">
+        <img src="" alt="" id="imagePreview">
         <div class="group-buttons">
             <a href="profile.php?user=<?php echo $user; ?>">Cancelar</a>
             <button value="Guardar cambios">Guardar</button>
         </div>
         <div id="new-post-result" class="new-post-result"></div>
     </form>
+    <script src="../js/image-preview.js"></script>
 </body>
 </html>
