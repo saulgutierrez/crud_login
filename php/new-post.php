@@ -42,7 +42,10 @@
         <label for="post-content">Contenido</label>
         <textarea name="post_content" id="post_content" rows="4" cols="35"></textarea>
         <input type="file" name="file" id="file" accept="image/*">
-        <img src="" alt="" id="imagePreview">
+        <div class="image-content">
+            <img src="" alt="" id="imagePreview">
+            <img src="../svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
+        </div>
         <div class="group-buttons">
             <a href="profile.php?user=<?php echo $user; ?>">Cancelar</a>
             <button value="Guardar cambios">Guardar</button>
