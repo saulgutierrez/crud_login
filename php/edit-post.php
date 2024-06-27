@@ -52,6 +52,10 @@
         <textarea name="post_content" id="post_content" rows="4" cols="35"><?php echo $contenidoPost; ?></textarea>
         <input type="file" name="file" id="file" accept="image/*">
         <a href="#" id="openModalLink" class="<?php echo $hasImage; ?>">Ver imagen existente</a>
+        <div class="image-content">
+            <img src="" alt="" id="imagePreview">
+            <img src="../svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
+        </div>
         <div class="group-buttons">
             <a href="profile.php?user=<?php echo $user; ?>">Cancelar</a>
             <button value="Guardar cambios">Guardar cambios</button>
@@ -65,7 +69,7 @@
             <img src="<?php echo $fotoPost; ?>" style="max-width: 100%; height: auto;">
         </div>
     </div>
-
 </body>
 <script src="../js/view-saved-image.js"></script>
+<script src="../js/image-preview-edit.js"></script>
 </html>
