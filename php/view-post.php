@@ -77,6 +77,10 @@
                 </div>
                 <button value="Responder">Responder</button>
             </form>
+            <div class="image-content">
+                <img src="" alt="" id="imagePreview">
+                <img src="../svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
+            </div>
         </div>
         <?php
             $sqlComments = "SELECT * FROM comentarios WHERE id_post = '$id_post'";
@@ -102,5 +106,6 @@
             }
         ?>
     </main>
+    <script src="../js/comment-image-preview.js"></script>
 </body>
 </html>
