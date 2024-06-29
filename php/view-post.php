@@ -69,6 +69,12 @@
                 <input type="hidden" value="<?php echo $idAutorComentario; ?>" id="id-autor-comentario" name="id-autor-comentario">
                 <input type="hidden" value="<?php echo $username; ?>" id="autor-comentario" name="autor-comentario">
                 <input type="text" placeholder="Escribe un comentario..." class="comment-input" id="comment-input" name="comment-input">
+                <div class="image-upload">
+                    <label for="file-input">
+                        <img src="../svg/image-icon.svg" alt="">
+                    </label>
+                    <input type="file" class="file-input" id="file-input">
+                </div>
                 <button value="Responder">Responder</button>
             </form>
         </div>
