@@ -2,6 +2,7 @@
 const imageUpload = document.getElementById('file');
 const closeIcon = document.getElementById('close-icon');
 const linkModal = document.getElementById('openModalLink');
+let className = linkModal.className;
 
 // Add an event listener to detect file upload
 imageUpload.addEventListener('change', function() {
@@ -29,5 +30,9 @@ closeIcon.addEventListener('click', function () {
     imageUpload.style.display = "flex";
     this.style.display = "none";
     imageUpload.value = "";
-    linkModal.style.display = "flex";
+    if (className == 'imgLinkLabel') {
+        linkModal.style.display = "flex";
+    } else {
+        linkModal.style.display = "none";
+    }
 });
