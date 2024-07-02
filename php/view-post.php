@@ -73,7 +73,7 @@
                     <label for="file-input">
                         <img src="../svg/image-icon.svg" alt="">
                     </label>
-                    <input type="file" class="file-input" id="file-input">
+                    <input type="file" class="file-input" id="file-input" name="file-input">
                 </div>
                 <button value="Responder">Responder</button>
             </form>

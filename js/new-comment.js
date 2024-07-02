@@ -1,25 +1,33 @@
 $(document).ready(function () {
     $('#form-comment').on('submit', function (event) {
         event.preventDefault();
-        var datosEnviados = {
-            'id-post'               :   $('#id-post').val(),
-            'id-autor-post'         :   $('#id-autor-post').val(),
-            'id-autor-comentario'   :   $('#id-autor-comentario').val(),
-            'autor-comentario'      :   $('#autor-comentario').val(),
-            'comment-input'         :   $('#comment-input').val()
-        };
+
+        var formData = new FormData(this);
+
         $.ajax({
             url         :   'new-comment.php',
             type        :   'POST',
-            data        :   datosEnviados,
-            dataType    :   'text',
-            success     :   function() {
-                var comment = $('<div></div>').addClass('post-card comment').html('<h3>' + datosEnviados["autor-comentario"] + '</h3>' + '<div>' + datosEnviados["comment-input"] + '</div>');
-                $('#main-container').append(comment);
-                $('#comment-input').val('');
+            data        :   formData,
+            contentType :   false,
+            processData :   false,
+            success     :   function(response) {
+                try {
+                    var res = JSON.parse(response);
+                } catch (e) {
+                    if (response == 'error') {
+                        alert('Error al insertar item');
+                    } else {
+                        var autorComentario = formData.get('autor-comentario');
+                        var commentInput = formData.get('comment-input');
+                        var comment = $('<div></div>').addClass('post-card comment').html('<h3>' + autorComentario + '</h3>' + '<div>' + commentInput + '</div>');
+                        $('#main-container').append(comment);
+                        $('#comment-input').val('');
+                    }
+                }
             },
-            error       :   function() {
-                alert("Error al insertar item");
+            error       :   function (jqXHR, textStatus, errorThrown) {
+                alert("Error al insertar item:" + textStatus, jqXHR, errorThrown);
+                console.log("Error al insertar item:" + textStatus, jqXHR, errorThrown);
             }
         });
     });
