@@ -52,10 +52,6 @@ if (isset($_POST['comment-input'])) {
             echo json_encode($response);
             exit;
         }
-    } else {
-        $response['status'] = 'error';
-        $response['message'] = "Error en la subida del archivo." .$_FILES['file-input'];
-        echo json_encode($response);
     }
 
     try {

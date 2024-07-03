@@ -19,10 +19,29 @@ $(document).ready(function () {
                     } else {
                         var autorComentario = formData.get('autor-comentario');
                         var commentInput = formData.get('comment-input');
-                        var comment = $('<div></div>').addClass('post-card comment').html('<h3>' + autorComentario + '</h3>' + '<div>' + commentInput + '</div>');
-                        $('#main-container').append(comment);
-                        $('#comment-input').val('');
-                    }
+                        const fileInput = formData.get('file-input');
+                        
+                        // Crear el contenido HTML del comentario
+                        var commentHTML = '<h3>' + autorComentario + '</h3>' + '<div>' + commentInput + '</div>';
+                    
+                        // Verificar si hay un archivo y agregar la imagen al HTML del comentario
+                        if (fileInput && fileInput.size > 0) {
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                commentHTML += '<img src="' + e.target.result + '" alt="Comment image">';
+                                appendComment(commentHTML);
+                            };
+                            reader.readAsDataURL(fileInput);
+                        } else {
+                            appendComment(commentHTML);
+                        }
+                        
+                        function appendComment(htmlContent) {
+                            var comment = $('<div></div>').addClass('post-card comment').html(htmlContent);
+                            $('#main-container').append(comment);
+                            $('#comment-input').val(''); // Limpiar el campo de entrada del comentario
+                        }
+                    }                    
                 }
             },
             error       :   function (jqXHR, textStatus, errorThrown) {

@@ -1,6 +1,7 @@
 // Get the input element
 const imageUpload = document.getElementById('file-input');
 const closeIcon = document.getElementById('close-icon');
+const sendComment = document.getElementById('send-comment');
 
 // Add an event listener to detect file upload
 imageUpload.addEventListener('change', function() {
@@ -26,4 +27,12 @@ closeIcon.addEventListener('click', function () {
     imagePreview.src = "";
     this.style.display = "none";
     imageUpload.value = "";
+});
+
+sendComment.addEventListener('click', function () {
+    setTimeout(function () {
+        imagePreview.src = "";
+        imageUpload.value = "";
+        closeIcon.style.display = "none";
+    }, 100);
 });

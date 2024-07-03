@@ -75,7 +75,7 @@
                     </label>
                     <input type="file" class="file-input" id="file-input" name="file-input">
                 </div>
-                <button value="Responder">Responder</button>
+                <button value="Responder" id="send-comment">Responder</button>
             </form>
             <div class="image-content">
                 <img src="" alt="" id="imagePreview">
@@ -95,11 +95,13 @@
                     $comentarioId = $fila['id_comentario'];
                     $autorComentario = $fila['autor_comentario'];
                     $comentario = $fila['comentario'];
+                    $imagen = $fila['foto_comentario'];
         ?>
 
         <div class="post-card comment">
             <h3><?php echo $autorComentario; ?></h3>
             <div><?php echo $comentario; ?></div>
+            <img src="<?php echo $imagen; ?>" alt="">
         </div>
         <?php
                 }
