@@ -29,8 +29,10 @@ if (isset($_POST['comment-input'])) {
 
     // Verifica si se subió un archivo y si no hubo errores
     if (isset($_FILES['file-input']) && $_FILES['file-input']['error'] == UPLOAD_ERR_OK) {
-        $filename = basename($_FILES["file-input"]["name"]);
-        $target_file = $target_dir . $filename;
+        // Create random filename
+        $file_extension = pathinfo($_FILES["file-input"]["name"], PATHINFO_EXTENSION);
+        $random_filename = uniqid('img_', true) . '.' . $file_extension;
+        $target_file = $target_dir . $random_filename;
 
         // Verifica el tipo MIME del archivo
         $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif'];

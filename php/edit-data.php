@@ -38,8 +38,10 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
 
     if ($row['count'] == 0) {
         if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
-            $filename = basename($_FILES["file"]["name"]);
-            $target_file = $target_dir . $filename;
+            // Create random filename
+            $file_extension = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
+            $random_filename = uniqid('img_', true) . '.' . $file_extension;
+            $target_file = $target_dir . $random_filename;
 
             $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif'];
             $file_mime_type = mime_content_type($_FILES['file']['tmp_name']);

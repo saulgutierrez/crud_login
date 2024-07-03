@@ -203,6 +203,8 @@
                         $idComentarioItem = $rowComments['id_comentario'];
                         $autorComentarioItem = $rowComments['autor_comentario'];
                         $comentarioItem = $rowComments['comentario'];
+                        $fotoComentario = $rowComments['foto_comentario'];
+                        $hasImageComment = !empty($fotoComentario) ? 'imgBox' : 'noImage';
                 ?>
                 <div class="comment-card">
                     <div class="square-menu-perfil-comments"></div>
@@ -213,6 +215,9 @@
                     <img src="../svg/menu.svg" alt="" class="menu-icon-comments">
                     <h2><?php echo $autorComentarioItem; ?></h2>
                     <h3><?php echo $comentarioItem; ?></h3>
+                    <div class="<?php echo $hasImageComment; ?>">
+                        <img src="<?php echo $fotoComentario; ?>" alt="">
+                    </div>
                 </div>
 
                 <?php

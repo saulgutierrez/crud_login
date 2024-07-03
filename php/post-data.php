@@ -24,8 +24,10 @@ if (isset($_POST['id_user'], $_POST['user'], $_POST['post_title'], $_POST['post_
     $target_file = null;
 
     if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
-        $filename = basename($_FILES["file"]["name"]);
-        $target_file = $target_dir . $filename;
+        // Create random filename
+        $file_extension = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
+        $random_filename = uniqid('img_', true) . '.' . $file_extension;
+        $target_file = $target_dir . $random_filename;
 
         // Verificar tipo MIME
         $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif'];
