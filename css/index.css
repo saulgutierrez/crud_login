@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+:root {
+    color-scheme: light dark;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -39,7 +43,7 @@ html {
 .card-title {
     font-size: 1.2em;
     margin: 10px 0;
-    color: #fff;
+    color: light-dark(#0f0f11, #fff);
 }
 
 .card-title:hover {

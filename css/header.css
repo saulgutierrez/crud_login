@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+:root {
+    color-scheme: light dark;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -20,22 +24,22 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #0f0f11;
+    background-color: light-dark(#ffffff, #0f0f11);
     padding: 0px 80px;
     z-index: 10000;
 }
 
 header h1, header h2 {
     font-weight: 100;
-    color: #fff;
+    color: light-dark(#0f0f11, #fff);
 }
 
 header input {
-    background-color: #141417;
-    border: 1px solid #fff;
+    background-color: light-dark(#ffffff, #141417);
+    border: 1px solid light-dark(#141417, #fff);
     outline: none;
     width: 200px;
-    color: #fff;
+    color: light-dark(#141417, #fff);
     padding: 5px 15px;
     border-radius: 20px;
 }
@@ -43,7 +47,7 @@ header input {
 header h1 a,
 header div a, 
 header h2 a {
-    color: #fff;
+    color: light-dark(#141417, #fff);
     text-decoration: none;
     width: 100%;
     padding: 10px 40px;
@@ -52,7 +56,7 @@ header h2 a {
 .square {
     position: absolute;
     display: none;
-    background-color: #141417;
+    background-color: light-dark(#f4f6f9, #141417);
     height: 30px;
     width: 30px;
     right: 32%;
@@ -63,7 +67,7 @@ header h2 a {
 .dropdown {
     position: absolute;
     display: none;
-    background-color: #0f0f11;
+    background-color: light-dark(#fff,#0f0f11);
     height: 80px;
     width: 200px;
     right: 26%;
@@ -81,7 +85,8 @@ header h2 a {
 }
 
 .new-post:hover {
-    background-color: #007bff;
+    background-color: light-dark(transparent,#007bff);
     padding: 10px 0px;
     border-radius: 20px;
+    border: 1px solid light-dark(#007bff, transparent);
 }
