@@ -19,8 +19,8 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    background-color: #141417;
-    color: #fff;
+    background-color: light-dark(#ffffff, #0f0f11);
+    color: light-dark(#0f0f11, #fff);
     overflow-y: auto;
     padding: 10px;
     align-self: flex-end;
@@ -41,7 +41,7 @@ body {
     font-size: 3rem;
     display: flex;
     justify-content: center;
-    color: #fff;
+    color: light-dark(#0f0f11, #fff);
 }
 
 .header {
@@ -73,7 +73,7 @@ body {
 
 .header p {
     width: 50%;
-    color: #fff;
+    color: light-dark(#0f0f11, #fff);
     text-align: justify;
     padding: 20px 10px;
 }

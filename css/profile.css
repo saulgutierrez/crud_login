@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+:root {
+    color-scheme: light dark;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,8 +21,8 @@ body {
     display: flex;
     width: 100%;
     height: calc(100vh - 80px);
-    background-color: #141417;
-    color: #fff;
+    background-color: light-dark(#f4f6f9, #141417);
+    color: light-dark(#141717,#fff);
     justify-content: center;
     align-items: center;
     margin-top: 80px;
@@ -99,7 +103,7 @@ body main nav article h3 {
 body main section {
     position: relative;
     display: flex;
-    color: #fff;
+    color: light-dark(#141717,#fff);
     z-index: 1;
     width: 100%;
     margin-top: 160px;
@@ -118,8 +122,8 @@ body main section {
     font-weight: 600;
     font-size: 1.8rem;
     text-decoration: none;
-    color: #fff;
-    background-color: rgb(20, 20, 23);
+    color: light-dark(#141717,#fff);
+    background-color: light-dark(#f4f6f9,rgb(20, 20, 23));
 }
 
 .menu-lateral a:hover {

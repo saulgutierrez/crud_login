@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+:root {
+    color-scheme: light dark;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +17,7 @@ html {
 
 body {
     font-size: 1.6rem;
-    background-color: #0f0f11;
+    background-color: light-dark(#ffffff, #0f0f11);
     width: 100%;
     height: 100vh;
     display: flex;
@@ -30,21 +34,21 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #0f0f11;
+    background-color: light-dark(#ffffff, #0f0f11);
 }
 
 nav .logo {
     text-decoration: none;
-    color: #fff;
+    color: light-dark(#0f0f11, #fff);
     z-index: 1000;
 }
 
 input {
-    background-color: #141417;
-    border: 1px solid #fff;
+    background-color: light-dark(#ffffff, #0f0f11);
+    border: 1px solid light-dark(#0f0f11, #fff);
     outline: none;
     width: 200px;
-    color: #fff;
+    color: light-dark(#0f0f11, #fff);
     padding: 5px 15px;
     border-radius: 20px;
 }
@@ -64,12 +68,13 @@ nav .navbar li a {
     padding: 10px;
     transition: 0.3s;
     font-size: 0.9em;
+    color: light-dark(#0f0f11, #ffffff);
     text-transform: uppercase;
-    color: #fff;
 }
 
 nav .navbar li a:hover {
-    background-color: #007bff;
+    background-color: light-dark(#fff, #007bff);
+    border: 1px solid light-dark(#007bff, transparent);
     padding: 10px 50px;
     border-radius: 20px;
 }

@@ -34,7 +34,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: light-dark(#ffffff, #0f0f11) ;
+    background-color: light-dark(#ffffff, #0f0f11);
 }
 
 nav .logo {
