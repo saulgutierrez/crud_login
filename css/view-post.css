@@ -61,6 +61,14 @@ body main {
     color: #007bff;
 }
 
+.post-card .post-card-top {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .arrow-back {
     position: absolute;
     height: 23px;

@@ -8,6 +8,7 @@ $(document).ready(function () {
         formData.append('user', $('#user').val());
         formData.append('post_title', $('#post_title').val());
         formData.append('post_content', $('#post_content').val());
+        formData.append('post_time', $('#post_time').val());
 
         if ($('#post_title').val() == "" || $('#post_content').val() == "") {
             $('#new-post-result').html('Faltan campos por llenar');

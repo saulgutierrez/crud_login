@@ -8,7 +8,7 @@
         $sqlGetInfo = "SELECT * FROM usuarios WHERE id = '$id'";
         $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
 
-        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post FROM post WHERE id_autor = '$id'";
+        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE id_autor = '$id'";
         $result = $conn->query($sqlGetPosts);
 
         # Recuperamos la informacion asociada a la consulta
@@ -175,11 +175,15 @@
                         $contenido = $row['contenido_post'];
                         $foto = $row['foto_post'];
                         $hasImage = !empty($foto) ? 'imgBox' : 'noImage';
+                        $fecha = $row['fecha_publicacion'];
                     ?>
                     <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
                         <div class="square-menu-perfil"></div>
                         <img src="../svg/menu.svg" alt="" class="menu-icon">
-                        <h2><?php echo $autor; ?></h2>
+                        <div class="post-card-top">
+                            <h2><?php echo $autor; ?></h2>
+                            <div><?php echo $fecha; ?></div>
+                        </div>
                         <h3><?php echo $titulo; ?></h3>
                         <div><?php echo $contenido; ?></div>
                         <div class="<?php echo $hasImage; ?>">

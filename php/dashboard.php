@@ -10,7 +10,7 @@
      # Si existe, tomamos su nombre de usuario
     $username = $_SESSION['user'];
 
-    $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post FROM post WHERE autor_post != '$username'";
+    $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE autor_post != '$username' ORDER BY fecha_publicacion DESC";
     $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -49,9 +49,13 @@
                         $contenido = $row['contenido_post'];
                         $foto = $row['foto_post'];
                         $hasImage = !empty($foto) ? 'imgBox' : 'noImage';
+                        $fecha = $row['fecha_publicacion'];
             ?>
             <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
-                <h2><a href="profile.php?id=<?php echo $id;?>"><?php echo $autor; ?></a></h2>
+                <div class="post-card-top">
+                    <h2><a href="profile.php?id=<?php echo $id;?>"><?php echo $autor; ?></a></h2>
+                    <div><?php echo $fecha; ?></div>
+                </div>
                 <h3><?php echo $titulo; ?></h3>
                 <div><?php echo $contenido; ?></div>
                 <div class=<?php echo $hasImage; ?>>

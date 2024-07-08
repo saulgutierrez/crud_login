@@ -60,6 +60,14 @@ main > figure .post-card {
     border-radius: 10px;
 }
 
+main > figure .post-card-top {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 main > figure .post-card h2 {
     font-weight: 600;
 }

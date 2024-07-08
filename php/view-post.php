@@ -26,6 +26,7 @@
             $titulo = $row['titulo_post'];
             $contenido = $row['contenido_post'];
             $foto = $row['foto_post'];
+            $fecha = $row['fecha_publicacion'];
         }
     }
 
@@ -59,7 +60,10 @@
                 <img src="../svg/arrow-back.svg" alt="" class="arrow-back">
             </a>
             <h2 class="post-title">Post</h2>
-            <h2><a href="profile.php?id=<?php echo $id;?>"><?php echo $autor; ?></a></h2>
+            <div class="post-card-top">
+                <h2><a href="profile.php?id=<?php echo $id;?>"><?php echo $autor; ?></a></h2>
+                <div><?php echo $fecha; ?></div>
+            </div>
             <h3><?php echo $titulo; ?></h3>
             <div><?php echo $contenido; ?></div>
             <img src="<?php echo $foto; ?>" alt="">

@@ -14,11 +14,13 @@ if (!file_exists($target_dir)) {
 }
 
 // Si se recibieron datos desde el frontend, los almacenamos para consulta
-if (isset($_POST['id_user'], $_POST['user'], $_POST['post_title'], $_POST['post_content'])) {
+if (isset($_POST['id_user'], $_POST['user'], $_POST['post_title'], $_POST['post_content'], $_POST['post_time'])) {
     $idPerfil = $_POST['id_user'];
     $username = $_POST['user'];
     $postTitle = $_POST['post_title'];
     $postContent = $_POST['post_content'];
+    $postTime = $_POST['post_time'];
+    
 
     $file_uploaded = false; // Bandera para verificar si el post será con fotografia o no
     $target_file = null;
@@ -52,11 +54,11 @@ if (isset($_POST['id_user'], $_POST['user'], $_POST['post_title'], $_POST['post_
 
     // Preparamos la consulta y vinculamos los parámetros correctamente
     if ($file_uploaded) { // Si se subio una fotografia, tomamos su path, y lo almacenamos en la base de datos
-        $sql = $conn->prepare("INSERT INTO post (id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post) VALUES (NULL, ?, ?, ?, ?, ?)");
-        $sql->bind_param('issss', $idPerfil, $username, $postTitle, $postContent, $target_file);
+        $sql = $conn->prepare("INSERT INTO post (id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion) VALUES (NULL, ?, ?, ?, ?, ?, ?)");
+        $sql->bind_param('isssss', $idPerfil, $username, $postTitle, $postContent, $target_file, $postTime);
     } else { // En caso contrario, guardamos una cadena vacía
-        $sql = $conn->prepare("INSERT INTO post (id_post, id_autor, autor_post, titulo_post, contenido_post) VALUES (NULL, ?, ?, ?, ?)");
-        $sql->bind_param('isss', $idPerfil, $username, $postTitle, $postContent);
+        $sql = $conn->prepare("INSERT INTO post (id_post, id_autor, autor_post, titulo_post, contenido_post, fecha_publicacion) VALUES (NULL, ?, ?, ?, ?, ?)");
+        $sql->bind_param('issss', $idPerfil, $username, $postTitle, $postContent, $postTime);
     }
 
     if ($sql->execute()) {

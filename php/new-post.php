@@ -1,6 +1,8 @@
 <?php
     require('connection.php');
     require('data.php');
+    date_default_timezone_set('America/Mexico_City');
+    $fecha_actual = date("d-m-Y h:i:s");
 
     if (!isset($_SESSION)) {
         session_start();
@@ -41,6 +43,7 @@
         <input type="text" name="post_title" id="post_title" class="post_title" placeholder="Titulo del post">
         <label for="post-content">Contenido</label>
         <textarea name="post_content" id="post_content" rows="4" cols="35"></textarea>
+        <input name="post_time" id="post_time" type="hidden" value="<?php echo $fecha_actual; ?>">
         <input type="file" name="file" id="file" accept="image/*">
         <div class="image-content">
             <img src="" alt="" id="imagePreview">
