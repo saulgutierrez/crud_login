@@ -1,8 +1,6 @@
 <?php
     require('connection.php');
     require('data.php');
-    date_default_timezone_set('America/Mexico_City');
-    $fecha_comentario = date("d-m-Y h:i:s");
 
     if (!isset($_SESSION)) {
         session_start();
@@ -75,7 +73,7 @@
                 <input type="hidden" value="<?php echo $idAutorComentario; ?>" id="id-autor-comentario" name="id-autor-comentario">
                 <input type="hidden" value="<?php echo $username; ?>" id="autor-comentario" name="autor-comentario">
                 <input type="text" placeholder="Escribe un comentario..." class="comment-input" id="comment-input" name="comment-input">
-                <input type="hidden" name="comment-time" id="comment-time" value="<?php echo $fecha_comentario; ?>">
+                <input type="hidden" name="comment-time" id="comment-time">
                 <div class="image-upload">
                     <label for="file-input">
                         <img src="../svg/image-icon.svg" alt="">
@@ -121,4 +119,10 @@
     </main>
     <script src="../js/comment-image-preview.js"></script>
 </body>
+<script>
+    setInterval(function() {
+        var fechaActual = new Date().toISOString().slice(0, 19).replace('T', ' ');
+        document.getElementById('comment-time').value = fechaActual;
+    }, 1000);
+</script>
 </html>
