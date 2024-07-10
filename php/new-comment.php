@@ -24,6 +24,7 @@ if (isset($_POST['comment-input'])) {
     $idAutorComentario = $_POST['id-autor-comentario'];
     $autorComentario = $_POST['autor-comentario'];
     $comentario = $_POST['comment-input'];
+    $fecha = $_POST['comment-time'];
 
     $file_uploaded = false;
 
@@ -61,11 +62,11 @@ if (isset($_POST['comment-input'])) {
 
         // Prepara la consulta SQL dependiendo de si se subió un archivo o no
         if ($file_uploaded) {
-            $sql = $conn->prepare("INSERT INTO comentarios (id_post, id_autor, id_autor_comentario, autor_comentario, comentario, foto_comentario) VALUES (?, ?, ?, ?, ?, ?)");
-            $sql->bind_param("iiisss", $idPost, $idAutorPost, $idAutorComentario, $autorComentario, $comentario, $target_file);
+            $sql = $conn->prepare("INSERT INTO comentarios (id_post, id_autor, id_autor_comentario, autor_comentario, comentario, foto_comentario, fecha_publicacion) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $sql->bind_param("iiissss", $idPost, $idAutorPost, $idAutorComentario, $autorComentario, $comentario, $target_file, $fecha);
         } else {
-            $sql = $conn->prepare("INSERT INTO comentarios (id_post, id_autor, id_autor_comentario, autor_comentario, comentario) VALUES (?, ?, ?, ?, ?)");
-            $sql->bind_param("iiiss", $idPost, $idAutorPost, $idAutorComentario, $autorComentario, $comentario);
+            $sql = $conn->prepare("INSERT INTO comentarios (id_post, id_autor, id_autor_comentario, autor_comentario, comentario, fecha_publicacion) VALUES (?, ?, ?, ?, ?, ?)");
+            $sql->bind_param("iiisss", $idPost, $idAutorPost, $idAutorComentario, $autorComentario, $comentario, $fecha);
         }
 
         // Ejecuta la consulta SQL

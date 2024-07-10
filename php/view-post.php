@@ -1,6 +1,8 @@
 <?php
     require('connection.php');
     require('data.php');
+    date_default_timezone_set('America/Mexico_City');
+    $fecha_comentario = date("d-m-Y h:i:s");
 
     if (!isset($_SESSION)) {
         session_start();
@@ -73,6 +75,7 @@
                 <input type="hidden" value="<?php echo $idAutorComentario; ?>" id="id-autor-comentario" name="id-autor-comentario">
                 <input type="hidden" value="<?php echo $username; ?>" id="autor-comentario" name="autor-comentario">
                 <input type="text" placeholder="Escribe un comentario..." class="comment-input" id="comment-input" name="comment-input">
+                <input type="hidden" name="comment-time" id="comment-time" value="<?php echo $fecha_comentario; ?>">
                 <div class="image-upload">
                     <label for="file-input">
                         <img src="../svg/image-icon.svg" alt="">
@@ -100,10 +103,14 @@
                     $autorComentario = $fila['autor_comentario'];
                     $comentario = $fila['comentario'];
                     $imagen = $fila['foto_comentario'];
+                    $fecha = $fila['fecha_publicacion'];
         ?>
 
         <div class="post-card comment">
-            <h3><?php echo $autorComentario; ?></h3>
+            <div class="comment-card-top">
+                <h3><?php echo $autorComentario; ?></h3>
+                <div><?php echo $fecha; ?></div>
+            </div>
             <div><?php echo $comentario; ?></div>
             <img src="<?php echo $imagen; ?>" alt="">
         </div>

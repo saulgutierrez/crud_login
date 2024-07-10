@@ -18,11 +18,12 @@ $(document).ready(function () {
                         alert('Error al insertar item');
                     } else {
                         var autorComentario = formData.get('autor-comentario');
+                        var fechaComentario = formData.get('comment-time');
                         var commentInput = formData.get('comment-input');
                         const fileInput = formData.get('file-input');
                         
                         // Crear el contenido HTML del comentario
-                        var commentHTML = '<h3>' + autorComentario + '</h3>' + '<div>' + commentInput + '</div>';
+                        var commentHTML = '<div class="comment-card-top">' + '<h3>' + autorComentario + '</h3>' + '<div>' + fechaComentario  + '</div>' + '</div>' + '<div>' + commentInput + '</div>';
                     
                         // Verificar si hay un archivo y agregar la imagen al HTML del comentario
                         if (fileInput && fileInput.size > 0) {

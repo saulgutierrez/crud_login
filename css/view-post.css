@@ -158,3 +158,11 @@ button {
     left: -15px;
 	display: none;
 }
+
+.comment-card-top {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
