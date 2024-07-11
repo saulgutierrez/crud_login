@@ -39,7 +39,7 @@ $(document).ready(function () {
                         
                         function appendComment(htmlContent) {
                             var comment = $('<div></div>').addClass('post-card comment').html(htmlContent);
-                            $('#main-container').append(comment);
+                            $('#post-card').after(comment);
                             $('#comment-input').val(''); // Limpiar el campo de entrada del comentario
                         }
                     }                    

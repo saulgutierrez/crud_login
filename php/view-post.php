@@ -55,7 +55,7 @@
 <body>
     <?php include "../includes/header.php"; ?>
     <main id="main-container">
-        <div class="post-card">
+        <div class="post-card" id="post-card">
             <a href="dashboard.php">
                 <img src="../svg/arrow-back.svg" alt="" class="arrow-back">
             </a>
@@ -88,7 +88,7 @@
             </div>
         </div>
         <?php
-            $sqlComments = "SELECT * FROM comentarios WHERE id_post = '$id_post'";
+            $sqlComments = "SELECT * FROM comentarios WHERE id_post = '$id_post' ORDER BY fecha_publicacion DESC";
             $playQuery = $conn->query($sqlComments);
 
             $contador = 0;
@@ -118,11 +118,6 @@
         ?>
     </main>
     <script src="../js/comment-image-preview.js"></script>
+    <script src="../js/get-current-time.js"></script>
 </body>
-<script>
-    setInterval(function() {
-        var fechaActual = new Date().toISOString().slice(0, 19).replace('T', ' ');
-        document.getElementById('comment-time').value = fechaActual;
-    }, 1000);
-</script>
 </html>
