@@ -3,6 +3,7 @@ const params = new URLSearchParams(window.location.search);
 const btn1 = document.getElementById('btn-1');
 const btn2 = document.getElementById('btn-2');
 const btn3 = document.getElementById('btn-3');
+const btn4 = document.getElementById('btn-4');
 const menuIconos = document.querySelectorAll('.menu-icon');
 const menuIconosComments = document.querySelectorAll('.menu-icon-comments');
 
@@ -57,23 +58,19 @@ if (params.has('user')) {
 
 btn3.addEventListener('click', () => {
     event.preventDefault();
-    if (btn3.innerHTML == "Seguir usuario") {
-        btn3.innerHTML = "Siguiendo";
-    } else if (btn3.innerHTML == "Dejar de seguir") {
-        btn3.innerHTML = "Seguir usuario";
-    }
+    btn3.classList.add('hidden');
+    btn4.classList.remove('hidden');
 });
 
-btn3.addEventListener('mouseover', () => {
-    event.preventDefault();
-    if (btn3.innerHTML == "Siguiendo") {
-        btn3.innerHTML = "Dejar de seguir";
-    }
+btn4.addEventListener('mouseover', () => {
+    btn4.innerHTML = "Dejar de seguir";
 });
 
-btn3.addEventListener('mouseleave', () => {
-    event.preventDefault();
-    if (btn3.innerHTML == "Dejar de seguir") {
-        btn3.innerHTML = "Siguiendo";
-    }
+btn4.addEventListener('mouseleave', () => {
+    btn4.innerHTML = "Siguiendo";
+});
+
+btn4.addEventListener('click', () => {
+    btn4.classList.add('hidden');
+    btn3.classList.remove('hidden');
 });

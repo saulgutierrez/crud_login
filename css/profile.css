@@ -116,6 +116,22 @@ body main nav article h3 {
     background-color: #0069d9;
 }
 
+.unfollow-profile-btn {
+    background-color: #007bff;
+    padding: 10px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+}
+
+.unfollow-profile-btn:hover {
+    background-color: #0069d9;
+}
+
 body main section {
     position: relative;
     display: flex;
