@@ -2,14 +2,19 @@
     require('connection.php');
     require('data.php');
 
+    // Establecer la cabecera de respuesta para permitir solicitudes desde cualquier origen (CORS)
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: Content-Type");
+
     if (!isset($_SESSION)) {
         session_start();
     }
 
     // Recibimos el id del usuario que deseamos seguir
-    if (isset($_POST['id']) && isset($_SESSION['user'])) {
+    if (isset($_POST['id']) && isset($_SESSION['user']) && isset($_POST['btnText'])) {
         $id = $_POST['id'];
         $nombreSeguidor = $_SESSION['user'];
+        $btnText = $_POST['btnText'];
 
         $sqlGetInfo = "SELECT id, usuario, nombre, apellido, fotografia FROM usuarios WHERE id = '$id'";
         $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
@@ -31,7 +36,7 @@
             $idSeguidor = $sqlGetIdSeguidor['id'];
         }
         
-        $sql = "INSERT INTO siguiendo (id_seguidor, id_seguido, nombre_usuario_seguido, nombre_seguido, apellido_seguido, foto_seguido) VALUES ('$idSeguidor', '$idPerfilSeguido', '$usuarioPerfilSeguido', '$nombrePerfilSeguido', '$apellidoPerfilSeguido', '$isEmptyFoto')";
+        $sql = "INSERT INTO siguiendo (id_seguidor, id_seguido, nombre_usuario_seguido, nombre_seguido, apellido_seguido, foto_seguido, btn_text) VALUES ('$idSeguidor', '$idPerfilSeguido', '$usuarioPerfilSeguido', '$nombrePerfilSeguido', '$apellidoPerfilSeguido', '$isEmptyFoto', '$btnText')";
         $result = mysqli_query($conn, $sql);
 
         if ($result == TRUE) {
