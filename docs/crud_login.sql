@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-07-2024 a las 21:35:09
+-- Tiempo de generación: 13-07-2024 a las 22:28:42
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -34,7 +34,8 @@ CREATE TABLE `comentarios` (
   `id_autor_comentario` int(11) NOT NULL,
   `autor_comentario` varchar(255) NOT NULL,
   `comentario` text NOT NULL,
-  `foto_comentario` text NOT NULL
+  `foto_comentario` text NOT NULL,
+  `fecha_publicacion` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -49,7 +50,24 @@ CREATE TABLE `post` (
   `autor_post` varchar(255) NOT NULL,
   `titulo_post` varchar(255) NOT NULL,
   `contenido_post` text NOT NULL,
-  `foto_post` text NOT NULL
+  `foto_post` text NOT NULL,
+  `fecha_publicacion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `siguiendo`
+--
+
+CREATE TABLE `siguiendo` (
+  `id_seguidor` int(11) NOT NULL,
+  `id_seguido` int(11) NOT NULL,
+  `nombre_usuario_seguido` varchar(200) NOT NULL,
+  `nombre_seguido` varchar(255) NOT NULL,
+  `apellido_seguido` varchar(255) NOT NULL,
+  `foto_seguido` text NOT NULL,
+  `btn_text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -89,6 +107,12 @@ ALTER TABLE `comentarios`
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id_post`),
   ADD KEY `id_autor` (`id_autor`);
+
+--
+-- Indices de la tabla `siguiendo`
+--
+ALTER TABLE `siguiendo`
+  ADD KEY `id_seguidor` (`id_seguidor`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -135,6 +159,12 @@ ALTER TABLE `comentarios`
 --
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`id_autor`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `siguiendo`
+--
+ALTER TABLE `siguiendo`
+  ADD CONSTRAINT `siguiendo_ibfk_1` FOREIGN KEY (`id_seguidor`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
