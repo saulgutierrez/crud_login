@@ -8,7 +8,7 @@
     if (isset($_POST['user'], $_POST['confirm-delete'])) {
         $user = $_POST['user'];
         $pass = $_POST['confirm-delete'];
-        $id_user = $_POST['id_user'];   
+        $id_user = $_POST['id_user'];
 
         $cryptPass = sha1($pass);
 
@@ -42,6 +42,10 @@
             // Eliminar comentarios en posteos del usuario
             $sql4 = "DELETE FROM comentarios WHERE id_autor = '$id_user'";
             $result4 = $conn->query($sql4);
+
+            // Eliminar el usuario de la lista de seguidores de otros usuarios
+            $sql5 = "DELETE FROM siguiendo WHERE id_seguido = '$id_user'";
+            $result5 = $conn->query($sql5);
 
             session_destroy();
             echo 0;

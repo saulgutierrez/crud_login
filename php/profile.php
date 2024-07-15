@@ -44,6 +44,17 @@
         $sqlProfileComments = "SELECT * FROM comentarios WHERE autor_comentario = '$user'";
         $queryGetComments = $conn->query($sqlProfileComments);
 
+        # Sentencias SQL para obtener los usuarios los cuales estoy siguiendo
+        $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
+        $queryGetIdUser = $conn->query($sqlGetIdUser);
+
+        if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
+            $idUser = $sqlGetId['id'];
+        }
+
+        $sqlGetFollowing = "SELECT * FROM siguiendo WHERE id_seguidor = '$idUser'";
+        $queryGetFollowing = $conn->query($sqlGetFollowing);
+
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
             $idPerfil = $sqlGetProfile['id'];
@@ -106,6 +117,8 @@
                 <a class="info" id="info">Info</a>
                 <a class="posts" id="posts">Posts</a>
                 <a class="comments" id="comments">Comentarios</a>
+                <a class="followers" id="followers">Seguidores</a>
+                <a class="following" id="following">Siguiendo</a>
             </div>
             <div class="info-perfil" id="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
@@ -255,6 +268,30 @@
                 ?>
 
             </div>
+            <div class="following-content" id="following-content">
+            <?php
+            // Ver usuarios que sigo en mi perfil
+            $followingCounter = 0;
+            $followings = []; // Inicializar el array para almacenar los registros
+            if ($queryGetFollowing->num_rows > 0 && !isset($_GET['id'])) {
+                while ($rowFollowing = $queryGetFollowing->fetch_assoc()) {
+                    $followings[] = $rowFollowing; // Almacenar cada registro en el array
+                }
+            }
+            ?>
+            <?php if (!empty($followings)): ?>
+                <?php foreach ($followings as $rowFollowing): ?>
+                    <div class="following-card">
+                        <div class="imgBoxFollowing">
+                            <img src="<?php echo $rowFollowing['foto_seguido']?>" alt="">
+                        </div>
+                        <h2 onclick="window.location.href='profile.php?id=<?php echo $rowFollowing['id_seguido']; ?>'"><?php echo $rowFollowing['nombre_usuario_seguido']; ?></h2>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No sigues ninguna cuenta</p>
+            <?php endif; ?>
+        </div>
         </section>
     </main>
     <script src="../js/jquery-3.7.1.min.js"></script>

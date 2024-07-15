@@ -89,6 +89,17 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
                 throw new Exception("Error al actualizar los comentarios: " . $sql3->error);
             }
 
+            if ($file_uploaded) {
+                $sql4 = $conn->prepare("UPDATE siguiendo SET nombre_usuario_seguido = ?, nombre_seguido = ?, apellido_seguido = ?, foto_seguido = ? WHERE id_seguido = ?");
+                $sql4->bind_param('ssssi', $user, $nombre, $apellido, $target_file, $id);
+            } else {
+                $sql4 = $conn->prepare("UPDATE siguiendo SET nombre_usuario_seguido = ?, nombre_seguido = ?, apellido_seguido = ? WHERE id_seguido = ?");
+                $sql4->bind_param('ssssi', $user, $nombre, $apellido, $id);
+            }
+            if (!$sql4->execute()) {
+                throw new Exception("Error al actualizar la tabla de seguidores: " . $sql4->error);
+            }
+
             $conn->commit();
 
             $_SESSION['user'] = $user;
@@ -106,6 +117,7 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
             $sql->close();
             $sql2->close();
             $sql3->close();
+            $sql4->close();
         }
     } else {
         $response['status'] = 'error';
