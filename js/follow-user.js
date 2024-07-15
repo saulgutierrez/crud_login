@@ -27,19 +27,28 @@ $(document).ready(function () {
     $('.follow-profile-btn').click(function (event) {
         event.preventDefault();
         var datosEnviados = {
-            'id'        :   $(this).data('id'),
-            'btnText'   :   'Siguiendo'
+            'id'        :   $(this).data('id')
         };
+
+        var btnText = $(this).text();
+        if (btnText === 'Seguir') {
+            datosEnviados['action'] = 'follow';
+        } else if (btnText === 'Dejar de seguir') {
+            datosEnviados['action'] = 'unfollow';
+        }
+
         $.ajax({
-            url         :   'follow-user.php',
+            url         :   'toggle-follow.php',
             type        :   'POST',
             data        :   datosEnviados,
-            dataType    :   'text',
+            dataType    :   'json',
             success :   function (response) {
-                if (response === 'success') {
+                if (response.status === 'followed') {
                     $('.follow-profile-btn').text('Siguiendo');
+                } else if (response.status === 'unfollowed') {
+                    $('.follow-profile-btn').text('Seguir');
                 } else {
-                    alert('Error: ' + response);
+                    alert('Error: ' + response.message);
                 }
             },
             error   :   function (xhr, status, error) {
@@ -48,4 +57,4 @@ $(document).ready(function () {
             }
         });
     });
-})
+});

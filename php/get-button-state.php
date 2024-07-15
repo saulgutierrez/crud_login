@@ -12,11 +12,12 @@
         $sql = "SELECT btn_text FROM siguiendo WHERE id_seguido = $id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
+        $isFollowing = $result->num_rows > 0;
 
-        $btnText = $row['btn_text'];
+        // $btnText = $row['btn_text'];
 
         echo json_encode([
-            "status" => $btnText === 'Siguiendo' ? 'following' : 'not_following'
+            "status" => $isFollowing ? 'following' : 'not_following'
         ]);
     } else {
         echo json_encode([

@@ -99,7 +99,6 @@
                 <a id="btn-1" class="edit-profile-btn" href="edit-profile.php?user=<?php echo $user;?>">Editar perfil</a>
                 <a id="btn-2" class="delete-profile-btn" href="delete-profile.php">Eliminar cuenta</a>
                 <a id="btn-3" class="follow-profile-btn" href="" data-id="<?php echo $id; ?>">Seguir usuario</a>
-                <a id="btn-4" class="unfollow-profile-btn hidden" href="" data-id="<?php echo $id; ?>">Siguiendo</a>
             </article>
         </nav>
         <section>
