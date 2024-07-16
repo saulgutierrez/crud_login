@@ -31,21 +31,41 @@
                 unlink($file_path);
             }
 
+            // Eliminar fotografías de los posteos del usuario
+            $sql2 = "SELECT foto_post FROM post WHERE autor_post = '$user'";
+            $statement2 = $conn->prepare($sql2);
+            $statement2->execute();
+            $result2 = $statement2->get_result();
+            while ($row2 = $result2->fetch_assoc()) {
+                if (file_exists($row2['foto_post'])) {
+                    unlink($row2['foto_post']);
+                }
+            }
             // Eliminar posteos del usuario
-            $sql2 = "DELETE FROM post WHERE autor_post = '$user'";
-            $result2 = $conn->query($sql2);
-
-            // Eliminar comentarios del usuario
-            $sql3 = "DELETE FROM comentarios WHERE autor_comentario = '$user'";
+            $sql3 = "DELETE FROM post WHERE autor_post = '$user'";
             $result3 = $conn->query($sql3);
 
+            // Eliminar fotografías de los comentarios del usuario
+            $sql4 = "SELECT foto_comentario FROM comentarios WHERE autor_comentario = '$user'";
+            $statement4 = $conn->prepare($sql4);
+            $statement4->execute();
+            $result4 = $statement4->get_result();
+            while ($row4 = $result4->fetch_assoc()) {
+                if (file_exists($row4['foto_comentario'])) {
+                    unlink($row4['foto_comentario']);
+                }
+            }
+            // Eliminar comentarios del usuario
+            $sql5 = "DELETE FROM comentarios WHERE autor_comentario = '$user'";
+            $result5 = $conn->query($sql5);
+
             // Eliminar comentarios en posteos del usuario
-            $sql4 = "DELETE FROM comentarios WHERE id_autor = '$id_user'";
-            $result4 = $conn->query($sql4);
+            $sql6 = "DELETE FROM comentarios WHERE id_autor = '$id_user'";
+            $result6 = $conn->query($sql6);
 
             // Eliminar el usuario de la lista de seguidores de otros usuarios
-            $sql5 = "DELETE FROM siguiendo WHERE id_seguido = '$id_user'";
-            $result5 = $conn->query($sql5);
+            $sql7 = "DELETE FROM siguiendo WHERE id_seguido = '$id_user'";
+            $result7 = $conn->query($sql7);
 
             session_destroy();
             echo 0;
