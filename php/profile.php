@@ -27,6 +27,10 @@
             $sqlGetComments = "SELECT * FROM comentarios WHERE autor_comentario = '$nombreUsuario'";
             $queryGetComments = $conn->query($sqlGetComments);
 
+            # Sentencias SQL para obtener los usuarios los cuales OTROS USUARIOS estan siguiendo
+            $sqlGetFollowing = "SELECT * FROM siguiendo WHERE id_seguidor = '$idPerfil'";
+            $queryGetFollowing = $conn->query($sqlGetFollowing);
+
         } else { # En caso de que no exista el perfil, redireccionamos a el dashboard principal
             header('Location: dashboard.php');
             exit();
@@ -44,7 +48,7 @@
         $sqlProfileComments = "SELECT * FROM comentarios WHERE autor_comentario = '$user'";
         $queryGetComments = $conn->query($sqlProfileComments);
 
-        # Sentencias SQL para obtener los usuarios los cuales estoy siguiendo
+        # Sentencias SQL para obtener los usuarios los cuales YO estoy siguiendo
         $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
         $queryGetIdUser = $conn->query($sqlGetIdUser);
 
@@ -52,8 +56,8 @@
             $idUser = $sqlGetId['id'];
         }
 
-        $sqlGetFollowing = "SELECT * FROM siguiendo WHERE id_seguidor = '$idUser'";
-        $queryGetFollowing = $conn->query($sqlGetFollowing);
+        $sqlGetUserFollowing = "SELECT * FROM siguiendo WHERE id_seguidor = '$idUser'";
+        $queryGetFollowing = $conn->query($sqlGetUserFollowing);
 
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
@@ -269,29 +273,79 @@
 
             </div>
             <div class="following-content" id="following-content">
-            <?php
-            // Ver usuarios que sigo en mi perfil
-            $followingCounter = 0;
-            $followings = []; // Inicializar el array para almacenar los registros
-            if ($queryGetFollowing->num_rows > 0 && !isset($_GET['id'])) {
-                while ($rowFollowing = $queryGetFollowing->fetch_assoc()) {
-                    $followings[] = $rowFollowing; // Almacenar cada registro en el array
+                <?php
+                // Ver usuarios que sigo en mi perfil
+                $followingCounter = 0;
+                $followings = []; // Inicializar el array para almacenar los registros
+                if ($queryGetFollowing->num_rows > 0 && !isset($_GET['id'])) {
+                    while ($rowFollowing = $queryGetFollowing->fetch_assoc()) {
+                        $followings[] = $rowFollowing; // Almacenar cada registro en el array
+                    }
                 }
-            }
-            ?>
-            <?php if (!empty($followings)): ?>
-                <?php foreach ($followings as $rowFollowing): ?>
-                    <div class="following-card">
-                        <div class="imgBoxFollowing">
-                            <img src="<?php echo $rowFollowing['foto_seguido']?>" alt="">
+                ?>
+                <?php if (!empty($followings)): ?>
+                    <?php foreach ($followings as $rowFollowing): ?>
+                        <div class="following-card">
+                            <div class="imgBoxFollowing">
+                                <img src="<?php echo $rowFollowing['foto_seguido']?>" alt="">
+                            </div>
+                            <h2 onclick="window.location.href='profile.php?id=<?php echo $rowFollowing['id_seguido']; ?>'"><?php echo $rowFollowing['nombre_usuario_seguido']; ?></h2>
                         </div>
-                        <h2 onclick="window.location.href='profile.php?id=<?php echo $rowFollowing['id_seguido']; ?>'"><?php echo $rowFollowing['nombre_usuario_seguido']; ?></h2>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No sigues ninguna cuenta</p>
-            <?php endif; ?>
-        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <?php if (!isset($_GET['id'])): ?>
+                        <p class="error-fetching-following">No sigues ninguna cuenta</p>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <?php
+                // Ver usuarios que otros usuarios siguen en sus perfiles
+                $followingCounter2 = 0;
+                $followings2 = []; // Inicializar el array para almacenar los registros
+                if ($queryGetFollowing->num_rows > 0 && isset($_GET['id'])) {
+                    while($rowFollowing2 = $queryGetFollowing->fetch_assoc()) {
+                        $followings2[] = $rowFollowing2;
+                    }
+                }
+                ?>
+                <?php if (!empty($followings2)): ?>
+                    <?php foreach ($followings2 as $rowFollowing2): ?>
+                        <div class="following-card">
+                            <div class="imgBoxFollowing">
+                                <img src="<?php echo $rowFollowing2['foto_seguido']?>" alt="">
+                            </div>
+                            <?php
+                            // Generar la URL de redirección
+                            $redirectUrl = 'profile.php?';
+
+                            if (isset($_SESSION['user'])) {
+                                $user = $_SESSION['user'];
+                                $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
+                                $queryGetIdUser = $conn->query($sqlGetIdUser);
+                                # Evaluamos, en caso de que el id que seguimos corresponda al id que esta logueado,
+                                # es decir, nuestro propio perfil, nos envie hacia la pantalla de gestion de nuestro
+                                # perfil, en lugar de dar lo opcion de "seguirnos a nosotros mismos".
+                                if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
+                                    $idUser = $sqlGetId['id'];
+                                    if ($rowFollowing2['id_seguido'] == $idUser) {
+                                        $redirectUrl .= 'user=' . $idUser;
+                                    } else {
+                                        $redirectUrl .= 'id=' . $rowFollowing2['id_seguido'];
+                                    }
+                                }
+                            }
+                            ?>
+                            <h2 onclick="window.location.href='<?php echo $redirectUrl; ?>'">
+                                <?php echo $rowFollowing2['nombre_usuario_seguido']; ?>
+                            </h2>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <?php if (isset($_GET['id'])): ?>
+                        <p class="error-fetching-following">Este usuario no sigue ninguna cuenta</p>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
         </section>
     </main>
     <script src="../js/jquery-3.7.1.min.js"></script>

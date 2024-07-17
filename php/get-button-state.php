@@ -6,10 +6,25 @@
     header("Access-Control-Allow-Headers: Content-Type");
     header("Content-Type: application/json; charset=UTF-8");
 
-    if (isset($_GET['id'])) {
-        $id = $_GET['id'];
+    if (!isset($_SESSION)) {
+        session_start();
+    }
 
-        $sql = "SELECT btn_text FROM siguiendo WHERE id_seguido = $id";
+    // Enviamos ambos parametros, necesario para fijar correctamente la relación entre usuarios
+    // y evitar mensajes erronéos en los que se muestra que seguimos a un usuario 
+    // que en realidad no seguimos.
+    if (isset($_GET['id']) && isset($_SESSION['user'])) {
+        $id = $_GET['id'];
+        $user = $_SESSION['user'];
+
+        $getMyId = "SELECT id FROM usuarios WHERE usuario = '$user'";
+        $queryGetMyId = $conn->query($getMyId);
+
+        if ($sqlGetId = mysqli_fetch_assoc($queryGetMyId)) {
+            $myId = $sqlGetId['id'];
+        }
+
+        $sql = "SELECT btn_text FROM siguiendo WHERE id_seguidor = $myId AND id_seguido = $id";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $isFollowing = $result->num_rows > 0;
