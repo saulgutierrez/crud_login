@@ -487,3 +487,75 @@ body main section {
         box-shadow: var(--brShadow), var(--tlShadow);
     }
 }
+
+.follower-content {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 30%;
+}
+
+.follower-card {
+    position: relative;
+    display: none;
+    width: 100%;
+    background-color: #0f0f11;
+    padding: 30px 30px;
+    border-radius: 10px;
+}
+
+.follower-card h2 {
+    width: fit-content;
+}
+
+.follower-card h2:hover {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.imgBoxFollower {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.imgBoxFollower img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.error-fetching-follower {
+    color: #141417;
+    font-size: 8em;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    text-shadow: var(--brShadow), var(--tlShadow);
+
+    &::before {
+        left: 0;
+        width: 100px;
+        height: 100px;
+        top: -150px;
+        z-index: 10;
+        box-shadow: inset var(--brShadow), inset var(--tlShadow);
+    }
+
+    &::after {
+        left: -50px;
+        width: 200px;
+        height: 200px;
+        top: -200px;
+        box-shadow: var(--brShadow), var(--tlShadow);
+    }
+}

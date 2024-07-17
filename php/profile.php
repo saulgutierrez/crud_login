@@ -59,6 +59,11 @@
         $sqlGetUserFollowing = "SELECT * FROM siguiendo WHERE id_seguidor = '$idUser'";
         $queryGetFollowing = $conn->query($sqlGetUserFollowing);
 
+        # Sentencias SQL para obtener los usuarios que "me siguen" (seguidores)
+        # Hacemos un inner join para obtener los datos usuario que "me sigue" en base a su id, desde la tabla de usuarios.
+        $sqlGetUserFollowers = "SELECT u.* FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$idUser';";
+        $queryGetFollowers = $conn->query($sqlGetUserFollowers);
+
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
             $idPerfil = $sqlGetProfile['id'];
@@ -270,7 +275,29 @@
                     }
                 }
                 ?>
-
+            </div>
+            <div class="follower-content" id="follower-content">
+                <?php
+                // Ver usuarios que me siguen en mi perfil (seguidores)
+                $followersCounter = 0;
+                $followers = []; // Inicializar el array para almacenar los registros
+                $rutaFotoPorDefecto = "../img/profile-default.svg";
+                if ($queryGetFollowers->num_rows > 0 && !isset($_GET['id'])) {
+                    while ($rowFollowers = $queryGetFollowers->fetch_assoc()) {
+                        $followers[] = $rowFollowers;
+                    }
+                }
+                ?>
+                <?php if (!empty($followers)):?>
+                    <?php foreach ($followers as $rowFollowers): ?>
+                        <div class="follower-card">
+                            <div class="imgBoxFollower">
+                                <img src="<?php echo !empty($rowFollowers['fotografia']) ? $rowFollowers['fotografia'] : $rutaFotoPorDefecto; ?>" alt="">
+                            </div>
+                            <h2 onclick="window.location.href='profile.php?id=<?php echo $rowFollowers['id']; ?>'"><?php echo $rowFollowers['usuario']; ?></h2>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
             <div class="following-content" id="following-content">
                 <?php
