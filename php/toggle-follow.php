@@ -46,7 +46,7 @@
                 echo json_encode(['status' => 'error', 'message' => 'Error while inserting']);
             }
         } elseif ($action === 'unfollow') {
-            $sql = "DELETE FROM siguiendo WHERE id_seguido = '$idPerfilSeguido'";
+            $sql = "DELETE FROM siguiendo WHERE id_seguidor = '$idSeguidor' AND id_seguido = '$idPerfilSeguido'";
             $result = mysqli_query($conn, $sql);
 
             if ($result == TRUE) {
