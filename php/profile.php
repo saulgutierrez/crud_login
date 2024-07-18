@@ -2,6 +2,7 @@
     require('connection.php');
     require('data.php');
 
+    // Estamos viendo el perfil de otro usuario
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
@@ -31,11 +32,15 @@
             $sqlGetFollowing = "SELECT * FROM siguiendo WHERE id_seguidor = '$idPerfil'";
             $queryGetFollowing = $conn->query($sqlGetFollowing);
 
+            # Sentencias SQL para obtener los usuarios que siguen a otros usuarios (Seguidores de perfiles por id)
+            $sqlGetOtherFollowers = "SELECT u.* FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$id';";
+            $queryGetOtherFollowers = $conn->query($sqlGetOtherFollowers);
+
         } else { # En caso de que no exista el perfil, redireccionamos a el dashboard principal
             header('Location: dashboard.php');
             exit();
         }
-
+    // Estamos viendo mi perfil
     } else if (isset($_SESSION['user'])) {
         $user = $_SESSION['user']; # Si el usuario esta logueado en el sistema, recibimos el nombre de usuario
         # Consultamos por el nombre de usuario en la base de datos
