@@ -33,8 +33,8 @@
             $queryGetFollowing = $conn->query($sqlGetFollowing);
 
             # Sentencias SQL para obtener los usuarios que siguen a otros usuarios (Seguidores de perfiles por id)
-            $sqlGetOtherFollowers = "SELECT u.* FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$id';";
-            $queryGetOtherFollowers = $conn->query($sqlGetOtherFollowers);
+            $sqlGetOtherFollowers = "SELECT u.* FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$id'";
+            $queryGetFollowers = $conn->query($sqlGetOtherFollowers);
 
         } else { # En caso de que no exista el perfil, redireccionamos a el dashboard principal
             header('Location: dashboard.php');
@@ -302,6 +302,36 @@
                             <h2 onclick="window.location.href='profile.php?id=<?php echo $rowFollowers['id']; ?>'"><?php echo $rowFollowers['usuario']; ?></h2>
                         </div>
                     <?php endforeach; ?>
+                <?php else: ?>
+                    <?php if (!isset($_GET['id'])): ?>
+                        <p class="error-fetching-following">Sin seguidores</p>
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <?php
+                // Ver los seguidores de otros usuarios
+                $followersCounter2 = 0;
+                $followers2 = []; // Inicializar el array para almacenar los registros
+                $rutaFotoPorDefecto = "../img/profile-default.svg";
+                if ($queryGetFollowers->num_rows > 0 && isset($_GET['id'])) {
+                    while ($rowOtherFollowers = $queryGetFollowers->fetch_assoc()) {
+                        $followers2[] = $rowOtherFollowers;
+                    }
+                }
+                ?>
+                <?php if (!empty($followers2)):?>
+                    <?php foreach ($followers2 as $rowOtherFollowers): ?>
+                        <div class="follower-card">
+                            <div class="imgBoxFollower">
+                                <img src="<?php echo !empty($rowOtherFollowers['fotografia']) ? $rowOtherFollowers['fotografia'] : $rutaFotoPorDefecto; ?>" alt="">
+                            </div>
+                            <h2 onclick="window.location.href='profile.php?id=<?php echo $rowOtherFollowers['id']; ?>'"><?php echo $rowOtherFollowers['usuario']; ?></h2>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <?php if (isset($_GET['id'])): ?>
+                        <p class="error-fetching-following">Sin seguidores</p>
+                    <?php endif; ?>
                 <?php endif; ?>
             </div>
             <div class="following-content" id="following-content">
@@ -374,7 +404,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <?php if (isset($_GET['id'])): ?>
-                        <p class="error-fetching-following">Este usuario no sigue ninguna cuenta</p>
+                        <p class="error-fetching-following"><?php echo $autor.' no sigue a nadie'; ?></p>
                     <?php endif; ?>
                 <?php endif; ?>
             </div>
