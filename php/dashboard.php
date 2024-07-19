@@ -18,6 +18,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/load-records.js"></script>
     <link rel="stylesheet" href="../css/dashboard.css">
     <title>Home</title>
 </head>
@@ -36,37 +38,7 @@
                 <p>Education</p>
             </details>
         </aside>
-        <figure>
-            <?php
-                $counter = 0;
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $counter++;
-                        $id_post = $row['id_post'];
-                        $id = $row['id_autor'];
-                        $autor = $row['autor_post'];
-                        $titulo = $row['titulo_post'];
-                        $contenido = $row['contenido_post'];
-                        $foto = $row['foto_post'];
-                        $hasImage = !empty($foto) ? 'imgBox' : 'noImage';
-                        $fecha = $row['fecha_publicacion'];
-            ?>
-            <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
-                <div class="post-card-top">
-                    <h2><a href="profile.php?id=<?php echo $id;?>"><?php echo $autor; ?></a></h2>
-                    <div><?php echo $fecha; ?></div>
-                </div>
-                <h3><?php echo $titulo; ?></h3>
-                <div><?php echo $contenido; ?></div>
-                <div class=<?php echo $hasImage; ?>>
-                    <img src="<?php echo $foto; ?>" alt="">
-                </div>
-            </div>
-            <?php
-                    }
-                }
-            ?>
-        </figure>
+        <div id="registros" class="registros"></div>
     </main>
 </body>
 </html>

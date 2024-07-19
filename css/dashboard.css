@@ -42,7 +42,7 @@ main > aside {
     position: fixed;
 }
 
-main > figure {
+main > .registros {
     grid-area: main;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,7 @@ main > figure {
     gap: 20px;
 }
 
-main > figure .post-card {
+main > .registros .post-card {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -60,7 +60,7 @@ main > figure .post-card {
     border-radius: 10px;
 }
 
-main > figure .post-card-top {
+main > .registros .post-card-top {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -68,20 +68,20 @@ main > figure .post-card-top {
     justify-content: space-between;
 }
 
-main > figure .post-card h2 {
+main > .registros .post-card h2 {
     font-weight: 600;
 }
 
-main > figure .post-card h2 a {
+main > .registros .post-card h2 a {
     color: light-dark(#141417, #fff);
     text-decoration: none;
 }
 
-main > figure .post-card h2 a:hover {
+main > .registros .post-card h2 a:hover {
     color: #007bff;
 }
 
-main > figure .post-card .imgBox {
+main > .registros .post-card .imgBox {
     position: relative;
     display: flex;
     align-items: center;
@@ -90,7 +90,7 @@ main > figure .post-card .imgBox {
     height: 300px;
 }
 
-main > figure .post-card .imgBox img {
+main > .registros .post-card .imgBox img {
     position: absolute;
     top: 0;
     left: 0;
