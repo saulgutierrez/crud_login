@@ -156,3 +156,17 @@ p {
 .noImage {
     display: none;
 }
+
+svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 30px;
+    right: 30px;
+    z-index: 1000;
+    fill: #fff;
+}
+
+svg:hover {
+    cursor: pointer;
+}

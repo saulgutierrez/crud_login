@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-07-2024 a las 22:28:42
+-- Tiempo de generación: 20-07-2024 a las 04:42:01
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -36,6 +36,23 @@ CREATE TABLE `comentarios` (
   `comentario` text NOT NULL,
   `foto_comentario` text NOT NULL,
   `fecha_publicacion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `likes`
+--
+
+CREATE TABLE `likes` (
+  `liked_by` int(11) NOT NULL,
+  `liked_id_post` int(255) NOT NULL,
+  `autor_liked_post` varchar(255) NOT NULL,
+  `titulo_liked_post` varchar(255) NOT NULL,
+  `contenido_liked_post` text NOT NULL,
+  `foto_liked_post` text NOT NULL,
+  `fecha_publicacion_liked_post` text NOT NULL,
+  `btn_text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -102,6 +119,13 @@ ALTER TABLE `comentarios`
   ADD KEY `id_autor` (`id_autor`);
 
 --
+-- Indices de la tabla `likes`
+--
+ALTER TABLE `likes`
+  ADD KEY `liked_by` (`liked_by`,`liked_id_post`),
+  ADD KEY `liked_id_post` (`liked_id_post`);
+
+--
 -- Indices de la tabla `post`
 --
 ALTER TABLE `post`
@@ -153,6 +177,13 @@ ALTER TABLE `usuarios`
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_post`) REFERENCES `post` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_autor`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `likes`
+--
+ALTER TABLE `likes`
+  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`liked_by`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`liked_id_post`) REFERENCES `post` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `post`
