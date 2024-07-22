@@ -157,16 +157,22 @@ p {
     display: none;
 }
 
-svg {
+.like-button {
+    cursor: pointer;
     position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 30px;
-    right: 30px;
-    z-index: 1000;
-    fill: #fff;
+    top: 45px;
+    right: 0px;
+    padding: 5px 10px 5px 25px;
+    background-color: #007bff;
+    border-radius: 10px;
+    text-decoration: none;
 }
 
-svg:hover {
-    cursor: pointer;
+.like-button img {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    filter: invert(1);
+    top: 9px;
+    right: 38px;
 }
