@@ -28,9 +28,9 @@ if ($result->num_rows > 0) {
         $fecha = $row['fecha_publicacion'];
         // Mostramos los registros usando PHP, para actualizar la base de datos de forma dinámica, sin necesidad de
         // recargar la página
-        echo '<div class="post-card" onclick="window.location.href=\'view-post.php?id=' . $id_post . '\'">';
+        echo '<div class="post-card" data-href="view-post.php?id='.$id_post.'">';
         echo '<div class="post-card-top">';
-        echo '<h2><a href="profile.php?id=' . $id . '">' . $autor . '</a></h2>';
+        echo '<h2><a href="profile.php?id=' . $id . '" onclick="event.stopPropagation();">' . $autor . '</a></h2>';
         echo '<div>' . $fecha . '</div>';
         echo '<a class="like-button" data-id="'.$id_post.'"><img src="../../public/svg/heart.svg">Like</a>';
         echo '</div>';

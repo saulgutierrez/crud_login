@@ -1,5 +1,5 @@
 <?php
-    require('connection.php');
+    require('../../config/connection.php');
     require('data.php');
 
     if (!isset($_SESSION)) {
