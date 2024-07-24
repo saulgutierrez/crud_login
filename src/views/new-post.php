@@ -50,7 +50,7 @@
             <img src="../../public/svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
         </div>
         <div class="group-buttons">
-            <a href="profile.php?user=<?php echo $user; ?>">Cancelar</a>
+            <a onclick="history.back()">Cancelar</a>
             <button value="Guardar cambios">Guardar</button>
         </div>
         <div id="new-post-result" class="new-post-result"></div>

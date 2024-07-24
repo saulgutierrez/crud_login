@@ -80,6 +80,7 @@ body main {
 
 .arrow-back:hover {
     filter: invert(27%) sepia(100%) saturate(1906%) hue-rotate(200deg) brightness(104%) contrast(107%);
+    cursor: pointer;
 }
 
 .post-title {

@@ -23,7 +23,7 @@
         $isLiked = $result->num_rows > 0;
 
         echo json_encode([
-            "status" => $isLiked ? 'liked' : 'not_liked'
+            "status" => $isLiked ? 'liked' : 'unliked'
         ]);
     } else {
         echo json_encode([

@@ -56,7 +56,7 @@
     <?php include "includes/header.php"; ?>
     <main id="main-container">
         <div class="post-card" id="post-card">
-            <a href="dashboard.php">
+            <a onclick="history.back()">
                 <img src="../../public/svg/arrow-back.svg" alt="" class="arrow-back">
             </a>
             <h2 class="post-title">Post</h2>

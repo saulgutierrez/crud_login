@@ -1,9 +1,9 @@
 $(document).ready(function() {
     function loadPosts() {
         $.ajax({
-            url         :   'fetch-posts.php',
-            method      :   'GET',
-            success     :   function(data) {
+            url: 'fetch-posts.php',
+            method: 'GET',
+            success: function(data) {
                 $('#registros').html(data);
 
                 $('.post-card').on('click', function() {
@@ -19,19 +19,24 @@ $(document).ready(function() {
                     event.preventDefault();
                     event.stopPropagation();
                     var id = $(this).data('id');
-                    saveLike(this, id);
+                    toggleLike(this, id);
                 });
             }
         });
     }
 
-    function saveLike(button, id) {
+    function toggleLike(button, id) {
+        var isLiked = $(button).hasClass('liked-btn');
         $.ajax({
-            type        :   "POST",
-            url         :   "../models/save-like.php",
-            data        :   { id: id },
-            success     :   function(response) {
-                $(button).text('Liked').addClass('liked-btn');
+            type: "POST",
+            url: "../models/toggle-like.php",
+            data: { id: id, action: isLiked ? 'unlike' : 'like' },
+            success: function(response) {
+                if (isLiked) {
+                    $(button).text('Like').removeClass('liked-btn');
+                } else {
+                    $(button).text('Liked').addClass('liked-btn');
+                }
             },
             error: function(xhr, status, error) {
                 alert(error);
@@ -41,11 +46,11 @@ $(document).ready(function() {
 
     function getLikeButtonState(button, id) {
         $.ajax({
-            url         :   '../models/get-like-button-state.php',
-            method      :   'GET',
-            data        :   { id: id },
-            dataType    :   'json',
-            success     :   function(response) {
+            url: '../models/get-like-button-state.php',
+            method: 'GET',
+            data: { id: id },
+            dataType: 'json',
+            success: function(response) {
                 if (response.status === 'liked') {
                     $(button).text('Liked').addClass('liked-btn');
                 } else {
@@ -59,6 +64,5 @@ $(document).ready(function() {
     }
 
     loadPosts();
-    
     setInterval(loadPosts, 60000); // Carga los posts cada minuto
 });
