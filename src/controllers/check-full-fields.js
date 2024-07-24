@@ -16,7 +16,7 @@ $(document).ready(function () {
                 type        :   'POST',
                 data        :   datosEnviados,
                 dataType    :   'text',
-                success:     function(res) {
+                success     :   function(res) {
                     if (res == 1) {
                         $('#message').html('Seleccione otro nombre de usuario');
                         $('#message').show();

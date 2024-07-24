@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
         echo '<div class="post-card-top">';
         echo '<h2><a href="profile.php?id=' . $id . '" onclick="event.stopPropagation();">' . $autor . '</a></h2>';
         echo '<div>' . $fecha . '</div>';
-        echo '<a class="like-button" data-id="'.$id_post.'"><img src="../../public/svg/heart.svg">Like</a>';
+        echo '<a class="like-button" data-id="'.$id_post.'">Like</a>';
         echo '</div>';
         echo '<h3>' . $titulo . '</h3>';
         echo '<div>' . $contenido . '</div>';
