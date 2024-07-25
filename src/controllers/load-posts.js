@@ -21,6 +21,52 @@ $(document).ready(function() {
                     var id = $(this).data('id');
                     toggleLike(this, id);
                 });
+
+                $('.like-count').on('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    var id_post = $(this).data('id');
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../models/load-likes.php",
+                        data: { id_post: id_post },
+                        success: function(response) {
+                            console.log("Response from server:", response);
+                            var likesList = $('#likesList');
+                            likesList.empty();
+
+                            try {
+                                var users = JSON.parse(response);
+                                console.log("Parsed users:", users);
+                                if (Array.isArray(users)) {
+                                    users.forEach(function(user) {
+                                        var userLink;
+                                        // Usamos la variable pasada desde PHP, que corresponde a nuestro id para evaluar:
+                                        // Si nuestro id, es igual al id del campo liked_by de la tabla de likes,
+                                        // redireccionamos a la pantalla para gestionar nuestro perfil.
+                                        // En caso contrario, mostramos el perfil del usuario correspondiente.
+                                        if (user.liked_by == authUserId) {
+                                            userLink = '<a class="liked-usernames" href="profile.php?user='+user.usuario+'">'+ user.usuario +'</a>';
+                                        } else {
+                                            userLink = '<a class="liked-usernames" href="profile.php?id=' + user.liked_by + '">' + user.usuario + '</a>';
+                                        }
+                                        likesList.append('<li class="list-group-item">' + userLink + '</li>');
+                                    });
+                                } else {
+                                    likesList.append('<li class="list-group-item">No likes yet</li>');
+                                }
+                            } catch (e) {
+                                likesList.append('<li class="list-group-item">Error loading likes</li>');
+                            }
+
+                            $('#likesModal').modal('show');
+                        },
+                        error: function(xhr, status, error) {
+                            alert('Error loading likes: ' + error);
+                        }
+                    });
+                });
             }
         });
     }
@@ -64,5 +110,5 @@ $(document).ready(function() {
     }
 
     loadPosts();
-    setInterval(loadPosts, 60000); // Carga los posts cada minuto
+    setInterval(loadPosts, 10000); // Carga los posts cada minuto
 });

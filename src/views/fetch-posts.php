@@ -26,6 +26,14 @@ if ($result->num_rows > 0) {
         $foto = $row['foto_post'];
         $hasImage = !empty($foto) ? 'imgBox' : 'noImage';
         $fecha = $row['fecha_publicacion'];
+
+        // Consulta para obtener el numero de "likes" de cada post
+        $likes_sql = "SELECT COUNT(*) as like_count FROM likes WHERE liked_id_post = '$id_post'";
+        $likes_result = $conn->query($likes_sql);
+        $likes_row = $likes_result->fetch_assoc();
+        $like_count = $likes_row['like_count'];
+
+
         // Mostramos los registros usando PHP, para actualizar la base de datos de forma dinámica, sin necesidad de
         // recargar la página
         echo '<div class="post-card" data-href="view-post.php?id='.$id_post.'">';
@@ -33,6 +41,7 @@ if ($result->num_rows > 0) {
         echo '<h2><a href="profile.php?id=' . $id . '" onclick="event.stopPropagation();">' . $autor . '</a></h2>';
         echo '<div>' . $fecha . '</div>';
         echo '<a class="like-button" data-id="'.$id_post.'">Like</a>';
+        echo '<a href="#" class="like-count" data-id="'.$id_post.'" data-toggle="modal" data-target="#likesModal">'.$like_count.'</a>';
         echo '</div>';
         echo '<h3>' . $titulo . '</h3>';
         echo '<div>' . $contenido . '</div>';

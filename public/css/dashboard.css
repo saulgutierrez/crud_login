@@ -166,8 +166,36 @@ p {
     background-color: #007bff;
     border-radius: 10px;
     text-decoration: none;
+    color: #fff;
+}
+
+.like-button:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.like-count {
+    position: absolute;
+    top: 50px;
+    right: 60px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.like-count:hover {
+    text-decoration: none;
+    color: #fff;
 }
 
 .liked-btn {
     background-color: green;
+}
+
+.liked-usernames {
+    color: #fff;
+}
+
+.liked-usernames:hover {
+    text-decoration: none;
+    color: #fff;
 }

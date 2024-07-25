@@ -334,7 +334,29 @@
                             <div class="imgBoxFollower">
                                 <img src="<?php echo !empty($rowOtherFollowers['fotografia']) ? $rowOtherFollowers['fotografia'] : $rutaFotoPorDefecto; ?>" alt="">
                             </div>
-                            <h2 onclick="window.location.href='profile.php?id=<?php echo $rowOtherFollowers['id']; ?>'"><?php echo $rowOtherFollowers['usuario']; ?></h2>
+                            <?php
+                                $redirectUrl = 'profile.php?';
+
+                                if (isset($_SESSION['user'])) {
+                                    $user = $_SESSION['user'];
+                                    $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
+                                    $queryGetIdUser = $conn->query($sqlGetIdUser);
+                                    # Evaluamos, en caso de que el id que seguimos corresponda al id que esta logueado,
+                                    # es decir, nuestro propio perfil, nos envie hacia la pantalla de gestion de nuestro
+                                    # perfil, en lugar de dar lo opcion de "seguirnos a nosotros mismos".
+                                    if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
+                                        $idUser = $sqlGetId['id'];
+                                        if ($rowOtherFollowers['id'] == $idUser) {
+                                            $redirectUrl .= 'user=' . $idUser;
+                                        } else {
+                                            $redirectUrl .= 'id=' . $rowOtherFollowers['id'];
+                                        }
+                                    }
+                                }
+                            ?>
+                            <h2 onclick="window.location.href='<?php echo $redirectUrl; ?>'">
+                                <?php echo $rowOtherFollowers['usuario']; ?>
+                            </h2>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -413,7 +435,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <?php if (isset($_GET['id'])): ?>
-                        <p class="error-fetching-following"><?php echo $autor.' no sigue a nadie'; ?></p>
+                        <p class="error-fetching-following">Este usuario no sigue a nadie</p>
                     <?php endif; ?>
                 <?php endif; ?>
             </div>
