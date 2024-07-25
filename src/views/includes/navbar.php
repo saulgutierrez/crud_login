@@ -12,10 +12,12 @@
         <a href="../../public/index.php" class="logo">Games DB</a>
         <li><input type="text" placeholder="Buscar"></li>
         <ul class="navbar">
-            <li><a href="#">Explorar</a></li>
-            <li><a href="../src/views/blog-index.php">Blog</a></li>
-            <li><a href="../src/views/login.php">Foro</a></li>
+            <li class="explore hidden"><a href="#">Explorar</a></li>
+            <li class="blog hidden"><a href="../src/views/blog-index.php">Blog</a></li>
+            <li class="forum hidden"><a href="../src/views/login.php">Foro</a></li>
+            <li class="menu"><img src="../public/svg/menu.svg" class="menu-icon" alt=""></li>
         </ul>
     </nav>
+    <script src="../src/helpers/navbar.js"></script>
 </body>
 </html>

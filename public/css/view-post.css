@@ -7,10 +7,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-:root {
-    color-scheme: light dark;
-}
-
 html {
     font-size: 62.5%;
 }
@@ -21,8 +17,8 @@ body {
     display: flex;
     width: 100%;
     height: 100vh;
-    background-color: light-dark(#f4f6f9,#141417);
-    color: light-dark(#141417, #fff);
+    background-color: #141417;
+    color: #fff;
     justify-content: center;
 }
 
@@ -42,7 +38,7 @@ body main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: light-dark(#ffffff,#0f0f11);
+    background-color: #0f0f11;
     padding: 30px 30px;
     border-radius: 10px;
     gap: 15px
@@ -53,7 +49,7 @@ body main {
 }
 
 .post-card h2 a {
-    color: light-dark(#141417, #fff);
+    color: #fff;
     text-decoration: none;
 }
 
@@ -95,10 +91,10 @@ body main {
 }
 
 .comment-input {
-    background-color: light-dark(#f4f6f9, #262627);
+    background-color: #262627;
     border: none;
     outline: none;
-    color: light-dark(#141417,#fff);
+    color: #fff;
     border-radius: 20px;
     height: 35px;
     padding: 15px 10px;
@@ -106,8 +102,8 @@ body main {
 }
 
 .comment-input:focus {
-    border: 1px solid light-dark(#141417,#fff); 
-    background-color: light-dark(#fff, #141417);
+    border: 1px solid #fff; 
+    background-color: #141417;
 }
 
 button {

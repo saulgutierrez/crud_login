@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-:root {
-    color-scheme: light dark;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -27,7 +23,7 @@ body {
 
 form {
     position: relative;
-    background-color: light-dark(#f4f6f9,#141417);
+    background-color: #141417;
     width: 500px;
     height: 380px;
     display: flex;
@@ -35,15 +31,15 @@ form {
     align-items: center;
     flex-direction: column;
     border-radius: 20px;
-    color: light-dark (#141417, #fff);
+    color: #fff;
     gap: 15px;
 }
 
 form input[type=text], form input[type=password] {
-    background-color: light-dark(#e9ecef, #262627);
-    border: 1px solid light-dark(#262627, transparent);
+    background-color: #262627;
+    border: 1px solid transparent;
     outline: none;
-    color: light-dark(#262627, #fff);
+    color: #fff;
     border-radius: 20px;
     height: 35px;
     padding: 15px 10px;
@@ -51,8 +47,8 @@ form input[type=text], form input[type=password] {
 }
 
 form input[type=text]:focus, form input[type=password]:focus {
-    border: 1px solid light-dark(#262627, #fff); 
-    background-color: light-dark(#fff, #141417);
+    border: 1px solid #fff; 
+    background-color: #141417;
 }
 
 form input[type=submit] {

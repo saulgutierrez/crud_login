@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-:root {
-    color-scheme: light dark;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +13,7 @@ html {
 
 body {
     font-size: 1.6rem;
-    background-color: light-dark(#ffffff, #0f0f11);
+    background-color: #0f0f11;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -34,21 +30,21 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: light-dark(#ffffff, #0f0f11);
+    background-color: #0f0f11;
 }
 
 nav .logo {
     text-decoration: none;
-    color: light-dark(#0f0f11, #fff);
+    color: #fff;
     z-index: 1000;
 }
 
 input {
-    background-color: light-dark(#ffffff, #0f0f11);
-    border: 1px solid light-dark(#0f0f11, #fff);
+    background-color: #0f0f11;
+    border: 1px solid #fff;
     outline: none;
     width: 200px;
-    color: light-dark(#0f0f11, #fff);
+    color: #fff;
     padding: 5px 15px;
     border-radius: 20px;
 }
@@ -73,12 +69,68 @@ nav .navbar li a {
     transition: 0.3s;
     font-size: 0.9em;
     text-transform: uppercase;
-    color: light-dark(#0f0f11, #ffffff);
+    color: #ffffff;
 }
 
 nav .navbar li a:hover {
-    background-color: light-dark(#fff, #007bff);
-    border: 1px solid light-dark(#007bff, transparent);
+    background-color: #007bff;
     padding: 10px 50px;
     border-radius: 20px;
+}
+
+nav .navbar .menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    nav  {
+        padding: 20px 60px;
+    }
+
+    input {
+        display: none;
+    }
+
+    ul li {
+        position: absolute;
+    }
+
+    ul li:not(.menu) {
+        right: 40px;
+    }
+
+    ul li:nth-child(1) {
+        top: 40px;
+        right: 0px;
+    }
+
+    ul li:nth-child(2) {
+        top: 70px;
+        right: 0px;
+    }
+
+    ul li:nth-child(3) {
+        top: 100px;
+        right: 0px;
+    }
+
+    nav .navbar .menu {
+        display: flex;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        filter: invert(1);
+    }
+
+    .menu-icon img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hidden {
+        display: none;
+    }
 }

@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-:root {
-    color-scheme: light dark;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -24,14 +20,14 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: light-dark(#ffffff, #0f0f11);
+    background-color: #0f0f11;
     padding: 0px 80px;
     z-index: 10000;
 }
 
 header h1, header h2 {
     font-weight: 100;
-    color: light-dark(#0f0f11, #fff);
+    color: #fff;
     text-decoration: none;
     font-size: 1.8rem;
 }
@@ -42,11 +38,11 @@ header h1 a:hover {
 }
 
 header input {
-    background-color: light-dark(#ffffff, #141417);
-    border: 1px solid light-dark(#141417, #fff);
+    background-color: #141417;
+    border: 1px solid #fff;
     outline: none;
     width: 200px;
-    color: light-dark(#141417, #fff);
+    color: #fff;
     padding: 5px 15px;
     border-radius: 20px;
 }
@@ -54,7 +50,7 @@ header input {
 header h1 a,
 header div a, 
 header h2 a {
-    color: light-dark(#141417, #fff);
+    color: #fff;
     text-decoration: none;
     width: 100%;
     padding: 10px 40px;
@@ -68,7 +64,7 @@ header h2 a:hover {
 .square {
     position: absolute;
     display: none;
-    background-color: light-dark(#f4f6f9, #141417);
+    background-color: #141417;
     height: 30px;
     width: 30px;
     right: 32%;
@@ -79,7 +75,7 @@ header h2 a:hover {
 .dropdown {
     position: absolute;
     display: none;
-    background-color: light-dark(#fff,#0f0f11);
+    background-color: #0f0f11;
     height: 80px;
     width: 200px;
     right: 26%;
@@ -98,8 +94,8 @@ header h2 a:hover {
 }
 
 .new-post:hover {
-    background-color: light-dark(transparent,#007bff);
+    background-color: #007bff;
     padding: 10px 0px;
     border-radius: 20px;
-    border: 1px solid light-dark(#007bff, transparent);
+    border: 1px solid transparent;
 }

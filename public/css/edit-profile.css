@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-:root {
-  color-scheme: light dark;
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -20,8 +16,8 @@ body {
     display: flex;
     width: 100%;
     height: calc(100% - 100px);
-    background-color: light-dark(#f4f6f9,#141417);
-    color: light-dark(#141417, #fff);
+    background-color: #141417;
+    color: #fff;
     justify-content: center;
     align-items: center;
     margin-top: 100px;
@@ -29,7 +25,7 @@ body {
 
 body form {
     position: relative;
-    background-color: light-dark(#f4f6f9,#141417);
+    background-color: #141417;
     width: 60%;
     height: 80vh;
     display: grid;
@@ -37,14 +33,14 @@ body form {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    color: light-dark(#141417, #fff);
+    color: #fff;
 }
 
 form input[type=text], form input[type=password], form input[type=number], form input[type=email], form input[type=date] {
-    background-color: light-dark(#e9ecef, #262627);
-    border: 1px solid light-dark(#262627, transparent);
+    background-color: #262627;
+    border: 1px solid transparent;
     outline: none;
-    color: light-dark(#262627, #fff);
+    color: #fff;
     border-radius: 20px;
     height: 35px;
     padding: 15px 10px;
@@ -52,8 +48,8 @@ form input[type=text], form input[type=password], form input[type=number], form 
 }
 
 form input[type=text]:focus, form input[type=password]:focus, form input[type=number]:focus, form input[type=email]:focus, form input[type=date]:focus {
-    border: 1px solid light-dark(#262627, #fff);
-    background-color: light-dark(#fff, #141417);
+    border: 1px solid #fff;
+    background-color: #141417;
 }
 
 form button, form a {
@@ -94,8 +90,8 @@ form button:hover {
 }
 
 .select-selected {
-    border: 1px solid light-dark(#262627, #fff);
-    background-color: light-dark(#e9ecef, #262627);
+    border: 1px solid #fff;
+    background-color: #262627;
 }
   
   /* Style the arrow inside the select element: */
@@ -129,8 +125,8 @@ form button:hover {
   /* Style items (options): */
   .select-items {
     position: absolute;
-    background-color: light-dark(#fff, #141417);
-    color: light-dark(#262627, #fff);
+    background-color: #141417;
+    color: #fff;
     top: 100%;
     left: 0;
     right: 0;
@@ -143,8 +139,8 @@ form button:hover {
   }
   
   .select-items div:hover, .same-as-selected {
-    background-color: light-dark(#fff, #141417);
-    color: light-dark(#262627, #fff);
+    background-color: #141417;
+    color: #fff;
   }
 
 .edit-result {
@@ -211,7 +207,7 @@ input[type="file"] {
     padding: 0 16px;
     height: 40px;
     cursor: pointer;
-    background-color: light-dark(#fff, #262627);
+    background-color: #262627;
     border: 1px solid rgba(0, 0, 0, 0.16);
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
     margin-right: 16px;
@@ -220,7 +216,7 @@ input[type="file"] {
   
   /* file upload button hover state */
   input[type="file"]::file-selector-button:hover {
-    background-color: light-dark(#f4f6f9, #131316);
+    background-color: #131316;
     border: 1px solid #007bff;
   }
   
