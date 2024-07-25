@@ -110,5 +110,5 @@ $(document).ready(function() {
     }
 
     loadPosts();
-    setInterval(loadPosts, 10000); // Carga los posts cada minuto
+    setInterval(loadPosts, 60000); // Carga los posts cada minuto
 });

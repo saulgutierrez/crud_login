@@ -79,6 +79,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
         <script>
             // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,

@@ -81,6 +81,16 @@ main > .registros .post-card h2 a:hover {
     color: #007bff;
 }
 
+main > .registros .post-card h3 {
+    width: 85%;
+    text-align: justify;
+}
+
+.text-content {
+    width: 85%;
+    text-align: justify;
+}
+
 main > .registros .post-card .imgBox {
     position: relative;
     display: flex;
@@ -197,5 +207,5 @@ p {
 
 .liked-usernames:hover {
     text-decoration: none;
-    color: #fff;
+    color: #007bff;
 }

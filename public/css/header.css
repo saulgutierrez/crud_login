@@ -33,6 +33,7 @@ header h1, header h2 {
     font-weight: 100;
     color: light-dark(#0f0f11, #fff);
     text-decoration: none;
+    font-size: 1.8rem;
 }
 
 header h1 a:hover {

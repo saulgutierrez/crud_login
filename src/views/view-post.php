@@ -98,6 +98,7 @@
                     $postId = $fila['id_post'];
                     $autorId = $fila['id_autor'];
                     $comentarioId = $fila['id_comentario'];
+                    $idAutorComentarioArray = $fila['id_autor_comentario'];
                     $autorComentario = $fila['autor_comentario'];
                     $comentario = $fila['comentario'];
                     $imagen = $fila['foto_comentario'];
@@ -106,7 +107,17 @@
 
         <div class="post-card comment">
             <div class="comment-card-top">
-                <h3><?php echo $autorComentario; ?></h3>
+                <?php
+                    // Evaluamos si el autor de cada comentario corresponde con el id del autor que tiene la sesión
+                    // iniciada o no, para mostrar la pantalla que corresponde.
+                    $redirect;
+                    if ($idAutorComentarioArray == $idAutorComentario) {
+                        $redirect = "profile.php?user=$username";
+                    } else {
+                        $redirect = "profile.php?id=$idAutorComentarioArray";
+                    }
+                ?>
+                <a class="comment-user" href="<?php echo $redirect; ?>"><?php echo $autorComentario; ?></a>
                 <div><?php echo $fecha; ?></div>
             </div>
             <div><?php echo $comentario; ?></div>

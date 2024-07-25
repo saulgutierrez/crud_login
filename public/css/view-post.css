@@ -167,3 +167,25 @@ button {
     align-items: center;
     justify-content: space-between;
 }
+
+.comment-user {
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+}
+
+.comment-user:hover {
+    color: #007bff;
+}
+
+.comment-autor-link {
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+}
+
+.comment-autor-link:hover {
+    color: #007bff;
+}

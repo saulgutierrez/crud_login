@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
         echo '<a href="#" class="like-count" data-id="'.$id_post.'" data-toggle="modal" data-target="#likesModal">'.$like_count.'</a>';
         echo '</div>';
         echo '<h3>' . $titulo . '</h3>';
-        echo '<div>' . $contenido . '</div>';
+        echo '<div class="text-content">' . $contenido . '</div>';
         echo '<div class="' . $hasImage . '">';
         if (!empty($foto)) {
             echo '<img src="' . $foto . '" alt="">';
