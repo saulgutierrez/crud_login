@@ -16,6 +16,8 @@
             <li class="blog hidden"><a href="#">Blog</a></li>
             <li class="forum hidden"><a href="login.php">Foro</a></li>
             <li class="menu"><img src="../../public/svg/menu.svg" class="menu-icon" alt=""></li>
+            <div class="square-menu hidden"></div>
+            <div class="menu-opciones hidden"></div>
         </ul>
     </nav>
     <script src="../../src/helpers/navbar.js"></script>
