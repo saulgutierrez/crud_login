@@ -49,6 +49,10 @@ input {
     border-radius: 20px;
 }
 
+nav li {
+    list-style: none;
+}
+
 nav .navbar {
     position: relative;
     display: flex;
@@ -73,4 +77,61 @@ nav .navbar li a:hover {
     border: 1px solid transparent;
     padding: 10px 50px;
     border-radius: 20px;
+}
+
+nav .navbar .menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    nav  {
+        padding: 20px 60px;
+    }
+
+    input {
+        display: none;
+    }
+
+    ul li {
+        position: absolute;
+    }
+
+    ul li:not(.menu) {
+        right: 40px;
+    }
+
+    ul li:nth-child(1) {
+        top: 40px;
+        right: 0px;
+    }
+
+    ul li:nth-child(2) {
+        top: 70px;
+        right: 0px;
+    }
+
+    ul li:nth-child(3) {
+        top: 100px;
+        right: 0px;
+    }
+
+    nav .navbar .menu {
+        display: flex;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        filter: invert(1);
+    }
+
+    .menu-icon img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hidden {
+        display: none;
+    }
 }

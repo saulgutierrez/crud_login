@@ -165,6 +165,7 @@ body {
     margin-left: 8%;
     width: 100%;
     line-height: 2;
+    text-align: justify;
 }
 
 .requirements {
@@ -224,4 +225,54 @@ body {
     width: 20px;
     height: 20px;
     filter: invert(1);
+}
+
+@media screen and (max-width: 768px) {
+    .top-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-container div {
+        position: relative;
+        width: 90%;
+    }
+
+    .top-container .wrapper-features {
+        align-items: center;
+    }
+
+    .main-image-container {
+        height: 400px;
+    }
+
+    .wrapper-features-description-images {
+        flex-direction: column;
+    }
+
+    .wrapper-features-description-images .img-container img {
+        margin-bottom: 10px;
+    }
+
+    .game-description {
+        margin-left: 0%;
+        text-align: justify;
+        width: 90%;
+        align-self: center;
+    }
+
+    h2 {
+        margin-top: 40px;
+    }
+    
+    .requirements {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .requirements p {
+        width: 80%;
+        margin-bottom: 20px;
+        padding: 40px 0px;
+    }
 }
