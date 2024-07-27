@@ -10,7 +10,7 @@
     <title>Foro | Games DB</title>
 </head>
 <body>
-    <?php include "../views/includes/navbar.php"; ?>
+    <?php include "../views/includes/navbar-forum.php"; ?>
     <form id="login" method="POST">
         <img src="../../public/svg/user-fill.svg" alt="" class="user-icon">
         <img src="../../public/svg/lock-fill.svg" alt="" class="pass-icon">

@@ -106,3 +106,79 @@ form input[type=text]:focus, form input[type=password]:focus {
     height: 20px;
     filter: invert(1);
 }
+
+@media screen and (max-width: 768px) {
+    form {
+        width: 350px;
+    }
+
+    form input[type=text], form input[type=password] {
+        display: flex;
+    }
+    
+    form input[type=text]:focus, form input[type=password]:focus {
+        border: 1px solid #fff; 
+        background-color: #141417;
+    }
+
+    .user-icon {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        filter: invert(1);
+        top: 115px;
+        left: 75%;
+    }
+
+    .pass-icon {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        filter: invert(1);
+        top: 200px;
+        left: 75%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    body {
+        position: relative;
+        z-index: -1;
+    }
+
+    form {
+        width: 90%;
+        z-index: -1;
+    }
+
+    form input[type=text], form input[type=password] {
+        display: flex;
+        width: 80%;
+        z-index: 10000;
+    }
+
+    form input[type=text]:focus, form input[type=password]:focus {
+        border: 1px solid #fff; 
+        background-color: #141417;
+    }
+
+    .user-icon {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        filter: invert(1);
+        top: 115px;
+        left: 80%;
+        z-index: 11000;
+    }
+
+    .pass-icon {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        filter: invert(1);
+        top: 200px;
+        left: 80%;
+        z-index: 11000;
+    }
+}

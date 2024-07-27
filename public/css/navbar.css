@@ -108,19 +108,19 @@ nav .navbar .menu {
     ul li:nth-child(1) {
         top: 40px;
         right: 0px;
-        z-index: 3000;
+        z-index: 10000;
     }
 
     ul li:nth-child(2) {
         top: 70px;
         right: 0px;
-        z-index: 3000;
+        z-index: 10000;
     }
 
     ul li:nth-child(3) {
         top: 100px;
         right: 0px;
-        z-index: 3000;
+        z-index: 10000;
     }
 
     nav .navbar .menu {
@@ -161,6 +161,6 @@ nav .navbar .menu {
         background-color: #141417;
         width: 100px;
         height: 100px;
-        z-index: -1;
+        z-index: 4000;
     }
 }
