@@ -133,6 +133,7 @@
                 <a class="comments" id="comments">Comentarios</a>
                 <a class="followers" id="followers">Seguidores</a>
                 <a class="following" id="following">Siguiendo</a>
+                <a href="">Liked Posts</a>
             </div>
             <div class="info-perfil" id="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
