@@ -36,6 +36,10 @@
             $sqlGetOtherFollowers = "SELECT u.* FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$id'";
             $queryGetFollowers = $conn->query($sqlGetOtherFollowers);
 
+            # Sentencias SQL para obtener los posts que otros usuarios han marcado como "Like"
+            $sqlGetLikes = "SELECT * FROM likes WHERE liked_by = '$idPerfil'";
+            $queryGetLikes = $conn->query($sqlGetLikes);
+
         } else { # En caso de que no exista el perfil, redireccionamos a el dashboard principal
             header('Location: dashboard.php');
             exit();
@@ -68,6 +72,10 @@
         # Hacemos un inner join para obtener los datos usuario que "me sigue" en base a su id, desde la tabla de usuarios.
         $sqlGetUserFollowers = "SELECT u.* FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$idUser';";
         $queryGetFollowers = $conn->query($sqlGetUserFollowers);
+
+        # Sentencias SQL para obtener los posts que he marcado como "Like"
+        $sqlGetUserLikes = "SELECT * FROM likes WHERE liked_by = '$idUser'";
+        $queryGetLikes = $conn->query($sqlGetUserLikes);
 
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
@@ -133,7 +141,7 @@
                 <a class="comments" id="comments">Comentarios</a>
                 <a class="followers" id="followers">Seguidores</a>
                 <a class="following" id="following">Siguiendo</a>
-                <a href="">Liked Posts</a>
+                <a class="likes" id="likes">Liked Posts</a>
             </div>
             <div class="info-perfil" id="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
@@ -242,7 +250,7 @@
                 <div class="comment-card">
                     <div class="square-menu-perfil-comments"></div>
                     <div class="menu-opciones-comments" id="menu-opciones-comments">
-                        <a href="view-post.php?id=<?php echo $idPostItem; ?>""> Ver hilo</a>
+                        <a href="view-post.php?id=<?php echo $idPostItem; ?>"> Ver hilo</a>
                         <a href="" class="delete-comment-btn" data-id="<?php echo $idComentarioItem; ?>">Eliminar comentario</a>
                     </div>
                     <img src="../../public/svg/menu.svg" alt="" class="menu-icon-comments">
@@ -439,6 +447,61 @@
                         <p class="error-fetching-following">Este usuario no sigue a nadie</p>
                     <?php endif; ?>
                 <?php endif; ?>
+            </div>
+            <div class="likes-content" id="likes-content">
+                <?php
+                // Ver likes de mi perfil
+                $counterLikes = 0;
+                if ($queryGetLikes->num_rows > 0 && !isset($_GET['id'])) {
+                    while ($rowLikes = $queryGetLikes->fetch_assoc()) {
+                        $counterLikes++;
+                        $idLikedPost = $rowLikes['liked_id_post'];
+                        $autorLikedPost = $rowLikes['autor_liked_post'];
+                        $tituloLikedPost = $rowLikes['titulo_liked_post'];
+                        $contenidoLikedPost = $rowLikes['contenido_liked_post'];
+                        $fotoLikedPost = $rowLikes['foto_liked_post'];
+                        $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBox' : 'noImage';
+                        $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion_liked_post'];
+                ?>
+                <div class="likes-card" onclick="window.location.href ='view-post.php?id=<?php echo $idLikedPost; ?>'">
+                    <h2><?php echo $autorLikedPost; ?></h2>
+                    <h3><?php echo $tituloLikedPost; ?></h3>
+                    <h3><?php echo $contenidoLikedPost; ?></h3>
+                    <div class="<?php echo $hasImageLikedPost; ?>">
+                        <img src="<?php echo $fotoLikedPost; ?>" alt="">
+                    </div>
+                </div>
+
+                <?php
+                    }
+                ?>
+                <?php
+                // Ver likes de otro perfil
+                } else if ($queryGetLikes->num_rows > 0 && isset($_GET['id'])) {
+                    while ($rowLikes = $queryGetLikes->fetch_assoc()) {
+                        $counterLikes++;
+                        $idLikedPost = $rowLikes['liked_id_post'];
+                        $autorLikedPost = $rowLikes['autor_liked_post'];
+                        $tituloLikedPost = $rowLikes['titulo_liked_post'];
+                        $contenidoLikedPost = $rowLikes['contenido_liked_post'];
+                        $fotoLikedPost = $rowLikes['foto_liked_post'];
+                        $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBox' : 'noImage';
+                        $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion_liked_post'];
+                ?>
+                <div class="likes-card" onclick="window.location.href='view-post.php?id=<?php echo $idLikedPost; ?>'">
+                    <div class="likes-card-top">
+                        <h2><?php echo $autorLikedPost; ?></h2>
+                        <div><?php echo $fechaPublicacionLikedPost; ?></div>
+                    </div>
+                    <div><?php echo $contenidoLikedPost; ?></div>
+                    <div class="<?php echo $hasImageLikedPost; ?>">
+                        <img src="<?php echo $fotoLikedPost; ?>" alt="">
+                    </div>
+                </div>
+                <?php
+                    }
+                }
+                ?>
             </div>
         </section>
     </main>
