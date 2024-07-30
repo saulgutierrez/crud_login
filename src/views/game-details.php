@@ -116,6 +116,12 @@
                     <p>Requisitos mínimos del sistema no disponibles</p>
                 </div>
             <?php } ?>
+
+            <?php if (isset($gameData['game_url'])) { ?>
+                <a class="play-game-btn" href="<?php echo $gameData['game_url']; ?>">Play Now</a>
+            <?php } else { ?>
+                <p>Enlace al videojuego no disponible</p>
+            <?php } ?>
     </div>
 </body>
 </html>

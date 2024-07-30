@@ -227,6 +227,18 @@ body {
     filter: invert(1);
 }
 
+.play-game-btn {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.play-game-btn:hover {
+    background-color: #0069d9;
+}
+
 @media screen and (max-width: 768px) {
     .top-container {
         flex-direction: column;
