@@ -9,8 +9,15 @@
         $sqlGetInfo = "SELECT * FROM usuarios WHERE id = '$id'";
         $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
 
+        // Obtener todos los posteos del usuario
         $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE id_autor = '$id'";
         $result = $conn->query($sqlGetPosts);
+
+        // Consulta para obtener el numero de posteos del usuario
+        $posts_count_sql = "SELECT COUNT(*) as post_count FROM post WHERE id_autor = '$id'";
+        $posts_count_result = $conn->query($posts_count_sql);
+        $posts_count_row = $posts_count_result->fetch_assoc();
+        $post_count = $posts_count_row['post_count'];
 
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
@@ -25,20 +32,45 @@
             $foto = $sqlGetProfile['fotografia'];
             $rutaFotoPorDefecto = "../../public/img/profile-default.svg";
 
+            // Consulta para obtener los comentarios del usuario
             $sqlGetComments = "SELECT * FROM comentarios WHERE autor_comentario = '$nombreUsuario'";
             $queryGetComments = $conn->query($sqlGetComments);
+
+            // Consulta para obtener el numero de comentarios del usuario
+            $comments_count_sql = "SELECT COUNT(*) as comments_count FROM comentarios WHERE autor_comentario = '$nombreUsuario'";
+            $comments_count_result = $conn->query($comments_count_sql);
+            $comments_count_row = $comments_count_result->fetch_assoc();
+            $comments_count = $comments_count_row['comments_count'];
 
             # Sentencias SQL para obtener los usuarios los cuales OTROS USUARIOS estan siguiendo
             $sqlGetFollowing = "SELECT * FROM siguiendo WHERE id_seguidor = '$idPerfil'";
             $queryGetFollowing = $conn->query($sqlGetFollowing);
 
+            // Consulta para obtener el numero de "siguiendo" de otros usuarios
+            $following_count_sql = "SELECT COUNT(*) as following_count FROM siguiendo WHERE id_seguidor = '$idPerfil'";
+            $following_count_result = $conn->query($following_count_sql);
+            $following_count_row = $following_count_result->fetch_assoc();
+            $following_count = $following_count_row['following_count'];
+
             # Sentencias SQL para obtener los usuarios que siguen a otros usuarios (Seguidores de perfiles por id)
             $sqlGetOtherFollowers = "SELECT u.* FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$id'";
             $queryGetFollowers = $conn->query($sqlGetOtherFollowers);
 
+            // Consulta para obtener el numero de seguidores
+            $followers_count_sql = "SELECT COUNT(*) as followers_count FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$id'";
+            $followers_count_result = $conn->query($followers_count_sql);
+            $followers_count_row = $followers_count_result->fetch_assoc();
+            $followers_count = $followers_count_row['followers_count'];
+
             # Sentencias SQL para obtener los posts que otros usuarios han marcado como "Like"
             $sqlGetLikes = "SELECT * FROM likes WHERE liked_by = '$idPerfil'";
             $queryGetLikes = $conn->query($sqlGetLikes);
+
+            // Consulta para obtener el numero de posts que otros usuarios han marcado como "Like"
+            $likes_count_sql = "SELECT COUNT(*) as likes_count FROM likes WHERE liked_by = '$idPerfil'";
+            $likes_count_result = $conn->query($likes_count_sql);
+            $likes_count_row = $likes_count_result->fetch_assoc();
+            $likes_count = $likes_count_row['likes_count'];
 
         } else { # En caso de que no exista el perfil, redireccionamos a el dashboard principal
             header('Location: dashboard.php');
@@ -51,11 +83,25 @@
         $sqlGetInfo = "SELECT * FROM usuarios WHERE usuario = '$user'";
         $queryGetInfo = $conn->query($sqlGetInfo);
 
+        // Obtenemos nuestros posteos
         $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post FROM post WHERE autor_post = '$user'";
         $result = $conn->query($sqlGetPosts);
 
+        // Consulta para obtener el numero de posteos
+        $posts_count_sql = "SELECT COUNT(*) as post_count FROM post WHERE autor_post = '$user'";
+        $posts_count_result = $conn->query($posts_count_sql);
+        $posts_count_row = $posts_count_result->fetch_assoc();
+        $post_count = $posts_count_row['post_count'];
+
+        // Obtenemos nuestros comentarios
         $sqlProfileComments = "SELECT * FROM comentarios WHERE autor_comentario = '$user'";
         $queryGetComments = $conn->query($sqlProfileComments);
+
+        // Consulta para obtener el numero de comentarios
+        $comments_count_sql = "SELECT COUNT(*) as comments_count FROM comentarios WHERE autor_comentario = '$user'";
+        $comments_count_result = $conn->query($comments_count_sql);
+        $comments_count_row = $comments_count_result->fetch_assoc();
+        $comments_count = $comments_count_row['comments_count'];
 
         # Sentencias SQL para obtener los usuarios los cuales YO estoy siguiendo
         $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
@@ -68,14 +114,33 @@
         $sqlGetUserFollowing = "SELECT * FROM siguiendo WHERE id_seguidor = '$idUser'";
         $queryGetFollowing = $conn->query($sqlGetUserFollowing);
 
+        # Consulta para obtener el numero de usuarios que estoy siguiendo
+        $following_count_sql = "SELECT COUNT(*) as following_count FROM siguiendo WHERE id_seguidor = '$idUser'";
+        $following_count_result = $conn->query($following_count_sql);
+        $following_count_row = $following_count_result->fetch_assoc();
+        $following_count = $following_count_row['following_count'];
+
         # Sentencias SQL para obtener los usuarios que "me siguen" (seguidores)
         # Hacemos un inner join para obtener los datos usuario que "me sigue" en base a su id, desde la tabla de usuarios.
-        $sqlGetUserFollowers = "SELECT u.* FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$idUser';";
+        $sqlGetUserFollowers = "SELECT u.* FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$idUser'";
         $queryGetFollowers = $conn->query($sqlGetUserFollowers);
+
+        // Consulta para obtener el numero de usuarios que "me siguen"
+        $followers_count_sql = "SELECT COUNT(*) as followers_count FROM siguiendo s INNER JOIN usuarios u ON s.id_seguidor = u.id WHERE s.id_seguido = '$idUser'";
+        $followers_count_result = $conn->query($followers_count_sql);
+        $followers_count_row = $followers_count_result->fetch_assoc();
+        $followers_count = $followers_count_row['followers_count'];
+
 
         # Sentencias SQL para obtener los posts que he marcado como "Like"
         $sqlGetUserLikes = "SELECT * FROM likes WHERE liked_by = '$idUser'";
         $queryGetLikes = $conn->query($sqlGetUserLikes);
+
+         // Consulta para obtener el numero de posts que he marcado como "Like"
+         $likes_count_sql = "SELECT COUNT(*) as likes_count FROM likes WHERE liked_by = '$idUser'";
+         $likes_count_result = $conn->query($likes_count_sql);
+         $likes_count_row = $likes_count_result->fetch_assoc();
+         $likes_count = $likes_count_row['likes_count'];
 
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
@@ -137,11 +202,26 @@
         <section>
             <div class="menu-lateral">
                 <a class="info" id="info">Info</a>
-                <a class="posts" id="posts">Posts</a>
-                <a class="comments" id="comments">Comentarios</a>
-                <a class="followers" id="followers">Seguidores</a>
-                <a class="following" id="following">Siguiendo</a>
-                <a class="likes" id="likes">Liked Posts</a>
+                <a class="posts" id="posts">
+                    <div>Posts</div>
+                    <div><?php echo $post_count; ?></div>
+                </a>
+                <a class="comments" id="comments">
+                    <div>Comentarios</div>
+                    <div><?php echo $comments_count; ?></div>
+                </a>
+                <a class="followers" id="followers">
+                    <div>Seguidores</div>
+                    <div><?php echo $followers_count; ?></div>
+                </a>
+                <a class="following" id="following">
+                    <div>Siguiendo</div>
+                    <div><?php echo $following_count; ?></div>
+                </a>
+                <a class="likes" id="likes">
+                    <div>Liked Posts</div> 
+                    <div><?php echo $likes_count; ?></div>
+                </a>
             </div>
             <div class="info-perfil" id="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
