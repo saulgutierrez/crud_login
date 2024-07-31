@@ -72,7 +72,7 @@
                 <input type="hidden" value="<?php echo $id; ?>" id="id-autor-post" name="id-autor-post">
                 <input type="hidden" value="<?php echo $idAutorComentario; ?>" id="id-autor-comentario" name="id-autor-comentario">
                 <input type="hidden" value="<?php echo $username; ?>" id="autor-comentario" name="autor-comentario">
-                <input type="text" placeholder="Escribe un comentario..." class="comment-input" id="comment-input" name="comment-input">
+                <input type="text" placeholder="Comentar" class="comment-input" id="comment-input" name="comment-input">
                 <input type="hidden" name="comment-time" id="comment-time">
                 <div class="image-upload">
                     <label for="file-input">

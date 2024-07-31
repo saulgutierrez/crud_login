@@ -205,3 +205,44 @@ p {
     text-decoration: none;
     color: #007bff;
 }
+
+@media screen and (max-width: 768px) {
+    main > aside {
+        display: block;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-open {
+        transform: translateX(0);
+        z-index: 600000;
+        background-color: #141417;
+        height: 100%;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+        grid-template-areas: 'main';
+    }
+
+    .menu-button {
+        position: absolute;
+        display: flex;
+        width: 30px;
+        height: 30px;
+        z-index: 600000;
+    }
+
+    .menu-button img {
+        position: absolute;
+        top: 25px;
+        left: 60px;
+        width: 100%;
+        height: 100%;
+        filter: invert(1);
+    }
+
+    .text-content {
+        width: 50%;
+    }
+}

@@ -30,6 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../controllers/load-posts.js"></script>
+    <script src="../helpers/toggle-menu.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../public/css/dashboard.css">
@@ -49,7 +50,10 @@
 </head>
 <body>
     <?php include "includes/header.php"; ?>
-    <main>
+    <div class="menu-button" onclick="toggleMenu()">
+        <img src="../../public/svg/menu.svg" alt="">
+    </div>
+    <main class="main-container">
         <aside>
             <details>
                 <summary>Games</summary>

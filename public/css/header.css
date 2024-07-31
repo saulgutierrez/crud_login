@@ -122,3 +122,59 @@ header h2 a:hover {
     align-items: center;
     gap: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    header input {
+        display: none;
+    }
+
+    .square {
+        position: absolute;
+        right: 12%;
+        top: 70px;
+    }
+
+    .dropdown {
+        right: 0%;
+        top: 150%;
+    }
+
+    .dropdown a:hover {
+        background-color: #0f0f11;
+        letter-spacing: normal;
+    }
+
+    .visible {
+        display: block;
+    }
+
+    .no-visible {
+        display: none;
+    }
+
+    .new-post {
+        position: absolute;
+        top: 83px;
+        right: 2px;
+        font-size: 1.4rem;
+        background-color: #0f0f11;
+        padding: 10px 73px 10px 0px;
+    }
+
+    .new-post:hover {
+        background-color: #0f0f11;
+        padding: 10px 73px 10px 0px;
+    }
+
+    .identifier {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .square {
+        position: absolute;
+        right: 22%;
+        top: 70px;
+    }
+}
