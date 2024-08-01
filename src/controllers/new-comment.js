@@ -3,52 +3,55 @@ $(document).ready(function () {
         event.preventDefault();
 
         var formData = new FormData(this);
+        var commentInput = formData.get('comment-input');
 
-        $.ajax({
-            url         :   '../models/new-comment.php',
-            type        :   'POST',
-            data        :   formData,
-            contentType :   false,
-            processData :   false,
-            success     :   function(response) {
-                try {
-                    var res = JSON.parse(response);
-                } catch (e) {
-                    if (response == 'error') {
-                        alert('Error al insertar item');
-                    } else {
-                        var autorComentario = formData.get('autor-comentario');
-                        var fechaComentario = formData.get('comment-time');
-                        var commentInput = formData.get('comment-input');
-                        const fileInput = formData.get('file-input');
-                        
-                        // Crear el contenido HTML del comentario, incluimos un enlace al perfil del autor
-                        var commentHTML = '<div class="comment-card-top">' + '<h3><a href="profile.php?user='+ autorComentario+'" class="comment-autor-link">' + autorComentario + '</a></h3>' + '<div>' + fechaComentario  + '</div>' + '</div>' + '<div>' + commentInput + '</div>';
-                    
-                        // Verificar si hay un archivo y agregar la imagen al HTML del comentario
-                        if (fileInput && fileInput.size > 0) {
-                            var reader = new FileReader();
-                            reader.onload = function(e) {
-                                commentHTML += '<img src="' + e.target.result + '" alt="Comment image">';
-                                appendComment(commentHTML);
-                            };
-                            reader.readAsDataURL(fileInput);
+        if (commentInput.length > 0) {
+            $.ajax({
+                url         :   '../models/new-comment.php',
+                type        :   'POST',
+                data        :   formData,
+                contentType :   false,
+                processData :   false,
+                success     :   function(response) {
+                    try {
+                        var res = JSON.parse(response);
+                    } catch (e) {
+                        if (response == 'error') {
+                            alert('Error al insertar item');
                         } else {
-                            appendComment(commentHTML);
-                        }
+                            var autorComentario = formData.get('autor-comentario');
+                            var fechaComentario = formData.get('comment-time');
+                            var commentInput = formData.get('comment-input');
+                            const fileInput = formData.get('file-input');
+                            
+                            // Crear el contenido HTML del comentario, incluimos un enlace al perfil del autor
+                            var commentHTML = '<div class="comment-card-top">' + '<h3><a href="profile.php?user='+ autorComentario+'" class="comment-autor-link">' + autorComentario + '</a></h3>' + '<div>' + fechaComentario  + '</div>' + '</div>' + '<div>' + commentInput + '</div>';
                         
-                        function appendComment(htmlContent) {
-                            var comment = $('<div></div>').addClass('post-card comment').html(htmlContent);
-                            $('#post-card').after(comment);
-                            $('#comment-input').val(''); // Limpiar el campo de entrada del comentario
-                        }
-                    }                    
+                            // Verificar si hay un archivo y agregar la imagen al HTML del comentario
+                            if (fileInput && fileInput.size > 0) {
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    commentHTML += '<img src="' + e.target.result + '" alt="Comment image">';
+                                    appendComment(commentHTML);
+                                };
+                                reader.readAsDataURL(fileInput);
+                            } else {
+                                appendComment(commentHTML);
+                            }
+                            
+                            function appendComment(htmlContent) {
+                                var comment = $('<div></div>').addClass('post-card comment').html(htmlContent);
+                                $('#post-card').after(comment);
+                                $('#comment-input').val(''); // Limpiar el campo de entrada del comentario
+                            }
+                        }                    
+                    }
+                },
+                error       :   function (jqXHR, textStatus, errorThrown) {
+                    alert("Error al insertar item:" + textStatus, jqXHR, errorThrown);
+                    console.log("Error al insertar item:" + textStatus, jqXHR, errorThrown);
                 }
-            },
-            error       :   function (jqXHR, textStatus, errorThrown) {
-                alert("Error al insertar item:" + textStatus, jqXHR, errorThrown);
-                console.log("Error al insertar item:" + textStatus, jqXHR, errorThrown);
-            }
-        });
+            });
+        }
     });
 });

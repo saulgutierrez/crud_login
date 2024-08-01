@@ -588,7 +588,7 @@ body main section {
     cursor: pointer;
 }
 
-.imgBox {
+.imgBoxContent {
     position: relative;
     display: flex;
     align-items: center;
@@ -597,7 +597,7 @@ body main section {
     height: 300px;
 }
 
-.imgBox img {
+.imgBoxContent img {
     position: absolute;
     top: 0;
     left: 0;

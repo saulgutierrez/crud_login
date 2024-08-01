@@ -283,7 +283,7 @@
                         $titulo = $row['titulo_post'];
                         $contenido = $row['contenido_post'];
                         $foto = $row['foto_post'];
-                        $hasImage = !empty($foto) ? 'imgBox' : 'noImage';
+                        $hasImage = !empty($foto) ? 'imgBoxContent' : 'noImage';
                 ?>
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
@@ -315,7 +315,7 @@
                         $titulo = $row['titulo_post'];
                         $contenido = $row['contenido_post'];
                         $foto = $row['foto_post'];
-                        $hasImage = !empty($foto) ? 'imgBox' : 'noImage';
+                        $hasImage = !empty($foto) ? 'imgBoxContent' : 'noImage';
                         $fecha = $row['fecha_publicacion'];
                     ?>
                     <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
@@ -349,7 +349,7 @@
                         $autorComentarioItem = $rowComments['autor_comentario'];
                         $comentarioItem = $rowComments['comentario'];
                         $fotoComentario = $rowComments['foto_comentario'];
-                        $hasImageComment = !empty($fotoComentario) ? 'imgBox' : 'noImage';
+                        $hasImageComment = !empty($fotoComentario) ? 'imgBoxContent' : 'noImage';
                 ?>
                 <div class="comment-card">
                     <div class="square-menu-perfil-comments"></div>
@@ -379,7 +379,7 @@
                         $autorComentarioItem = $rowComments['autor_comentario'];
                         $comentarioItem = $rowComments['comentario'];
                         $fotoComentario = $rowComments['foto_comentario'];
-                        $hasImageComment = !empty($fotoComentario) ? 'imgBox' : 'noImage';
+                        $hasImageComment = !empty($fotoComentario) ? 'imgBoxContent' : 'noImage';
                         $fecha = $rowComments['fecha_publicacion'];
                 ?>
                 <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">
@@ -564,7 +564,7 @@
                         $tituloLikedPost = $rowLikes['titulo_liked_post'];
                         $contenidoLikedPost = $rowLikes['contenido_liked_post'];
                         $fotoLikedPost = $rowLikes['foto_liked_post'];
-                        $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBox' : 'noImage';
+                        $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
                         $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion_liked_post'];
                 ?>
                 <div class="likes-card" onclick="window.location.href ='view-post.php?id=<?php echo $idLikedPost; ?>'">
@@ -589,7 +589,7 @@
                         $tituloLikedPost = $rowLikes['titulo_liked_post'];
                         $contenidoLikedPost = $rowLikes['contenido_liked_post'];
                         $fotoLikedPost = $rowLikes['foto_liked_post'];
-                        $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBox' : 'noImage';
+                        $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
                         $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion_liked_post'];
                 ?>
                 <div class="likes-card" onclick="window.location.href='view-post.php?id=<?php echo $idLikedPost; ?>'">

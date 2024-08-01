@@ -80,7 +80,12 @@
                     </label>
                     <input type="file" class="file-input" id="file-input" name="file-input">
                 </div>
-                <button value="Responder" id="send-comment">Responder</button>
+                <button value="Responder" id="send-comment">
+                    <div class="imgBox">
+                        <img src="../../public/svg/reply.svg" alt="">
+                    </div>
+                    <div>Responder</div>
+                </button>
             </form>
             <div class="image-content">
                 <img src="" alt="" id="imagePreview">

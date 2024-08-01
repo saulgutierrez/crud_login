@@ -22,7 +22,7 @@
         <label for="password">Contraseña:</label>
         <input type="password" id="password" name="password">
         <div class="group-buttons">
-            <div class="submit-container" onclick="document.getElementById('show-message').click()">
+            <div class="submit-container" id="submitContainer">
                 <div class="imgBox">
                     <img src="../../public/svg/new-user.svg" alt="" class="submit-icon">
                 </div>
