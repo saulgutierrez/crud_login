@@ -50,8 +50,18 @@
             <img src="../../public/svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
         </div>
         <div class="group-buttons">
-            <a onclick="history.back()">Cancelar</a>
-            <button value="Guardar cambios">Guardar</button>
+            <a onclick="history.back()">
+                <div class="imgBox">
+                    <img src="../../public/svg/cancel.svg" alt="">
+                </div>
+                <div>Cancelar</div>
+            </a>
+            <button value="Guardar cambios">
+                <div class="imgBox">
+                    <img src="../../public/svg/save.svg" alt="">
+                </div>
+                <div>Guardar</div>
+            </button>
         </div>
         <div id="new-post-result" class="new-post-result"></div>
     </form>

@@ -164,12 +164,6 @@
     }
 ?>
 
-<style>
-    .hidden {
-        display: none;
-    }
-</style>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,31 +188,61 @@
                 </article>
             </div>
             <article class="group-buttons">
-                <a id="btn-1" class="edit-profile-btn" href="edit-profile.php?user=<?php echo $user;?>">Editar perfil</a>
-                <a id="btn-2" class="delete-profile-btn" href="delete-profile.php">Eliminar cuenta</a>
+                <a id="btn-1" class="edit-profile-btn" href="edit-profile.php?user=<?php echo $user;?>">
+                    <div class="imgBox">
+                        <img src="../../public/svg/edit-profile.svg" alt="">
+                    </div>
+                    <div>Editar perfil</div>
+                </a>
+                <a id="btn-2" class="delete-profile-btn" href="delete-profile.php">
+                    <div class="imgBox">
+                        <img src="../../public/svg/delete-profile.svg" alt="">
+                    </div>
+                    <div>Eliminar cuenta</div>
+                </a>
                 <a id="btn-3" class="follow-profile-btn" href="" data-id="<?php echo $id; ?>">Seguir usuario</a>
             </article>
         </nav>
         <section>
             <div class="menu-lateral">
-                <a class="info" id="info">Info</a>
+                <a class="info" id="info">
+                    <div class="imgBox">
+                        <img src="../../public/svg/info.svg" alt="">
+                    </div>
+                    <div>Info</div>
+                </a>
                 <a class="posts" id="posts">
+                    <div class="imgBox">
+                        <img src="../../public/svg/new-post.svg" alt="">
+                    </div>
                     <div>Posts</div>
                     <div><?php echo $post_count; ?></div>
                 </a>
                 <a class="comments" id="comments">
+                    <div class="imgBox">
+                        <img src="../../public/svg/comment.svg" alt="">
+                    </div>
                     <div>Comentarios</div>
                     <div><?php echo $comments_count; ?></div>
                 </a>
                 <a class="followers" id="followers">
+                    <div class="imgBox">
+                        <img src="../../public/svg/follower.svg" alt="">
+                    </div>
                     <div>Seguidores</div>
                     <div><?php echo $followers_count; ?></div>
                 </a>
                 <a class="following" id="following">
+                    <div class="imgBox">
+                        <img src="../../public/svg/following.svg" alt="">
+                    </div>
                     <div>Siguiendo</div>
                     <div><?php echo $following_count; ?></div>
                 </a>
                 <a class="likes" id="likes">
+                    <div class="imgBox">
+                        <img src="../../public/svg/like.svg" alt="">
+                    </div>
                     <div>Liked Posts</div> 
                     <div><?php echo $likes_count; ?></div>
                 </a>

@@ -19,8 +19,18 @@
         <label for="password">Contraseña: </label>
         <input type="password" id="password" name="password"><br>
         <div class="group-buttons">
-            <button value="Iniciar sesion">Iniciar sesión</button>
-            <a href="sign-in.php">Registrate</a>
+            <button value="Iniciar sesion">
+                <div class="imgBox">
+                    <img src="../../public/svg/session-join.svg" alt="">
+                </div>
+                <div>Iniciar sesión</div>
+            </button>
+            <a href="sign-in.php">
+                <div class="imgBox">
+                    <img src="../../public/svg/new-user.svg" alt="">
+                </div>
+                <div>Registrarse</div>
+            </a>
         </div>
         <div id="login-result" class="login-result"></div>
     </form>

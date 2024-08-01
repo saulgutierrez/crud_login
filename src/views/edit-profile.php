@@ -74,8 +74,18 @@
         </div>
         <label for="file">Fotografía</label>
         <input type="file" name="file" id="file" accept="image/*">
-        <a href="profile.php?user=<?php echo $nombreUsuario; ?>">Cancelar</a>
-        <button value="Guardar cambios">Guardar cambios</button>
+        <a href="profile.php?user=<?php echo $nombreUsuario; ?>">
+            <div class="imgBox">
+                <img src="../../public/svg/cancel.svg" alt="">
+            </div>
+            <div>Cancelar</div>
+        </a>
+        <button value="Guardar cambios">
+            <div class="imgBox">
+                <img src="../../public/svg/save.svg" alt="">
+            </div>
+            <div>Guardar</div>
+        </button>
         <div id="edit-result" class="edit-result"></div>
     </form>
 

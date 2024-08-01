@@ -33,6 +33,10 @@ if (params.has('user')) {
 } else if (params.has('id')) {
     if (btn1) {
         btn1.classList.add('hidden');
+        const children = btn1.querySelectorAll('*');
+        children.forEach(child => {
+            child.classList.add('hidden');
+        });
     }
     if (btn2) {
         btn2.classList.add('hidden');

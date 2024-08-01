@@ -81,15 +81,77 @@ form input[type=submit]:hover {
 .group-buttons a {
     text-decoration: none;
     color: #fff;
-    background-color: #28a745;
+    background-color: #dc3545;
     border: none;
     outline: none;
     border-radius: 20px;
     padding: 10px 10px;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3rem;
+}
+
+.group-buttons a .imgBox {
+    position: relative;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.group-buttons a .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
 }
 
 .group-buttons a:hover {
-    background-color: #218838;
+    background-color: #c82333;
+}
+
+.group-buttons .submit-container {
+    text-decoration: none;
+    color: #fff;
+    background-color: hsl(211, 100%, 50%);
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    padding: 0px 10px;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.3rem;
+}
+
+.group-buttons .submit-container .imgBox {
+    position: relative;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    pointer-events: none;
+}
+
+.group-buttons .submit-container .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.group-buttons .submit-container:hover {
+    background-color: #0069d9;
+    cursor: pointer;
 }
 
 .user-icon {
@@ -98,7 +160,7 @@ form input[type=submit]:hover {
     width: 20px;
     filter: invert(1);
     left: 345px;
-    top: 125px;
+    top: 127px;
 }
 
 .pass-icon {
@@ -107,7 +169,11 @@ form input[type=submit]:hover {
     width: 20px;
     filter: invert(1);
     left: 345px;
-    top: 215px;
+    top: 217px;
+}
+
+.submit-icon {
+    pointer-events: none;
 }
 
 @media screen and (max-width: 768px) {

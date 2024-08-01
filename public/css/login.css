@@ -58,10 +58,34 @@ form input[type=text]:focus, form input[type=password]:focus {
     color: #fff;
     border-radius: 20px;
     padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .group-buttons button:hover {
     background-color: #0069d9;
+}
+
+.group-buttons .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.group-buttons .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+    border-radius: 0%;
 }
 
 .group-buttons {
@@ -72,15 +96,39 @@ form input[type=text]:focus, form input[type=password]:focus {
 .group-buttons a {
     text-decoration: none;
     color: #fff;
-    background-color: #28a745;
+    background-color: #dc3545;
     border: none;
     outline: none;
     border-radius: 20px;
     padding: 10px 10px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.group-buttons a .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.group-buttons a .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
 }
 
 .group-buttons a:hover {
-    background-color: #218838;
+    background-color: #c82333;
 }
 
 .login-result {
@@ -91,7 +139,7 @@ form input[type=text]:focus, form input[type=password]:focus {
 
 .user-icon {
     position: absolute;
-    top: 115px;
+    top: 118px;
     left: 345px;
     width: 20px;
     height: 20px;
@@ -100,7 +148,7 @@ form input[type=text]:focus, form input[type=password]:focus {
 
 .pass-icon {
     position: absolute;
-    top: 198px;
+    top: 200px;
     left: 345px;
     width: 20px;
     height: 20px;

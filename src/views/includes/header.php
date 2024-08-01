@@ -40,10 +40,25 @@
     </div>
     <div class="square"></div>
     <div class="dropdown">
-        <a href="profile.php?user=<?php echo $username; ?>">Ver perfil</a>
-        <a href="../models/logout.php">Cerrar sesion</a>
+        <a href="profile.php?user=<?php echo $username; ?>" class="profile-link">
+            <div class="imgBox">
+                <img src="../../public/svg/profile.svg" alt="">
+            </div>
+            <div>Perfil</div>
+        </a>
+        <a href="../models/logout.php" class="logout">
+            <div class="imgBox">
+                <img src="../../public/svg/session-leave.svg" alt="">
+            </div>
+            <div>Cerrar sesión</div>
+        </a>
     </div>
-    <h2 class="new-post"><a href="new-post.php?user=<?php echo $username; ?>">Nueva</a></h2>
+    <h2 class="new-post">
+        <div class="new-post-logo">
+            <a href="new-post.php?user=<?php echo $username; ?>"><img src="../../public/svg/new.svg" alt=""></a>
+        </div>
+        <a class="new-post-link" href="new-post.php?user=<?php echo $username; ?>">Nuevo</a>
+    </h2>
 </header>
 </html>
 <script src="../helpers/header.js"></script>

@@ -57,8 +57,18 @@
             <img src="../../public/svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
         </div>
         <div class="group-buttons">
-            <a href="profile.php?user=<?php echo $user; ?>">Cancelar</a>
-            <button value="Guardar cambios">Guardar cambios</button>
+            <a href="profile.php?user=<?php echo $user; ?>">
+                <div class="imgBox">
+                    <img src="../../public/svg/cancel.svg" alt="">
+                </div>
+                <div>Cancelar</div>
+            </a>
+            <button value="Guardar cambios">
+                <div class="imgBox">
+                    <img src="../../public/svg/save.svg" alt="">
+                </div>
+                <div>Guardar</div>
+            </button>
         </div>
         <div id="edit-post-result" class="edit-post-result"></div>
     </form>

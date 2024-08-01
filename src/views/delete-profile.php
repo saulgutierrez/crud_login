@@ -44,8 +44,18 @@
         <input type="password" id="confirm-delete" name="confirm-delete">
         <div class="delete-result" id="delete-result"></div>
         <div class="group-buttons">
-            <a href="profile.php?user=<?php echo $user;?>">Regresar</a>
-            <button value="Confirmar">Confirmar</button>
+            <a href="profile.php?user=<?php echo $user;?>">
+                <div class="imgBox">
+                    <img src="../../public/svg/arrow-back.svg" alt="">
+                </div>
+                <div>Regresar</div>
+            </a>
+            <button value="Confirmar">
+                <div class="imgBox">
+                    <img src="../../public/svg/close-circle.svg" alt="">
+                </div>
+                <div>Confirmar</div>
+            </button>
         </div>
         <label class="delete-alert">Al eliminar su cuenta, todos sus posts, comentarios y datos personales se eliminarán de nuestros servidores en un plazo no mayor a 72 horas.</label>
     </form>

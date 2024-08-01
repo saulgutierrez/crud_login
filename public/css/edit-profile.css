@@ -67,6 +67,29 @@ form a {
     background-color: #dc3545;
     text-align: center;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form a .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+form a .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
 }
 
 form a:hover {
@@ -75,6 +98,30 @@ form a:hover {
 
 form button {
     background-color: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form button .imgBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+form button .imgBox img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: invert(1);
+  border-radius: 0%;
 }
 
 form button:hover {

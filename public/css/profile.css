@@ -97,10 +97,35 @@ body main nav article h3 {
     color: #fff;
     text-decoration: none;
     text-align: center;
+    display: flex;
+    flex-direction: row;
 }
 
 .edit-profile-btn:hover {
     background-color: #0069d9;
+}
+
+.edit-profile-btn div:nth-child(2) {
+    margin-left: 5px;
+}
+
+.edit-profile-btn .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.edit-profile-btn .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
 }
 
 .follow-profile-btn {
@@ -153,7 +178,7 @@ body main section {
 }
 
 .menu-lateral a {
-    padding: 15px 30px;
+    padding: 10px 30px;
     font-weight: 600;
     font-size: 1.8rem;
     text-decoration: none;
@@ -163,7 +188,131 @@ body main section {
     flex-direction: row;
 }
 
+.menu-lateral .info div:nth-child(2) {
+    justify-content: flex-start;
+    margin-left: 15px;
+}
+
+.menu-lateral .info .imgBox img {
+    filter: invert(1);
+}
+
+.menu-lateral .posts .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+}
+
+.menu-lateral .posts .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
 .menu-lateral a div:nth-child(2) {
+    margin-left: 15px;
+}
+
+.menu-lateral .posts div:nth-child(3) {
+    justify-content: flex-end;
+}
+
+.menu-lateral .comments .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+}
+
+.menu-lateral .comments .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.menu-lateral .comments div:nth-child(3) {
+    justify-content: flex-end;
+}
+
+.menu-lateral .followers .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+}
+
+.menu-lateral .followers .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.menu-lateral .following div:nth-child(3) {
+    justify-content: flex-end;
+}
+
+.menu-lateral .following .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+}
+
+.menu-lateral .following .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+.menu-lateral .likes div:nth-child(3) {
+    justify-content: flex-end;
+    width: 30%;
+}
+
+.menu-lateral .likes .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+}
+
+.menu-lateral .likes .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.menu-lateral .followers div:nth-child(3) {
     justify-content: flex-end;
 }
 
@@ -204,10 +353,35 @@ body main section {
     color: #fff;
     text-decoration: none;
     text-align: center;
+    display: flex;
+    flex-direction: row;
 }
 
 .delete-profile-btn:hover {
     background-color: #c82333;
+}
+
+.delete-profile-btn div:nth-child(2) {
+    margin-left: 5px;
+}
+
+.delete-profile-btn .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.delete-profile-btn .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
 }
 
 .post-card {
@@ -627,4 +801,8 @@ body main section {
 
 .likes-card div, .likes-card h3 {
     font-weight: 400;
+}
+
+.hidden {
+    display: none;
 }

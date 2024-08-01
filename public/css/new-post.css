@@ -69,6 +69,30 @@ form input[type=text]:focus {
 	color: #fff;
 	border-radius: 20px;
 	padding: 10px 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.group-buttons button .imgBox {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+.group-buttons button .imgBox img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	filter: invert(1);
+	border-radius: 0%;
 }
 
 .group-buttons button:hover {
@@ -89,10 +113,35 @@ form input[type=text]:focus {
 	border-radius: 20px;
 	padding: 10px 10px;
 	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.3rem;
 }
 
 .group-buttons a:hover {
 	background-color: #c82333;
+}
+
+.group-buttons a .imgBox {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+
+.group-buttons a .imgBox img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	filter: invert(1);
+	border-radius: 0%;
 }
 
 .new-post-result {
