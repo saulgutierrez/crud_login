@@ -288,8 +288,18 @@
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
                     <div class="menu-opciones" id="menu-opciones">
-                        <a href="edit-post.php?id_post=<?php echo $idPost; ?>">Editar post</a>
-                        <a href="" class="delete-post-btn" data-id="<?php echo $idPost; ?>">Eliminar post</a>
+                        <a href="edit-post.php?id_post=<?php echo $idPost; ?>">
+                            <div class="imgBox">
+                                <img src="../../public/svg/new-post.svg" alt="">
+                            </div>
+                            <div>Editar post</div>
+                        </a>
+                        <a href="" class="delete-post-btn" data-id="<?php echo $idPost; ?>">
+                            <div class="imgBox">
+                                <img src="../../public/svg/close-circle.svg" alt="">
+                            </div>
+                            <div>Eliminar post</div>
+                        </a>
                     </div>
                     <img src="../../public/svg/menu.svg" alt="" class="menu-icon">
                     <h2><?php echo $autor; ?></h2>
@@ -354,8 +364,18 @@
                 <div class="comment-card">
                     <div class="square-menu-perfil-comments"></div>
                     <div class="menu-opciones-comments" id="menu-opciones-comments">
-                        <a href="view-post.php?id=<?php echo $idPostItem; ?>"> Ver hilo</a>
-                        <a href="" class="delete-comment-btn" data-id="<?php echo $idComentarioItem; ?>">Eliminar comentario</a>
+                        <a href="view-post.php?id=<?php echo $idPostItem; ?>">
+                            <div class="imgBox">
+                                <img src="../../public/svg/view-thread.svg" alt="">
+                            </div>
+                            <div>Ver hilo</div>
+                        </a>
+                        <a href="" class="delete-comment-btn" data-id="<?php echo $idComentarioItem; ?>">
+                            <div class="imgBox">
+                                <img src="../../public/svg/close-circle.svg" alt="">
+                            </div>
+                            <div>Eliminar comentario</div>
+                        </a>
                     </div>
                     <img src="../../public/svg/menu.svg" alt="" class="menu-icon-comments">
                     <h2><?php echo $autorComentarioItem; ?></h2>

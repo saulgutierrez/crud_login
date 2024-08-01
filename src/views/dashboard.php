@@ -56,14 +56,139 @@
     <main class="main-container">
         <aside>
             <details>
-                <summary>Games</summary>
-                <p>Action Games</p>
-                <p>Adventure Games</p>
+                <summary>MMORPG</summary>
             </details>
             <details>
-                <summary>Tecnology</summary>
-                <p>3D Printers</p>
-                <p>Education</p>
+                <summary>Shooter</summary>
+            </details>
+            <details>
+                <summary>Strategy</summary>
+            </details>
+            <details>
+                <summary>MOBA</summary>
+            </details>
+            <details>
+                <summary>Racing</summary>
+            </details>
+            <details>
+                <summary>Sports</summary>
+            </details>
+            <details>
+                <summary>Social</summary>
+            </details>
+            <details>
+                <summary>Sandbox</summary>
+            </details>
+            <details>
+                <summary>Open World</summary>
+            </details>
+            <details>
+                <summary>Survival</summary>
+            </details>
+            <details>
+                <summary>PvP</summary>
+            </details>
+            <details>
+                <summary>PvE</summary>
+            </details>
+            <details>
+                <summary>Pixel</summary>
+            </details>
+            <details>
+                <summary>Voxel</summary>
+            </details>
+            <details>
+                <summary>Zombie</summary>
+            </details>
+            <details>
+                <summary>Turn based</summary>
+            </details>
+            <details>
+                <summary>First Person</summary>
+            </details>
+            <details>
+                <summary>Third Person</summary>
+            </details>
+            <details>
+                <summary>Top-down</summary>
+            </details>
+            <details>
+                <summary>Tank</summary>
+            </details>
+            <details>
+                <summary>Space</summary>
+            </details>
+            <details>
+                <summary>Sailing</summary>
+            </details>
+            <details>
+                <summary>Side-scroller</summary>
+            </details>
+            <details>
+                <summary>Superhero</summary>
+            </details>
+            <details>
+                <summary>Permadeath</summary>
+            </details>
+            <details>
+                <summary>Card</summary>
+            </details>
+            <details>
+                <summary>Battle-royale</summary>
+            </details>
+            <details>
+                <summary>MMO</summary>
+            </details>
+            <details>
+                <summary>MMOFPS</summary>
+            </details>
+            <details>
+                <summary>MMOTPS</summary>
+            </details>
+            <details>
+                <summary>2D</summary>
+            </details>
+            <details>
+                <summary>3D</summary>
+            </details>
+            <details>
+                <summary>Anime</summary>
+            </details>
+            <details>
+                <summary>Fantasy</summary>
+            </details>
+            <details>
+                <summary>Sci-Fi</summary>
+            </details>
+            <details>
+                <summary>Fighting</summary>
+            </details>
+            <details>
+                <summary>Action-RPG</summary>
+            </details>
+            <details>
+                <summary>Action</summary>
+            </details>
+            <details>
+                <summary>Military</summary>
+            </details>
+            <details>
+                <summary>Martial-Arts</summary>
+            </details>
+            <details>
+                <summary>Flight</summary>
+            </details>
+            <details>
+                <summary>Low-spec</summary>
+            </details>
+            <details>
+                <summary>Tower Defense</summary>
+            </details>
+            <details>
+                <summary>Horror</summary>
+            </details>
+            <details>
+                <summary>MMORTS</summary>
             </details>
         </aside>
         <div id="registros" class="registros"></div>

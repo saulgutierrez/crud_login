@@ -36,6 +36,8 @@ main {
 main > aside {
     grid-area: nav;
     position: fixed;
+    overflow-y: auto;
+    height: 85%;
 }
 
 main > .registros {
