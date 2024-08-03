@@ -187,6 +187,14 @@ button .imgBox img {
     justify-content: space-between;
 }
 
+.comment-card-body {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .comment-user {
     font-size: 1.4rem;
     text-decoration: none;
@@ -207,4 +215,18 @@ button .imgBox img {
 
 .comment-autor-link:hover {
     color: #007bff;
+}
+
+.like-button {
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+    background-color: #007bff;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.like-button:hover {
+    text-decoration: none;
+    color: #fff;
 }

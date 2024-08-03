@@ -177,11 +177,6 @@ p {
     color: #fff;
 }
 
-.like-button:hover {
-    text-decoration: none;
-    color: #fff;
-}
-
 .like-count {
     position: absolute;
     top: 50px;

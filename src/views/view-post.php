@@ -125,7 +125,10 @@
                 <a class="comment-user" href="<?php echo $redirect; ?>"><?php echo $autorComentario; ?></a>
                 <div><?php echo $fecha; ?></div>
             </div>
-            <div><?php echo $comentario; ?></div>
+            <div class="comment-card-body">
+                <div><?php echo $comentario; ?></div>
+                <a class="like-button" data-id="<?php echo $comentarioId; ?>">Like</a>
+            </div>
             <img src="<?php echo $imagen; ?>" alt="">
         </div>
         <?php

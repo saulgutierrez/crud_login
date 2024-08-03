@@ -25,7 +25,7 @@ $(document).ready(function () {
                             const fileInput = formData.get('file-input');
                             
                             // Crear el contenido HTML del comentario, incluimos un enlace al perfil del autor
-                            var commentHTML = '<div class="comment-card-top">' + '<h3><a href="profile.php?user='+ autorComentario+'" class="comment-autor-link">' + autorComentario + '</a></h3>' + '<div>' + fechaComentario  + '</div>' + '</div>' + '<div>' + commentInput + '</div>';
+                            var commentHTML = '<div class="comment-card-top">' + '<h3><a href="profile.php?user='+ autorComentario+'" class="comment-autor-link">' + autorComentario + '</a></h3>' + '<div>' + fechaComentario  + '</div>' + '</div>' + '<div class="comment-card-body"><div>' + commentInput + '</div><a class="like-button">Like</a></div>';
                         
                             // Verificar si hay un archivo y agregar la imagen al HTML del comentario
                             if (fileInput && fileInput.size > 0) {
