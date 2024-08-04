@@ -50,6 +50,7 @@
     <link rel="stylesheet" href="../../public/css/view-post.css">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../controllers/new-comment.js"></script>
+    <script src="../controllers/like-comment.js"></script>
     <title><?php echo $titulo; ?></title>
 </head>
 <body>

@@ -230,3 +230,7 @@ button .imgBox img {
     text-decoration: none;
     color: #fff;
 }
+
+.liked-btn {
+    background-color: green;
+}
