@@ -1,37 +1,42 @@
 <?php
-    require('../../config/connection.php');
+require('../../config/connection.php');
 
-    session_start();
-    # Si se recibieron datos desde el frontend, los almacenamos para insercion
-    if (isset($_POST['user'], $_POST['password'])) {
-        $user = $_POST['user'];
-        $pass = $_POST['password'];
+session_start();
 
-        $cryptPass = sha1($pass); # Encriptamos la contrasenia
+# Si se recibieron datos desde el frontend, los almacenamos para inserción
+if (isset($_POST['user'], $_POST['password'])) {
+    $user = $_POST['user'];
+    $pass = $_POST['password'];
 
-        # Realizamos un chequeo para evitar nombres de usuario duplicados
-        $sql_check = "SELECT COUNT(*) AS count FROM usuarios WHERE usuario = '$user'";
-        $statement_check = $conn->prepare($sql_check);
-        $statement_check->execute();
-        $result_check = $statement_check->get_result();
-        $row = $result_check->fetch_assoc();
+    $cryptPass = sha1($pass); # Encriptamos la contraseña
 
-        # Si el nombre de usuario es unico, insertamos en la base de datos
-        if ($row['count'] == 0) {
-            $sql = "INSERT INTO usuarios (id, usuario, contrasenia, nombre, apellido, correo, telefono, fecha_nacimiento, genero, fotografia) VALUES ('', '$user', '$cryptPass', '', '', '', '', '', '', '')";
-            
-            if ($conn->query($sql) == TRUE) {
-                $_SESSION['user'] = $user;
-                echo 0;
-            } else {
-                echo "Error al insertar registro";
-            }
-            $conn->close();
+    # Realizamos un chequeo para evitar nombres de usuario duplicados
+    $sql_check = "SELECT COUNT(*) AS count FROM usuarios WHERE usuario = ?";
+    $statement_check = $conn->prepare($sql_check);
+    $statement_check->bind_param("s", $user);
+    $statement_check->execute();
+    $result_check = $statement_check->get_result();
+    $row = $result_check->fetch_assoc();
+
+    # Si el nombre de usuario es único, insertamos en la base de datos
+    if ($row['count'] == 0) {
+        $sql = "INSERT INTO usuarios (usuario, contrasenia, nombre, apellido, correo, telefono, fecha_nacimiento, genero, fotografia) VALUES (?, ?, '', '', '', '', '', '', '')";
+        $statement = $conn->prepare($sql);
+        $statement->bind_param("ss", $user, $cryptPass);
+
+        if ($statement->execute()) {
+            $_SESSION['user'] = $user;
+            echo 0;
         } else {
-            echo 1;
+            echo "Error al insertar registro";
         }
+        $statement->close();
     } else {
-        echo "Error de comunicacion con el servidor: ".$conn->error;
-        $conn->close();
+        echo 1;
     }
+    $statement_check->close();
+} else {
+    echo "Error de comunicación con el servidor: " . $conn->error;
+}
+$conn->close();
 ?>
