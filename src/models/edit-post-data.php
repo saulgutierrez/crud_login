@@ -20,12 +20,13 @@ if (!file_exists($target_dir)) {
 $response = array();
 
 // Verificar que se han recibido los datos necesarios desde el frontend
-if (isset($_POST['id_user'], $_POST['id_post'], $_POST['user'], $_POST['post_title'], $_POST['post_content'])) {
+if (isset($_POST['id_user'], $_POST['id_post'], $_POST['user'], $_POST['post_title'], $_POST['post_content'], $_POST['category'])) {
     $idPost = $_POST['id_post'];
     $idPerfil = $_POST['id_user'];
     $username = $_POST['user'];
     $postTitle = $_POST['post_title'];
     $postContent = $_POST['post_content'];
+    $category = $_POST['category'];
 
     $file_uploaded = false;
     $target_file = null;
@@ -59,11 +60,11 @@ if (isset($_POST['id_user'], $_POST['id_post'], $_POST['user'], $_POST['post_tit
     try {
         // Preparar la consulta y vincular los parámetros
         if ($file_uploaded) {
-            $sql = $conn->prepare("UPDATE post SET id_autor = ?, autor_post = ?, titulo_post = ?, contenido_post = ?, foto_post = ? WHERE id_post = ?");
-            $sql->bind_param("issssi", $idPerfil, $username, $postTitle, $postContent, $target_file, $idPost);
+            $sql = $conn->prepare("UPDATE post SET id_autor = ?, autor_post = ?, titulo_post = ?, contenido_post = ?, foto_post = ?, id_categoria = ? WHERE id_post = ?");
+            $sql->bind_param("isssssi", $idPerfil, $username, $postTitle, $postContent, $target_file, $category, $idPost);
         } else {
-            $sql = $conn->prepare("UPDATE post SET id_autor = ?, autor_post = ?, titulo_post = ?, contenido_post = ? WHERE id_post = ?");
-            $sql->bind_param("isssi", $idPerfil, $username, $postTitle, $postContent, $idPost);
+            $sql = $conn->prepare("UPDATE post SET id_autor = ?, autor_post = ?, titulo_post = ?, contenido_post = ?, id_categoria = ? WHERE id_post = ?");
+            $sql->bind_param("issssi", $idPerfil, $username, $postTitle, $postContent, $category, $idPost);
         }
 
         // Ejecutar la consulta

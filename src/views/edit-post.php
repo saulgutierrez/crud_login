@@ -20,9 +20,14 @@
             $contenidoPost = $sqlGetInfoPost['contenido_post'];
             $fotoPost = $sqlGetInfoPost['foto_post'];
             $hasImage = !empty($fotoPost) ? 'imgLinkLabel' : 'noImage';
+            $idCategoria = $sqlGetInfoPost['id_categoria'];
         } else {
             header('Location dasboard.php');
-        } 
+        }
+
+        $sqlGetCategories = "SELECT id_categoria, nombre_categoria FROM categorias";
+        $resultGetCategories = $conn->query($sqlGetCategories);
+
     } else {
         header('Location: dashboard.php');
     }
@@ -33,9 +38,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/edit-post.css">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../controllers/edit-post.js"></script>
+    <link rel="stylesheet" href="../../public/css/edit-post.css">
     <title>Editar Post</title>
 </head>
 <body>
@@ -50,6 +55,24 @@
         <input type="text" name="post_title" id="post_title" class="post_title" placeholder="Titulo del post" value="<?php echo $tituloPost; ?>">
         <label for="post-content">Contenido</label>
         <textarea name="post_content" id="post_content" rows="4" cols="35"><?php echo $contenidoPost; ?></textarea>
+        <div class="category-content">
+            <label for="category">Categoria</label>
+            <div class="custom-select">
+                <select name="category" id="category">
+                    <?php if ($resultGetCategories->num_rows > 0) {
+                        while ($row = $resultGetCategories->fetch_assoc()) {
+                            // Comparamos el id de la categoria con el id de todas las categorias,
+                            // para preseleccionar el que corresponde con el post que se está editando
+                            $selected = ($row['id_categoria'] == $idCategoria) ? 'selected' : '';
+                            echo "<option value='".$row['id_categoria']."'".$selected.">".$row['nombre_categoria']."</option>";
+                        }
+                    } else {
+                        echo "<option>No existen categorias</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+        </div>
         <input type="file" name="file" id="file" accept="image/*">
         <a href="#" id="openModalLink" class="<?php echo $hasImage; ?>">Ver imagen existente</a>
         <div class="image-content">
@@ -82,4 +105,5 @@
 </body>
 <script src="../helpers/view-saved-image.js"></script>
 <script src="../helpers/image-preview-edit.js"></script>
+<script src="../helpers/custom-select.js"></script>
 </html>
