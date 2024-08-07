@@ -9,8 +9,15 @@
      }
      # Si existe, tomamos su nombre de usuario
     $username = $_SESSION['user'];
+    # Si llego una categoria desde el frontend, la capturamos y filtramos los registros en consecuencia
+    # En caso contrario, mostramos todos los registros.
+    $category = isset($_POST['category']) ? $_POST['category'] : '';
 
-    $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE autor_post != '$username' ORDER BY fecha_publicacion DESC";
+    if (!empty($category)) {
+        $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE autor_post != '$username' AND id_categoria = '$category' ORDER BY fecha_publicacion DESC";
+    } else {
+        $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE autor_post != '$username' ORDER BY fecha_publicacion DESC";
+    }
     $result = $conn->query($sql);
 
     // Verificar si hay resultados

@@ -23,7 +23,7 @@
         }
     }
 
-    $sqlGetGameCategories = "SELECT nombre_categoria FROM categorias";
+    $sqlGetGameCategories = "SELECT * FROM categorias";
     $resultGetCategories = $conn->query($sqlGetGameCategories); 
 ?>
 <!DOCTYPE html>
@@ -34,6 +34,7 @@
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../controllers/load-posts.js"></script>
     <script src="../helpers/toggle-menu.js"></script>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../public/css/dashboard.css">
@@ -57,14 +58,15 @@
         <img src="../../public/svg/menu.svg" alt="">
     </div>
     <main class="main-container">
-        <aside>
+        <aside id="category-menu">
             <?php
                 if ($resultGetCategories->num_rows > 0) {
                     while ($rowCategories = $resultGetCategories->fetch_assoc()) {
+                        $category_id = $rowCategories['id_categoria'];
                         $category_name = $rowCategories['nombre_categoria'];
             ?>
             <details>
-                <summary><?php echo $category_name; ?></summary>
+                <summary><a href="#" data-category="<?php echo $category_id; ?>"><?php echo $category_name; ?></a></summary>
             </details>
             <?php
                     }

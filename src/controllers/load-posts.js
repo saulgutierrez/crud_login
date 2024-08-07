@@ -1,11 +1,13 @@
 $(document).ready(function() {
-    function loadPosts() {
+    function loadPosts(category = '') {
         $.ajax({
             url: 'fetch-posts.php',
-            method: 'GET',
+            method: 'POST',
+            data: { category: category },
             success: function(data) {
                 $('#registros').html(data);
 
+                // Adjuntar eventos a los nuevos elementos
                 $('.post-card').on('click', function() {
                     window.location.href = $(this).data('href');
                 });
@@ -109,6 +111,15 @@ $(document).ready(function() {
         });
     }
 
+    // Cargar todos los posteos al cargar la página
     loadPosts();
+
+    // Filtrar los posteos por categoría al hacer clic en las categorías
+    $('#category-menu').on('click', 'summary a', function(e) {
+        e.preventDefault();
+        var category = $(this).data('category');
+        loadPosts(category);
+    });
+
     setInterval(loadPosts, 60000); // Carga los posts cada minuto
 });
