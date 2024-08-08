@@ -118,6 +118,10 @@ $(document).ready(function() {
     $('#category-menu').on('click', 'summary a', function(e) {
         e.preventDefault();
         var category = $(this).data('category');
+        // Eliminar la clase a la etiqueta <a> seleccionada
+        $('#category-menu a').removeClass('selected-category');
+        // Agregar la clase a la etiqueta a seleccionada
+        $(this).addClass('selected-category');
         loadPosts(category);
     });
 

@@ -140,6 +140,7 @@ summary:hover, p:hover {
 summary a:hover {
     text-decoration: none;
     cursor: pointer;
+    color: #fff;
 }
 
 p {
@@ -220,6 +221,10 @@ p {
 .liked-usernames:hover {
     text-decoration: none;
     color: #007bff;
+}
+
+.selected-category {
+    background-color: #007bff;
 }
 
 @media screen and (max-width: 768px) {

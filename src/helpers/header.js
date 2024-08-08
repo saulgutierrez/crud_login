@@ -13,7 +13,7 @@ function responsiveDesign() {
             dropdown.classList.toggle('visible');
             square.classList.toggle('visible');
             newPost.classList.toggle('no-visible')
-            newPost.classList.toggle('visible');
+            newPost.classList.toggle('visibleNewPost');
         });
     } else {
         // Mostrar/ocultar dropdown de gestion de perfil
