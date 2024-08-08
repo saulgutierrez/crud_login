@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-08-2024 a las 05:25:01
+-- Tiempo de generación: 08-08-2024 a las 22:33:20
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -131,6 +131,21 @@ CREATE TABLE `likes_comentarios` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `notificaciones`
+--
+
+CREATE TABLE `notificaciones` (
+  `id_notificacion` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `tipo_notificacion` varchar(50) NOT NULL,
+  `mensaje` text NOT NULL,
+  `leida` tinyint(1) NOT NULL,
+  `fecha_notificacion` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `post`
 --
 
@@ -141,7 +156,8 @@ CREATE TABLE `post` (
   `titulo_post` varchar(255) NOT NULL,
   `contenido_post` text NOT NULL,
   `foto_post` text NOT NULL,
-  `fecha_publicacion` text NOT NULL
+  `fecha_publicacion` text NOT NULL,
+  `id_categoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -213,6 +229,13 @@ ALTER TABLE `likes_comentarios`
   ADD KEY `id_comentario` (`id_comentario`);
 
 --
+-- Indices de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD PRIMARY KEY (`id_notificacion`),
+  ADD KEY `id` (`id`);
+
+--
 -- Indices de la tabla `post`
 --
 ALTER TABLE `post`
@@ -255,6 +278,12 @@ ALTER TABLE `likes_comentarios`
   MODIFY `id_like_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `post`
 --
 ALTER TABLE `post`
@@ -290,6 +319,12 @@ ALTER TABLE `likes`
 ALTER TABLE `likes_comentarios`
   ADD CONSTRAINT `likes_comentarios_ibfk_1` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `likes_comentarios_ibfk_2` FOREIGN KEY (`id_comentario`) REFERENCES `comentarios` (`id_comentario`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `post`
