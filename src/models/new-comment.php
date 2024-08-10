@@ -1,5 +1,6 @@
 <?php
 require('../../config/connection.php'); // Incluye el archivo de conexión a la base de datos
+require('notifications.php');
 
 if (!isset($_SESSION)) {
     session_start();
@@ -64,9 +65,11 @@ if (isset($_POST['comment-input'])) {
         if ($file_uploaded) {
             $sql = $conn->prepare("INSERT INTO comentarios (id_post, id_autor, id_autor_comentario, autor_comentario, comentario, foto_comentario, fecha_publicacion) VALUES (?, ?, ?, ?, ?, ?, ?)");
             $sql->bind_param("iiissss", $idPost, $idAutorPost, $idAutorComentario, $autorComentario, $comentario, $target_file, $fecha);
+            notificar_comentario($idPost, $idAutorComentario);
         } else {
             $sql = $conn->prepare("INSERT INTO comentarios (id_post, id_autor, id_autor_comentario, autor_comentario, comentario, fecha_publicacion) VALUES (?, ?, ?, ?, ?, ?)");
             $sql->bind_param("iiisss", $idPost, $idAutorPost, $idAutorComentario, $autorComentario, $comentario, $fecha);
+            notificar_comentario($idPost, $idAutorComentario);
         }
 
         // Ejecuta la consulta SQL

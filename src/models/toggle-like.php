@@ -1,6 +1,7 @@
 <?php
     require('../../config/connection.php');
     require('data.php');
+    require('notifications.php');
 
     if (!isset($_SESSION)) {
         session_start();
@@ -40,6 +41,7 @@
             $result = mysqli_query($conn, $sql);
 
             if ($result == TRUE) {
+                notificar_like($id, $idUser);
                 echo json_encode(['status' => 'liked']);
             } else {
                 echo json_encode(['status' => 'error', 'message' => 'Error while inserting']);

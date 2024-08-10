@@ -14,7 +14,7 @@
         $statement->execute();
         $result = $statement->get_result();
         $post = $result->fetch_assoc();
-        $idUser = $post['id'];
+        $idUser = $post['id_autor'];
 
         // Verificar si el usuario dueño del post sigue al usuario que dio like
         $query = "SELECT * FROM siguiendo WHERE id_seguidor = ? AND id_seguido = ?";
@@ -28,9 +28,9 @@
             $mensaje = "A tu post le ha dado like el usuario ID $usuarioLike";
             $tipo = "like";
 
-            $query = "INSERT INTO notificaciones(id, tipo_notificacion, mensaje, leida, fecha_notificacion) VALUES(?, ?, ?, ?, ?)";
+            $query = "INSERT INTO notificaciones(id, tipo_notificacion, mensaje, leida) VALUES(?, ?, ?, 0)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('issis', $usuarioLike, $tipo, $mensaje, '0', '');
+            $stmt->bind_param('iss', $usuarioLike, $tipo, $mensaje);
             $stmt->execute();
         }
     }
@@ -45,7 +45,7 @@
         $stmt->execute();
         $result = $stmt->get_result();
         $post = $result->fetch_assoc();
-        $idUser = $post['id'];
+        $idUser = $post['id_autor'];
 
         // Verificar si el usuario dueño del post sigue al usuario que comento
         $query = "SELECT * FROM siguiendo WHERE id_seguidor = ? AND id_seguido = ?";
@@ -59,9 +59,9 @@
             $mensaje = "Han comentado en tu post el usuario ID $usuarioComentario";
             $tipo = "comentario";
 
-            $query = "INSERT INTO notificaciones(id, tipo_notificacion, mensaje, leida, fecha_notificacion) VALUES(?, ?, ?, ?, ?)";
+            $query = "INSERT INTO notificaciones(id, tipo_notificacion, mensaje, leida) VALUES(?, ?, ?, 0)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('issis', $usuarioLike, $tipo, $mensaje, '0', '');
+            $stmt->bind_param('iss', $usuarioComentario, $tipo, $mensaje);
             $stmt->execute();
         }
     }
