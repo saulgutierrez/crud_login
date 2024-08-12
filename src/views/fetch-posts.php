@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
         $titulo = $row['titulo_post'];
         $contenido = $row['contenido_post'];
         $foto = $row['foto_post'];
-        $hasImage = !empty($foto) ? 'imgBox' : 'noImage';
+        $hasImage = !empty($foto) ? 'imgBoxPost' : 'noImage';
         $fecha = $row['fecha_publicacion'];
 
         // Consulta para obtener el numero de "likes" de cada post

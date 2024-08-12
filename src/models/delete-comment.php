@@ -7,7 +7,6 @@
 
     if (isset($_POST['id'])) {
         $id = $_POST['id'];
-
         // Recuperar la ruta del archivo asociado al registro
         $sql = $conn->prepare("SELECT foto_comentario FROM comentarios WHERE id_comentario = ?");
         $sql->bind_param('i', $id);
@@ -38,6 +37,10 @@
         $sql->close();
     } else {
         echo 'error';
+        /**
+        * 
+        * @var object $sql
+        */
         $sql->close();
     }
 ?>

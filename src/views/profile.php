@@ -180,7 +180,7 @@
         <nav>
             <div>
                 <figure>
-                    <img src="<?php if ($foto !=  '') { echo $foto; } else { echo $rutaFotoPorDefecto; } ?>" alt="">
+                    <img src="<?php echo $sqlGetProfile['fotografia']; ?>" alt="">
                 </figure>
                 <article>
                     <h2><?php if ($nombrePerfil != '' && $apellidoPerfil != '') { echo $nombrePerfil. " ".$apellidoPerfil; } else { echo "anon"; } ?></h2>

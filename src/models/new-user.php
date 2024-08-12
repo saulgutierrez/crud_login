@@ -7,6 +7,7 @@ session_start();
 if (isset($_POST['user'], $_POST['password'])) {
     $user = $_POST['user'];
     $pass = $_POST['password'];
+    $rutaFotoPorDefecto = "../../public/img/profile-default.svg";
 
     $cryptPass = sha1($pass); # Encriptamos la contraseña
 
@@ -20,9 +21,9 @@ if (isset($_POST['user'], $_POST['password'])) {
 
     # Si el nombre de usuario es único, insertamos en la base de datos
     if ($row['count'] == 0) {
-        $sql = "INSERT INTO usuarios (usuario, contrasenia, nombre, apellido, correo, telefono, fecha_nacimiento, genero, fotografia) VALUES (?, ?, '', '', '', '', '', '', '')";
+        $sql = "INSERT INTO usuarios (usuario, contrasenia, nombre, apellido, correo, telefono, fecha_nacimiento, genero, fotografia) VALUES (?, ?, '', '', '', '', '', '', ?)";
         $statement = $conn->prepare($sql);
-        $statement->bind_param("ss", $user, $cryptPass);
+        $statement->bind_param("sss", $user, $cryptPass, $rutaFotoPorDefecto);
 
         if ($statement->execute()) {
             $_SESSION['user'] = $user;

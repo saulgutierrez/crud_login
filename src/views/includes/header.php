@@ -10,7 +10,10 @@
      }
      # Si existe, tomamos su nombre de usuario
     $username = $_SESSION['user'];
-
+    /**
+    * 
+    * @var object $conn
+    */
     $sqlGetProfilePhoto = "SELECT fotografia FROM usuarios WHERE usuario = '$username'";
     $queryGetProfilePhoto = $conn->query($sqlGetProfilePhoto);
 

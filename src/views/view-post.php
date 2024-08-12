@@ -25,7 +25,7 @@
             $autor = $row['autor_post'];
             $titulo = $row['titulo_post'];
             $contenido = $row['contenido_post'];
-            $foto = $row['foto_post'];
+            $fotoPost = $row['foto_post'];
             $fecha = $row['fecha_publicacion'];
         }
     }
@@ -67,7 +67,7 @@
             </div>
             <h3><?php echo $titulo; ?></h3>
             <div><?php echo $contenido; ?></div>
-            <img src="<?php echo $foto; ?>" alt="">
+            <img src="<?php echo $fotoPost; ?>" alt="">
             <form class="group-comment" id="form-comment" method="POST">
                 <input type="hidden" value="<?php echo $id_post; ?>" id="id-post" name="id-post">
                 <input type="hidden" value="<?php echo $id; ?>" id="id-autor-post" name="id-autor-post">
