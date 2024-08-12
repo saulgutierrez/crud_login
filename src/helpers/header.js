@@ -20,7 +20,9 @@ function responsiveDesign() {
         let square = document.querySelector('.square');
         let dropdown = document.querySelector('.dropdown');
         let identifier = document.querySelector(".identifier");
-        let newPost = document.querySelector('.new-post');
+        let notificationIcon = document.querySelector('.notification-icon');
+        let squareNotification = document.querySelector('.square-notifications');
+        let dropdownNotification = document.querySelector('.dropdown-notifications');
 
         identifier.style.display = "flex";
 
@@ -32,6 +34,16 @@ function responsiveDesign() {
         dropdown.addEventListener("mouseleave", function() {
             square.style.display = "none";
             dropdown.style.display = "none";
+        });
+
+        squareNotification.classList.add('hide');
+        dropdownNotification.classList.add('hide');
+
+        notificationIcon.addEventListener("click", function () {
+            squareNotification.classList.toggle('visible');
+            dropdownNotification.classList.toggle('visible');
+            squareNotification.classList.toggle('hide');
+            dropdownNotification.classList.toggle('hide');
         });
     }
 }

@@ -1,6 +1,7 @@
 <?php
     require('../../config/connection.php');
     require('../models/data.php');
+    require('../models/notifications.php');
 
     # Si no existe varible de sesion, quiere decir que el usuario no se ha autenticado
     # Negamos el acceso
@@ -23,6 +24,18 @@
             $rutaFotoPorDefecto = "../../public/img/profile-default.svg";
         }
     }
+
+    # Obtenemos el id del usuario para usarlo como indice al recuperar sus notificaciones
+    $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$username'";
+    $queryGetIdUser = $conn->query($sqlGetIdUser);
+
+    if ($queryGetIdUser->num_rows > 0) {
+        while ($rowGetIdUser = $queryGetIdUser->fetch_assoc()) {
+            $id = $rowGetIdUser['id'];
+        }
+    }
+
+    $notificaciones = obtener_notificaciones($id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +68,21 @@
             </div>
             <div>Cerrar sesión</div>
         </a>
+    </div>
+    
+    <div class="notification-icon">
+        <img src="../../public/svg/bell-outlined.svg" alt="">
+    </div>
+    <div class="square-notifications"></div>
+    <div class="dropdown-notifications">
+        <?php
+            foreach ($notificaciones as $notificacion) {
+                echo "<div class='notification-container'>
+                        <div>{$notificacion['mensaje']}</div>
+                        <div>{$notificacion['fecha_notificacion']}</div>
+                    </div>";
+            }
+        ?>
     </div>
     <h2 class="new-post">
         <div class="new-post-logo">

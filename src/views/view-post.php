@@ -21,7 +21,7 @@
         while ($row = $result->fetch_assoc()) {
             $counter++;
             $id_post = $row['id_post'];
-            $id = $row['id_autor'];
+            $id_autor = $row['id_autor'];
             $autor = $row['autor_post'];
             $titulo = $row['titulo_post'];
             $contenido = $row['contenido_post'];
@@ -62,7 +62,7 @@
             </a>
             <h2 class="post-title">Post</h2>
             <div class="post-card-top">
-                <h2><a href="profile.php?id=<?php echo $id;?>"><?php echo $autor; ?></a></h2>
+                <h2><a href="profile.php?id=<?php echo $id_autor;?>"><?php echo $autor; ?></a></h2>
                 <div><?php echo $fecha; ?></div>
             </div>
             <h3><?php echo $titulo; ?></h3>
@@ -70,7 +70,7 @@
             <img src="<?php echo $fotoPost; ?>" alt="">
             <form class="group-comment" id="form-comment" method="POST">
                 <input type="hidden" value="<?php echo $id_post; ?>" id="id-post" name="id-post">
-                <input type="hidden" value="<?php echo $id; ?>" id="id-autor-post" name="id-autor-post">
+                <input type="hidden" value="<?php echo $id_autor; ?>" id="id-autor-post" name="id-autor-post">
                 <input type="hidden" value="<?php echo $idAutorComentario; ?>" id="id-autor-comentario" name="id-autor-comentario">
                 <input type="hidden" value="<?php echo $username; ?>" id="autor-comentario" name="autor-comentario">
                 <input type="text" placeholder="Comentar" class="comment-input" id="comment-input" name="comment-input">

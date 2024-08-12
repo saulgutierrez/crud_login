@@ -200,7 +200,7 @@
                     </div>
                     <div>Eliminar cuenta</div>
                 </a>
-                <a id="btn-3" class="follow-profile-btn" href="" data-id="<?php echo $id; ?>">Seguir usuario</a>
+                <a id="btn-3" class="follow-profile-btn" href="" data-id="<?php echo $idPerfil; ?>">Seguir usuario</a>
             </article>
         </nav>
         <section>

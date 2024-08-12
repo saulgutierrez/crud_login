@@ -30,7 +30,7 @@
 
             $query = "INSERT INTO notificaciones(id, tipo_notificacion, mensaje, leida) VALUES(?, ?, ?, 0)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('iss', $usuarioLike, $tipo, $mensaje);
+            $stmt->bind_param('iss', $idUser, $tipo, $mensaje);
             $stmt->execute();
         }
     }
@@ -70,7 +70,7 @@
     function obtener_notificaciones($usuario_id) {
         global $conn;
 
-        $query = "SELECT * FROM notificaciones WHERE usuario_id = ? AND leida = 0 ORDER BY fecha_notificacion DESC";
+        $query = "SELECT * FROM notificaciones WHERE id = ? AND leida = 0 ORDER BY fecha_notificacion DESC";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $usuario_id);
         $stmt->execute();

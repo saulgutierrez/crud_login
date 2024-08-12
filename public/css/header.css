@@ -67,7 +67,7 @@ header h2 a:hover {
     background-color: #141417;
     height: 30px;
     width: 30px;
-    right: 32%;
+    right: 42%;
     top: 75%;
     transform: rotate(45deg);
 }
@@ -78,7 +78,7 @@ header h2 a:hover {
     background-color: #0f0f11;
     height: 80px;
     width: 200px;
-    right: 26%;
+    right: 36%;
     top: 85%;
 }
 
@@ -183,6 +183,59 @@ header h2 a:hover {
     height: 100%;
     object-fit: cover;
     filter: invert(1);
+}
+
+.notification-icon {
+    position: relative;
+    display: flex;
+    width: 20px;
+    height: 20px;
+}
+
+.notification-icon img {
+    position: relative;
+    display: flex;
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+}
+
+.notification-icon img:hover {
+    cursor: pointer;
+}
+
+.square-notifications {
+    position: absolute;
+    display: flex;
+    background-color: #141417;
+    height: 30px;
+    width: 30px;
+    right: 25%;
+    top: 75%;
+    transform: rotate(45deg);
+}
+
+.dropdown-notifications {
+    position: absolute;
+    display: block;
+    background-color: #0f0f11;
+    height: 80px;
+    width: 600px;
+    right: 18%;
+    top: 85%;
+}
+
+.notification-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+.hide {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
