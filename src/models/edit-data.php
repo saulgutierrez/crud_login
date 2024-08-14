@@ -24,6 +24,8 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
     $telefono = $_POST['telefono'];
     $fechaNacimiento = $_POST['fechanacimiento'];
     $genero = $_POST['genero'];
+    $rutaImagenPorDefecto = "../../public/img/profile-default.svg";
+
     $cryptPass = sha1($pass);
 
     $file_uploaded = false;
@@ -69,8 +71,8 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
                 $sql = $conn->prepare("UPDATE usuarios SET usuario = ?, contrasenia = ?, nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, genero = ?, fotografia = ? WHERE id = ?");
                 $sql->bind_param('sssssssssi', $user, $cryptPass, $nombre, $apellido, $correo, $telefono, $fechaNacimiento, $genero, $target_file, $id);
             } else {
-                $sql = $conn->prepare("UPDATE usuarios SET usuario = ?, contrasenia = ?, nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, genero = ? WHERE id = ?");
-                $sql->bind_param('ssssssssi', $user, $cryptPass, $nombre, $apellido, $correo, $telefono, $fechaNacimiento, $genero, $id);
+                $sql = $conn->prepare("UPDATE usuarios SET usuario = ?, contrasenia = ?, nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, genero = ?, fotografia = ? WHERE id = ?");
+                $sql->bind_param('sssssssssi', $user, $cryptPass, $nombre, $apellido, $correo, $telefono, $fechaNacimiento, $genero, $rutaImagenPorDefecto, $id);
             }
 
             if (!$sql->execute()) {

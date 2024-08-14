@@ -21,13 +21,15 @@
         if ($row['count'] == 1) {
             // Obtener la ruta de la imagen de perfil
             $file_path = $row['fotografia'];
+            // Ruta de la imagen por defecto
+            $default_image_path = "../../public/img/profile-default.svg";
 
             // Eliminar el perfil del usuario
             $sql = "DELETE FROM usuarios WHERE usuario = '$user' AND contrasenia = '$cryptPass'";
             $result = $conn->query($sql);
 
             // Eliminamos la imagen del usuario del servidor en caso de que exista
-            if (file_exists($file_path)) {
+            if (file_exists($file_path) && $file_path !== $default_image_path) {
                 unlink($file_path);
             }
 
