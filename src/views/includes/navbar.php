@@ -16,7 +16,7 @@
         </form>
         <ul class="navbar">
             <li class="explore hidden"><a href="#">Explorar</a></li>
-            <li class="blog hidden"><a href="../src/views/blog-index.php">Blog</a></li>
+            <li class="blog hidden"><a href="../src/views/blog-index.php">FAQ</a></li>
             <li class="forum hidden"><a href="../src/views/login.php">Foro</a></li>
             <li class="menu"><img src="../public/svg/menu.svg" class="menu-icon" alt=""></li>
             <div class="square-menu hidden"></div>

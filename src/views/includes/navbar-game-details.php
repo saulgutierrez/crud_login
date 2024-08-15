@@ -13,7 +13,7 @@
         <li><input type="text" placeholder="Buscar"></li>
         <ul class="navbar">
             <li class="explore hidden"><a href="#">Explorar</a></li>
-            <li class="blog hidden"><a href="#">Blog</a></li>
+            <li class="blog hidden"><a href="#">FAQ</a></li>
             <li class="forum hidden"><a href="login.php">Foro</a></li>
             <li class="menu"><img src="../../public/svg/menu.svg" class="menu-icon" alt=""></li>
             <div class="square-menu hidden"></div>
