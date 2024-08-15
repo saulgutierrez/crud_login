@@ -9,8 +9,11 @@
 </head>
 <body>
     <nav>
-        <a href="../../public/index.php" class="logo">Games DB</a>
-        <li><input type="text" placeholder="Buscar"></li>
+        <a href="index.php" class="logo">Games DB</a>
+        <form id="search-form">
+            <input type="text" placeholder="Buscar" id="search-input">
+            <button type="submit">Buscar</button>
+        </form>
         <ul class="navbar">
             <li class="explore hidden"><a href="#">Explorar</a></li>
             <li class="blog hidden"><a href="../src/views/blog-index.php">Blog</a></li>
