@@ -23,9 +23,19 @@
         $stmt->execute();
         $result = $stmt->get_result();
 
+        // Obtenemos el nombre de usuario para incorporarlo en la notificacion
         if ($result->num_rows > 0) {
+            $getUsernameFollowQuery = "SELECT usuario FROM usuarios WHERE id = ?";
+            $statementGetUsernameFollow = $conn->prepare($getUsernameFollowQuery);
+            $statementGetUsernameFollow->bind_param("i", $usuarioLike);
+            $statementGetUsernameFollow->execute();
+            $resultGetUsernameFollow = $statementGetUsernameFollow->get_result();
+            while ($rowGetUsernameFollow = $resultGetUsernameFollow->fetch_assoc()) {
+                $likeUsername = $rowGetUsernameFollow['usuario'];
+            }
+
             // Crear la notificacion si el usuario sigue al que le dio like
-            $mensaje = "A tu post le ha dado like el usuario ID $usuarioLike";
+            $mensaje = "A tu post le ha dado like el usuario $likeUsername";
             $tipo = "like";
 
             $query = "INSERT INTO notificaciones(id, tipo_notificacion, mensaje, leida) VALUES(?, ?, ?, 0)";
@@ -54,14 +64,23 @@
         $stmt->execute();
         $result = $stmt->get_result();
 
+        // Obtenemos el nombre de usuario para incorporarlo a la notificacion
         if ($result->num_rows > 0) {
+            $getUsernameFollowQueryComment = "SELECT usuario FROM usuarios WHERE id = ?";
+            $statementGetUsernameFollowComment = $conn->prepare($getUsernameFollowQueryComment);
+            $statementGetUsernameFollowComment->bind_param("i", $usuarioComentario);
+            $statementGetUsernameFollowComment->execute();
+            $resultGetUsernameFollowComment = $statementGetUsernameFollowComment->get_result();
+            while ($rowGetUsernameFollowComment = $resultGetUsernameFollowComment->fetch_assoc()) {
+                $commentFollowUsername = $rowGetUsernameFollowComment['usuario'];
+            }
             // Crear la notificacion si el usuario sigue al que comento
-            $mensaje = "Han comentado en tu post el usuario ID $usuarioComentario";
+            $mensaje = "Han comentado en tu post el usuario $commentFollowUsername";
             $tipo = "comentario";
 
             $query = "INSERT INTO notificaciones(id, tipo_notificacion, mensaje, leida) VALUES(?, ?, ?, 0)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('iss', $usuarioComentario, $tipo, $mensaje);
+            $stmt->bind_param('iss', $idUser, $tipo, $mensaje);
             $stmt->execute();
         }
     }
