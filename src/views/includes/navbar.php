@@ -10,9 +10,9 @@
 <body>
     <nav>
         <a href="index.php" class="logo">Games DB</a>
-        <form id="search-form">
-            <input type="text" placeholder="Buscar" id="search-input">
-            <button type="submit">Buscar</button>
+        <form id="search-form" class="search-form">
+            <input type="text" placeholder="Ingrese un titulo..." id="search-input">
+            <button type="submit" class="search-btn">Buscar</button>
         </form>
         <ul class="navbar">
             <li class="explore hidden"><a href="#">Explorar</a></li>
