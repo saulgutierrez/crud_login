@@ -43,10 +43,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/header.css">
+    <script src="../../public/js/jquery-3.7.1.min.js"></script>
 </head>
 <header>
     <h1><a href="dashboard.php">Forum</a></h1>
-    <input type="text" placeholder="Buscar">
+    <form id="searchForm" onsubmit="return false;">
+        <input type="text" id="searchQuery" placeholder="Buscar">
+        <button type="submit">Buscar</button>
+    </form>
+    <div id="searchResults"></div>
     <!-- Identificamos al usuario dentro de la interfaz -->
      <div class="profile">
         <div class="imgBox">
@@ -93,3 +98,4 @@
 </header>
 </html>
 <script src="../helpers/header.js"></script>
+<script src="../controllers/search-users.js"></script>
