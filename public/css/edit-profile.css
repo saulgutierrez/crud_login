@@ -23,7 +23,7 @@ body {
     margin-top: 100px;
 }
 
-body form {
+#editProfileForm {
     position: relative;
     background-color: #141417;
     width: 60%;
