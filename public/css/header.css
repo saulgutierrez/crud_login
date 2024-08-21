@@ -47,6 +47,48 @@ header input {
     border-radius: 20px;
 }
 
+.searchForm {
+    display: flex;
+    gap: 10px;
+}
+
+header form .searchBtn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.searchResults {
+    position: absolute;
+    top: 73%;
+    left: calc(30% - 50px);
+    display: block;
+    background-color: #0f0f11;
+    width: 200px;
+}
+
+.searchResults div {
+    display: grid;
+    font-size: 1.4rem;
+    padding: 10px 0px;
+}
+
+.searchResults div a {
+    display: flex;
+    justify-self: flex-start;
+    padding: 10px 15px;
+    font-size: 1.4rem;
+}
+
+.searchResults div a:hover {
+    text-decoration: none;
+    color: #007bff;
+}
+
 header h1 a,
 header div a, 
 header h2 a {
@@ -67,7 +109,7 @@ header h2 a:hover {
     background-color: #141417;
     height: 30px;
     width: 30px;
-    right: 42%;
+    right: 37%;
     top: 75%;
     transform: rotate(45deg);
 }
@@ -78,7 +120,7 @@ header h2 a:hover {
     background-color: #0f0f11;
     height: 80px;
     width: 200px;
-    right: 36%;
+    right: 30%;
     top: 85%;
 }
 
@@ -210,8 +252,8 @@ header h2 a:hover {
     background-color: #141417;
     height: 30px;
     width: 30px;
-    right: 25%;
-    top: 75%;
+    right: 24%;
+    top: 79%;
     transform: rotate(45deg);
 }
 
@@ -236,6 +278,12 @@ header h2 a:hover {
 
 .hide {
     display: none;
+}
+
+@media screen and (max-width: 992px) {
+    .searchResults {
+        left: 28%;
+    }
 }
 
 @media screen and (max-width: 768px) {

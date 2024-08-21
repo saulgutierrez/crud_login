@@ -47,11 +47,11 @@
 </head>
 <header>
     <h1><a href="dashboard.php">Forum</a></h1>
-    <form id="searchForm" onsubmit="return false;">
+    <form id="searchForm" class="searchForm" onsubmit="return false;">
         <input type="text" id="searchQuery" placeholder="Buscar">
-        <button type="submit">Buscar</button>
+        <button type="submit" class="searchBtn">Buscar</button>
     </form>
-    <div id="searchResults"></div>
+    <div id="searchResults" class="searchResults"></div>
     <!-- Identificamos al usuario dentro de la interfaz -->
      <div class="profile">
         <div class="imgBox">
