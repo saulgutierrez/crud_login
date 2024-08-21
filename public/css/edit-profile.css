@@ -52,7 +52,7 @@ form input[type=text]:focus, form input[type=password]:focus, form input[type=nu
     background-color: #141417;
 }
 
-form button, form a {
+.saveBtn, .cancelBtn {
     border: none;
     outline: none;
     cursor: pointer;
@@ -63,7 +63,7 @@ form button, form a {
     justify-self: center;
 }
 
-form a {
+.cancelBtn {
     background-color: #dc3545;
     text-align: center;
     text-decoration: none;
@@ -72,7 +72,7 @@ form a {
     justify-content: center;
 }
 
-form a .imgBox {
+.cancelBtn .imgBox {
     position: relative;
     display: flex;
     align-items: center;
@@ -82,7 +82,7 @@ form a .imgBox {
     margin-right: 10px;
 }
 
-form a .imgBox img {
+.cancelBtn .imgBox img {
     position: absolute;
     top: 0;
     left: 0;
@@ -92,7 +92,7 @@ form a .imgBox img {
     filter: invert(1);
 }
 
-form a:hover {
+.cancelBtn:hover {
     background-color: #c82333;
 }
 

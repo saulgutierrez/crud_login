@@ -62,7 +62,8 @@ $(document).ready(function() {
                                 likesList.append('<li class="list-group-item">Error loading likes</li>');
                             }
 
-                            $('#likesModal').modal('show');
+                            var myModal = new bootstrap.Modal(document.getElementById('likesModal'));
+                            myModal.show();
                         },
                         error: function(xhr, status, error) {
                             alert('Error loading likes: ' + error);
