@@ -16,7 +16,7 @@
     if (!empty($category)) {
         $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE autor_post != '$username' AND id_categoria = '$category' ORDER BY fecha_publicacion DESC";
     } else {
-        $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE autor_post != '$username' ORDER BY fecha_publicacion DESC";
+        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion, u.fotografia FROM post p JOIN usuarios u ON p.id_autor = u.id WHERE p.autor_post != '$username' ORDER BY p.fecha_publicacion DESC";
     }
     $result = $conn->query($sql);
 
@@ -33,6 +33,7 @@ if ($result->num_rows > 0) {
         $foto = $row['foto_post'];
         $hasImage = !empty($foto) ? 'imgBoxPost' : 'noImage';
         $fecha = $row['fecha_publicacion'];
+        $foto_perfil = $row['fotografia'];
 
         // Consulta para obtener el numero de "likes" de cada post
         $likes_sql = "SELECT COUNT(*) as like_count FROM likes WHERE liked_id_post = '$id_post'";
@@ -45,7 +46,10 @@ if ($result->num_rows > 0) {
         // recargar la página
         echo '<div class="post-card" data-href="view-post.php?id='.$id_post.'">';
         echo '<div class="post-card-top">';
+        echo '<div class="post-card-top-main-content">';
+        echo '<div class="imgBoxProfileImage"><img src="'. $foto_perfil .'"></div>';
         echo '<h2><a href="profile.php?id=' . $id . '" onclick="event.stopPropagation();">' . $autor . '</a></h2>';
+        echo '</div>';
         echo '<div>' . $fecha . '</div>';
         echo '<a class="like-button" data-id="'.$id_post.'">Like</a>';
         echo '<a href="#" class="like-count" data-id="'.$id_post.'" data-toggle="modal" data-target="#likesModal">'.$like_count.'</a>';
