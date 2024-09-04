@@ -14,7 +14,7 @@
     $category = isset($_POST['category']) ? $_POST['category'] : '';
 
     if (!empty($category)) {
-        $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE autor_post != '$username' AND id_categoria = '$category' ORDER BY fecha_publicacion DESC";
+        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion, u.fotografia FROM post p JOIN usuarios u ON p.id_autor = u.id WHERE p.autor_post != '$username' AND p.id_categoria = '$category' ORDER BY fecha_publicacion DESC";
     } else {
         $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion, u.fotografia FROM post p JOIN usuarios u ON p.id_autor = u.id WHERE p.autor_post != '$username' ORDER BY p.fecha_publicacion DESC";
     }
