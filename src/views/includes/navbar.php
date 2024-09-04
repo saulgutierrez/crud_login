@@ -36,12 +36,14 @@
             <button type="submit" class="search-btn">Buscar</button>
         </form>
         <ul class="navbar">
-            <select id="category-select">
-                <option value="">Free Games</option>
-                <?php foreach ($categories as $category): ?>
-                    <option value="<?php echo htmlspecialchars($category); ?>"><?php echo htmlspecialchars($category); ?></option>
-                <?php endforeach; ?>
-            </select>
+            <div class="custom-select" style="width: 200px;">
+                <select id="category-select" name="category-select">
+                    <option value="">Free Games</option>
+                    <?php foreach ($categories as $category): ?>
+                        <option value="<?php echo htmlspecialchars($category); ?>"><?php echo htmlspecialchars($category); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <li class="explore hidden"><a href="#">Explorar</a></li>
             <li class="blog hidden"><a href="../src/views/blog-index.php">FAQ</a></li>
             <li class="forum hidden"><a href="../src/views/login.php">Foro</a></li>
@@ -51,6 +53,7 @@
         </ul>
     </nav>
     <script src="../src/helpers/navbar.js"></script>
+    <script src="../src/helpers/custom-select-to-filter-game.js"></script>
     <script src="../src/controllers/filter-game-by-category.js"></script>
 </body>
 </html>
