@@ -106,6 +106,7 @@ body {
 
 .img-container img:hover {
     filter: grayscale(0%);
+    cursor: pointer;
 }
 
 .wrapper-features {

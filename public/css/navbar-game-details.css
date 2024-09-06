@@ -65,7 +65,7 @@ nav .navbar li {
 
 nav .navbar li a {
     text-decoration: none;
-    padding: 10px;
+    padding: 10px 20px;
     transition: 0.3s;
     font-size: 0.9em;
     color: #ffffff;
@@ -74,8 +74,6 @@ nav .navbar li a {
 
 nav .navbar li a:hover {
     background-color: #007bff;
-    border: 1px solid transparent;
-    padding: 10px 50px;
     border-radius: 20px;
 }
 

@@ -25,6 +25,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intense-images/1.0.6/intense.min.css">
     <link rel="stylesheet" href="../../public/css/game-details.css">
     <title><?php echo htmlspecialchars($gameData['title']); ?></title>
 </head>
@@ -78,7 +79,8 @@
                     // Verificar y mostrar cada imagen si existe
                     for ($i = 0; $i < 3; $i++) {
                         if (isset($gameData['screenshots'][$i]['image'])) {
-                            echo '<img src="' . htmlspecialchars($gameData['screenshots'][$i]['image']) . '" alt="Imagen del juego">';
+                            # Agregamos la clase intense a las imagenes para utilizar la libreia intense.js
+                            echo '<img class="intense" src="' . htmlspecialchars($gameData['screenshots'][$i]['image']) . '" alt="Imagen del juego">';
                         }
                     }
                 } else { ?>
@@ -123,5 +125,14 @@
                 <p>Enlace al videojuego no disponible</p>
             <?php } ?>
     </div>
+    <!-- Hacemos uso de intense.js para amplificar una imagen -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intense-images/1.0.6/intense.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.intense');
+            Intense(images);
+        });
+    </script>
+
 </body>
 </html>
