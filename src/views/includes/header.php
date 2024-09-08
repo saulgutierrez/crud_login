@@ -46,10 +46,22 @@
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
 </head>
 <header>
-    <h1><a href="dashboard.php">Forum</a></h1>
+    <h1>
+        <a href="dashboard.php">
+            <div class="imgBox">
+                <img src="../../public/svg/forum.svg" alt="">
+            </div>
+            <div>Forum</div>
+        </a>
+    </h1>
     <form id="searchForm" class="searchForm" onsubmit="return false;">
         <input type="text" id="searchQuery" placeholder="Buscar">
-        <button type="submit" class="searchBtn">Buscar</button>
+        <button type="submit" class="searchBtn">
+            <div class="imgBox">
+                <img src="../../public/svg/search.svg" alt="">
+            </div>
+            <div>Buscar</div>
+        </button>
     </form>
     <div id="searchResults" class="searchResults"></div>
     <!-- Identificamos al usuario dentro de la interfaz -->

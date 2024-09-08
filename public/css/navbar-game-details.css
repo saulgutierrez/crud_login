@@ -26,7 +26,7 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 80px;
+    padding: 20px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,16 +37,30 @@ nav .logo {
     text-decoration: none;
     color: #fff;
     z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-input {
-    background-color: #0f0f11;
-    border: 1px solid #fff;
-    outline: none;
-    width: 200px;
-    color: #fff;
-    padding: 5px 15px;
-    border-radius: 20px;
+nav .logo .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+nav .logo .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+    border-radius: 0%;
 }
 
 nav li {
@@ -70,6 +84,30 @@ nav .navbar li a {
     font-size: 0.9em;
     color: #ffffff;
     text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .navbar li a .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+nav .navbar li a .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+    border-radius: 0%;
 }
 
 nav .navbar li a:hover {
