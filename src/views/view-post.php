@@ -113,7 +113,11 @@
             </div>
         </div>
         <?php
-            $sqlComments = "SELECT * FROM comentarios WHERE id_post = '$id_post' ORDER BY fecha_publicacion DESC";
+            $sqlComments = "SELECT c.*, u.fotografia 
+            FROM comentarios c 
+            JOIN usuarios u ON c.id_autor_comentario = u.id 
+            WHERE c.id_post = '$id_post' 
+            ORDER BY c.fecha_publicacion DESC";
             $playQuery = $conn->query($sqlComments);
 
             $contador = 0;
@@ -128,6 +132,7 @@
                     $comentario = $fila['comentario'];
                     $imagen = $fila['foto_comentario'];
                     $fecha = $fila['fecha_publicacion'];
+                    $fotografiaAutorComentario = $fila['fotografia']; // Fotografía del usuario
         ?>
 
         <div class="post-card comment">
@@ -142,7 +147,12 @@
                         $redirect = "profile.php?id=$idAutorComentarioArray";
                     }
                 ?>
-                <a class="comment-user" href="<?php echo $redirect; ?>"><?php echo $autorComentario; ?></a>
+                <h2>
+                    <div class="imgBoxProfileImage">
+                        <img src="<?php echo $fotografiaAutorComentario; ?>" alt="">
+                    </div>
+                    <a class="comment-user" href="<?php echo $redirect; ?>"><?php echo $autorComentario; ?></a>
+                </h2>
                 <div><?php echo $fecha; ?></div>
             </div>
             <div class="comment-card-body">

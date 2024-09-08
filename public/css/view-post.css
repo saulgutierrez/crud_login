@@ -195,6 +195,15 @@ button .imgBox img {
     justify-content: space-between;
 }
 
+.comment-card-top h2,
+.comment-card-top h3 {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
 .comment-card-body {
     position: relative;
     display: flex;

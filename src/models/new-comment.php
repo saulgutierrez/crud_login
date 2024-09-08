@@ -77,6 +77,17 @@ if (isset($_POST['comment-input'])) {
             throw new Exception("Error al actualizar comentarios: " . $sql->error);
         }
 
+        // Después de insertar el comentario, consulta la imagen del autor
+        $sqlImagenAutor = $conn->prepare("SELECT fotografia FROM usuarios WHERE id = ?");
+        $sqlImagenAutor->bind_param("i", $idAutorComentario);
+        $sqlImagenAutor->execute();
+        $result = $sqlImagenAutor->get_result();
+
+        if ($result->num_rows > 0) {
+            $getImagenAutor = $result->fetch_assoc();
+            $imagenAutor = $getImagenAutor['fotografia'];
+        }
+
         // Confirma la transacción si todo fue exitoso
         $conn->commit();
 
@@ -86,6 +97,13 @@ if (isset($_POST['comment-input'])) {
         if ($file_uploaded) {
             $response['message'] .= " El archivo se ha subido correctamente.";
         }
+
+        // Almacenamos las respuestas del servidor, para enviar al frontend y procesarlas
+        $response['autorComentario'] = $autorComentario;
+        $response['fechaComentario'] = $fecha;
+        $response['comentario'] = $comentario;
+        $response['imagenAutor'] = $imagenAutor;
+
     } catch (Exception $e) {
         // Revierte la transacción en caso de error
         $conn->rollback();
