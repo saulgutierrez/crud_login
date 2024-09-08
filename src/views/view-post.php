@@ -40,6 +40,18 @@
             $idAutorComentario = $row2['id'];
         }
     }
+
+    // Obtener la imagen del usuario que genero el posteo
+    $sql3 = "SELECT u.fotografia FROM usuarios u JOIN post p ON p.id_autor = u.id";
+    $result3 = $conn->query($sql3);
+
+    $counter3 = 0;
+    if ($result3->num_rows > 0) {
+        while ($row3 = $result3->fetch_assoc()) {
+            $counter3++;
+            $fotoUsuario = $row3['fotografia'];
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +74,14 @@
             </a>
             <h2 class="post-title">Post</h2>
             <div class="post-card-top">
-                <h2><a href="profile.php?id=<?php echo $id_autor;?>"><?php echo $autor; ?></a></h2>
+                <h2>
+                    <div class="imgBoxProfileImage">
+                        <img src="<?php echo $fotoUsuario; ?>" alt="">
+                    </div>
+                    <a href="profile.php?id=<?php echo $id_autor;?>">
+                        <?php echo $autor; ?>
+                    </a>
+                </h2>
                 <div><?php echo $fecha; ?></div>
             </div>
             <h3><?php echo $titulo; ?></h3>
