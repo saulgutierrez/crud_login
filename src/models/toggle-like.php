@@ -1,6 +1,6 @@
 <?php
 require('../../config/connection.php');
-require('data.php');
+require('session.php');
 require('notifications.php');
 
 if (!isset($_SESSION)) {

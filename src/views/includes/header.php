@@ -1,6 +1,6 @@
 <?php
     require('../../config/connection.php');
-    require('../models/data.php');
+    require('../models/session.php');
     require('../models/notifications.php');
 
     # Si no existe varible de sesion, quiere decir que el usuario no se ha autenticado

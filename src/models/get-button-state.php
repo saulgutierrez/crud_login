@@ -1,6 +1,6 @@
 <?php
     require('../../config/connection.php');
-    require('../models/data.php');
+    require('../models/session.php');
 
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Headers: Content-Type");

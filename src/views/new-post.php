@@ -1,6 +1,6 @@
 <?php
     require('../../config/connection.php');
-    require('../models/data.php');
+    require('../models/session.php');
     date_default_timezone_set('America/Mexico_City');
     $fecha_actual = date("d-m-Y h:i:s");
 

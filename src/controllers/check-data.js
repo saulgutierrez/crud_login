@@ -12,7 +12,7 @@ $(document).ready(function () {
             setTimeout("$('#login-result').html('')", 5000);
         } else {
             $.ajax({
-                url         :   '../models/data.php',
+                url         :   '../models/session.php',
                 type        :   'POST',
                 data        :   datosEnviados,
                 dataType    :   'text',

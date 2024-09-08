@@ -1,6 +1,6 @@
 <?php
 require('../../config/connection.php');
-require('../models/data.php');
+require('../models/session.php');
 
 // Establecer la cabecera de respuesta para permitir solicitudes desde cualquier origen (CORS)
 header("Access-Control-Allow-Origin: *");

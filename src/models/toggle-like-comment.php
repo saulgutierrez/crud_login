@@ -1,6 +1,6 @@
 <?php
     require('../../config/connection.php');
-    require('data.php');
+    require('session.php');
 
     if (!isset($_SESSION)) {
         session_start();

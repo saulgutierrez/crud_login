@@ -1,6 +1,6 @@
 <?php
     require('../../config/connection.php');
-    require('../models/data.php');
+    require('../models/session.php');
 
     // Estamos viendo el perfil de otro usuario
     if (isset($_GET['id'])) {
