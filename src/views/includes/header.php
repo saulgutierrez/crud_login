@@ -93,11 +93,17 @@
     <div class="square-notifications"></div>
     <div class="dropdown-notifications">
         <?php
-            foreach ($notificaciones as $notificacion) {
+            if (empty($notificaciones)) {
                 echo "<div class='notification-container'>
-                        <div>{$notificacion['mensaje']}</div>
-                        <div>{$notificacion['fecha_notificacion']}</div>
-                    </div>";
+                        <div>No hay notificaciones</div>
+                </div>";
+            } else {
+                foreach ($notificaciones as $notificacion) {
+                    echo "<div class='notification-container'>
+                            <div>{$notificacion['mensaje']}</div>
+                            <div>{$notificacion['fecha_notificacion']}</div>
+                        </div>";
+                }
             }
         ?>
     </div>
