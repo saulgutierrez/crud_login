@@ -388,7 +388,12 @@
                         </a>
                     </div>
                     <img src="../../public/svg/menu.svg" alt="" class="menu-icon-comments">
-                    <h2><?php echo $autorComentarioItem; ?></h2>
+                    <div class="wrapper-main-profile-items">
+                        <div class="imgBox">
+                            <img src="<?php echo $sqlGetProfile['fotografia']; ?>" alt="">
+                        </div>
+                        <h2><?php echo $autorComentarioItem; ?></h2>
+                    </div>
                     <h3><?php echo $comentarioItem; ?></h3>
                     <div class="<?php echo $hasImageComment; ?>">
                         <img src="<?php echo $fotoComentario; ?>" alt="">
@@ -420,8 +425,13 @@
                     </div>
                     <img src="../../public/svg/menu.svg" alt="" class="menu-icon-comments">
                     <div class="comment-card-top">
-                        <h2><?php echo $autorComentarioItem; ?></h2>
-                        <div><?php echo $fecha; ?></div>
+                        <div class="wrapper-main-profile-items">
+                            <div class="imgBox">
+                                <img src="<?php echo $sqlGetProfile['fotografia'];?>" alt="">
+                            </div>
+                            <h2><?php echo $autorComentarioItem; ?></h2>
+                        </div>
+                        <div class="fecha"><?php echo $fecha; ?></div>
                     </div>
                     <div><?php echo $comentarioItem; ?></div>
                     <div class="<?php echo $hasImageComment; ?>">

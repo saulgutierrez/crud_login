@@ -531,6 +531,7 @@ body main section {
     background-color: #0f0f11;
     padding: 30px 30px;
     border-radius: 10px;
+    gap: 10px;
 }
 
 .comment-card .comment-card-top {
@@ -542,7 +543,12 @@ body main section {
     justify-content: space-between;
 }
 
-.comment-card .comment-card-top > div {
+.comment-card .comment-card-top > .wrapper-main-profile-items {
+    width: 50%;
+    justify-content: flex-start;
+}
+
+.comment-card .comment-card-top .fecha {
     width: 50%;
     justify-content: flex-end;
 }
