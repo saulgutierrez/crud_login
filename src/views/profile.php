@@ -302,7 +302,12 @@
                         </a>
                     </div>
                     <img src="../../public/svg/menu.svg" alt="" class="menu-icon">
-                    <h2><?php echo $autor; ?></h2>
+                    <div class="wrapper-main-profile-items">
+                        <div class="imgBox">
+                            <img src="<?php echo $sqlGetProfile['fotografia'];?>" alt="">
+                        </div>
+                        <h2><?php echo $autor; ?></h2>
+                    </div>
                     <h3><?php echo $titulo; ?></h3>
                     <div><?php echo $contenido; ?></div>
                     <div class="<?php echo $hasImage; ?>">
@@ -332,7 +337,12 @@
                         <div class="square-menu-perfil"></div>
                         <img src="../../public/svg/menu.svg" alt="" class="menu-icon">
                         <div class="post-card-top">
-                            <h2><?php echo $autor; ?></h2>
+                            <div class="wrapper-main-profile-items">
+                                <div class="imgBox">
+                                    <img src="<?php echo $sqlGetProfile['fotografia'];?>" alt="">
+                                </div>
+                                <h2><?php echo $autor; ?></h2>
+                            </div>
                             <div><?php echo $fecha; ?></div>
                         </div>
                         <h3><?php echo $titulo; ?></h3>

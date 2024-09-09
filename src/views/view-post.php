@@ -42,7 +42,7 @@
     }
 
     // Obtener la imagen del usuario que genero el posteo
-    $sql3 = "SELECT u.fotografia FROM usuarios u JOIN post p ON p.id_autor = u.id";
+    $sql3 = "SELECT u.fotografia FROM usuarios u JOIN post p ON p.id_autor = u.id WHERE p.id_post = $id_post";
     $result3 = $conn->query($sql3);
 
     $counter3 = 0;
