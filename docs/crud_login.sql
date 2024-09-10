@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-08-2024 a las 22:33:20
+-- Tiempo de generación: 10-09-2024 a las 03:25:20
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -107,11 +107,6 @@ CREATE TABLE `comentarios` (
 CREATE TABLE `likes` (
   `liked_by` int(11) NOT NULL,
   `liked_id_post` int(255) NOT NULL,
-  `autor_liked_post` varchar(255) NOT NULL,
-  `titulo_liked_post` varchar(255) NOT NULL,
-  `contenido_liked_post` text NOT NULL,
-  `foto_liked_post` text NOT NULL,
-  `fecha_publicacion_liked_post` text NOT NULL,
   `btn_text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -140,7 +135,7 @@ CREATE TABLE `notificaciones` (
   `tipo_notificacion` varchar(50) NOT NULL,
   `mensaje` text NOT NULL,
   `leida` tinyint(1) NOT NULL,
-  `fecha_notificacion` text NOT NULL
+  `fecha_notificacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -275,7 +270,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `likes_comentarios`
 --
 ALTER TABLE `likes_comentarios`
-  MODIFY `id_like_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_like_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
