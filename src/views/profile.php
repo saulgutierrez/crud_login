@@ -184,7 +184,9 @@
         <nav>
             <div>
                 <figure>
-                    <img src="<?php echo $sqlGetProfile['fotografia']; ?>" alt="">
+                    <a href="<?php echo $sqlGetProfile['fotografia']; ?>" data-pswp-width="800" data-pswp-height="800" class="pswp-link" onclick="return false;">
+                        <img src="<?php echo $sqlGetProfile['fotografia']; ?>" alt="Foto de perfil">
+                    </a>
                 </figure>
                 <article>
                     <h2><?php if ($nombrePerfil != '' && $apellidoPerfil != '') { echo $nombrePerfil. " ".$apellidoPerfil; } else { echo "anon"; } ?></h2>
@@ -659,5 +661,6 @@
     <script src="../controllers/delete-post.js"></script>
     <script src="../controllers/delete-comment.js"></script>
     <script src="../controllers/follow-user.js"></script>
+    <script type="module" src="../helpers/view-profile-image.js"></script>
 </body>
 </html>

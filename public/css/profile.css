@@ -873,3 +873,13 @@ body main section {
     align-items: center;
     gap: 10px;
 }
+
+/* Clases de PhotoSwipe */
+.pswp {
+    position: fixed !important; /* Forzar posición absoluta */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Abarcar todo el ancho de la pantalla */
+    height: 100vh; /* Abarcar todo el alto de la pantalla */
+    z-index: 9999; /* Mantener la ventana emergente sobre otros elementos */
+}
