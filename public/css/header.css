@@ -124,8 +124,9 @@ header form .searchBtn {
 
 .searchResults div {
     display: grid;
+    grid-template-columns: 40px 1fr;
     font-size: 1.4rem;
-    padding: 10px 0px;
+    padding: 10px 10px;
 }
 
 .searchResults div a {

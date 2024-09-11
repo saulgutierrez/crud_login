@@ -9,7 +9,7 @@
         $searchQuery = "%$searchQuery%";
 
         // Preparar y ejecutar la consulta
-        $stmt = $conn->prepare("SELECT id, usuario FROM usuarios WHERE usuario LIKE ?");
+        $stmt = $conn->prepare("SELECT id, usuario, fotografia FROM usuarios WHERE usuario LIKE ?");
         $stmt->bind_param("s", $searchQuery);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -19,6 +19,9 @@
             // Mostrar resultados
             while ($row = $result->fetch_assoc()) {
                 echo "<div>";
+                echo "<div class='imgBox'>";
+                echo "<img src='" . $row['fotografia'] . "'>";
+                echo "</div>";
                 echo "<a href='profile.php?id=" .$row['id']. "'>" .$row['usuario'] . "</a>";
                 echo "</div>";
             }
