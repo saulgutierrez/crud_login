@@ -65,7 +65,7 @@
             # Sentencias SQL para obtener los posts que otros usuarios han marcado como "Like", combinamos las filas de la tabla likes con la tabla post si la condición es verdadera
             # Ayuda a mostrar, el nombre del usuario que creo el post, el titulo del post, el contenido del post, la imagen asociada, y la fecha de publicacion
             # En caso de actualizacion de los contenidos del post, o el nombre del usuario, la información se actualiza por cascada
-            $sqlGetLikes = "SELECT u.usuario, p.id_post, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion FROM likes l JOIN post p ON l.liked_id_post = p.id_post JOIN usuarios u ON p.id_autor = u.id WHERE l.liked_by = '$idPerfil'";
+            $sqlGetLikes = "SELECT u.usuario, u.fotografia, p.id_post, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion FROM likes l JOIN post p ON l.liked_id_post = p.id_post JOIN usuarios u ON p.id_autor = u.id WHERE l.liked_by = '$idPerfil'";
             $queryGetLikes = $conn->query($sqlGetLikes);
 
             // Consulta para obtener el numero de posts que otros usuarios han marcado como "Like"
@@ -137,7 +137,7 @@
         # Sentencias SQL para obtener los posts que he marcado como "Like", combinamos las filas de la tabla likes con la tabla post si la condición es verdadera
         # Ayuda a mostrar, el nombre del usuario que creo el post, el titulo del post, el contenido del post, la imagen asociada, y la fecha de publicacion
         # En caso de actualizacion de los contenidos del post, o el nombre del usuario, la información se actualiza por cascada
-        $sqlGetUserLikes = "SELECT u.usuario, p.id_post, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion FROM likes l JOIN post p ON l.liked_id_post = p.id_post JOIN usuarios u ON p.id_autor = u.id WHERE l.liked_by = '$idUser'";
+        $sqlGetUserLikes = "SELECT u.usuario, u.fotografia, u.id, p.id_post, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion FROM likes l JOIN post p ON l.liked_id_post = p.id_post JOIN usuarios u ON p.id_autor = u.id WHERE l.liked_by = '$idUser'";
         $queryGetLikes = $conn->query($sqlGetUserLikes);
 
          // Consulta para obtener el numero de posts que he marcado como "Like"
@@ -315,7 +315,7 @@
                         <h2><?php echo $autor; ?></h2>
                     </div>
                     <h3><?php echo $titulo; ?></h3>
-                    <div><?php echo $contenido; ?></div>
+                    <div class="contenido"><?php echo $contenido; ?></div>
                     <div class="<?php echo $hasImage; ?>">
                         <img src="<?php echo $foto; ?>" alt="">
                     </div>
@@ -352,7 +352,7 @@
                             <div><?php echo $fecha; ?></div>
                         </div>
                         <h3><?php echo $titulo; ?></h3>
-                        <div><?php echo $contenido; ?></div>
+                        <div class="contenido"><?php echo $contenido; ?></div>
                         <div class="<?php echo $hasImage; ?>">
                             <img src="<?php echo $foto; ?>" alt="">
                         </div>
@@ -606,16 +606,26 @@
                     while ($rowLikes = $queryGetLikes->fetch_assoc()) {
                         $counterLikes++;
                         $idLikedPost = $rowLikes['id_post'];
+                        $idAutorPost = $rowLikes['id'];
                         $autorLikedPost = $rowLikes['autor_post'];
                         $tituloLikedPost = $rowLikes['titulo_post'];
                         $contenidoLikedPost = $rowLikes['contenido_post'];
                         $fotoLikedPost = $rowLikes['foto_post'];
                         $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
                         $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion'];
+                        $fotoPerfilLikedPost = $rowLikes['fotografia'];
                 ?>
                 <div class="likes-card" onclick="window.location.href ='view-post.php?id=<?php echo $idLikedPost; ?>'">
-                    <h2><?php echo $autorLikedPost; ?></h2>
-                    <h3><?php echo $tituloLikedPost; ?></h3>
+                    <div class="likes-card-top">
+                        <div class="wrapper-main-profile-items">
+                            <div class="imgBox">
+                                <img src="<?php echo $fotoPerfilLikedPost; ?>" alt="">
+                            </div>
+                            <a href='profile.php?id=<?php echo $idAutorPost; ?>'" onclick="event.stopPropagation();"><?php echo $autorLikedPost; ?></a>
+                        </div>
+                        <div class="fecha"><?php echo $fechaPublicacionLikedPost; ?></div>
+                    </div>
+                    <h2><?php echo $tituloLikedPost; ?></h2>
                     <h3><?php echo $contenidoLikedPost; ?></h3>
                     <div class="<?php echo $hasImageLikedPost; ?>">
                         <img src="<?php echo $fotoLikedPost; ?>" alt="">
@@ -637,6 +647,7 @@
                         $fotoLikedPost = $rowLikes['foto_post'];
                         $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
                         $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion'];
+                        $fotoPerfilLikedPost = $rowLikes['fotografia'];
                 ?>
                 <div class="likes-card" onclick="window.location.href='view-post.php?id=<?php echo $idLikedPost; ?>'">
                     <div class="likes-card-top">

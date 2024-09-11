@@ -428,6 +428,14 @@ body main section {
     color: #007bff;
 }
 
+.post-card h3 {
+    font-size: 1.6rem;
+}
+
+.post-card .contenido {
+    font-size: 1.3rem;
+}
+
 .post-content {
     position: relative;
     display: none;
@@ -831,6 +839,7 @@ body main section {
     background-color: #0f0f11;
     padding: 30px 30px;
     border-radius: 10px;
+    gap: 10px;
 }
 
 .likes-card .likes-card-top {
@@ -844,24 +853,31 @@ body main section {
 
 .likes-card .likes-card-top > div {
     width: 50%;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .likes-card h2 {
     font-weight: 600;
 }
 
-.likes-card h2 a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.likes-card h2 a:hover {
-    color: #007bff;
-}
-
 .likes-card div, .likes-card h3 {
     font-weight: 400;
+}
+
+.likes-card .likes-card-top .fecha {
+    justify-content: flex-end;
+}
+
+.likes-card .likes-card-top .wrapper-main-profile-items a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.6em;
+}
+
+.likes-card .likes-card-top .wrapper-main-profile-items a:hover {
+    color: #007bff;
+    cursor: pointer;
 }
 
 .hidden {
