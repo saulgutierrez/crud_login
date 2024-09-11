@@ -49,9 +49,9 @@ $(document).ready(function() {
                                         // redireccionamos a la pantalla para gestionar nuestro perfil.
                                         // En caso contrario, mostramos el perfil del usuario correspondiente.
                                         if (user.liked_by == authUserId) {
-                                            userLink = '<a class="liked-usernames" href="profile.php?user='+user.usuario+'">'+ user.usuario +'</a>';
+                                            userLink = '<div class="imgBox">' + '<img src='+user.fotografia+'>' + '</div>' + '<a class="liked-usernames" href="profile.php?user='+user.usuario+'">'+ user.usuario +'</a>';
                                         } else {
-                                            userLink = '<a class="liked-usernames" href="profile.php?id=' + user.liked_by + '">' + user.usuario + '</a>';
+                                            userLink = '<div class="imgBox">' + '<img src='+user.fotografia+'>' + '</div>' + '<a class="liked-usernames" href="profile.php?id=' + user.liked_by + '">' + user.usuario + '</a>';
                                         }
                                         likesList.append('<li class="list-group-item">' + userLink + '</li>');
                                     });

@@ -254,6 +254,15 @@ p {
     gap: 20px;
 }
 
+.list-group-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
 @media screen and (max-width: 768px) {
     main > aside {
         display: block;
