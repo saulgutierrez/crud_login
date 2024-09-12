@@ -41,6 +41,7 @@
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../controllers/edit-post.js"></script>
     <link rel="stylesheet" href="../../public/css/edit-post.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.6.0/tinymce.min.js"></script>
     <title>Editar Post</title>
 </head>
 <body>
@@ -106,4 +107,16 @@
 <script src="../helpers/view-saved-image.js"></script>
 <script src="../helpers/image-preview-edit.js"></script>
 <script src="../helpers/custom-select.js"></script>
+<script>
+    tinymce.init({
+        selector:   '#post_content',
+        plugins: 'image link media table emoticons',
+        toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media emoticons',
+        width: 450,
+        height: 200,
+        resize: false,
+        skin: 'oxide-dark',
+        content_css: 'dark',
+    });
+</script>
 </html>

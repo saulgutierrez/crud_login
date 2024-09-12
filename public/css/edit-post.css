@@ -353,9 +353,9 @@ input[type="file"] {
       left: 0;
       right: 0;
       z-index: 99;
-    max-height: 200px;
-    overflow-y: scroll;
-    width: 180px;
+      max-height: 150px;
+      overflow-y: scroll;
+      width: 180px;
     }
     
     /* Hide the items when the select box is closed: */
