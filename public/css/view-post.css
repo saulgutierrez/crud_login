@@ -57,6 +57,12 @@ body main {
     color: #007bff;
 }
 
+.post-card h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .post-card .post-card-top {
     position: relative;
     display: flex;
@@ -241,6 +247,8 @@ button .imgBox img {
     border-radius: 10px;
     text-decoration: none;
     color: #fff;
+    font-weight: 400;
+    font-size: 1.4rem;
 }
 
 .like-button:hover {
@@ -249,7 +257,7 @@ button .imgBox img {
 }
 
 .liked-btn {
-    background-color: green;
+    background-color: #dc3545;
 }
 
 .imgBoxProfileImage {

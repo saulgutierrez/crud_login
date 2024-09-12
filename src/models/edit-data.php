@@ -131,6 +131,7 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
 }
 
 $conn->close();
+header('Content-Type: application/json');
 echo json_encode($response);
 exit;
 ?>

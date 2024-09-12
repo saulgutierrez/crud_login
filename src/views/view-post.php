@@ -52,6 +52,12 @@
             $fotoUsuario = $row3['fotografia'];
         }
     }
+
+    // Consulta para obtener el numero de "likes" de cada post
+    $likes_sql = "SELECT COUNT(*) as like_count FROM likes WHERE liked_id_post = '$id_post'";
+    $likes_result = $conn->query($likes_sql);
+    $likes_row = $likes_result->fetch_assoc();
+    $like_count = $likes_row['like_count'];
 ?>
 
 <!DOCTYPE html>
@@ -59,11 +65,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/view-post.css">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../public/css/view-post.css">
     <script src="../controllers/new-comment.js"></script>
     <script src="../controllers/like-comment.js"></script>
     <title><?php echo $titulo; ?></title>
+    <style>
+        .modal-dialog-centered {
+            display: flex;
+            align-items: center;
+            min-height: calc(100% - 1rem);
+        }
+
+        .modal-content, .modal-body, .list-group, .list-group-item {
+            color: #fff; /* Color del texto de los items de la lista */
+            background-color: #141417; /* Color de fondo de los items de la lista */
+        }
+
+        .modal-content {
+            height: auto;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
 </head>
 <body>
     <?php include "includes/header.php"; ?>
@@ -84,7 +110,11 @@
                 </h2>
                 <div><?php echo $fecha; ?></div>
             </div>
-            <h3><?php echo $titulo; ?></h3>
+            <h3>
+                <div><?php echo $titulo; ?></div>
+                <a href="#" class="like-count" data-id=" <?php echo $id_post; ?> " data-toggle="modal" data-target="#likesModal"> <?php echo $like_count; ?> </a>
+                <a class="like-button" data-id="<?php echo $id_post; ?>">Like</a>
+            </h3>
             <div><?php echo $contenido; ?></div>
             <img src="<?php echo $fotoPost; ?>" alt="">
             <form class="group-comment" id="form-comment" method="POST">
@@ -166,7 +196,30 @@
             }
         ?>
     </main>
+
+    <div class="modal fade" id="likesModal" tabindex="-1" role="dialog" aria-labelledby="likesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="likesModalLabel">Users who liked this post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul id="likesList" class="list-group"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="../helpers/comment-image-preview.js"></script>
     <script src="../helpers/get-current-time.js"></script>
+    <script src="../controllers/check-like-button-state-thread.js"></script>
+    <script>
+        // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
+        // y despues utilizarla para evaluar una respuesta con AJAX.
+        var authUserId = <?php echo json_encode($idAutorComentario); ?>
+    </script>
 </body>
 </html>

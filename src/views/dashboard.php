@@ -50,6 +50,12 @@
             color: #fff; /* Color del texto de los items de la lista */
             background-color: #141417; /* Color de fondo de los items de la lista */
         }
+
+        .modal-content {
+            height: auto;
+            max-height: 300px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
@@ -92,10 +98,10 @@
         </div>
     </div>
 
-        <script>
-            // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
-            // y despues utilizarla para evaluar una respuesta con AJAX.
-            var authUserId = <?php echo json_encode($id); ?>;
-        </script>
+    <script>
+        // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
+        // y despues utilizarla para evaluar una respuesta con AJAX.
+        var authUserId = <?php echo json_encode($id); ?>;
+    </script>
 </body>
 </html>
