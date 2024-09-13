@@ -72,24 +72,6 @@
     <script src="../controllers/new-comment.js"></script>
     <script src="../controllers/like-comment.js"></script>
     <title><?php echo $titulo; ?></title>
-    <style>
-        .modal-dialog-centered {
-            display: flex;
-            align-items: center;
-            min-height: calc(100% - 1rem);
-        }
-
-        .modal-content, .modal-body, .list-group, .list-group-item {
-            color: #fff; /* Color del texto de los items de la lista */
-            background-color: #141417; /* Color de fondo de los items de la lista */
-        }
-
-        .modal-content {
-            height: auto;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-    </style>
 </head>
 <body>
     <?php include "includes/header.php"; ?>

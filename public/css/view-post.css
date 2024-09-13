@@ -240,6 +240,14 @@ button .imgBox img {
     color: #007bff;
 }
 
+.like-count {
+    position: absolute;
+    right: 120px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 200;
+}
+
 .like-button {
     cursor: pointer;
     padding: 5px 10px 5px 10px;
@@ -277,4 +285,39 @@ button .imgBox img {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 1rem);
+}
+
+.modal-content, .modal-body, .list-group, .list-group-item {
+    color: #fff; /* Color del texto de los items de la lista */
+    background-color: #141417; /* Color de fondo de los items de la lista */
+    border: none;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list-group-item .liked-usernames {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.list-group-item .liked-usernames:hover {
+    color: #007bff;
+}
+
+.modal-content {
+    height: auto;
+    max-height: 300px;
+    overflow-y: auto;
 }
