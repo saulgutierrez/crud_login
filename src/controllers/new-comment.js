@@ -32,6 +32,7 @@ $(document).ready(function () {
                     var fechaComentario = res.fechaComentario;
                     var comentario = res.comentario;
                     var fotografiaAutor = res.imagenAutor;  // Imagen del autor
+                    var fileInput = res.imagenSubida;
 
                     // Crear el contenido HTML del comentario, incluyendo la imagen del autor
                     var commentHTML = 
@@ -47,7 +48,8 @@ $(document).ready(function () {
                         '<div class="comment-card-body">' +
                             '<div>' + comentario + '</div>' +
                             '<a class="like-button">Like</a>' +
-                        '</div>';
+                        '</div>' +
+                        '<img src="'+ fileInput +'">';
 
                     appendComment(commentHTML);
                 },

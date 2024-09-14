@@ -96,6 +96,7 @@ if (isset($_POST['comment-input'])) {
         $response['message'] = "Los datos se han guardado en la base de datos.";
         if ($file_uploaded) {
             $response['message'] .= " El archivo se ha subido correctamente.";
+            $response['imagenSubida'] = $target_file;
         }
 
         // Almacenamos las respuestas del servidor, para enviar al frontend y procesarlas

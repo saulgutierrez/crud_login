@@ -194,10 +194,9 @@
             </div>
         </div>
     </div>
-
+    <script src="../controllers/check-like-button-state-thread.js"></script>
     <script src="../helpers/comment-image-preview.js"></script>
     <script src="../helpers/get-current-time.js"></script>
-    <script src="../controllers/check-like-button-state-thread.js"></script>
     <script>
         // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
         // y despues utilizarla para evaluar una respuesta con AJAX.
