@@ -27,7 +27,7 @@ body {
     position: relative;
     background-color: #141417;
     width: 60%;
-    height: 80vh;
+    height: 100vh;
     display: grid;
     grid-template-columns: repeat(2, 250px);
     justify-content: center;

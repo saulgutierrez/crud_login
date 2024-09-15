@@ -27,11 +27,12 @@ form {
     width: 500px;
     height: 380px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     border-radius: 20px;
     color: #fff;
+    padding: 30px 0px;
 }
 
 form input[type=text], form input[type=password] {
@@ -134,12 +135,12 @@ form input[type=text]:focus, form input[type=password]:focus {
 .login-result {
     color: red;
     position: absolute;
-    top: 300px;
+    top: 230px;
 }
 
 .user-icon {
     position: absolute;
-    top: 118px;
+    top: 75px;
     left: 345px;
     width: 20px;
     height: 20px;
@@ -148,11 +149,21 @@ form input[type=text]:focus, form input[type=password]:focus {
 
 .pass-icon {
     position: absolute;
-    top: 200px;
+    top: 195px;
     left: 345px;
     width: 20px;
     height: 20px;
     filter: invert(1);
+}
+
+.reset-password-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.reset-password-link:hover {
+    cursor: pointer;
+    color: #0069d9;
 }
 
 @media screen and (max-width: 768px) {

@@ -32,6 +32,7 @@
                 <div>Registrarse</div>
             </a>
         </div>
+        <a href="../views/reset-password.php" class="reset-password-link">¿Olvidaste tu contraseña?</a>
         <div id="login-result" class="login-result"></div>
     </form>
 </body>

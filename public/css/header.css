@@ -173,7 +173,7 @@ header h2 a:hover {
     position: absolute;
     display: none;
     background-color: #0f0f11;
-    height: 80px;
+    height: 135px;
     width: 200px;
     right: 30%;
     top: 85%;
@@ -263,6 +263,46 @@ header h2 a:hover {
     height: 100%;
     object-fit: cover;
     filter: invert(1);
+}
+
+.recovery .imgBox {
+    position: relative;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.recovery .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.recovery .codes .codesContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.recovery .codes .codesContainer p {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 0px;
+}
+
+.recovery .codes .codesContainer p:hover {
+    cursor: auto;
+    background-color: #007bff;
+    color: #fff
 }
 
 .new-post-logo {

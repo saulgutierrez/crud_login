@@ -85,6 +85,15 @@
             </div>
             <div>Cerrar sesión</div>
         </a>
+        <a href="#" class="recovery" id="generateCodesLink">
+            <div class="imgBox">
+                <img src="../../public/svg/key.svg" alt="">
+            </div>
+            <div class="codes">
+                <div>Generar clave de recuperación</div>
+                <div class="codesContainer" id="codesContainer"></div>
+            </div>
+        </a>
     </div>
     
     <div class="notification-icon">
@@ -117,3 +126,4 @@
 </html>
 <script src="../helpers/header.js"></script>
 <script src="../controllers/search-users.js"></script>
+<script src="../controllers/generate-recovery-codes.js"></script>
