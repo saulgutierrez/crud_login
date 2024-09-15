@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $codigos = generarCodigosRecuperacion(5, 8);
 
             // Almacenar los códigos en la base de datos
-            almacenarCodigosEnDB($myId, $codigos, $conn);
+            almacenarCodigosEnDB($myId, $codigos, $conn, 1);
 
             // Enviar los códigos generados de vuelta al frontend
             echo json_encode(['success' => true, 'codes' => $codigos]);
