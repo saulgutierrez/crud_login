@@ -32,7 +32,7 @@ form {
     flex-direction: column;
     border-radius: 20px;
     color: #fff;
-    padding: 30px 0px;
+    padding: 65px 0px;
 }
 
 form input[type=text], form input[type=password] {
@@ -135,12 +135,12 @@ form input[type=text]:focus, form input[type=password]:focus {
 .login-result {
     color: red;
     position: absolute;
-    top: 230px;
+    top: 320px;
 }
 
 .user-icon {
     position: absolute;
-    top: 75px;
+    top: 100px;
     left: 345px;
     width: 20px;
     height: 20px;
@@ -149,7 +149,7 @@ form input[type=text]:focus, form input[type=password]:focus {
 
 .pass-icon {
     position: absolute;
-    top: 195px;
+    top: 190px;
     left: 345px;
     width: 20px;
     height: 20px;
