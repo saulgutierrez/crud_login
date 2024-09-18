@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 10-09-2024 a las 03:25:20
+-- Tiempo de generación: 18-09-2024 a las 04:55:48
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -84,6 +84,21 @@ INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `descripcion_categ
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `codigos_recuperacion`
+--
+
+CREATE TABLE `codigos_recuperacion` (
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `codigo` varchar(255) NOT NULL,
+  `usado` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `expiracion` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `comentarios`
 --
 
@@ -149,7 +164,7 @@ CREATE TABLE `post` (
   `id_autor` int(11) NOT NULL,
   `autor_post` varchar(255) NOT NULL,
   `titulo_post` varchar(255) NOT NULL,
-  `contenido_post` text NOT NULL,
+  `contenido_post` longtext NOT NULL,
   `foto_post` text NOT NULL,
   `fecha_publicacion` text NOT NULL,
   `id_categoria` int(11) NOT NULL
@@ -199,6 +214,13 @@ CREATE TABLE `usuarios` (
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
+
+--
+-- Indices de la tabla `codigos_recuperacion`
+--
+ALTER TABLE `codigos_recuperacion`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`);
 
 --
 -- Indices de la tabla `comentarios`
@@ -261,6 +283,12 @@ ALTER TABLE `categorias`
   MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
+-- AUTO_INCREMENT de la tabla `codigos_recuperacion`
+--
+ALTER TABLE `codigos_recuperacion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
@@ -270,7 +298,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `likes_comentarios`
 --
 ALTER TABLE `likes_comentarios`
-  MODIFY `id_like_comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_like_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
@@ -293,6 +321,12 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `codigos_recuperacion`
+--
+ALTER TABLE `codigos_recuperacion`
+  ADD CONSTRAINT `codigos_recuperacion_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `comentarios`
