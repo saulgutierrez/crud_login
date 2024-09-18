@@ -11,6 +11,9 @@
 <body>
     <?php include "../views/includes/navbar-forum.php"; ?>
     <form id="recoveryForm">
+        <img src="../../public/svg/user-fill.svg" alt="" class="user-icon">
+        <img src="../../public/svg/lock-fill.svg" alt="" class="pass-icon">
+        <img src="../../public/svg/password-input.svg" alt="" class="code-icon">
         <label for="userOrEmail">Usuario o Email</label>
         <input type="text" id="userOrEmail">
         <label for="recoveryCode">Código de recuperación</label>
@@ -18,8 +21,18 @@
         <label for="newPassword">Nueva Contraseña</label>
         <input type="password" id="newPassword">
         <div class="group-buttons">
-            <button type="submit">Confirmar</button>
-            <a href="login.php">Atrás</a>
+            <button type="submit">
+                <div class="imgBox">
+                    <img src="../../public/svg/confirm.svg" alt="">
+                </div>
+                <div>Confirmar</div>
+            </button>
+            <a href="login.php">
+                <div class="imgBox">
+                    <img src="../../public/svg/arrow-back.svg" alt="">
+                </div>
+                Atrás
+            </a>
         </div>
         <div id="message" class="message"></div>
     </form>
