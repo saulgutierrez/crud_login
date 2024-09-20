@@ -378,6 +378,8 @@ header h2 a:hover {
 .notification-container:hover {
     background-color: #141417;
     cursor: pointer;
+    text-decoration: none;
+    color: #fff
 }
 
 .hide {

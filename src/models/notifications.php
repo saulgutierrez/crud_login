@@ -38,9 +38,9 @@
             $mensaje = "A tu post le ha dado like el usuario $likeUsername";
             $tipo = "like";
 
-            $query = "INSERT INTO notificaciones(id, tipo_notificacion, mensaje, leida) VALUES(?, ?, ?, 0)";
+            $query = "INSERT INTO notificaciones(id, tipo_notificacion, post_id, mensaje, leida) VALUES(?, ?, ?, ?, 0)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('iss', $idUser, $tipo, $mensaje);
+            $stmt->bind_param('isis', $idUser, $tipo, $post_id, $mensaje);
             $stmt->execute();
         }
     }
@@ -78,9 +78,9 @@
             $mensaje = "Han comentado en tu post el usuario $commentFollowUsername";
             $tipo = "comentario";
 
-            $query = "INSERT INTO notificaciones(id, tipo_notificacion, mensaje, leida) VALUES(?, ?, ?, 0)";
+            $query = "INSERT INTO notificaciones(id, tipo_notificacion, post_id, mensaje, leida) VALUES(?, ?, ?, ?, 0)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('iss', $idUser, $tipo, $mensaje);
+            $stmt->bind_param('isis', $idUser, $tipo, $post_id, $mensaje);
             $stmt->execute();
         }
     }

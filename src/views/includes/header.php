@@ -108,10 +108,10 @@
                 </div>";
             } else {
                 foreach ($notificaciones as $notificacion) {
-                    echo "<div class='notification-container'>
+                    echo "<a href='view-post.php?id={$notificacion['post_id']}' class='notification-container'>
                             <div>{$notificacion['mensaje']}</div>
                             <div>{$notificacion['fecha_notificacion']}</div>
-                        </div>";
+                        </a>";
                 }
             }
         ?>

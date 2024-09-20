@@ -90,6 +90,14 @@ main > .registros .post-card h3 {
     text-align: justify;
 }
 
+.text-content p {
+    padding: 0;
+}
+
+.text-content p:hover {
+    cursor: default;
+}
+
 main > .registros .post-card .imgBoxPost {
     position: relative;
     display: flex;

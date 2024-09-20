@@ -36,20 +36,28 @@ $(document).ready(function () {
 
                     // Crear el contenido HTML del comentario, incluyendo la imagen del autor
                     var commentHTML = 
-                        '<div class="comment-card-top">' +
-                            '<h2>' +
-                                '<div class="imgBoxProfileImage">' +
-                                    '<img src="' + fotografiaAutor + '" alt="">' +  // Añadir la imagen
-                                '</div>' +
-                                '<a href="profile.php?user='+ autorComentario +'" class="comment-user">' + autorComentario + '</a>' +
-                            '</h2>' +
-                            '<div>' + fechaComentario  + '</div>' +
-                        '</div>' + 
-                        '<div class="comment-card-body">' +
-                            '<div>' + comentario + '</div>' +
-                            '<a class="like-button">Like</a>' +
-                        '</div>' +
-                        '<img src="'+ fileInput +'">';
+                    '<div class="comment-card-top">' +
+                        '<h2>' +
+                            '<div class="imgBoxProfileImage">' +
+                                '<img src="' + fotografiaAutor + '" alt="">' +  // Añadir la imagen del autor
+                            '</div>' +
+                            '<a href="profile.php?user='+ autorComentario +'" class="comment-user">' + autorComentario + '</a>' +
+                        '</h2>' +
+                        '<div>' + fechaComentario  + '</div>' +
+                    '</div>' + 
+                    '<div class="comment-card-body">' +
+                        '<div>' + comentario + '</div>' +
+                        '<a class="like-button">Like</a>' +
+                    '</div>';
+
+                // Verificar si se ha subido una imagen
+                if (fileInput) {
+                    commentHTML += '<img src="' + fileInput + '" alt="Imagen adjunta">';
+                }
+
+                // Añadir el comentario al contenedor dinámicamente
+                appendComment(commentHTML);
+
 
                     appendComment(commentHTML);
                 },
