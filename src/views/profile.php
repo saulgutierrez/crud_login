@@ -651,8 +651,13 @@
                 ?>
                 <div class="likes-card" onclick="window.location.href='view-post.php?id=<?php echo $idLikedPost; ?>'">
                     <div class="likes-card-top">
-                        <h2><?php echo $autorLikedPost; ?></h2>
-                        <div><?php echo $fechaPublicacionLikedPost; ?></div>
+                        <div class="wrapper-main-profile-items">
+                            <div class="imgBox">
+                                <img src="<?php echo $fotoPerfilLikedPost; ?>" alt="">
+                            </div>
+                            <h2><?php echo $autorLikedPost; ?></h2>
+                        </div>
+                        <div class="fecha"><?php echo $fechaPublicacionLikedPost; ?></div>
                     </div>
                     <div><?php echo $contenidoLikedPost; ?></div>
                     <div class="<?php echo $hasImageLikedPost; ?>">
