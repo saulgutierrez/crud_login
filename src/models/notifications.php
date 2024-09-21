@@ -102,14 +102,3 @@
 
         return $notificaciones;
     }
-
-    // Funcion para marcar una notificacion como leida
-    function marcar_notificacion_como_leida($notificacion_id) {
-        global $conn;
-
-        $query = "UPDATE notificaciones SET leida = 1 WHERE id = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $notificacion_id);
-        $stmt->execute();
-    }
-?>

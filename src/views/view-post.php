@@ -58,6 +58,16 @@
     $likes_result = $conn->query($likes_sql);
     $likes_row = $likes_result->fetch_assoc();
     $like_count = $likes_row['like_count'];
+
+    // Si venimos al post desde una notificacion, la marcamos como leido en la base de datos
+    if (isset($_GET['notif_id'])) {
+        $notif_id = $_GET['notif_id'];
+
+        $sqlNotif = "UPDATE notificaciones SET leida = 1 WHERE id_notificacion = $notif_id";
+        mysqli_query($conn, $sqlNotif);
+    } else {
+        echo "El post no fue encontrado";
+    }
 ?>
 
 <!DOCTYPE html>
