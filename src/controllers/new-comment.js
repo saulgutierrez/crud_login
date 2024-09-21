@@ -57,9 +57,6 @@ $(document).ready(function () {
 
                 // Añadir el comentario al contenedor dinámicamente
                 appendComment(commentHTML);
-
-
-                    appendComment(commentHTML);
                 },
                 error       :   function (jqXHR, textStatus, errorThrown) {
                     alert("Error al insertar item:" + textStatus, jqXHR, errorThrown);

@@ -65,8 +65,6 @@
 
         $sqlNotif = "UPDATE notificaciones SET leida = 1 WHERE id_notificacion = $notif_id";
         mysqli_query($conn, $sqlNotif);
-    } else {
-        echo "El post no fue encontrado";
     }
 ?>
 

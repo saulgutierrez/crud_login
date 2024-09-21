@@ -1,8 +1,25 @@
 <?php
     require('../../config/connection.php');
+    require('../models/session.php');
+
+    if (!isset($_SESSION)) {
+        session_start();
+    }
 
     if (isset($_GET['query'])) {
         $searchQuery = $_GET['query'];
+
+        if (!isset($_SESSION['user'])) {
+            header('Location: ../index.php');
+            exit();
+        }
+
+        $user = $_SESSION['user'];
+
+        $sql = "SELECT id FROM usuarios WHERE usuario = '$user'";
+        $getUserIdQuery = $conn->query($sql);
+        $getUserIdRow = $getUserIdQuery->fetch_assoc();
+        $getUserId = $getUserIdRow['id'];
 
         // Evitar inyeccion SQL
         $searchQuery = htmlspecialchars($searchQuery);
@@ -22,7 +39,12 @@
                 echo "<div class='imgBox'>";
                 echo "<img src='" . $row['fotografia'] . "'>";
                 echo "</div>";
-                echo "<a href='profile.php?id=" .$row['id']. "'>" .$row['usuario'] . "</a>";
+
+                if ($row['id'] == $getUserId) {
+                    echo "<a href='profile.php?user=".$row['usuario']."'>" .$row['usuario']. "</a>";
+                } else {
+                    echo "<a href='profile.php?id=" .$row['id']. "'>" .$row['usuario'] . "</a>";
+                }
                 echo "</div>";
             }
         } else {
