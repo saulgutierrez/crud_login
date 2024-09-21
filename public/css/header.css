@@ -382,6 +382,16 @@ header h2 a:hover {
     color: #fff
 }
 
+/* Estilo para las notificaciones no leídas */
+.notificacion-no-leida {
+    border-left: 4px solid #007bff; /* Un borde de color azul o tu color de énfasis */
+}
+
+/* Estilo para las notificaciones leídas */
+.notificacion-leida {
+    border-left: 4px solid #141417;
+}
+
 .hide {
     display: none;
 }

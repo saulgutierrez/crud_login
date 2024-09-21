@@ -108,7 +108,10 @@
                 </div>";
             } else {
                 foreach ($notificaciones as $notificacion) {
-                    echo "<a href='view-post.php?id={$notificacion['post_id']}&notif_id={$notificacion['id_notificacion']}' class='notification-container'>
+                    // Determinar la clase según el estado de la notificación
+                    $claseLeida = $notificacion['leida'] ? 'notificacion-leida' : 'notificacion-no-leida';
+
+                    echo "<a href='view-post.php?id={$notificacion['post_id']}&notif_id={$notificacion['id_notificacion']}' class='notification-container $claseLeida'>
                             <div>{$notificacion['mensaje']}</div>
                             <div>{$notificacion['fecha_notificacion']}</div>
                         </a>";

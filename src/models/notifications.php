@@ -89,7 +89,7 @@
     function obtener_notificaciones($usuario_id) {
         global $conn;
 
-        $query = "SELECT * FROM notificaciones WHERE id = ? AND leida = 0 ORDER BY fecha_notificacion DESC";
+        $query = "SELECT * FROM notificaciones WHERE id = ? ORDER BY fecha_notificacion DESC";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $usuario_id);
         $stmt->execute();
