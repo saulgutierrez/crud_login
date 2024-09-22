@@ -63,7 +63,7 @@
                 </a>
             </li>
             <li class="hidden">
-                <a href="#">
+                <a href="../src/views/faq.php">
                     <div class="imgBox">
                         <img src="../public/svg/faq.svg" alt="">
                     </div>

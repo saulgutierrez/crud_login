@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li class="hidden">
-                <a href="#">
+                <a href="faq.php">
                     <div class="imgBox">
                         <img src="../../public/svg/faq.svg" alt="">
                     </div>
