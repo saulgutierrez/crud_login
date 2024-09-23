@@ -1,26 +1,26 @@
 $(document).ready(function () {
 
-    $('.like-button').each(function() {
+    $('.like-button-comment').each(function() {
         var id = $(this).data('id');
         getLikeCommentButtonState(this, id);
     });
 
-    $('.like-button').on('click', function(event) {
+    $('.like-button-comment').on('click', function(event) {
         var id = $(this).data('id');
         toggleLike(this, id);
     });
 
     function toggleLike(button, id) {   
-        var isLiked = $(button).hasClass('liked-btn');
+        var isLiked = $(button).hasClass('liked-btn-comment');
         $.ajax({
             type    :   "POST",
             url     :   "../models/toggle-like-comment.php",
             data    :   { id : id, action : isLiked ? 'unlike' : 'like' },
             success :   function(response) {
                 if (isLiked) {
-                    $(button).text('Like').removeClass('liked-btn');
+                    $(button).text('Like').removeClass('liked-btn-comment');
                 } else {
-                    $(button).text('Liked').addClass('liked-btn');
+                    $(button).text('Liked').addClass('liked-btn-comment');
                 }
             },  
             error   :   function(xhr, status, error) {
@@ -37,9 +37,9 @@ $(document).ready(function () {
             dataType    :   'json',
             success     :   function (response) {
                 if (response.status === 'liked') {
-                    $(button).text('Liked').addClass('liked-btn');
+                    $(button).text('Liked').addClass('liked-btn-comment');
                 } else {
-                    $(button).text('Like').removeClass('liked-btn');
+                    $(button).text('Like').removeClass('liked-btn-comment');
                 }
             },
             error : function (error) {

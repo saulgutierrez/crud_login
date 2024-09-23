@@ -78,7 +78,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../public/css/view-post.css">
     <script src="../controllers/new-comment.js"></script>
-    <script src="../controllers/like-comment.js"></script>
     <title><?php echo $titulo; ?></title>
 </head>
 <body>
@@ -177,7 +176,7 @@
             </div>
             <div class="comment-card-body">
                 <div><?php echo $comentario; ?></div>
-                <a class="like-button" data-id="<?php echo $comentarioId; ?>">Like</a>
+                <a class="like-button-comment" data-id="<?php echo $comentarioId; ?>">Like</a>
             </div>
             <img src="<?php echo $imagen; ?>" alt="">
         </div>
@@ -202,9 +201,10 @@
             </div>
         </div>
     </div>
-    <script src="../controllers/check-like-button-state-thread.js"></script>
     <script src="../helpers/comment-image-preview.js"></script>
     <script src="../helpers/get-current-time.js"></script>
+    <script src="../controllers/like-comment.js"></script>
+    <script src="../controllers/check-like-button-state-thread.js"></script>
     <script>
         // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
         // y despues utilizarla para evaluar una respuesta con AJAX.
