@@ -132,57 +132,71 @@
             </div>
         </div>
         <?php
-            $sqlComments = "SELECT c.*, u.fotografia 
-            FROM comentarios c 
-            JOIN usuarios u ON c.id_autor_comentario = u.id 
-            WHERE c.id_post = '$id_post' 
-            ORDER BY c.fecha_publicacion DESC";
-            $playQuery = $conn->query($sqlComments);
+        $sqlComments = "SELECT c.*, u.fotografia 
+                        FROM comentarios c 
+                        JOIN usuarios u ON c.id_autor_comentario = u.id 
+                        WHERE c.id_post = '$id_post' 
+                        ORDER BY c.fecha_publicacion DESC";
+        $playQuery = $conn->query($sqlComments);
 
-            $contador = 0;
-            if ($playQuery->num_rows > 0) {
-                while ($fila = $playQuery->fetch_assoc()) {
-                    $contador++;
-                    $postId = $fila['id_post'];
-                    $autorId = $fila['id_autor'];
-                    $comentarioId = $fila['id_comentario'];
-                    $idAutorComentarioArray = $fila['id_autor_comentario'];
-                    $autorComentario = $fila['autor_comentario'];
-                    $comentario = $fila['comentario'];
-                    $imagen = $fila['foto_comentario'];
-                    $fecha = $fila['fecha_publicacion'];
-                    $fotografiaAutorComentario = $fila['fotografia']; // Fotografía del usuario
+        $contador = 0;
+        if ($playQuery->num_rows > 0) {
+            while ($fila = $playQuery->fetch_assoc()) {
+                $contador++;
+                $postId = $fila['id_post'];
+                $autorId = $fila['id_autor'];
+                $comentarioId = $fila['id_comentario'];
+                $idAutorComentarioArray = $fila['id_autor_comentario'];
+                $autorComentario = $fila['autor_comentario'];
+                $comentario = $fila['comentario'];
+                $imagen = $fila['foto_comentario'];
+                $fecha = $fila['fecha_publicacion'];
+                $fotografiaAutorComentario = $fila['fotografia']; // Fotografía del usuario
+
+                // Consulta para contar los likes de este comentario
+                $likes_comments_sql = "SELECT COUNT(*) as likes_count_comment FROM likes_comentarios WHERE id_comentario = '$comentarioId'";
+                $likes_comments_result = $conn->query($likes_comments_sql);
+                $like_count_comment = 0;
+                if ($likes_comments_result) {
+                    $likes_comments_row = $likes_comments_result->fetch_assoc();
+                    $like_count_comment = $likes_comments_row['likes_count_comment'];
+                }
         ?>
 
-        <div class="post-card comment">
-            <div class="comment-card-top">
-                <?php
-                    // Evaluamos si el autor de cada comentario corresponde con el id del autor que tiene la sesión
-                    // iniciada o no, para mostrar la pantalla que corresponde.
-                    $redirect;
-                    if ($idAutorComentarioArray == $idAutorComentario) {
-                        $redirect = "profile.php?user=$username";
-                    } else {
-                        $redirect = "profile.php?id=$idAutorComentarioArray";
-                    }
-                ?>
-                <h2>
-                    <div class="imgBoxProfileImage">
-                        <img src="<?php echo $fotografiaAutorComentario; ?>" alt="">
+                <div class="post-card comment">
+                    <div class="comment-card-top">
+                        <?php
+                        // Determinar si el autor del comentario es el usuario actual para redirigir al perfil adecuado
+                        $redirect;
+                        if ($idAutorComentarioArray == $idAutorComentario) {
+                            $redirect = "profile.php?user=$username";
+                        } else {
+                            $redirect = "profile.php?id=$idAutorComentarioArray";
+                        }
+                        ?>
+                        <h2>
+                            <div class="imgBoxProfileImage">
+                                <img src="<?php echo $fotografiaAutorComentario; ?>" alt="">
+                            </div>
+                            <a class="comment-user" href="<?php echo $redirect; ?>"><?php echo $autorComentario; ?></a>
+                        </h2>
+                        <div><?php echo $fecha; ?></div>
                     </div>
-                    <a class="comment-user" href="<?php echo $redirect; ?>"><?php echo $autorComentario; ?></a>
-                </h2>
-                <div><?php echo $fecha; ?></div>
-            </div>
-            <div class="comment-card-body">
-                <div><?php echo $comentario; ?></div>
-                <a class="like-button-comment" data-id="<?php echo $comentarioId; ?>">Like</a>
-            </div>
-            <img src="<?php echo $imagen; ?>" alt="">
-        </div>
+                    <div class="comment-card-body">
+                        <div><?php echo $comentario; ?></div>
+                        <!-- Mostrar el número de likes junto al botón de "Like" -->
+                        <a href="#" class="like-count" data-id="<?php echo $comentarioId; ?>" data-toggle="modal" data-target="#likesModal">
+                            <?php echo $like_count_comment; ?> Likes
+                        </a>
+                        <a class="like-button-comment" data-id="<?php echo $comentarioId; ?>">Like</a>
+                    </div>
+                    <?php if ($imagen) { ?>
+                        <img src="<?php echo $imagen; ?>" alt="">
+                    <?php } ?>
+                </div>
         <?php
-                }
             }
+        }
         ?>
     </main>
 
