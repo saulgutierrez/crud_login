@@ -185,7 +185,7 @@
                     <div class="comment-card-body">
                         <div><?php echo $comentario; ?></div>
                         <!-- Mostrar el número de likes junto al botón de "Like" -->
-                        <a href="#" class="like-count" data-id="<?php echo $comentarioId; ?>" data-toggle="modal" data-target="#likesModal">
+                        <a href="#" class="like-count-comment" data-id="<?php echo $comentarioId; ?>" data-toggle="modal" data-target="#likesModal">
                             <?php echo $like_count_comment; ?> Likes
                         </a>
                         <a class="like-button-comment" data-id="<?php echo $comentarioId; ?>">Like</a>
@@ -204,7 +204,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="likesModalLabel">Users who liked this post</h5>
+                    <h5 class="modal-title" id="likesModalLabel">Likes</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

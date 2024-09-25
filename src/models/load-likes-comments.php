@@ -1,9 +1,9 @@
 <?php
     require('../../config/connection.php');
 
-    $id_post = $_POST['id_post'];
+    $id_comentario = $_POST['id_comentario'];
 
-    $sql = "SELECT usuarios.usuario, usuarios.fotografia, liked_by FROM likes JOIN usuarios ON likes.liked_by = usuarios.id WHERE likes.liked_id_post = $id_post;";
+    $sql = "SELECT usuarios.usuario, usuarios.fotografia, likes_comentarios.id FROM likes_comentarios JOIN usuarios ON likes_comentarios.id = usuarios.id WHERE likes_comentarios.id_comentario = $id_comentario";
     $result = $conn->query($sql);
 
     $users = array();

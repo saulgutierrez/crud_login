@@ -10,6 +10,48 @@ $(document).ready(function () {
         toggleLike(this, id);
     });
 
+     // Evento para mostrar los likes cuando se hace click en el contador
+     $('.like-count-comment').on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var id_comentario = $(this).data('id');
+
+        $.ajax({
+            type    :   "POST",
+            url     :   "../models/load-likes-comments.php",
+            data    :   { id_comentario: id_comentario },
+            success :   function(response) {
+                var likesList = $('#likesList');
+                likesList.empty();
+
+                try {
+                    var users = JSON.parse(response);
+                    if (Array.isArray(users)) {
+                        users.forEach(function(user) {
+                            var userLink;
+                            if (user.id == authUserId) {
+                                userLink = '<div class="imgBox">' + '<img src='+user.fotografia+'>' + '</div>' + '<a class="liked-usernames" href="profile.php?user='+user.usuario+'">'+ user.usuario +'</a>';
+                            } else {
+                                userLink = '<div class="imgBox">' + '<img src='+user.fotografia+'>' + '</div>' + '<a class="liked-usernames" href="profile.php?id=' + user.id + '">' + user.usuario + '</a>';
+                            }
+                            likesList.append('<li class="list-group-item">' + userLink + '</li>');
+                        });
+                    } else {
+                        likesList.append('<li class="list-group-item">No likes yet</li>');
+                    }
+                } catch (e) {
+                    likesList.append('<li class="list-group-item">Error loading likes</li>');
+                    console.log(e);
+                }
+
+                $('#likesModal').modal('show');
+            },
+            error: function(xhr, status, error) {
+                alert('Error loading likes: ' + error);
+            }
+        });
+    });
+
     function toggleLike(button, id) {   
         var isLiked = $(button).hasClass('liked-btn-comment');
         $.ajax({
