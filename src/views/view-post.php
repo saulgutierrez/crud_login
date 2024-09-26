@@ -1,6 +1,9 @@
 <?php
     require('../../config/connection.php');
     require('../models/session.php');
+    require '../../public/libs/Carbon/autoload.php';
+
+    use Carbon\Carbon;
 
     if (!isset($_SESSION)) {
         session_start();
@@ -26,7 +29,7 @@
             $titulo = $row['titulo_post'];
             $contenido = $row['contenido_post'];
             $fotoPost = $row['foto_post'];
-            $fecha = $row['fecha_publicacion'];
+            $fecha = Carbon::parse($row['fecha_publicacion']);
         }
     }
 
@@ -97,7 +100,7 @@
                         <?php echo $autor; ?>
                     </a>
                 </h2>
-                <div><?php echo $fecha; ?></div>
+                <div><?php echo $fecha->diffForHumans(); ?></div>
             </div>
             <h3>
                 <div><?php echo $titulo; ?></div>
@@ -150,7 +153,7 @@
                 $autorComentario = $fila['autor_comentario'];
                 $comentario = $fila['comentario'];
                 $imagen = $fila['foto_comentario'];
-                $fecha = $fila['fecha_publicacion'];
+                $fecha = Carbon::parse($fila['fecha_publicacion']);
                 $fotografiaAutorComentario = $fila['fotografia']; // Fotografía del usuario
 
                 // Consulta para contar los likes de este comentario
@@ -180,7 +183,7 @@
                             </div>
                             <a class="comment-user" href="<?php echo $redirect; ?>"><?php echo $autorComentario; ?></a>
                         </h2>
-                        <div><?php echo $fecha; ?></div>
+                        <div><?php echo $fecha->diffForHumans(); ?></div>
                     </div>
                     <div class="comment-card-body">
                         <div><?php echo $comentario; ?></div>

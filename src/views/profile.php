@@ -1,6 +1,9 @@
 <?php
     require('../../config/connection.php');
     require('../models/session.php');
+    require '../../public/libs/Carbon/autoload.php';
+
+    use Carbon\Carbon;
 
     // Estamos viendo el perfil de otro usuario
     if (isset($_GET['id'])) {
@@ -337,7 +340,7 @@
                         $contenido = $row['contenido_post'];
                         $foto = $row['foto_post'];
                         $hasImage = !empty($foto) ? 'imgBoxContent' : 'noImage';
-                        $fecha = $row['fecha_publicacion'];
+                        $fecha = Carbon::parse($row['fecha_publicacion']);
                     ?>
                     <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
                         <div class="square-menu-perfil"></div>
@@ -349,7 +352,7 @@
                                 </div>
                                 <h2><?php echo $autor; ?></h2>
                             </div>
-                            <div><?php echo $fecha; ?></div>
+                            <div><?php echo $fecha->diffForHumans(); ?></div>
                         </div>
                         <h3><?php echo $titulo; ?></h3>
                         <div class="contenido"><?php echo $contenido; ?></div>
@@ -421,7 +424,7 @@
                         $comentarioItem = $rowComments['comentario'];
                         $fotoComentario = $rowComments['foto_comentario'];
                         $hasImageComment = !empty($fotoComentario) ? 'imgBoxContent' : 'noImage';
-                        $fecha = $rowComments['fecha_publicacion'];
+                        $fecha = Carbon::parse($rowComments['fecha_publicacion']);
                 ?>
                 <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">
                     <div class="square-menu-perfil-comments"></div>
@@ -437,7 +440,7 @@
                             </div>
                             <h2><?php echo $autorComentarioItem; ?></h2>
                         </div>
-                        <div class="fecha"><?php echo $fecha; ?></div>
+                        <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
                     </div>
                     <div><?php echo $comentarioItem; ?></div>
                     <div class="<?php echo $hasImageComment; ?>">
@@ -612,7 +615,7 @@
                         $contenidoLikedPost = $rowLikes['contenido_post'];
                         $fotoLikedPost = $rowLikes['foto_post'];
                         $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
-                        $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion'];
+                        $fechaPublicacionLikedPost = Carbon::parse($rowLikes['fecha_publicacion']);
                         $fotoPerfilLikedPost = $rowLikes['fotografia'];
                 ?>
                 <div class="likes-card" onclick="window.location.href ='view-post.php?id=<?php echo $idLikedPost; ?>'">
@@ -623,7 +626,7 @@
                             </div>
                             <a href='profile.php?id=<?php echo $idAutorPost; ?>'" onclick="event.stopPropagation();"><?php echo $autorLikedPost; ?></a>
                         </div>
-                        <div class="fecha"><?php echo $fechaPublicacionLikedPost; ?></div>
+                        <div class="fecha"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
                     </div>
                     <h2><?php echo $tituloLikedPost; ?></h2>
                     <h3><?php echo $contenidoLikedPost; ?></h3>
@@ -646,7 +649,7 @@
                         $contenidoLikedPost = $rowLikes['contenido_post'];
                         $fotoLikedPost = $rowLikes['foto_post'];
                         $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
-                        $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion'];
+                        $fechaPublicacionLikedPost = Carbon::parse($rowLikes['fecha_publicacion']);
                         $fotoPerfilLikedPost = $rowLikes['fotografia'];
                 ?>
                 <div class="likes-card" onclick="window.location.href='view-post.php?id=<?php echo $idLikedPost; ?>'">
@@ -657,7 +660,7 @@
                             </div>
                             <h2><?php echo $autorLikedPost; ?></h2>
                         </div>
-                        <div class="fecha"><?php echo $fechaPublicacionLikedPost; ?></div>
+                        <div class="fecha"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
                     </div>
                     <div><?php echo $contenidoLikedPost; ?></div>
                     <div class="<?php echo $hasImageLikedPost; ?>">

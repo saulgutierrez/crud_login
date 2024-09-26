@@ -1,6 +1,10 @@
 <?php
     require('../../config/connection.php');
     require('../models/session.php');
+    require '../../public/libs/Carbon/autoload.php';
+
+    use Carbon\Carbon;
+
     # Si no existe varible de sesion, quiere decir que el usuario no se ha autenticado
     # Negamos el acceso
     if (!isset($_SESSION['user'])) {
@@ -32,7 +36,7 @@ if ($result->num_rows > 0) {
         $contenido = $row['contenido_post'];
         $foto = $row['foto_post'];
         $hasImage = !empty($foto) ? 'imgBoxPost' : 'noImage';
-        $fecha = $row['fecha_publicacion'];
+        $fecha = Carbon::parse($row['fecha_publicacion']);
         $foto_perfil = $row['fotografia'];
 
         // Consulta para obtener el numero de "likes" de cada post
@@ -50,7 +54,7 @@ if ($result->num_rows > 0) {
         echo '<div class="imgBoxProfileImage"><img src="'. $foto_perfil .'"></div>';
         echo '<h2><a href="profile.php?id=' . $id . '" onclick="event.stopPropagation();">' . $autor . '</a></h2>';
         echo '</div>';
-        echo '<div>' . $fecha . '</div>';
+        echo '<div>' . $fecha->diffForHumans() . '</div>';
         echo '<a class="like-button" data-id="'.$id_post.'">Like</a>';
         echo '<a href="#" class="like-count" data-id="'.$id_post.'" data-toggle="modal" data-target="#likesModal">'.$like_count.'</a>';
         echo '</div>';
