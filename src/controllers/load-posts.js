@@ -24,6 +24,16 @@ $(document).ready(function() {
                     toggleLike(this, id);
                 });
 
+                // Evento hover para mostrar y ocultar la fecha formateada
+                $('.fecha').hover(function() {
+                    // Mostrar fecha formateada al pasar el ratón
+                    $(this).next('.fecha-formateada').show();
+                }, function() {
+                    // Ocultar fecha formateada al quitar el ratón
+                    $(this).next('.fecha-formateada').hide();
+                });
+
+                // Adjuntar evento a los contadores de likes
                 $('.like-count').on('click', function(event) {
                     event.preventDefault();
                     event.stopPropagation();
@@ -44,10 +54,6 @@ $(document).ready(function() {
                                 if (Array.isArray(users)) {
                                     users.forEach(function(user) {
                                         var userLink;
-                                        // Usamos la variable pasada desde PHP, que corresponde a nuestro id para evaluar:
-                                        // Si nuestro id, es igual al id del campo liked_by de la tabla de likes,
-                                        // redireccionamos a la pantalla para gestionar nuestro perfil.
-                                        // En caso contrario, mostramos el perfil del usuario correspondiente.
                                         if (user.liked_by == authUserId) {
                                             userLink = '<div class="imgBox">' + '<img src='+user.fotografia+'>' + '</div>' + '<a class="liked-usernames" href="profile.php?user='+user.usuario+'">'+ user.usuario +'</a>';
                                         } else {
@@ -119,9 +125,7 @@ $(document).ready(function() {
     $('#category-menu').on('click', 'summary a', function(e) {
         e.preventDefault();
         var category = $(this).data('category');
-        // Eliminar la clase a la etiqueta <a> seleccionada
         $('#category-menu a').removeClass('selected-category');
-        // Agregar la clase a la etiqueta a seleccionada
         $(this).addClass('selected-category');
         loadPosts(category);
     });

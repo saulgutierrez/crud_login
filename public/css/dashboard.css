@@ -271,6 +271,29 @@ p {
     font-weight: 600;
 }
 
+.fecha-formateada {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #cacacb;
+    color: #0f0f11;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.fecha {
+    cursor: pointer;
+}
+
+.fecha:hover {
+    text-decoration: underline;
+}
+
+.visible {
+    display: flex;
+}
+
 @media screen and (max-width: 768px) {
     main > aside {
         display: block;
