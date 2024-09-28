@@ -4,6 +4,7 @@
     require '../../public/libs/Carbon/autoload.php';
 
     use Carbon\Carbon;
+    Carbon::setLocale('es');
 
     if (!isset($_SESSION)) {
         session_start();
@@ -30,6 +31,7 @@
             $contenido = $row['contenido_post'];
             $fotoPost = $row['foto_post'];
             $fecha = Carbon::parse($row['fecha_publicacion']);
+            $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
         }
     }
 
@@ -100,7 +102,8 @@
                         <?php echo $autor; ?>
                     </a>
                 </h2>
-                <div><?php echo $fecha->diffForHumans(); ?></div>
+                <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
+                <div class="fecha-formateada"><?php echo $fechaFormateada; ?></div>
             </div>
             <h3>
                 <div><?php echo $titulo; ?></div>
@@ -154,6 +157,7 @@
                 $comentario = $fila['comentario'];
                 $imagen = $fila['foto_comentario'];
                 $fecha = Carbon::parse($fila['fecha_publicacion']);
+                $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
                 $fotografiaAutorComentario = $fila['fotografia']; // Fotografía del usuario
 
                 // Consulta para contar los likes de este comentario
@@ -183,7 +187,8 @@
                             </div>
                             <a class="comment-user" href="<?php echo $redirect; ?>"><?php echo $autorComentario; ?></a>
                         </h2>
-                        <div><?php echo $fecha->diffForHumans(); ?></div>
+                        <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
+                        <div class="fecha-formateada"><?php echo $fechaFormateada; ?></div>
                     </div>
                     <div class="comment-card-body">
                         <div><?php echo $comentario; ?></div>
@@ -222,6 +227,7 @@
     <script src="../helpers/get-current-time.js"></script>
     <script src="../controllers/like-comment.js"></script>
     <script src="../controllers/check-like-button-state-thread.js"></script>
+    <script src="../helpers/view-full-date.js"></script>
     <script>
         // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
         // y despues utilizarla para evaluar una respuesta con AJAX.

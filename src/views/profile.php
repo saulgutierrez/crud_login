@@ -4,6 +4,7 @@
     require '../../public/libs/Carbon/autoload.php';
 
     use Carbon\Carbon;
+    Carbon::setLocale('es');
 
     // Estamos viendo el perfil de otro usuario
     if (isset($_GET['id'])) {
@@ -13,7 +14,7 @@
         $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
 
         // Obtener todos los posteos del usuario
-        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE id_autor = '$id'";
+        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE id_autor = '$id' ORDER BY fecha_publicacion DESC";
         $result = $conn->query($sqlGetPosts);
 
         // Consulta para obtener el numero de posteos del usuario
@@ -36,7 +37,7 @@
             $rutaFotoPorDefecto = "../../public/img/profile-default.svg";
 
             // Consulta para obtener los comentarios del usuario
-            $sqlGetComments = "SELECT * FROM comentarios WHERE autor_comentario = '$nombreUsuario'";
+            $sqlGetComments = "SELECT * FROM comentarios WHERE autor_comentario = '$nombreUsuario' ORDER BY fecha_publicacion DESC";
             $queryGetComments = $conn->query($sqlGetComments);
 
             // Consulta para obtener el numero de comentarios del usuario
@@ -89,7 +90,7 @@
         $queryGetInfo = $conn->query($sqlGetInfo);
 
         // Obtenemos nuestros posteos
-        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post FROM post WHERE autor_post = '$user'";
+        $sqlGetPosts = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post FROM post WHERE autor_post = '$user' ORDER BY fecha_publicacion DESC";
         $result = $conn->query($sqlGetPosts);
 
         // Consulta para obtener el numero de posteos
@@ -99,7 +100,7 @@
         $post_count = $posts_count_row['post_count'];
 
         // Obtenemos nuestros comentarios
-        $sqlProfileComments = "SELECT * FROM comentarios WHERE autor_comentario = '$user'";
+        $sqlProfileComments = "SELECT * FROM comentarios WHERE autor_comentario = '$user' ORDER BY fecha_publicacion DESC";
         $queryGetComments = $conn->query($sqlProfileComments);
 
         // Consulta para obtener el numero de comentarios
@@ -135,7 +136,6 @@
         $followers_count_result = $conn->query($followers_count_sql);
         $followers_count_row = $followers_count_result->fetch_assoc();
         $followers_count = $followers_count_row['followers_count'];
-
 
         # Sentencias SQL para obtener los posts que he marcado como "Like", combinamos las filas de la tabla likes con la tabla post si la condición es verdadera
         # Ayuda a mostrar, el nombre del usuario que creo el post, el titulo del post, el contenido del post, la imagen asociada, y la fecha de publicacion
@@ -341,6 +341,7 @@
                         $foto = $row['foto_post'];
                         $hasImage = !empty($foto) ? 'imgBoxContent' : 'noImage';
                         $fecha = Carbon::parse($row['fecha_publicacion']);
+                        $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
                     ?>
                     <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
                         <div class="square-menu-perfil"></div>
@@ -352,7 +353,8 @@
                                 </div>
                                 <h2><?php echo $autor; ?></h2>
                             </div>
-                            <div><?php echo $fecha->diffForHumans(); ?></div>
+                            <div class="fecha" style="width: auto;"><?php echo $fecha->diffForHumans(); ?></div>
+                            <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
                         </div>
                         <h3><?php echo $titulo; ?></h3>
                         <div class="contenido"><?php echo $contenido; ?></div>
@@ -425,6 +427,7 @@
                         $fotoComentario = $rowComments['foto_comentario'];
                         $hasImageComment = !empty($fotoComentario) ? 'imgBoxContent' : 'noImage';
                         $fecha = Carbon::parse($rowComments['fecha_publicacion']);
+                        $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
                 ?>
                 <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">
                     <div class="square-menu-perfil-comments"></div>
@@ -440,7 +443,8 @@
                             </div>
                             <h2><?php echo $autorComentarioItem; ?></h2>
                         </div>
-                        <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
+                        <div class="fecha" style="width: auto;"><?php echo $fecha->diffForHumans(); ?></div>
+                        <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
                     </div>
                     <div><?php echo $comentarioItem; ?></div>
                     <div class="<?php echo $hasImageComment; ?>">
@@ -616,6 +620,7 @@
                         $fotoLikedPost = $rowLikes['foto_post'];
                         $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
                         $fechaPublicacionLikedPost = Carbon::parse($rowLikes['fecha_publicacion']);
+                        $fechaFormateada = $fechaPublicacionLikedPost->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
                         $fotoPerfilLikedPost = $rowLikes['fotografia'];
                 ?>
                 <div class="likes-card" onclick="window.location.href ='view-post.php?id=<?php echo $idLikedPost; ?>'">
@@ -626,7 +631,8 @@
                             </div>
                             <a href='profile.php?id=<?php echo $idAutorPost; ?>'" onclick="event.stopPropagation();"><?php echo $autorLikedPost; ?></a>
                         </div>
-                        <div class="fecha"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
+                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
+                        <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
                     </div>
                     <h2><?php echo $tituloLikedPost; ?></h2>
                     <h3><?php echo $contenidoLikedPost; ?></h3>
@@ -650,6 +656,7 @@
                         $fotoLikedPost = $rowLikes['foto_post'];
                         $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
                         $fechaPublicacionLikedPost = Carbon::parse($rowLikes['fecha_publicacion']);
+                        $fechaFormateada = $fechaPublicacionLikedPost->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
                         $fotoPerfilLikedPost = $rowLikes['fotografia'];
                 ?>
                 <div class="likes-card" onclick="window.location.href='view-post.php?id=<?php echo $idLikedPost; ?>'">
@@ -660,9 +667,11 @@
                             </div>
                             <h2><?php echo $autorLikedPost; ?></h2>
                         </div>
-                        <div class="fecha"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
+                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
+                        <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
                     </div>
-                    <div><?php echo $contenidoLikedPost; ?></div>
+                    <h2><?php echo $tituloLikedPost; ?></h2>
+                    <h3><?php echo $contenidoLikedPost; ?></div>
                     <div class="<?php echo $hasImageLikedPost; ?>">
                         <img src="<?php echo $fotoLikedPost; ?>" alt="">
                     </div>
@@ -680,6 +689,7 @@
     <script src="../controllers/delete-post.js"></script>
     <script src="../controllers/delete-comment.js"></script>
     <script src="../controllers/follow-user.js"></script>
+    <script src="../helpers/view-full-date.js"></script>
     <script type="module" src="../helpers/view-profile-image.js"></script>
 </body>
 </html>

@@ -899,3 +899,22 @@ body main section {
     height: 100vh; /* Abarcar todo el alto de la pantalla */
     z-index: 9999; /* Mantener la ventana emergente sobre otros elementos */
 }
+
+.fecha-formateada {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #cacacb;
+    color: #0f0f11;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.fecha {
+    cursor: pointer;
+}
+
+.fecha:hover {
+    text-decoration: underline;
+}
