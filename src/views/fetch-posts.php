@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
         echo '<div class="post-card-top">';
         echo '<div class="post-card-top-main-content">';
         echo '<div class="imgBoxProfileImage"><img src="'. $foto_perfil .'"></div>';
-        echo '<h2><a href="profile.php?id=' . $id . '" onclick="event.stopPropagation();">' . $autor . '</a></h2>';
+        echo '<h2><a href="profile.php?id=' . $id . '" data-id="' . $id . '" data-autor="' . $autor . '" data-foto="' . $foto_perfil . '" onclick="event.stopPropagation();">' . $autor . '</a></h2>';
         echo '</div>';
         echo '<div class="fecha">' . $fecha->diffForHumans() . '</div>';
         echo '<div class="fecha-formateada">' . $fechaFormateada . '</div>';
