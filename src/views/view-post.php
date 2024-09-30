@@ -79,6 +79,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
+    <script src="../controllers/get-follow-info-thread.js"></script>
+    <script src="../controllers/get-follow-info-comments.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../public/css/view-post.css">
@@ -98,7 +100,7 @@
                     <div class="imgBoxProfileImage">
                         <img src="<?php echo $fotoUsuario; ?>" alt="">
                     </div>
-                    <a href="profile.php?id=<?php echo $id_autor;?>">
+                    <a href="profile.php?id=<?php echo $id_autor;?>" data-id="<?php echo $id_autor; ?>" data-autor="<?php echo $autor; ?>" data-foto="<?php echo $fotoUsuario?>">
                         <?php echo $autor; ?>
                     </a>
                 </h2>
@@ -185,7 +187,7 @@
                             <div class="imgBoxProfileImage">
                                 <img src="<?php echo $fotografiaAutorComentario; ?>" alt="">
                             </div>
-                            <a class="comment-user" href="<?php echo $redirect; ?>"><?php echo $autorComentario; ?></a>
+                            <a class="comment-user" href="<?php echo $redirect; ?>" data-id="<?php echo $idAutorComentario; ?>" data-autor="<?php echo $autorComentario; ?>" data-foto="<?php echo $fotografiaAutorComentario; ?>"><?php echo $autorComentario; ?></a>
                         </h2>
                         <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
                         <div class="fecha-formateada"><?php echo $fechaFormateada; ?></div>

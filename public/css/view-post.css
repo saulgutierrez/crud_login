@@ -360,3 +360,69 @@ button .imgBox img {
 .fecha:hover {
     text-decoration: underline;
 }
+
+.info-popup {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    background-color: #141417;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 100000000000000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    height: 150px;
+    border-radius: 20px;
+}
+
+.follow-info-container {
+    display: flex;
+    gap: 50px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.follow-info-container .seguidores,
+.follow-info-container .siguiendo {
+    gap: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.seguidores div:nth-child(2),
+.siguiendo div:nth-child(2) {
+    font-weight: 700;
+}
+
+.post-card-top {
+    position: relative;
+}
+
+.post-card-top h2 a:hover + .info-popup {
+    display: block; /* Mostrar el popup al hacer hover */
+}
+
+.imgProfilePreview,
+.autorProfilePreview {
+    margin: 10px 10px;
+}
+
+.autorProfilePreview {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.4em;
+    text-decoration: none;
+}
+
+.autorProfilePreview:hover {
+    text-decoration: none;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.comment-card-top {
+    position: relative;
+}
+
+.comment-card-top h2 a:hover + .info-popup {
+    display: block; /* Mostrar el popup al hacer hover */
+}
