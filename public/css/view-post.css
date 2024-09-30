@@ -381,16 +381,21 @@ button .imgBox img {
     align-items: center;
     justify-content: center;
 }
+
 .follow-info-container .seguidores,
-.follow-info-container .siguiendo {
+.follow-info-container .siguiendo,
+.follow-info-container .post_count {
     gap: 10px;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column-reverse;
 }
 
 .seguidores div:nth-child(2),
-.siguiendo div:nth-child(2) {
-    font-weight: 700;
+.siguiendo div:nth-child(2),
+.post_count div:nth-child(2) {
+    font-weight: 900;
+    align-self: center;
+    font-size: 1.6em;
 }
 
 .post-card-top {
@@ -411,6 +416,9 @@ button .imgBox img {
     font-weight: 600;
     font-size: 1.4em;
     text-decoration: none;
+    position: absolute;
+    top: 20px;
+    left: 80px;
 }
 
 .autorProfilePreview:hover {

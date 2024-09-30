@@ -42,6 +42,10 @@ $(document).ready(function() {
                             <div>Siguiendo</div>
                             <div> ${data.seguidos}</div>
                         </div>
+                        <div class="post_count">
+                            <div>Posts</div>
+                            <div> ${data.posts_count} </div>
+                        </div>
                     </div>
                 `;
                 popup.append(seguidoresSeguidosHTML);
