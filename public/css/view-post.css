@@ -434,3 +434,19 @@ button .imgBox img {
 .comment-card-top h2 a:hover + .info-popup {
     display: block; /* Mostrar el popup al hacer hover */
 }
+
+.follow-btn {
+    background-color: #007bff;
+    padding: 10px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    z-index: 10000;
+}

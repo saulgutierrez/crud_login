@@ -50,6 +50,34 @@ $(document).ready(function() {
                 `;
                 popup.append(seguidoresSeguidosHTML);
 
+                // AJAX para obtener el estado "Seguir/Siguiendo"
+            $.ajax({
+                url:    '../models/get-follow-status.php',
+                type:   'POST',
+                data:   { id: userId },
+                success: function (response) {
+                    let data = JSON.parse(response);
+
+                    let followButtonText = data.status;
+
+                    if (followButtonText === 'following') {
+                        followButtonText = "Siguiendo";
+                    } else if (followButtonText === 'not_following') {
+                        followButtonText = 'Seguir';
+                    }
+
+                    console.log(followButtonText);
+
+                    // Agregar botón "Seguir/Siguiendo" al popup
+                    let followButtonHTML = `
+                        <button class="follow-btn" data-id="${userId}">
+                            ${followButtonText}
+                        </button>
+                    `;
+                    popup.append(followButtonHTML);
+                    }
+                });
+
                 // Ajustar la posición del popup cerca del enlace
                 popup.css({
                     display: 'block',
@@ -58,8 +86,6 @@ $(document).ready(function() {
                 });
 
                 clearTimeout(popupTimeout); // Limpiar cualquier timeout pendiente de ocultar
-
-                console.log(data);
             }.bind(this), // Necesitas bindear el contexto para acceder a $(this) correctamente dentro del success
             error: function() {
                 console.log("Error al recuperar la información de seguidores.");
@@ -86,4 +112,75 @@ $(document).ready(function() {
         clearTimeout(popupTimeout); // Cancelar el ocultamiento del popup cuando el cursor entra en el popup
     });
 
+    // Al hacer click sobre el boton "Seguir/Siguiendo"
+    $(document).on('click', '.follow-btn', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    
+        // Referencia del botón
+        let followButton = $(this);
+    
+        // Preparar los datos que se enviarán
+        var datosEnviados = {
+            'id': followButton.data('id')
+        };
+    
+        let btnText = followButton.text().trim();
+    
+        if (btnText === 'Seguir') {
+            datosEnviados['action'] = 'follow';
+        } else if (btnText === 'Dejar de seguir') {
+            datosEnviados['action'] = 'unfollow';
+        }
+    
+        // Llamada AJAX para cambiar el estado de "Seguir/Siguiendo"
+        $.ajax({
+            url: '../models/toggle-follow.php', // Archivo PHP para cambiar el estado
+            type: 'POST',
+            data: datosEnviados,
+            success: function(response) {   
+                try {
+                    let newText;
+                    if (response.status === 'followed') {
+                        // Cambiar el texto a "Siguiendo"
+                        newText = 'Siguiendo';
+                    } else if (response.status === 'unfollowed') {
+                        // Cambiar el texto a "Seguir"
+                        newText = 'Seguir';
+                    } else {
+                        alert('Error: ' + jsonResponse.message);
+                    }
+
+                    let newButtonHTML = `
+                        <button class="follow-btn" data-id="${followButton.data('id')}">
+                            ${newText}
+                        </button>
+                    `;
+
+                    followButton.replaceWith(newButtonHTML);
+                    console.log(newButtonHTML);
+                } catch (e) {
+                    console.log('Error parsing JSON response: ', e);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log('AJAX Error: ', status, error);
+            }
+        });
+    });
+    
+
+    $(document).on('mouseover', '.follow-btn', function (e) {
+        let followText = $(this).text().trim();
+
+        if (followText === "Siguiendo") {
+            $(this).text('Dejar de seguir');
+        }
+    });
+    
+    $(document).on('mouseout', '.follow-btn', function (e) {
+        if ($(this).text() === "Dejar de seguir") {
+            $(this).text('Siguiendo');
+        }
+    });    
 });
