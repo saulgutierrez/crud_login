@@ -187,7 +187,7 @@
                             <div class="imgBoxProfileImage">
                                 <img src="<?php echo $fotografiaAutorComentario; ?>" alt="">
                             </div>
-                            <a class="comment-user" href="<?php echo $redirect; ?>" data-id="<?php echo $idAutorComentario; ?>" data-autor="<?php echo $autorComentario; ?>" data-foto="<?php echo $fotografiaAutorComentario; ?>"><?php echo $autorComentario; ?></a>
+                            <a class="comment-user" href="<?php echo $redirect; ?>" data-id="<?php echo $idAutorComentarioArray; ?>" data-autor="<?php echo $autorComentario; ?>" data-foto="<?php echo $fotografiaAutorComentario; ?>"><?php echo $autorComentario; ?></a>
                         </h2>
                         <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
                         <div class="fecha-formateada"><?php echo $fechaFormateada; ?></div>

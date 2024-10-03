@@ -31,7 +31,13 @@ $(document).ready(function() {
                 // Agregar la información al popup sin reemplazar el contenido anterior
                 popup.empty(); // Vaciar el contenido antes de agregar nueva información
                 popup.append('<div class="imgBoxProfileImage imgProfilePreview"><img src="' + fotoPerfil + '" alt="Foto de perfil"></div>');
-                popup.append('<a class="autorProfilePreview" href="profile.php?id=' + userId + '">' + autor + '</a>');
+                let profileLink = '';
+                if (userId == authUserId) {
+                    profileLink = 'profile.php?user=' + autor;
+                } else {
+                    profileLink = 'profile.php?id=' + userId;
+                }
+                popup.append('<a class="autorProfilePreview" href="'+ profileLink +'">' + autor + '</a>');
                 let seguidoresSeguidosHTML = `
                     <div class="follow-info-container">
                         <div class="seguidores">
