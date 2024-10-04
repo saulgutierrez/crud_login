@@ -56,6 +56,42 @@ $(document).ready(function() {
                 `;
                 popup.append(seguidoresSeguidosHTML);
 
+                $.ajax({
+                    url:    '../models/get-follow-status.php',
+                    type:   'POST',
+                    data:   { id: userId },
+                    success: function (response) {
+                        let data = JSON.parse(response);
+    
+                        let followButtonText = data.status;
+    
+                        if (followButtonText === 'following') {
+                            followButtonText = "Siguiendo";
+                        } else if (followButtonText === 'not_following') {
+                            followButtonText = 'Seguir';
+                        }
+    
+                        // Verifica si el ID del usuario sobre el que se hace hover es diferente al ID del usuario logueado
+                        if (userId != authUserId) {
+                            // Agregar botón "Seguir/Siguiendo" al popup
+                            let followButtonHTML = `
+                                <button class="follow-btn" data-id="${userId}">
+                                    ${followButtonText}
+                                </button>
+                            `;
+                            popup.append(followButtonHTML);
+                        } else {
+                            // Agregar boton "Editar perfil" al popup si el creador del comentario es el usuario de la cuenta
+                            let followButtonHTML = `
+                                <a href='edit-profile.php?user=${autor}' class='edit-profile-btn'>
+                                    Editar perfil
+                                </a>
+                            `;
+                            popup.append(followButtonHTML);
+                        }
+                    }
+                });
+
                 // Ajustar la posición del popup cerca del enlace
                 popup.css({
                     display: 'block',

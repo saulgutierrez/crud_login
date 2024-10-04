@@ -74,7 +74,7 @@
         </div>
         <label for="file">Fotografía</label>
         <input type="file" name="file" id="file" accept="image/*">
-        <a href="profile.php?user=<?php echo $nombreUsuario; ?>" class="cancelBtn">
+        <a onclick="history.back()" class="cancelBtn">
             <div class="imgBox">
                 <img src="../../public/svg/cancel.svg" alt="">
             </div>
