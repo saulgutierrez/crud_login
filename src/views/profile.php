@@ -255,6 +255,12 @@
                     <div>Liked Posts</div> 
                     <div><?php echo $likes_count; ?></div>
                 </a>
+                <a class="photos" id="photos">
+                    <div class="imgBox">
+                        <img src="../../public/svg/photos.svg" alt="">
+                    </div>
+                    <div>Fotos</div>
+                </a>
             </div>
             <div class="info-perfil" id="info-perfil">
                 <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
