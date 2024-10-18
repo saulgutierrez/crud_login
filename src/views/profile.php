@@ -78,6 +78,16 @@
             $likes_count_row = $likes_count_result->fetch_assoc();
             $likes_count = $likes_count_row['likes_count'];
 
+            // Obtenemos las fotos de otros usuarios
+            $sqlGetPhotos = "SELECT p.foto_post AS fotografia FROM post p WHERE p.id_autor = '$idPerfil' AND p.foto_post <> '' UNION ALL SELECT c.foto_comentario AS fotografia FROM comentarios c WHERE c.id_autor_comentario = '$idPerfil' AND c.foto_comentario <> '';";
+            $queryGetPhotos = $conn->query($sqlGetPhotos);
+
+            // Consulta para obtener el numero de fotos que otros usuarios han subido en sus posteos y comentarios
+            $photos_count_sql = "SELECT COUNT(*) as photos_count FROM (SELECT p.id_autor FROM post p WHERE p.id_autor = '$idPerfil' AND p.foto_post <> '' UNION ALL SELECT c.id_autor_comentario FROM comentarios c WHERE c.id_autor_comentario = '$idPerfil' AND c.foto_comentario <> '') AS total;";
+            $photos_count_result = $conn->query($photos_count_sql);
+            $photos_count_row = $photos_count_result->fetch_assoc();
+            $photos_count = $photos_count_row['photos_count'];
+
         } else { # En caso de que no exista el perfil, redireccionamos a el dashboard principal
             header('Location: dashboard.php');
             exit();
@@ -148,6 +158,16 @@
          $likes_count_result = $conn->query($likes_count_sql);
          $likes_count_row = $likes_count_result->fetch_assoc();
          $likes_count = $likes_count_row['likes_count'];
+
+         // Obtenemos nuestras fotos
+         $sqlGetUserPhotos = "SELECT p.foto_post AS fotografia FROM post p WHERE p.id_autor = '$idUser' AND p.foto_post <> '' UNION ALL SELECT c.foto_comentario AS fotografia FROM comentarios c WHERE c.id_autor_comentario = '$idUser' AND c.foto_comentario <> '';";
+         $queryGetPhotos = $conn->query($sqlGetUserPhotos);
+
+         // Consulta para obtener el numero de fotos que el usuario ha subido en sus posteos y comentarios
+         $photos_count_sql = "SELECT COUNT(*) as photos_count FROM (SELECT p.id_autor FROM post p WHERE p.id_autor = '$idUser' AND p.foto_post <> '' UNION ALL SELECT c.id_autor_comentario FROM comentarios c WHERE c.id_autor_comentario = '$idUser' AND c.foto_comentario <> '') AS total;";
+         $photos_count_result = $conn->query($photos_count_sql);
+         $photos_count_row = $photos_count_result->fetch_assoc();
+         $photos_count = $photos_count_row['photos_count'];
 
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
@@ -260,6 +280,7 @@
                         <img src="../../public/svg/photos.svg" alt="">
                     </div>
                     <div>Fotos</div>
+                    <div><?php echo $photos_count; ?></div>
                 </a>
             </div>
             <div class="info-perfil" id="info-perfil">
@@ -677,7 +698,7 @@
                         <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
                     </div>
                     <h2><?php echo $tituloLikedPost; ?></h2>
-                    <h3><?php echo $contenidoLikedPost; ?></div>
+                    <h3><?php echo $contenidoLikedPost; ?></h3>
                     <div class="<?php echo $hasImageLikedPost; ?>">
                         <img src="<?php echo $fotoLikedPost; ?>" alt="">
                     </div>
@@ -687,6 +708,31 @@
                 }
                 ?>
             </div>
+
+            <div class="photos-content" id="photos-content">
+                <?php
+                // Ver fotos de mi perfil
+                $counterPhotos = 0;
+                if ($queryGetPhotos->num_rows > 0 && !isset($_GET['id'])) {
+                    while ($rowPhotos = $queryGetPhotos->fetch_assoc()) {
+                        $counterPhotos++;
+                        echo '<div class="photo-content">';
+                        echo '<img src="'.$rowPhotos['fotografia'].'">';
+                        echo '</div>';
+                    }
+                ?>
+                <?php
+                } else if ($queryGetPhotos->num_rows > 0 && isset($_GET['id'])) {
+                    while ($rowPhotos = $queryGetPhotos->fetch_assoc()) {
+                        $counterPhotos++;
+                        echo '<div class="photo-content">';
+                        echo '<img src="'.$rowPhotos['fotografia'].'">';
+                        echo '</div>';
+                    }
+                }
+                ?>
+            </div>
+
         </section>
     </main>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>

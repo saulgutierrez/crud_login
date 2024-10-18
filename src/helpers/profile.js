@@ -3,6 +3,7 @@ let posts = document.querySelector('.posts');
 let infoPerfil = document.querySelector('.info-perfil');
 let comments = document.querySelector('.comments');
 let following = document.querySelector('.following');
+let photos = document.querySelector('.photos');
 const followingScreen = document.querySelectorAll('.following-card');
 const followingContent = document.querySelectorAll('.following-content');
 const followers = document.querySelector('.followers');
@@ -21,9 +22,11 @@ const commentsContent = document.querySelectorAll('.comment-content');
 const menuIconComments = document.querySelectorAll('.menu-icon-comments');
 const menuComments = document.querySelectorAll('.menu-opciones-comments');
 const squareComments = document.querySelectorAll('.square-menu-perfil-comments')
+const photosContent = document.querySelector('.photos-content');
 
     info.style.backgroundColor = "hsl(211, 100%, 50%)"; 
     info.style.borderRadius = "20px";
+    photosContent.style.display = "none";
 
 info.addEventListener("click", () => {
     info.style.backgroundColor = "hsl(211, 100%, 50%)"; 
@@ -33,6 +36,7 @@ info.addEventListener("click", () => {
     following.style.backgroundColor = "hsl(240, 7%, 8%)";
     followers.style.backgroundColor = "hsl(240, 7%, 8%)";
     likes.style.backgroundColor = "hsl(240, 7%, 8%)";
+    photos.style.backgroundColor = "hsl(240, 7%, 8%)";
     infoPerfil.style.display = "flex";
     postsScreen.forEach(element => {
         element.style.display = "none";
@@ -64,6 +68,7 @@ info.addEventListener("click", () => {
     likesContent.forEach(element => {
         element.style.display = "none";
     });
+    photosContent.style.display = "none";
 });
 
 posts.addEventListener("click", () => {
@@ -74,6 +79,7 @@ posts.addEventListener("click", () => {
     following.style.backgroundColor = "hsl(240, 7%, 8%)";
     followers.style.backgroundColor = "hsl(240, 7%, 8%)";
     likes.style.backgroundColor = "hsl(240, 7%, 8%)";
+    photos.style.backgroundColor = "hsl(240, 7%, 8%)";
     infoPerfil.style.display = "none";
     postsScreen.forEach(element => {
         element.style.display = "flex";
@@ -105,6 +111,7 @@ posts.addEventListener("click", () => {
     likesContent.forEach(element => {
         element.style.display = "none";
     });
+    photosContent.style.display = "none";
 });
 
 comments.addEventListener("click", () => {
@@ -115,6 +122,7 @@ comments.addEventListener("click", () => {
     following.style.backgroundColor = "hsl(240, 7%, 8%)";
     followers.style.backgroundColor = "hsl(240, 7%, 8%)";
     likes.style.backgroundColor = "hsl(240, 7%, 8%)";
+    photos.style.backgroundColor = "hsl(240, 7%, 8%)";
     infoPerfil.style.display = "none";
     commentsScreen.forEach(element => {
         element.style.display = "flex";
@@ -146,6 +154,7 @@ comments.addEventListener("click", () => {
     likesContent.forEach(element => {
         element.style.display = "none";
     });
+    photosContent.style.display = "none";
 });
 
 following.addEventListener("click", () => {
@@ -156,6 +165,7 @@ following.addEventListener("click", () => {
     comments.style.backgroundColor = "hsl(240, 7%, 8%)";
     followers.style.backgroundColor = "hsl(240, 7%, 8%)";
     likes.style.backgroundColor = "hsl(240, 7%, 8%)";
+    photos.style.backgroundColor = "hsl(240, 7%, 8%)";
     infoPerfil.style.display = "none";
     followingScreen.forEach(element => {
         element.style.display = "flex";
@@ -187,6 +197,7 @@ following.addEventListener("click", () => {
     likesContent.forEach(element => {
         element.style.display = "none";
     });
+    photosContent.style.display = "none";
 });
 
 followers.addEventListener("click", () => {
@@ -197,6 +208,7 @@ followers.addEventListener("click", () => {
     comments.style.backgroundColor = "hsl(240, 7%, 8%)";
     following.style.backgroundColor = "hsl(240, 7%, 8%)";
     likes.style.backgroundColor = "hsl(240, 7%, 8%)";
+    photos.style.backgroundColor = "hsl(240, 7%, 8%)";
     infoPerfil.style.display = "none";
     followerScreen.forEach(element => {
         element.style.display = "flex";
@@ -228,6 +240,7 @@ followers.addEventListener("click", () => {
     likesContent.forEach(element => {
         element.style.display = "none";
     });
+    photosContent.style.display = "none";
 });
 
 likes.addEventListener('click', () => {
@@ -238,6 +251,7 @@ likes.addEventListener('click', () => {
     comments.style.backgroundColor = "hsl(240, 7%, 8%)";
     following.style.backgroundColor = "hsl(240, 7%, 8%)";
     followers.style.backgroundColor = "hsl(240, 7%, 8%)";
+    photos.style.backgroundColor = "hsl(240, 7%, 8%)";
     infoPerfil.style.display = "none";
     likesScreen.forEach(element => {
         element.style.display = "flex";
@@ -269,6 +283,7 @@ likes.addEventListener('click', () => {
     followerContent.forEach(element => {
         element.style.display = "none";
     });
+    photosContent.style.display = "none";
 });
 
 menuIcon.forEach((elemento, index) => {
@@ -366,4 +381,48 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
+
+photos.addEventListener('click', () => {
+    photos.style.backgroundColor = "hsl(211, 100%, 50%)";
+    photos.style.borderRadius = "20px";
+    info.style.backgroundColor = "hsl(240, 7%, 8%)";
+    posts.style.backgroundColor = "hsl(240, 7%, 8%)";
+    comments.style.backgroundColor = "hsl(240, 7%, 8%)";
+    following.style.backgroundColor = "hsl(240, 7%, 8%)";
+    followers.style.backgroundColor = "hsl(240, 7%, 8%)";
+    likes.style.backgroundColor = "hsl(240, 7%, 8%)";
+    infoPerfil.style.display = "none";
+    likesScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    likesContent.forEach(element => {
+        element.style.display = "none";
+    });
+    postsScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    postContent.forEach(element => {
+        element.style.display = "none";
+    });
+    commentsScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    commentsContent.forEach(element => {
+        element.style.display = "none";
+    });
+    followingScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    followingContent.forEach(element => {
+        element.style.display = "none";
+    });
+    followerScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    followerContent.forEach(element => {
+        element.style.display = "none";
+    });
+
+    photosContent.style.display = "flex";
 });

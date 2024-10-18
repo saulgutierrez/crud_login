@@ -316,6 +316,29 @@ body main section {
     justify-content: flex-end;
 }
 
+.menu-lateral .photos .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+}
+
+.menu-lateral .photos .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.menu-lateral .photos div:nth-child(3) {
+    justify-content: flex-end;
+}
+
 .menu-lateral a:hover {
     cursor: pointer;
 }
@@ -917,4 +940,30 @@ body main section {
 
 .fecha:hover {
     text-decoration: underline;
+}
+
+.photos-content {
+    position: relative;
+    gap: 10px;
+    margin-left: 30%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.photos-content .photo-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 250px;
+}
+
+.photos-content .photo-content img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
