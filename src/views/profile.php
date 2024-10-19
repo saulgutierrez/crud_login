@@ -714,14 +714,16 @@
                 // Ver fotos de mi perfil
                 $counterPhotos = 0;
                 if ($queryGetPhotos->num_rows > 0 && !isset($_GET['id'])) {
+                    echo '<div class="my-gallery">';
                     while ($rowPhotos = $queryGetPhotos->fetch_assoc()) {
-                        $counterPhotos++;
                         echo '<figure class="photo-content">';
-                        echo '<a href="'.$rowPhotos['fotografia'].'" data-pswp-width="500" data-pswp-height="500" class="pswp-link" onclick="return false;">';
-                        echo '<img src="'.$rowPhotos['fotografia'].'">';
+                        echo '<a href="'.$rowPhotos['fotografia'].'" data-pswp-width="500" data-pswp-height="500" class="pswp-link" onclick="return false;" data-index="'.$counterPhotos.'">';
+                        echo '<img src="'.$rowPhotos['fotografia'].'" alt="Photo '.$counterPhotos.'">';
                         echo '</a>';
                         echo '</figure>';
+                        $counterPhotos++;
                     }
+                    echo '</div>';
                 ?>
                 <?php
                 } else if ($queryGetPhotos->num_rows > 0 && isset($_GET['id'])) {
@@ -733,10 +735,35 @@
                     }
                 }
                 ?>
-            </div>
+                <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="pswp__bg"></div>
+                    <div class="pswp__scroll-wrap">
+                        <div class="pswp__container">
+                            <div class="pswp__item"></div>
+                            <div class="pswp__item"></div>
+                            <div class="pswp__item"></div>
+                        </div>
+                        <div class="pswp__ui pswp__ui--hidden">
+                            <div class="pswp__top-bar">
+                                <button class="pswp__button pswp__button--close" title="Cerrar (Esc)"></button>
+                                <button class="pswp__button pswp__button--share" title="Compartir"></button>
+                                <button class="pswp__button pswp__button--fs" title="Pantalla completa"></button>
+                                <button class="pswp__button pswp__button--zoom" title="Zoom"></button>
+                                <div class="pswp__counter"></div>
+                            </div>
 
+                            <!-- Flechas de navegación -->
+                            <button class="pswp__button pswp__button--arrow--left" title="Anterior (flecha izquierda)"></button>
+                            <button class="pswp__button pswp__button--arrow--right" title="Siguiente (flecha derecha)"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css" integrity="sha512-LFWtdAXHQuwUGH9cImO9blA3a3GfQNkpF2uRlhaOpSbDevNyK1rmAjs13mtpjvWyi+flP7zYWboqY+8Mkd42xA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/umd/photoswipe-lightbox.umd.min.js" integrity="sha512-D16CBrIrVF48W0Ou0ca3D65JFo/HaEAjTugBXeWS/JH+1KNu54ZOtHPccxJ7PQ44rTItUT6DSI6xNL+U34SuuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/umd/photoswipe.umd.min.js" integrity="sha512-BXwwGU7zCXVgpT2jpXnTbioT9q1Byf7NEXVxovTZPlNvelL2I/4LjOaoiB2a19L+g5za8RbkoJFH4fMPQcjFFw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../helpers/check-profile-or-user.js"></script>
     <script src="../helpers/profile.js"></script>
@@ -745,5 +772,6 @@
     <script src="../controllers/follow-user.js"></script>
     <script src="../helpers/view-full-date.js"></script>
     <script type="module" src="../helpers/view-profile-image.js"></script>
+    <script src="../helpers/photo-gallery.js"></script>
 </body>
 </html>
