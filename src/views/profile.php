@@ -752,7 +752,6 @@
                                 <div class="pswp__counter"></div>
                             </div>
 
-                            <!-- Flechas de navegación -->
                             <button class="pswp__button pswp__button--arrow--left" title="Anterior (flecha izquierda)"></button>
                             <button class="pswp__button pswp__button--arrow--right" title="Siguiente (flecha derecha)"></button>
                         </div>
@@ -773,5 +772,21 @@
     <script src="../helpers/view-full-date.js"></script>
     <script type="module" src="../helpers/view-profile-image.js"></script>
     <script src="../helpers/photo-gallery.js"></script>
+    <style>
+        .pswp--one-slide .pswp__button--arrow {
+            display: flex;
+            z-index: 10000000000000;
+        }
+
+        .pswp__button--zoom {
+            display: flex;
+            z-index: 10000000000000;
+        }
+
+        .pswp--one-slide .pswp__counter {
+            display: flex;
+            z-index: 10000000000000;
+        }
+    </style>
 </body>
 </html>
