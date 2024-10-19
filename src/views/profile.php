@@ -207,7 +207,7 @@
         <nav>
             <div>
                 <figure>
-                    <a href="<?php echo $sqlGetProfile['fotografia']; ?>" data-pswp-width="800" data-pswp-height="800" class="pswp-link" onclick="return false;">
+                    <a href="<?php echo $sqlGetProfile['fotografia']; ?>" data-pswp-width="500" data-pswp-height="500" class="pswp-link" onclick="return false;">
                         <img src="<?php echo $sqlGetProfile['fotografia']; ?>" alt="Foto de perfil">
                     </a>
                 </figure>
@@ -716,9 +716,11 @@
                 if ($queryGetPhotos->num_rows > 0 && !isset($_GET['id'])) {
                     while ($rowPhotos = $queryGetPhotos->fetch_assoc()) {
                         $counterPhotos++;
-                        echo '<div class="photo-content">';
+                        echo '<figure class="photo-content">';
+                        echo '<a href="'.$rowPhotos['fotografia'].'" data-pswp-width="500" data-pswp-height="500" class="pswp-link" onclick="return false;">';
                         echo '<img src="'.$rowPhotos['fotografia'].'">';
-                        echo '</div>';
+                        echo '</a>';
+                        echo '</figure>';
                     }
                 ?>
                 <?php

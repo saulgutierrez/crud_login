@@ -10,7 +10,7 @@ import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.3.0/dist/photoswi
         arrowPrev: false,
         arrowNext: false,
         close: false,
-        counter: false
+        counter: false,
     });
 
     // Prevenir la redirección al hacer clic en el enlace
