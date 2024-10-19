@@ -457,6 +457,7 @@ body main section {
 
 .post-card .contenido {
     font-size: 1.3rem;
+    flex-direction: column;
 }
 
 .post-content {

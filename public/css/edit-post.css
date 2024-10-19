@@ -168,6 +168,11 @@ form input[type=text]:focus {
     max-width: 500px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
+    /* Centrar el modal */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Estilos para el botón de cerrar */
@@ -366,4 +371,8 @@ input[type="file"] {
     .select-items div:hover, .same-as-selected {
       background-color: #141417;
       color: #fff;
+    }
+
+    .tox {
+      z-index: 1;
     }

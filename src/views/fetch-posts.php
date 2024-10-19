@@ -47,6 +47,12 @@ if ($result->num_rows > 0) {
         $likes_row = $likes_result->fetch_assoc();
         $like_count = $likes_row['like_count'];
 
+        // Consulta para obtener el numero de comentarios de cada post
+        $comments_sql = "SELECT COUNT(*) as comment_count FROM comentarios WHERE id_post = '$id_post'";
+        $comments_result = $conn->query($comments_sql);
+        $comments_row = $comments_result->fetch_assoc();
+        $comment_count = $comments_row['comment_count'];
+
 
         // Mostramos los registros usando PHP, para actualizar la base de datos de forma dinámica, sin necesidad de
         // recargar la página
@@ -58,8 +64,15 @@ if ($result->num_rows > 0) {
         echo '</div>';
         echo '<div class="fecha">' . $fecha->diffForHumans() . '</div>';
         echo '<div class="fecha-formateada">' . $fechaFormateada . '</div>';
+        echo '</div>';
+        echo '<div class="imgBoxComment">';
+        echo '<img src="../../public/svg/comment.svg">';
+        echo '</div>';
         echo '<a class="like-button" data-id="'.$id_post.'">Like</a>';
+        echo '<div class="comment-count">'. $comment_count .'</div>';
         echo '<a href="#" class="like-count" data-id="'.$id_post.'" data-toggle="modal" data-target="#likesModal">'.$like_count.'</a>';
+        echo '<div class="imgBoxLike">';
+        echo '<img src="../../public/svg/heart.svg">';
         echo '</div>';
         echo '<h3>' . $titulo . '</h3>';
         echo '<div class="text-content">' . $contenido . '</div>';
