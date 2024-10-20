@@ -1,11 +1,14 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Inicializar PhotoSwipe con PhotoSwipeLightbox
+window.onload = function () {
     const lightbox = new PhotoSwipeLightbox({
-        gallery: '.my-gallery', // El contenedor de la galería
-        children: 'a', // Los enlaces que contienen las imágenes
-        pswpModule: () => import('https://unpkg.com/photoswipe@5.3.8/dist/photoswipe.esm.js')
+        gallery: '.my-gallery',
+        children: 'a',
+        initialZoomLevel: 'fit',
+        secondaryZoomLevel: 1.5,
+        maxZoomLevel: 1,
+        pswpModule: PhotoSwipe,
+        wheelToZoom: true
     });
 
-    // Iniciar el lightbox
     lightbox.init();
-});;
+    console.log('PhotoSwipe Lightbox initialized');
+};
