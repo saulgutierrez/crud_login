@@ -130,5 +130,5 @@ $(document).ready(function() {
         loadPosts(category);
     });
 
-    setInterval(loadPosts, 60000); // Carga los posts cada minuto
+    setInterval(loadPosts, 20000); // Intervalo de recarga de informacion
 });

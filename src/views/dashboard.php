@@ -81,6 +81,10 @@
             ?>
         </aside>
         <div id="registros" class="registros"></div>
+        <div class="suggestions" id="suggestions">
+            <div class="title">People you may know</div>
+            <div class="title">Trends</div>
+        </div>
     </main>
 
     <div class="modal fade" id="likesModal" tabindex="-1" role="dialog" aria-labelledby="likesModalLabel" aria-hidden="true">

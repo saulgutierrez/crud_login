@@ -47,7 +47,7 @@ $(document).ready(function () {
                     '</div>' + 
                     '<div class="comment-card-body">' +
                         '<div>' + comentario + '</div>' +
-                        '<a class="like-button">Like</a>' +
+                        '<a class="like-button-comment">Like</a>' +
                     '</div>';
 
                 // Verificar si se ha subido una imagen

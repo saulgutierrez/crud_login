@@ -26,10 +26,10 @@ main {
     display: grid;
     height: calc(100% - 90px);
     grid-template-areas: 
-        "nav main"
-        "nav main";
-    grid-template-rows: 50px 1fr;
-    grid-template-columns: 200px 1fr;
+        "nav main suggestions"
+        "nav main suggestions";
+    grid-template-rows: 50px 200px 200px;
+    grid-template-columns: 300px 1fr 300px;
     margin-top: 90px;
 }
 
@@ -46,6 +46,17 @@ main > .registros {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+}
+
+main > .suggestions {
+    grid-area: suggestions;
+    position: fixed;
+    right: 150px;
+    top: 100px;
+}
+
+main > .suggestions .title {
+    font-size: 1.4rem;
 }
 
 main > .registros .post-card {
@@ -103,7 +114,7 @@ main > .registros .post-card .imgBoxPost {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
+    width: 100%;
     height: 300px;
 }
 
@@ -128,7 +139,7 @@ summary {
     list-style: none;
     position: relative;
     display: flex;
-    width: 200px;
+    width: 250px;
 }
 
 summary a {

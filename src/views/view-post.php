@@ -64,6 +64,12 @@
     $likes_row = $likes_result->fetch_assoc();
     $like_count = $likes_row['like_count'];
 
+    // Consulta para obtener el numero de comentarios del post
+    $comments_sql = "SELECT COUNT(*) as comment_count FROM comentarios WHERE id_post = '$id_post'";
+    $comments_result = $conn->query($comments_sql);
+    $comments_row = $comments_result->fetch_assoc();
+    $comment_count = $comments_row['comment_count'];
+
     // Si venimos al post desde una notificacion, la marcamos como leido en la base de datos
     if (isset($_GET['notif_id'])) {
         $notif_id = $_GET['notif_id'];
@@ -109,11 +115,20 @@
             </div>
             <h3>
                 <div><?php echo $titulo; ?></div>
-                <a href="#" class="like-count" data-id=" <?php echo $id_post; ?> " data-toggle="modal" data-target="#likesModal"> <?php echo $like_count; ?> </a>
-                <a class="like-button" data-id="<?php echo $id_post; ?>">Like</a>
             </h3>
             <div><?php echo $contenido; ?></div>
             <img src="<?php echo $fotoPost; ?>" alt="">
+            <a href="#" class="like-count" data-id=" <?php echo $id_post; ?> " data-toggle="modal" data-target="#likesModal"> <?php echo $like_count; ?> </a>
+            <div class="comment-count"><?php echo $comment_count; ?></div>
+            <a class="like-button" data-id="<?php echo $id_post; ?>">Like</a>
+            <div class="imgBoxLike">
+                <img src="../../public/svg/heart.svg" alt="">
+            </div>
+            <div class="imgBoxComment">
+                <img src="../../public/svg/comment.svg" alt="">
+            </div>
+            <hr>
+            <hr class="bottom-border">
             <form class="group-comment" id="form-comment" method="POST">
                 <input type="hidden" value="<?php echo $id_post; ?>" id="id-post" name="id-post">
                 <input type="hidden" value="<?php echo $id_autor; ?>" id="id-autor-post" name="id-autor-post">
