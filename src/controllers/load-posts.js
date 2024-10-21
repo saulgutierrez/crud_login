@@ -33,6 +33,34 @@ $(document).ready(function() {
                     $(this).next('.fecha-formateada').hide();
                 });
 
+                // Inicializar PhotoSwipe en las imágenes cargadas dinámicamente
+                var pswpElement = document.querySelectorAll('.pswp')[0];
+                var items = [];
+
+                $('.pswp-link').each(function() {
+                    var img = $(this).find('img');
+                    var size = $(this).data('pswp-width') + 'x' + $(this).data('pswp-height');
+                    var src = $(this).attr('href');
+                    items.push({
+                        src: src,
+                        w: $(this).data('pswp-width'),
+                        h: $(this).data('pswp-height')
+                    });
+                });
+
+                $('.pswp-link').on('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation(); // Detener la propagación para evitar la redirección
+
+                    var index = $('.pswp-link').index(this);
+                    var options = {
+                        index: index // empezar en el índice de la imagen clickeada
+                    };
+
+                    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+                    gallery.init();
+                });
+
                 // Adjuntar evento a los contadores de likes
                 $('.like-count').on('click', function(event) {
                     event.preventDefault();

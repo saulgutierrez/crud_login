@@ -428,6 +428,10 @@ p {
     z-index: 10000;
 }
 
+.pswp {
+    z-index: 100000;
+}
+
 @media screen and (max-width: 768px) {
     main > aside {
         display: block;

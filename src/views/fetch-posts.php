@@ -76,11 +76,11 @@ if ($result->num_rows > 0) {
         echo '</div>';
         echo '<h3>' . $titulo . '</h3>';
         echo '<div class="text-content">' . $contenido . '</div>';
-        echo '<div class="' . $hasImage . '">';
+        echo '<a href="'. $foto .'" data-pswp-width="800" data-pswp-height="800" class="' . $hasImage . ' pswp-link">';
         if (!empty($foto)) {
             echo '<img src="' . $foto . '" alt="">';
         }
-        echo '</div>';
+        echo '</a>';
         echo '</div>';
     }
 } else {
