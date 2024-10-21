@@ -118,17 +118,20 @@
             </h3>
             <div><?php echo $contenido; ?></div>
             <img src="<?php echo $fotoPost; ?>" alt="">
-            <a href="#" class="like-count" data-id=" <?php echo $id_post; ?> " data-toggle="modal" data-target="#likesModal"> <?php echo $like_count; ?> </a>
-            <div class="comment-count"><?php echo $comment_count; ?></div>
-            <a class="like-button" data-id="<?php echo $id_post; ?>">Like</a>
-            <div class="imgBoxLike">
-                <img src="../../public/svg/heart.svg" alt="">
-            </div>
-            <div class="imgBoxComment">
-                <img src="../../public/svg/comment.svg" alt="">
+            <div class="stats-container">
+                <div class="stats-container-child">
+                    <a href="#" class="like-count" data-id=" <?php echo $id_post; ?> " data-toggle="modal" data-target="#likesModal"> <?php echo $like_count; ?> </a>
+                    <div class="comment-count"><?php echo $comment_count; ?></div>
+                </div>
+                <a class="like-button" data-id="<?php echo $id_post; ?>">Like</a>
+                <div class="imgBoxLike">
+                    <img src="../../public/svg/heart.svg" alt="">
+                </div>
+                <div class="imgBoxComment">
+                    <img src="../../public/svg/comment.svg" alt="">
+                </div>
             </div>
             <hr>
-            <hr class="bottom-border">
             <form class="group-comment" id="form-comment" method="POST">
                 <input type="hidden" value="<?php echo $id_post; ?>" id="id-post" name="id-post">
                 <input type="hidden" value="<?php echo $id_autor; ?>" id="id-autor-post" name="id-autor-post">
