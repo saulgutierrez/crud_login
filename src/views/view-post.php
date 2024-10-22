@@ -91,16 +91,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../public/css/view-post.css">
     <script src="../controllers/new-comment.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css" integrity="sha512-LFWtdAXHQuwUGH9cImO9blA3a3GfQNkpF2uRlhaOpSbDevNyK1rmAjs13mtpjvWyi+flP7zYWboqY+8Mkd42xA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/umd/photoswipe-lightbox.umd.min.js" integrity="sha512-D16CBrIrVF48W0Ou0ca3D65JFo/HaEAjTugBXeWS/JH+1KNu54ZOtHPccxJ7PQ44rTItUT6DSI6xNL+U34SuuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/umd/photoswipe.umd.min.js" integrity="sha512-BXwwGU7zCXVgpT2jpXnTbioT9q1Byf7NEXVxovTZPlNvelL2I/4LjOaoiB2a19L+g5za8RbkoJFH4fMPQcjFFw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/photoswipe@5.3.8/dist/photoswipe-lightbox.min.js"></script>
     <title><?php echo $titulo; ?></title>
 </head>
 <body>
     <?php include "includes/header.php"; ?>
     <main id="main-container">
-        <div class="post-card" id="post-card">
+        <div class="post-card post-card-item" id="post-card">
             <a onclick="history.back()">
                 <img src="../../public/svg/arrow-back.svg" alt="" class="arrow-back">
             </a>
             <h2 class="post-title">Post</h2>
+            <hr>
             <div class="post-card-top">
                 <h2>
                     <div class="imgBoxProfileImage">
@@ -117,46 +122,18 @@
                 <div><?php echo $titulo; ?></div>
             </h3>
             <div><?php echo $contenido; ?></div>
-            <img src="<?php echo $fotoPost; ?>" alt="">
-            <div class="stats-container">
-                <div class="stats-container-child">
-                    <a href="#" class="like-count" data-id=" <?php echo $id_post; ?> " data-toggle="modal" data-target="#likesModal"> <?php echo $like_count; ?> </a>
-                    <div class="comment-count"><?php echo $comment_count; ?></div>
+            <?php if (!empty($fotoPost)) : ?>
+                <div class="my-gallery">
+                    <figure class="photo-content">
+                        <a href="<?php echo $fotoPost; ?>" data-pswp-width="800" data-pswp-height="800" class="pswp-link" data-pswp-index="1" onclick="return false;">
+                            <img src="<?php echo $fotoPost; ?>" alt="Photo 1">
+                        </a>
+                    </figure>
                 </div>
-                <a class="like-button" data-id="<?php echo $id_post; ?>">Like</a>
-                <div class="imgBoxLike">
-                    <img src="../../public/svg/heart.svg" alt="">
-                </div>
-                <div class="imgBoxComment">
-                    <img src="../../public/svg/comment.svg" alt="">
-                </div>
-            </div>
-            <hr>
-            <form class="group-comment" id="form-comment" method="POST">
-                <input type="hidden" value="<?php echo $id_post; ?>" id="id-post" name="id-post">
-                <input type="hidden" value="<?php echo $id_autor; ?>" id="id-autor-post" name="id-autor-post">
-                <input type="hidden" value="<?php echo $idAutorComentario; ?>" id="id-autor-comentario" name="id-autor-comentario">
-                <input type="hidden" value="<?php echo $username; ?>" id="autor-comentario" name="autor-comentario">
-                <input type="text" placeholder="Comentar" class="comment-input" id="comment-input" name="comment-input">
-                <input type="hidden" name="comment-time" id="comment-time">
-                <div class="image-upload">
-                    <label for="file-input">
-                        <img src="../../public/svg/image-icon.svg" alt="">
-                    </label>
-                    <input type="file" class="file-input" id="file-input" name="file-input">
-                </div>
-                <button value="Responder" id="send-comment">
-                    <div class="imgBox">
-                        <img src="../../public/svg/reply.svg" alt="">
-                    </div>
-                    <div>Responder</div>
-                </button>
-            </form>
-            <div class="image-content">
-                <img src="" alt="" id="imagePreview">
-                <img src="../../public/svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
-            </div>
+            <?php endif; ?>
         </div>
+        <div class="comments-content">
+            <div class="comments-list" id="comments-list">
         <?php
         $sqlComments = "SELECT c.*, u.fotografia 
                         FROM comentarios c 
@@ -189,43 +166,87 @@
                     $like_count_comment = $likes_comments_row['likes_count_comment'];
                 }
         ?>
-
-                <div class="post-card comment">
-                    <div class="comment-card-top">
-                        <?php
-                        // Determinar si el autor del comentario es el usuario actual para redirigir al perfil adecuado
-                        $redirect;
-                        if ($idAutorComentarioArray == $idAutorComentario) {
-                            $redirect = "profile.php?user=$username";
-                        } else {
-                            $redirect = "profile.php?id=$idAutorComentarioArray";
-                        }
-                        ?>
-                        <h2>
-                            <div class="imgBoxProfileImage">
-                                <img src="<?php echo $fotografiaAutorComentario; ?>" alt="">
-                            </div>
-                            <a class="comment-user" href="<?php echo $redirect; ?>" data-id="<?php echo $idAutorComentarioArray; ?>" data-autor="<?php echo $autorComentario; ?>" data-foto="<?php echo $fotografiaAutorComentario; ?>"><?php echo $autorComentario; ?></a>
-                        </h2>
-                        <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
-                        <div class="fecha-formateada"><?php echo $fechaFormateada; ?></div>
-                    </div>
-                    <div class="comment-card-body">
-                        <div><?php echo $comentario; ?></div>
-                        <!-- Mostrar el número de likes junto al botón de "Like" -->
-                        <a href="#" class="like-count-comment" data-id="<?php echo $comentarioId; ?>" data-toggle="modal" data-target="#likesModal">
-                            <?php echo $like_count_comment; ?> Likes
-                        </a>
-                        <a class="like-button-comment" data-id="<?php echo $comentarioId; ?>">Like</a>
-                    </div>
-                    <?php if ($imagen) { ?>
-                        <img src="<?php echo $imagen; ?>" alt="">
-                    <?php } ?>
+            <div class="post-card comment">
+                <div class="comment-card-top">
+                    <?php
+                    // Determinar si el autor del comentario es el usuario actual para redirigir al perfil adecuado
+                    $redirect;
+                    if ($idAutorComentarioArray == $idAutorComentario) {
+                        $redirect = "profile.php?user=$username";
+                    } else {
+                        $redirect = "profile.php?id=$idAutorComentarioArray";
+                    }
+                    ?>
+                    <h2>
+                        <div class="imgBoxProfileImage">
+                            <img src="<?php echo $fotografiaAutorComentario; ?>" alt="">
+                        </div>
+                        <a class="comment-user" href="<?php echo $redirect; ?>" data-id="<?php echo $idAutorComentarioArray; ?>" data-autor="<?php echo $autorComentario; ?>" data-foto="<?php echo $fotografiaAutorComentario; ?>"><?php echo $autorComentario; ?></a>
+                    </h2>
+                    <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
+                    <div class="fecha-formateada"><?php echo $fechaFormateada; ?></div>
                 </div>
+                <div class="comment-card-body">
+                    <div class="comment-content"><?php echo $comentario; ?></div>
+                    <!-- Mostrar el número de likes junto al botón de "Like" -->
+                    <a href="#" class="like-count-comment" data-id="<?php echo $comentarioId; ?>" data-toggle="modal" data-target="#likesModal">
+                        <?php echo $like_count_comment; ?>
+                    </a>
+                    <div class="imgBoxLikeComment">
+                        <img src="../../public/svg/heart.svg" alt="">
+                    </div>
+                    <a class="like-button-comment" data-id="<?php echo $comentarioId; ?>">Like</a>
+                </div>
+                <?php if ($imagen) { ?>
+                    <img src="<?php echo $imagen; ?>" alt="">
+                <?php } ?>
+            </div>
         <?php
             }
         }
         ?>
+        </div>
+            <div class="interactive-container">
+                <div class="stats-container">
+                    <div class="stats-container-child">
+                        <a href="#" class="like-count" data-id=" <?php echo $id_post; ?> " data-toggle="modal" data-target="#likesModal"> <?php echo $like_count; ?> </a>
+                        <div class="comment-count"><?php echo $comment_count; ?></div>
+                    </div>
+                    <a class="like-button" data-id="<?php echo $id_post; ?>">Like</a>
+                    <div class="imgBoxLike">
+                        <img src="../../public/svg/heart.svg" alt="">
+                    </div>
+                    <div class="imgBoxComment">
+                        <img src="../../public/svg/comment.svg" alt="">
+                    </div>
+                </div>
+                <hr>
+                <form class="group-comment" id="form-comment" method="POST">
+                    <input type="hidden" value="<?php echo $id_post; ?>" id="id-post" name="id-post">
+                    <input type="hidden" value="<?php echo $id_autor; ?>" id="id-autor-post" name="id-autor-post">
+                    <input type="hidden" value="<?php echo $idAutorComentario; ?>" id="id-autor-comentario" name="id-autor-comentario">
+                    <input type="hidden" value="<?php echo $username; ?>" id="autor-comentario" name="autor-comentario">
+                    <input type="text" placeholder="Comentar" class="comment-input" id="comment-input" name="comment-input">
+                    <input type="hidden" name="comment-time" id="comment-time">
+                    <div class="image-upload">
+                        <label for="file-input">
+                            <img src="../../public/svg/image-icon.svg" alt="">
+                        </label>
+                        <input type="file" class="file-input" id="file-input" name="file-input">
+                    </div>
+                    <button value="Responder" id="send-comment">
+                        <div class="imgBox">
+                            <img src="../../public/svg/reply.svg" alt="">
+                        </div>
+                        <div>Responder</div>
+                    </button>
+                </form>
+                <div class="image-content">
+                    <img src="" alt="" id="imagePreview">
+                    <img src="../../public/svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
+                </div>
+            </div>
+        </div>
     </main>
 
     <div class="modal fade" id="likesModal" tabindex="-1" role="dialog" aria-labelledby="likesModalLabel" aria-hidden="true">
@@ -243,11 +264,36 @@
             </div>
         </div>
     </div>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <button class="pswp__button pswp__button--close" title="Cerrar (Esc)"></button>
+                    <button class="pswp__button pswp__button--share" title="Compartir"></button>
+                    <button class="pswp__button pswp__button--fs" title="Pantalla completa"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom"></button>
+                    <div class="pswp__counter"></div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Anterior (flecha izquierda)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Siguiente (flecha derecha)"></button>
+            </div>
+        </div>
+    </div>
+
     <script src="../helpers/comment-image-preview.js"></script>
     <script src="../helpers/get-current-time.js"></script>
     <script src="../controllers/like-comment.js"></script>
     <script src="../controllers/check-like-button-state-thread.js"></script>
     <script src="../helpers/view-full-date.js"></script>
+    <script type="module" src="../helpers/photo-gallery.js"></script>
     <script>
         // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
         // y despues utilizarla para evaluar una respuesta con AJAX.

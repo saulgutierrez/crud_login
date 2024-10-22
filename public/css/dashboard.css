@@ -93,12 +93,14 @@ main > .registros .post-card h2 a:hover {
 
 main > .registros .post-card h3 {
     width: 100%;
-    text-align: justify;
+}
+
+main > .registros .post-card hr {
+    background-color: #4b4b4d;
 }
 
 .text-content {
     width: 100%;
-    text-align: justify;
 }
 
 .text-content p {

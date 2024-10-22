@@ -68,7 +68,7 @@ $(document).ready(function () {
         // Función para añadir el comentario dinámicamente al DOM
         function appendComment(htmlContent) {
             var comment = $('<div></div>').addClass('post-card comment').html(htmlContent);
-            $('#post-card').after(comment);
+            $('#comments-list').prepend(comment);
             $('#comment-input').val(''); // Limpiar el campo de entrada del comentario
         }
     });

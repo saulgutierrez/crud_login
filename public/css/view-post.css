@@ -24,14 +24,35 @@ body {
 
 body main {
     position: relative;
-    width: 80%;
+    width: 95%;
     height: calc(100vh - 100px);
     display: flex;
-    flex-direction: column;
     justify-content: start;
     align-items: center;
     margin-top: 100px;
+    gap: 30px;
 }
+
+.comments-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: calc(100vh - 100px);
+}
+
+.comments-content .comments-list {
+    height: 70%;
+    overflow-y: auto;
+}
+
+.comments-content .interactive-container {
+    margin-top: 30px;
+}
+
+.comments-content .comments-list::-webkit-scrollbar {
+    display: none; /* Para navegadores basados en WebKit como Chrome y Safari */
+  }
 
 .post-card {
     position: relative;
@@ -41,7 +62,16 @@ body main {
     background-color: #0f0f11;
     padding: 30px 30px;
     border-radius: 10px;
-    gap: 15px
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.post-card::-webkit-scrollbar {
+    display: none; /* Para navegadores basados en WebKit como Chrome y Safari */
+  }
+
+.post-card-item {
+    min-height: calc(100vh -100px);
 }
 
 .post-card h2 {
@@ -79,17 +109,13 @@ body main {
     gap: 20px;
 }
 
-.post-card p {
-    text-align: justify;
-}
-
 .arrow-back {
     position: absolute;
     height: 23px;
     width: 23px;
     filter: invert(1);
     left: 30px;
-    top: 47px;
+    top: 33px;
 }
 
 .arrow-back:hover {
@@ -99,6 +125,25 @@ body main {
 
 .post-title {
     margin-left: 40px;
+}
+
+.photo-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 600px;
+}
+
+.photo-content img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0%;
 }
 
 .stats-container {
@@ -122,7 +167,7 @@ body main {
 
 .like-count-comment {
     position: absolute;
-    right: 120px;
+    right: 70px;
     text-decoration: none;
     color: #fff;
     font-weight: 200;
@@ -136,6 +181,23 @@ body main {
 }
 
 .imgBoxLike img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: invert(1);
+}
+
+.imgBoxLikeComment {
+    position: absolute;
+    right: 90px;
+    width: 20px;
+    height: 20px;
+}
+
+.imgBoxLikeComment img {
     position: absolute;
     top: 0;
     left: 0;
@@ -165,8 +227,7 @@ body main {
 .group-comment {
     position: relative;
     display: flex;
-    justify-content: flex-start;
-    gap: 20px;
+    gap: 10px;
 }
 
 .comment-input {
@@ -176,7 +237,7 @@ body main {
     color: #fff;
     border-radius: 20px;
     height: 35px;
-    padding: 15px 10px;
+    padding: 15px 45px 15px 15px;
     width: 100%;
 }
 
@@ -220,9 +281,10 @@ button .imgBox img {
 
 .comment {
     margin: 15px 0px 0px 0px;
-    width: 90%;
+    width: 95%;
     align-self: self-end;
     padding: 30px 30px;
+    overflow: visible;
 }
 
 .image-upload > input {
@@ -232,7 +294,7 @@ button .imgBox img {
 .image-upload img {
     position: absolute;
     top: 7px;
-    right: 165px;
+    right: 145px;
     width: 20px;
     cursor: pointer;
     filter: invert(1);
@@ -241,6 +303,7 @@ button .imgBox img {
 .image-content {
 	position: relative;
     display: block;
+    margin-bottom: 10px;
 }
 
 #imagePreview {
@@ -282,6 +345,10 @@ button .imgBox img {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+}
+
+.comment-card-body .comment-content {
+    width: 65%;
 }
 
 .comment-user {
@@ -407,7 +474,7 @@ button .imgBox img {
 .fecha-formateada {
     display: none;
     position: absolute;
-    top: 40px;
+    top: -10px;
     right: 0;
     background-color: #cacacb;
     color: #0f0f11;
@@ -491,10 +558,12 @@ button .imgBox img {
 
 .comment-card-top {
     position: relative;
+    overflow: visible;
 }
 
 .comment-card-top h2 a:hover + .info-popup {
     display: block; /* Mostrar el popup al hacer hover */
+    z-index: 100000;
 }
 
 .follow-btn {

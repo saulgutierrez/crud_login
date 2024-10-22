@@ -81,6 +81,7 @@ if ($result->num_rows > 0) {
             echo '<img src="' . $foto . '" alt="">';
         }
         echo '</a>';
+        echo '<hr>';
         echo '</div>';
     }
 } else {
