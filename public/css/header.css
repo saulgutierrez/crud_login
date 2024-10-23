@@ -20,7 +20,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #0f0f11;
+    background-color: #242526;
     padding: 0px 60px;
     z-index: 10000;
 }
@@ -65,8 +65,8 @@ header h1 a:hover {
 }
 
 header input {
-    background-color: #141417;
-    border: 1px solid #fff;
+    background-color: #3a3b3c;
+    border: none;
     outline: none;
     width: 200px;
     color: #fff;
@@ -118,8 +118,9 @@ header form .searchBtn {
     top: 73%;
     left: calc(26% - 50px);
     display: block;
-    background-color: #0f0f11;
+    background-color: #242526;
     width: 200px;
+    filter: drop-shadow(10px 10px 10px #151617);
 }
 
 .searchResults div {
@@ -161,7 +162,7 @@ header h2 a:hover {
 .square {
     position: absolute;
     display: none;
-    background-color: #141417;
+    background-color: #242526;
     height: 30px;
     width: 30px;
     right: 37%;
@@ -172,11 +173,12 @@ header h2 a:hover {
 .dropdown {
     position: absolute;
     display: none;
-    background-color: #0f0f11;
+    background-color: #242526;
     height: 135px;
     width: 200px;
     right: 30%;
     top: 85%;
+    filter: drop-shadow(10px 10px 10px #151617);
 }
 
 .dropdown a {
@@ -286,17 +288,16 @@ header h2 a:hover {
 }
 
 .recovery .codes .codesContainer {
-    position: relative;
+    position: absolute;
+    left: 0px;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    background-color: #242526;
+
 }
 
 .recovery .codes .codesContainer p {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px 0px;
+    width: 200px;
 }
 
 .recovery .codes .codesContainer p:hover {
@@ -344,24 +345,26 @@ header h2 a:hover {
 .square-notifications {
     position: absolute;
     display: flex;
-    background-color: #141417;
+    background-color: #242526;
     height: 30px;
     width: 30px;
     right: 23%;
     top: 79%;
     transform: rotate(45deg);
+    border: 1px solid #151617;
 }
 
 .dropdown-notifications {
     position: absolute;
     display: block;
-    background-color: #0f0f11;
+    background-color: #242526;
     width: 300px;
     right: 18%;
     top: 85%;
     height: auto;
     max-height: 500px;
     overflow-y: auto;
+    filter: drop-shadow(10px 10px 10px #151617);
 }
 
 .notification-container {
@@ -376,7 +379,7 @@ header h2 a:hover {
 }
 
 .notification-container:hover {
-    background-color: #141417;
+    background-color: #3a3b3c;
     cursor: pointer;
     text-decoration: none;
     color: #fff

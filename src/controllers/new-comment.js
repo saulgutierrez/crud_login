@@ -46,13 +46,21 @@ $(document).ready(function () {
                         '<div>' + fechaComentario  + '</div>' +
                     '</div>' + 
                     '<div class="comment-card-body">' +
-                        '<div>' + comentario + '</div>' +
+                        '<div class="comment-content">' + comentario + '</div>' +
+                        '<div class="imgBoxLikeComment">' +
+                        '<img src="../../public/svg/heart.svg" alt>' +
+                        '</div>' +
                         '<a class="like-button-comment">Like</a>' +
                     '</div>';
 
                 // Verificar si se ha subido una imagen
                 if (fileInput) {
-                    commentHTML += '<img src="' + fileInput + '" alt="Imagen adjunta">';
+                    commentHTML += '<div class="my-gallery">' +
+                                        '<figure class="photo-content-comment">' +
+                                            '<img src="' + fileInput + '" alt="Imagen adjunta">' +
+                                        '</figure>' +
+                                    '</div>' +
+                                    '</div>';
                 }
 
                 // Añadir el comentario al contenedor dinámicamente

@@ -24,7 +24,7 @@ body {
     display: flex;
     width: 100%;
     height: calc(100vh - 80px);
-    background-color: #141417;
+    background-color: #18191a;
     color: #fff;
     justify-content: center;
     align-items: center;
@@ -52,7 +52,7 @@ body main nav {
     height: 170px;
     padding: 0px 8%;
     z-index: 1000;
-    background-color: #141417;
+    background-color: #18191a;
 }
 
 body main div {
@@ -183,7 +183,7 @@ body main section {
     font-size: 1.8rem;
     text-decoration: none;
     color: #fff;
-    background-color: rgb(20, 20, 23);
+    background-color: #18191a;
     display: flex;
     flex-direction: row;
 }
@@ -412,7 +412,7 @@ body main section {
     display: none;
     flex-direction: column;
     width: 100%;
-    background-color: #0f0f11;
+    background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
     gap: 10px;
@@ -485,10 +485,12 @@ body main section {
     height: 110px;
     display: none;
     flex-direction: column;
-    background-color: #141417;
     top: 50px;
     right: 0px;
     z-index: 10000;
+    background-color: #242526;
+    border: 1px solid #151617;
+    border-radius: 10px;
 }
 
 .menu-opciones.visible {
@@ -506,6 +508,7 @@ body main section {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
 }
 
 .menu-opciones a:hover {
@@ -539,9 +542,10 @@ body main section {
     height: 20px;
     top: 40px;
     right: 10px;
-    background-color: #141417;
     transform: rotate(45deg);
     display: none;
+    border: 1px solid #151617;
+    background-color: #242526;
 }
 
 .square-menu-perfil.visible {
@@ -561,7 +565,7 @@ body main section {
     display: none;
     flex-direction: column;
     width: 100%;
-    background-color: #0f0f11;
+    background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
     gap: 10px;
@@ -609,9 +613,10 @@ body main section {
     height: 20px;
     top: 40px;
     right: 10px;
-    background-color: #141417;
     transform: rotate(45deg);
     display: none;
+    border: 1px solid #151617;
+    background-color: #242526;
 }
 
 .square-menu-perfil-comments.visible {
@@ -624,10 +629,12 @@ body main section {
     height: 110px;
     display: none;
     flex-direction: column;
-    background-color: #141417;
     top: 50px;
     right: 0px;
     z-index: 10000;
+    background-color: #242526;
+    border: 1px solid #151617;
+    border-radius: 10px;
 }
 
 .menu-opciones-comments.visible {
@@ -716,7 +723,7 @@ body main section {
     position: relative;
     display: none;
     width: 100%;
-    background-color: #0f0f11;
+    background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
 }
@@ -788,7 +795,7 @@ body main section {
     position: relative;
     display: none;
     width: 100%;
-    background-color: #0f0f11;
+    background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
 }
@@ -861,7 +868,7 @@ body main section {
     display: none;
     flex-direction: column;
     width: 100%;
-    background-color: #0f0f11;
+    background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
     gap: 10px;

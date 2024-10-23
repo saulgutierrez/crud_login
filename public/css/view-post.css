@@ -17,7 +17,7 @@ body {
     display: flex;
     width: 100%;
     height: 100vh;
-    background-color: #141417;
+    background-color: #18191a;
     color: #fff;
     justify-content: center;
 }
@@ -59,7 +59,7 @@ body main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: #0f0f11;
+    background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
     max-height: 80vh;
@@ -134,6 +134,7 @@ body main {
     justify-content: center;
     width: 100%;
     height: 600px;
+    margin-top: 10px;
 }
 
 .photo-content img {
@@ -224,6 +225,26 @@ body main {
     filter: invert(1);
 }
 
+.photo-content-comment {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+}
+
+.photo-content-comment img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0%;
+}
+
 .group-comment {
     position: relative;
     display: flex;
@@ -231,7 +252,7 @@ body main {
 }
 
 .comment-input {
-    background-color: #262627;
+    background-color: #242526;
     border: none;
     outline: none;
     color: #fff;
@@ -239,11 +260,6 @@ body main {
     height: 35px;
     padding: 15px 45px 15px 15px;
     width: 100%;
-}
-
-.comment-input:focus {
-    border: 1px solid #fff; 
-    background-color: #141417;
 }
 
 button {
@@ -493,11 +509,10 @@ button .imgBox img {
 .info-popup {
     display: none; /* Oculto por defecto */
     position: absolute;
-    background-color: #141417;
-    border: 1px solid #ccc;
+    background-color: #242526;
+    border: 1px solid #3a3b3c;
     padding: 10px;
     z-index: 100000000000000;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     height: 150px;
     border-radius: 20px;

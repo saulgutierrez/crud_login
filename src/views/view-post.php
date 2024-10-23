@@ -197,8 +197,14 @@
                     </div>
                     <a class="like-button-comment" data-id="<?php echo $comentarioId; ?>">Like</a>
                 </div>
-                <?php if ($imagen) { ?>
-                    <img src="<?php echo $imagen; ?>" alt="">
+                <?php if (!empty($imagen)) { ?>
+                <div class="my-gallery">
+                    <figure class="photo-content-comment">
+                        <a href="<?php echo $imagen; ?>" data-pswp-width="800" data-pswp-height="800" class="pswp-link" data-pswp-index="1" onclick="return false;">
+                            <img src="<?php echo $imagen; ?>" alt="Photo 1">
+                        </a>
+                    </figure>
+                </div>
                 <?php } ?>
             </div>
         <?php

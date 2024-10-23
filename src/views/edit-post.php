@@ -83,7 +83,7 @@
         <div class="group-buttons">
             <a href="profile.php?user=<?php echo $user; ?>">
                 <div class="imgBox">
-                    <img src="../../public/svg/cancel.svg" alt="">
+                    <img src="../../public/svg/close-circle.svg" alt="">
                 </div>
                 <div>Cancelar</div>
             </a>

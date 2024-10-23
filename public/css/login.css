@@ -13,7 +13,7 @@ html {
 
 body {
     font-size: 1.6rem;
-    background-color: #0f0f11;
+    background-color: #18191a;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -23,7 +23,7 @@ body {
 
 form {
     position: relative;
-    background-color: #141417;
+    background-color: #242526;
     width: 500px;
     height: 380px;
     display: flex;
@@ -36,19 +36,14 @@ form {
 }
 
 form input[type=text], form input[type=password] {
-    background-color: #262627;
+    background-color: #3a3b3c;
     border: 1px solid transparent;
     outline: none;
     color: #fff;
     border-radius: 20px;
     height: 35px;
-    padding: 15px 10px;
+    padding: 15px 40px 15px 15px;
     width: 250px;
-}
-
-form input[type=text]:focus, form input[type=password]:focus {
-    border: 1px solid #fff; 
-    background-color: #141417;
 }
 
 .group-buttons button {
@@ -174,11 +169,6 @@ form input[type=text]:focus, form input[type=password]:focus {
     form input[type=text], form input[type=password] {
         display: flex;
     }
-    
-    form input[type=text]:focus, form input[type=password]:focus {
-        border: 1px solid #fff; 
-        background-color: #141417;
-    }
 
     .user-icon {
         position: absolute;
@@ -214,11 +204,6 @@ form input[type=text]:focus, form input[type=password]:focus {
         display: flex;
         width: 80%;
         z-index: 10000;
-    }
-
-    form input[type=text]:focus, form input[type=password]:focus {
-        border: 1px solid #fff; 
-        background-color: #141417;
     }
 
     .user-icon {

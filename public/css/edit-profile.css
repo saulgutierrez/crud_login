@@ -11,12 +11,12 @@ html {
 }
 
 body {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     position: relative;
     display: flex;
     width: 100%;
     height: calc(100% - 100px);
-    background-color: #141417;
+    background-color: #18191a;
     color: #fff;
     justify-content: center;
     align-items: center;
@@ -25,7 +25,7 @@ body {
 
 #editProfileForm {
     position: relative;
-    background-color: #141417;
+    background-color: #18191a;
     width: 60%;
     height: 100vh;
     display: grid;
@@ -36,8 +36,19 @@ body {
     color: #fff;
 }
 
+#searchQuery {
+  background-color: #3a3b3c;
+    border: none;
+    outline: none;
+    width: 200px;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    height: 30px;
+}
+
 form input[type=text], form input[type=password], form input[type=number], form input[type=email], form input[type=date] {
-    background-color: #262627;
+    background-color: #242526;
     border: 1px solid transparent;
     outline: none;
     color: #fff;

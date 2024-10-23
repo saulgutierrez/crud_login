@@ -90,7 +90,7 @@
                 <img src="../../public/svg/key.svg" alt="">
             </div>
             <div class="codes">
-                <div>Generar clave de recuperación</div>
+                <div>Generar códigos de recuperación</div>
                 <div class="codesContainer" id="codesContainer"></div>
             </div>
         </a>

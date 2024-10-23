@@ -71,7 +71,7 @@
         <div class="group-buttons">
             <a onclick="history.back()">
                 <div class="imgBox">
-                    <img src="../../public/svg/cancel.svg" alt="">
+                    <img src="../../public/svg/close-circle.svg" alt="">
                 </div>
                 <div>Cancelar</div>
             </a>
