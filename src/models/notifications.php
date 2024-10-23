@@ -5,6 +5,20 @@
         session_start();
     }
 
+    // Verificar si se esta solicitando la cantidad de notificaciones no leidas
+    if (isset($_POST['action']) && $_POST['action'] == 'obtener_no_leidos') {
+        // Obtener el ID del usuario de la sesión
+        $user = $_SESSION['user'];
+        $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = ?";
+        $stmt = $conn->prepare($sqlGetIdUser);
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $id_fetch = $result->fetch_assoc();
+        $id = $id_fetch['id'];
+        no_leidos($id); // Llamar a la función que obtiene las notificaciones no leídas
+    }
+
     function notificar_like($post_id, $usuarioLike) {
         global $conn;
         // Obtener el ID del usuario dueño del post
@@ -101,4 +115,20 @@
         }
 
         return $notificaciones;
+    }
+
+    // Funcion para obtener el numero de notificaciones no leidas
+    function no_leidos($id) {
+        global $conn;
+        
+        $query = "SELECT COUNT(*) AS unread_count FROM notificaciones WHERE id = ? AND leida = 0";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        echo json_encode(['unread_count' => $row['unread_count'],
+                            "usuario_id" => $id
+                        ]);
     }

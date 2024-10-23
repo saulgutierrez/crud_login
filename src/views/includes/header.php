@@ -98,6 +98,7 @@
     
     <div class="notification-icon">
         <img src="../../public/svg/bell-outlined.svg" alt="">
+        <span id="notification-badge" class="badge">0</span>
     </div>
     <div class="square-notifications"></div>
     <div class="dropdown-notifications">
@@ -130,3 +131,4 @@
 <script src="../helpers/header.js"></script>
 <script src="../controllers/search-users.js"></script>
 <script src="../controllers/generate-recovery-codes.js"></script>
+<script src="../controllers/update-notifications.js"></script>
