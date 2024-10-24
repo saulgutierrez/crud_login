@@ -16,7 +16,40 @@
         $result = $stmt->get_result();
         $id_fetch = $result->fetch_assoc();
         $id = $id_fetch['id'];
-        no_leidos($id); // Llamar a la función que obtiene las notificaciones no leídas
+        no_leidos($id); // Llamar a la función que obtiene la cantidad de notificaciones no leídas
+    }
+
+    // Al hacer click sobre el icono de la notificacion, se envia accion desde el fichero AJAX,
+    // para recuperar y mostrar las notificaciones
+    if (isset($_POST['action']) && $_POST['action'] == 'obtener_notificaciones') {
+        // Obtener el ID del usuario de la sesión
+        $user = $_SESSION['user'];
+        $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = ?";
+        $stmt = $conn->prepare($sqlGetIdUser);
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $id_fetch = $result->fetch_assoc();
+        $id = $id_fetch['id'];
+        // obtener las notificaciones del usuario
+        $notificaciones = obtener_notificaciones($id);
+
+        // Generar el HTML de las notificaciones
+        if (empty($notificaciones)) {
+            echo "<div class='notification-container'>
+                    <div>No hay notificaciones</div>
+                </div>";
+        } else {
+            foreach ($notificaciones as $notificacion) {
+                // Determinar la clase según el estado de la notificación
+                $claseLeida = $notificacion['leida'] ? 'notificacion-leida' : 'notificacion-no-leida';
+
+                echo "<a href='view-post.php?id={$notificacion['post_id']}&notif_id={$notificacion['id_notificacion']}' class='notification-container $claseLeida'>
+                        <div>{$notificacion['mensaje']}</div>
+                        <div>{$notificacion['fecha_notificacion']}</div>
+                    </a>";
+            }
+        }
     }
 
     function notificar_like($post_id, $usuarioLike) {
@@ -49,7 +82,7 @@
             }
 
             // Crear la notificacion si el usuario sigue al que le dio like
-            $mensaje = "A tu post le ha dado like el usuario $likeUsername";
+            $mensaje = "A $likeUsername le gusta tu publicación";
             $tipo = "like";
 
             $query = "INSERT INTO notificaciones(id, tipo_notificacion, post_id, mensaje, leida) VALUES(?, ?, ?, ?, 0)";
@@ -89,7 +122,7 @@
                 $commentFollowUsername = $rowGetUsernameFollowComment['usuario'];
             }
             // Crear la notificacion si el usuario sigue al que comento
-            $mensaje = "Han comentado en tu post el usuario $commentFollowUsername";
+            $mensaje = "$commentFollowUsername comentó tu post";
             $tipo = "comentario";
 
             $query = "INSERT INTO notificaciones(id, tipo_notificacion, post_id, mensaje, leida) VALUES(?, ?, ?, ?, 0)";

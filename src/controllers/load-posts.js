@@ -158,5 +158,5 @@ $(document).ready(function() {
         loadPosts(category);
     });
 
-    setInterval(loadPosts, 20000); // Intervalo de recarga de informacion
+    setInterval(loadPosts, 10000); // Intervalo de recarga de informacion
 });

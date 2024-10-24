@@ -43,14 +43,14 @@ body main {
 
 body main nav {
     position: fixed;
-    top: 50px;
+    top: 70px;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     height: 170px;
-    padding: 0px 8%;
+    padding: 20px 8%;
     z-index: 1000;
     background-color: #18191a;
 }

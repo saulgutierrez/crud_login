@@ -67,7 +67,7 @@
     <!-- Identificamos al usuario dentro de la interfaz -->
      <div class="profile">
         <div class="imgBox">
-            <img src="<?php if($foto != '') { echo $foto; } else { echo $rutaFotoPorDefecto; } ?>" alt="">
+            <img src="<?php if ($foto != '') { echo $foto; } else { echo $rutaFotoPorDefecto; } ?>" alt="">
         </div>
         <h2 class="identifier" id="identifier"><?php echo $username; ?></h2>
     </div>
@@ -102,23 +102,9 @@
     </div>
     <div class="square-notifications"></div>
     <div class="dropdown-notifications">
-        <?php
-            if (empty($notificaciones)) {
-                echo "<div class='notification-container'>
-                        <div>No hay notificaciones</div>
-                </div>";
-            } else {
-                foreach ($notificaciones as $notificacion) {
-                    // Determinar la clase según el estado de la notificación
-                    $claseLeida = $notificacion['leida'] ? 'notificacion-leida' : 'notificacion-no-leida';
-
-                    echo "<a href='view-post.php?id={$notificacion['post_id']}&notif_id={$notificacion['id_notificacion']}' class='notification-container $claseLeida'>
-                            <div>{$notificacion['mensaje']}</div>
-                            <div>{$notificacion['fecha_notificacion']}</div>
-                        </a>";
-                }
-            }
-        ?>
+        <div id="notification-list">
+            <!-- Se recogen las notificaciones de forma dinamica -->
+        </div>
     </div>
     <h2 class="new-post">
         <div class="new-post-logo">
