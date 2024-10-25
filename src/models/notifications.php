@@ -43,11 +43,14 @@
             foreach ($notificaciones as $notificacion) {
                 // Determinar la clase según el estado de la notificación
                 $claseLeida = $notificacion['leida'] ? 'notificacion-leida' : 'notificacion-no-leida';
+                // Nombre del usuario que genero la notificacion
+                $nombreNotificador = $notificacion['notificador_nombre'];
 
                 echo "<a href='view-post.php?id={$notificacion['post_id']}&notif_id={$notificacion['id_notificacion']}' class='notification-container $claseLeida'>
-                        <div>{$notificacion['mensaje']}</div>
+                        <div>" . $nombreNotificador . " " . $notificacion['mensaje'] . "</div>
                         <div>{$notificacion['fecha_notificacion']}</div>
                     </a>";
+
             }
         }
     }
@@ -72,22 +75,12 @@
 
         // Obtenemos el nombre de usuario para incorporarlo en la notificacion
         if ($result->num_rows > 0) {
-            $getUsernameFollowQuery = "SELECT usuario FROM usuarios WHERE id = ?";
-            $statementGetUsernameFollow = $conn->prepare($getUsernameFollowQuery);
-            $statementGetUsernameFollow->bind_param("i", $usuarioLike);
-            $statementGetUsernameFollow->execute();
-            $resultGetUsernameFollow = $statementGetUsernameFollow->get_result();
-            while ($rowGetUsernameFollow = $resultGetUsernameFollow->fetch_assoc()) {
-                $likeUsername = $rowGetUsernameFollow['usuario'];
-            }
-
-            // Crear la notificacion si el usuario sigue al que le dio like
-            $mensaje = "A $likeUsername le gusta tu publicación";
+            $mensaje = " le gusta tu publicacion";
             $tipo = "like";
 
-            $query = "INSERT INTO notificaciones(id, tipo_notificacion, post_id, mensaje, leida) VALUES(?, ?, ?, ?, 0)";
+            $query = "INSERT INTO notificaciones(id_notificador, id_receptor, tipo_notificacion, post_id, mensaje, leida) VALUES(?, ?, ?, ?, ?, 0)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('isis', $idUser, $tipo, $post_id, $mensaje);
+            $stmt->bind_param('iisss', $usuarioLike, $idUser, $tipo, $post_id, $mensaje);
             $stmt->execute();
         }
     }
@@ -111,23 +104,13 @@
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // Obtenemos el nombre de usuario para incorporarlo a la notificacion
         if ($result->num_rows > 0) {
-            $getUsernameFollowQueryComment = "SELECT usuario FROM usuarios WHERE id = ?";
-            $statementGetUsernameFollowComment = $conn->prepare($getUsernameFollowQueryComment);
-            $statementGetUsernameFollowComment->bind_param("i", $usuarioComentario);
-            $statementGetUsernameFollowComment->execute();
-            $resultGetUsernameFollowComment = $statementGetUsernameFollowComment->get_result();
-            while ($rowGetUsernameFollowComment = $resultGetUsernameFollowComment->fetch_assoc()) {
-                $commentFollowUsername = $rowGetUsernameFollowComment['usuario'];
-            }
-            // Crear la notificacion si el usuario sigue al que comento
-            $mensaje = "$commentFollowUsername comentó tu post";
+            $mensaje = " comentó tu post";
             $tipo = "comentario";
 
-            $query = "INSERT INTO notificaciones(id, tipo_notificacion, post_id, mensaje, leida) VALUES(?, ?, ?, ?, 0)";
+            $query = "INSERT INTO notificaciones(id_notificador, id_receptor, tipo_notificacion, post_id, mensaje, leida) VALUES(?, ?, ?, ?, ?, 0)";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param('isis', $idUser, $tipo, $post_id, $mensaje);
+            $stmt->bind_param('iisss', $usuarioComentario, $idUser, $tipo, $post_id, $mensaje);
             $stmt->execute();
         }
     }
@@ -136,7 +119,7 @@
     function obtener_notificaciones($usuario_id) {
         global $conn;
 
-        $query = "SELECT * FROM notificaciones WHERE id = ? ORDER BY fecha_notificacion DESC";
+        $query = "SELECT n.*, u.usuario AS notificador_nombre FROM notificaciones n JOIN usuarios u ON n.id_notificador = u.id WHERE n.id_receptor = ? ORDER BY n.fecha_notificacion DESC";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $usuario_id);
         $stmt->execute();
@@ -154,7 +137,7 @@
     function no_leidos($id) {
         global $conn;
         
-        $query = "SELECT COUNT(*) AS unread_count FROM notificaciones WHERE id = ? AND leida = 0";
+        $query = "SELECT COUNT(*) AS unread_count FROM notificaciones WHERE id_receptor = ? AND leida = 0";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $id);
         $stmt->execute();
