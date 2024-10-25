@@ -13,7 +13,7 @@ $(document).ready(function () {
             setTimeout("$('#delete-result').html('')", 5000);
         } else {
             $.ajax({
-                url         :   '../models/delete-data.php',
+                url         :   '../models/delete-profile.php',
                 type        :   'POST',
                 data        :   datosEnviados,
                 dataType    :   'text',

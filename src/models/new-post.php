@@ -1,5 +1,6 @@
 <?php
 require('../../config/connection.php');
+require('notifications.php');
 
 // Solución a error: "ya había iniciado una sesión ignorando session_start()"
 if (!isset($_SESSION)) {
@@ -68,6 +69,9 @@ if (isset($_POST['id_user'], $_POST['user'], $_POST['post_title'], $_POST['post_
         if ($file_uploaded) {
             $response['message'] .= " El archivo se ha subido correctamente.";
         }
+        // Llamada a la funcion para crear la notificacion despues de insertar el post
+        $post_id = $conn->insert_id; // Obtener el id del post recien insertado
+        notificar_nuevo_post($idPerfil, $post_id);
     } else {
         $response['message'] = "Error al ejecutar la consulta: " . $sql->error;
     }

@@ -115,6 +115,29 @@
         }
     }
 
+    function notificar_nuevo_post($idAutor, $post_id) {
+        global $conn;
+
+        // Obtener los seguidores del usuario que publico el nuevo post
+        $query = "SELECT id_seguidor FROM siguiendo WHERE id_seguido = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $idAutor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Crear la notificacion para cada seguidor
+        while ($row = $result->fetch_assoc()) {
+            $idSeguidor = $row['id_seguidor'];
+            $mensaje = " ha publicado un nuevo post";
+            $tipo = "nuevo_post";
+
+            $insertNotif = "INSERT INTO notificaciones (id_notificador, id_receptor, tipo_notificacion, post_id, mensaje, leida) VALUES (?, ?, ?, ?, ?, 0)";
+            $stmtNotif = $conn->prepare($insertNotif);
+            $stmtNotif->bind_param('iisss', $idAutor,  $idSeguidor, $tipo, $post_id, $mensaje);
+            $stmtNotif->execute();
+        }
+    }
+
     // Funcion para obtener las notificaciones de un usuario
     function obtener_notificaciones($usuario_id) {
         global $conn;

@@ -17,7 +17,7 @@ $(document).ready(function () {
             setTimeout("$('#new-post-result').html('')", 5000);
         } else {
             $.ajax({
-                url         :   '../models/post-data.php',
+                url         :   '../models/new-post.php',
                 type        :   'POST',
                 data        :   formData,
                 contentType :   false,

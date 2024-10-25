@@ -5,7 +5,7 @@ $(document).ready(function () {
         var formData = new FormData(this);
 
         $.ajax({
-            url: '../models/edit-data.php',
+            url: '../models/edit-profile.php',
             type: 'POST',
             data: formData,
             contentType: false,

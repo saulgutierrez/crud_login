@@ -14,7 +14,7 @@ $(document).ready(function () {
         } else {
             // Envío de la solicitud AJAX
             $.ajax({
-                url: '../models/edit-post-data.php', // URL del script PHP
+                url: '../models/edit-post.php', // URL del script PHP
                 type: 'POST',  // Método de la solicitud
                 data: formData, // Datos del formulario
                 contentType: false, // No establecer tipo de contenido
