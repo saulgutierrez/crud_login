@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-09-2024 a las 04:55:48
+-- Tiempo de generación: 25-10-2024 a las 08:22:03
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -146,8 +146,10 @@ CREATE TABLE `likes_comentarios` (
 
 CREATE TABLE `notificaciones` (
   `id_notificacion` int(11) NOT NULL,
-  `id` int(11) NOT NULL,
+  `id_notificador` int(11) NOT NULL,
+  `id_receptor` int(11) NOT NULL,
   `tipo_notificacion` varchar(50) NOT NULL,
+  `post_id` int(255) NOT NULL,
   `mensaje` text NOT NULL,
   `leida` tinyint(1) NOT NULL,
   `fecha_notificacion` timestamp NOT NULL DEFAULT current_timestamp()
@@ -250,7 +252,9 @@ ALTER TABLE `likes_comentarios`
 --
 ALTER TABLE `notificaciones`
   ADD PRIMARY KEY (`id_notificacion`),
-  ADD KEY `id` (`id`);
+  ADD KEY `id` (`id_notificador`),
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `id_receptor` (`id_receptor`);
 
 --
 -- Indices de la tabla `post`
@@ -298,7 +302,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `likes_comentarios`
 --
 ALTER TABLE `likes_comentarios`
-  MODIFY `id_like_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_like_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
@@ -353,7 +357,9 @@ ALTER TABLE `likes_comentarios`
 -- Filtros para la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`id_notificador`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `notificaciones_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `post` (`id_post`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `notificaciones_ibfk_3` FOREIGN KEY (`id_receptor`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `post`
