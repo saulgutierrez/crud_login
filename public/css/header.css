@@ -358,24 +358,25 @@ header h2 a:hover {
     position: absolute;
     display: block;
     background-color: #242526;
-    width: 300px;
+    width: 350px;
     right: 18%;
     top: 85%;
     height: auto;
     max-height: 500px;
     overflow-y: auto;
     filter: drop-shadow(10px 10px 10px #151617);
+    border: 1px solid #3a3b3c;
+    border-radius: 10px;
 }
 
 .notification-container {
     position: relative;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: space-between;
     max-height: 500px;
     height: auto;
     align-items: center;
-    padding: 10px 30px;
+    padding: 20px 40px;
 }
 
 .notification-container:hover {

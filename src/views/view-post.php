@@ -111,7 +111,7 @@
                     <div class="imgBoxProfileImage">
                         <img src="<?php echo $fotoUsuario; ?>" alt="">
                     </div>
-                    <a href="profile.php?id=<?php echo $id_autor;?>" data-id="<?php echo $id_autor; ?>" data-autor="<?php echo $autor; ?>" data-foto="<?php echo $fotoUsuario?>">
+                    <a href="profile.php?id=<?php echo $id_autor;?>" data-id="<?php echo $id_autor; ?>" data-autor="<?php echo $autor; ?>" data-foto="<?php echo $fotoUsuario?>" id="username">
                         <?php echo $autor; ?>
                     </a>
                 </h2>
@@ -299,6 +299,7 @@
     <script src="../controllers/like-comment.js"></script>
     <script src="../controllers/check-like-button-state-thread.js"></script>
     <script src="../helpers/view-full-date.js"></script>
+    <script src="../helpers/view-post.js"></script>
     <script type="module" src="../helpers/photo-gallery.js"></script>
     <script>
         // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,

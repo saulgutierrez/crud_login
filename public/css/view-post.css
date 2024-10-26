@@ -66,6 +66,10 @@ body main {
     overflow-y: auto;
 }
 
+.overflow-visible {
+    overflow-y: visible;   
+}
+
 .post-card::-webkit-scrollbar {
     display: none; /* Para navegadores basados en WebKit como Chrome y Safari */
   }

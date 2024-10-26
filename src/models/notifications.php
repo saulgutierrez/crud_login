@@ -47,8 +47,13 @@
                 $nombreNotificador = $notificacion['notificador_nombre'];
 
                 echo "<a href='view-post.php?id={$notificacion['post_id']}&notif_id={$notificacion['id_notificacion']}' class='notification-container $claseLeida'>
-                        <div>" . $nombreNotificador . " " . $notificacion['mensaje'] . "</div>
-                        <div>{$notificacion['fecha_notificacion']}</div>
+                        <div class='imgBox'>
+                            <img src=".$notificacion['fotografia'].">
+                        </div>
+                        <div>
+                            <div>" . $nombreNotificador . " " . $notificacion['mensaje'] . "</div>
+                            <div>{$notificacion['fecha_notificacion']}</div>
+                        </div>
                     </a>";
 
             }
@@ -142,7 +147,7 @@
     function obtener_notificaciones($usuario_id) {
         global $conn;
 
-        $query = "SELECT n.*, u.usuario AS notificador_nombre FROM notificaciones n JOIN usuarios u ON n.id_notificador = u.id WHERE n.id_receptor = ? ORDER BY n.fecha_notificacion DESC";
+        $query = "SELECT n.*, u.fotografia, u.usuario AS notificador_nombre FROM notificaciones n JOIN usuarios u ON n.id_notificador = u.id WHERE n.id_receptor = ? ORDER BY n.fecha_notificacion DESC";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $usuario_id);
         $stmt->execute();
