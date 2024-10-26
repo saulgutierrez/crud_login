@@ -770,9 +770,9 @@
     <script src="https://unpkg.com/photoswipe@5.3.8/dist/photoswipe.min.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
     <script src="../helpers/profile.js"></script>
-    <script src="../controllers/delete-post.js"></script>
-    <script src="../controllers/delete-comment.js"></script>
-    <script src="../controllers/follow-user.js"></script>
+    <script src="../handlers/delete-post.js"></script>
+    <script src="../handlers/delete-comment.js"></script>
+    <script src="../handlers/follow-user.js"></script>
     <script src="../helpers/view-full-date.js"></script>
     <script type="module" src="../helpers/view-profile-image.js"></script>
     <script type="module" src="../helpers/photo-gallery.js"></script>

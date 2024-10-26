@@ -115,6 +115,6 @@
 </header>
 </html>
 <script src="../helpers/header.js"></script>
-<script src="../controllers/search-users.js"></script>
-<script src="../controllers/generate-recovery-codes.js"></script>
-<script src="../controllers/update-notifications.js"></script>
+<script src="../handlers/search-users.js"></script>
+<script src="../handlers/generate-recovery-codes.js"></script>
+<script src="../handlers/update-notifications.js"></script>

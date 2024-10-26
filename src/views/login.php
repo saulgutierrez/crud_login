@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/login.css">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
-    <script src="../controllers/check-data.js"></script>
+    <script src="../handlers/check-data.js"></script>
     <title>Foro | Games DB</title>
 </head>
 <body>

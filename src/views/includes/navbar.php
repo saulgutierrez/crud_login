@@ -85,6 +85,6 @@
     </nav>
     <script src="../src/helpers/navbar.js"></script>
     <script src="../src/helpers/custom-select-to-filter-game.js"></script>
-    <script src="../src/controllers/filter-game-by-category.js"></script>
+    <script src="../src/handlers/filter-game-by-category.js"></script>
 </body>
 </html>

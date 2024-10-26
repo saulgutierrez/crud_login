@@ -85,12 +85,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
-    <script src="../controllers/get-follow-info-thread.js"></script>
-    <script src="../controllers/get-follow-info-comments.js"></script>
+    <script src="../handlers/get-follow-info-thread.js"></script>
+    <script src="../handlers/get-follow-info-comments.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../../public/css/view-post.css">
-    <script src="../controllers/new-comment.js"></script>
+    <script src="../handlers/new-comment.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css" integrity="sha512-LFWtdAXHQuwUGH9cImO9blA3a3GfQNkpF2uRlhaOpSbDevNyK1rmAjs13mtpjvWyi+flP7zYWboqY+8Mkd42xA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/umd/photoswipe-lightbox.umd.min.js" integrity="sha512-D16CBrIrVF48W0Ou0ca3D65JFo/HaEAjTugBXeWS/JH+1KNu54ZOtHPccxJ7PQ44rTItUT6DSI6xNL+U34SuuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/umd/photoswipe.umd.min.js" integrity="sha512-BXwwGU7zCXVgpT2jpXnTbioT9q1Byf7NEXVxovTZPlNvelL2I/4LjOaoiB2a19L+g5za8RbkoJFH4fMPQcjFFw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -296,8 +296,8 @@
 
     <script src="../helpers/comment-image-preview.js"></script>
     <script src="../helpers/get-current-time.js"></script>
-    <script src="../controllers/like-comment.js"></script>
-    <script src="../controllers/check-like-button-state-thread.js"></script>
+    <script src="../handlers/like-comment.js"></script>
+    <script src="../handlers/check-like-button-state-thread.js"></script>
     <script src="../helpers/view-full-date.js"></script>
     <script src="../helpers/view-post.js"></script>
     <script type="module" src="../helpers/photo-gallery.js"></script>

@@ -34,7 +34,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/new-post.css">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
-    <script src="../controllers/new-post.js"></script>
+    <script src="../handlers/new-post.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.6.0/tinymce.min.js"></script>
     <title>Crear Post</title>
 </head>

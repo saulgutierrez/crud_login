@@ -39,7 +39,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
-    <script src="../controllers/edit-post.js"></script>
+    <script src="../handlers/edit-post.js"></script>
     <link rel="stylesheet" href="../../public/css/edit-post.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.6.0/tinymce.min.js"></script>
     <title>Editar Post</title>

@@ -42,7 +42,7 @@
     <title>Editar Perfil | Forum</title>
     <link rel="stylesheet" href="../../public/css/edit-profile.css">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
-    <script src="../controllers/edit-profile.js"></script>
+    <script src="../handlers/edit-profile.js"></script>
 </head>
 
 <?php include "includes/header.php"; ?>

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/sign-in.css">
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
-    <script src="../controllers/check-full-fields.js"></script>
+    <script src="../handlers/check-full-fields.js"></script>
     <title>Registrarse | GamesDB</title>
 </head>
 <body>

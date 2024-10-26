@@ -38,5 +38,5 @@
         <?php endforeach; ?>
     </div>
 </body>
-<script src="../src/controllers/search-game.js"></script>
+<script src="../src/handlers/search-game.js"></script>
 </html>
