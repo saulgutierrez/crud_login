@@ -204,175 +204,185 @@ form input[type=text]:focus {
 }
 
 input[type="file"] {
-    outline: none;
-    padding: 4px;
-    margin: -4px;
-  }
-  
-  input[type="file"]:focus-within::file-selector-button,
-  input[type="file"]:focus::file-selector-button {
-    outline: 2px solid #0964b0;
-    outline-offset: 2px;
-  }
-  
-  input[type="file"]::before {
-    top: 16px;
-  }
-  
-  input[type="file"]::after {
-    top: 14px;
-  }
-  
-  /* ------- From Step 2 ------- */
-  
-  input[type="file"] {
-    position: relative;
-  }
-  
-  input[type="file"]::file-selector-button {
-    width: 136px;
-    color: transparent;
-  }
-  
-  /* Faked label styles and icon */
-  input[type="file"]::before {
-    position: absolute;
-    pointer-events: none;
-    /*   top: 11px; */
-    left: 40px;
-    color: #0964b0;
-    content: "Subir imagen";
-  }
-  
-  input[type="file"]::after {
-    position: absolute;
-    pointer-events: none;
-    /*   top: 10px; */
-    left: 16px;
-    height: 20px;
-    width: 20px;
-    content: "";
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
-  }
-  
-  /* ------- From Step 1 ------- */
-  
-  /* file upload button */
-  input[type="file"]::file-selector-button {
-    border-radius: 20px;
-    padding: 0 16px;
-    height: 40px;
-    cursor: pointer;
-    background-color: #3a3b3c;
-    border: 1px solid rgba(0, 0, 0, 0.16);
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
-    margin-right: 16px;
-    transition: background-color 200ms;
-  }
-  
-  /* file upload button hover state */
-  input[type="file"]::file-selector-button:hover {
-    background-color: #131316;
-    border: 1px solid #007bff;
-  }
-  
-  /* file upload button active state */
-  input[type="file"]::file-selector-button:active {
-    background-color: #3a3b3c;
-  }
+  outline: none;
+  padding: 4px;
+  margin: -4px;
+}
 
-  .image-content {
+input[type="file"]:focus-within::file-selector-button,
+input[type="file"]:focus::file-selector-button {
+  outline: 2px solid #0964b0;
+  outline-offset: 2px;
+}
+
+input[type="file"]::before {
+  top: 16px;
+}
+
+input[type="file"]::after {
+  top: 14px;
+}
+
+/* ------- From Step 2 ------- */
+
+input[type="file"] {
+  position: relative;
+}
+
+input[type="file"]::file-selector-button {
+  width: 136px;
+  color: transparent;
+}
+
+/* Faked label styles and icon */
+input[type="file"]::before {
+  position: absolute;
+  pointer-events: none;
+  /*   top: 11px; */
+  left: 40px;
+  color: #0964b0;
+  content: "Subir imagen";
+}
+
+input[type="file"]::after {
+  position: absolute;
+  pointer-events: none;
+  /*   top: 10px; */
+  left: 16px;
+  height: 20px;
+  width: 20px;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
+}
+
+/* ------- From Step 1 ------- */
+
+/* file upload button */
+input[type="file"]::file-selector-button {
+  border-radius: 20px;
+  padding: 0 16px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #3a3b3c;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+  margin-right: 16px;
+  transition: background-color 200ms;
+}
+
+/* file upload button hover state */
+input[type="file"]::file-selector-button:hover {
+  background-color: #131316;
+  border: 1px solid #007bff;
+}
+
+/* file upload button active state */
+input[type="file"]::file-selector-button:active {
+  background-color: #3a3b3c;
+}
+
+.image-content {
+  position: relative;
+}
+
+#imagePreview {
+  max-width: 100%;
+  max-height: 150px;
+  margin-top: 10px;
+}
+
+.close-icon {
+  position: absolute;
+  filter: invert(23%) sepia(71%) saturate(6752%) hue-rotate(358deg) brightness(88%) contrast(134%);
+  width: 30px;
+  height: 30px;
+  top: 0px;
+  right: -15px;
+  display: none;
+}
+
+.category-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.custom-select {
     position: relative;
-  }
-  
-  #imagePreview {
-    max-width: 100%;
-    max-height: 150px;
-    margin-top: 10px;
-  }
-  
-  .close-icon {
-    position: absolute;
-    filter: invert(23%) sepia(71%) saturate(6752%) hue-rotate(358deg) brightness(88%) contrast(134%);
-    width: 30px;
-    height: 30px;
-    top: 0px;
-    right: -15px;
+}
+
+.custom-select select {
     display: none;
-  }
+}
 
-  .category-content {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-  }
+.select-selected {
+    border: 1px solid #fff;
+    background-color: #3a3b3c;
+    width: 180px;
+}
   
-  .custom-select {
-      position: relative;
-  }
-  
-  .custom-select select {
-      display: none;
-  }
-  
-  .select-selected {
-      border: 1px solid #fff;
-      background-color: #3a3b3c;
-      width: 180px;
-  }
-    
-    /* Style the arrow inside the select element: */
-    .select-selected:after {
-      position: absolute;
-      content: "";
-      top: 14px;
-      right: 10px;
-      width: 0;
-      height: 0;
-      border: 6px solid transparent;
-      border-color: #fff transparent transparent transparent;
-    }
-    
-    /* Point the arrow upwards when the select box is open (active): */
-    .select-selected.select-arrow-active:after {
-      border-color: transparent transparent #fff transparent;
-      top: 7px;
-    }
-    
-    /* style the items (options), including the selected item: */
-    .select-items div, .select-selected {
-      color: #fff;
-      padding: 8px 16px;
-      border: 1px solid transparent;
-      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-      cursor: pointer;
-      border-radius: 0px;
-    }
-    
-    /* Style items (options): */
-    .select-items {
-      position: absolute;
-      background-color: #3a3b3c;
-      color: #fff;
-      top: 100%;
-      left: 0;
-      right: 0;
-      z-index: 99;
-      max-height: 150px;
-      overflow-y: scroll;
-      width: 180px;
-    }
-    
-    /* Hide the items when the select box is closed: */
-    .select-hide {
-      display: none;
-    }
-    
-    .select-items div:hover, .same-as-selected {
-      border: 1px solid #fff;
-      color: #fff;
-    }
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
 
-    .tox {
-      z-index: 1;
-    }
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div, .select-selected {
+  color: #fff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  border-radius: 0px;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: #3a3b3c;
+  color: #fff;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  max-height: 150px;
+  overflow-y: scroll;
+  width: 180px;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.tox {
+  z-index: 1;
+}
+
+.image-upload > input {
+	display: none;
+}
+
+.image-upload img {
+    width: 20px;
+    cursor: pointer;
+    filter: invert(1);
+}

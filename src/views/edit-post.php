@@ -71,8 +71,13 @@
                     ?>
                 </select>
             </div>
+            <div class="image-upload">
+                <label for="file">
+                    <img src="../../public/svg/image-icon.svg" alt="">
+                </label>
+                <input type="file" name="file" id="file" accept="image/*">
+            </div>
         </div>
-        <input type="file" name="file" id="file" accept="image/*">
         <a href="#" id="openModalLink" class="<?php echo $hasImage; ?>">Ver imagen existente</a>
         <div class="image-content">
             <img src="" alt="" id="imagePreview">

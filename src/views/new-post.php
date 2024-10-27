@@ -59,9 +59,14 @@
                 ?>
                 </select>
             </div>
+            <div class="image-upload">
+                <label for="file">
+                    <img src="../../public/svg/image-icon.svg">
+                </label>
+                <input type="file" name="file" id="file" accept="image/*">
+            </div>
         </div>
         <input name="post_time" id="post_time" type="hidden" value="<?php echo $fecha_actual; ?>">
-        <input type="file" name="file" id="file" accept="image/*">
         <div class="image-content">
             <img src="" alt="" id="imagePreview">
             <img src="../../public/svg/close-circle.svg" alt="" class="close-icon" id="close-icon">

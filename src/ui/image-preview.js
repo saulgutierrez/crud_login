@@ -24,7 +24,7 @@ imageUpload.addEventListener('change', function() {
 
 closeIcon.addEventListener('click', function () {
     imagePreview.src = "";
-    imageUpload.style.display = "flex";
+    imageUpload.style.display = "none";
     this.style.display = "none";
     imageUpload.value = "";
 });
