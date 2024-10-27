@@ -45,6 +45,6 @@
             <div class="menu-opciones hidden"></div>
         </ul>
     </nav>
-    <script src="../../src/helpers/navbar.js"></script>
+    <script src="../../src/ui/navbar.js"></script>
 </body>
 </html>

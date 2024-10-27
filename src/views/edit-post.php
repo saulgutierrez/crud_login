@@ -104,9 +104,9 @@
         </div>
     </div>
 </body>
-<script src="../helpers/view-saved-image.js"></script>
-<script src="../helpers/image-preview-edit.js"></script>
-<script src="../helpers/custom-select.js"></script>
+<script src="../ui/view-saved-image.js"></script>
+<script src="../ui/image-preview-edit.js"></script>
+<script src="../ui/custom-select.js"></script>
 <script>
     tinymce.init({
         selector:   '#post_content',

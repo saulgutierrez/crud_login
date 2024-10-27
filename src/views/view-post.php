@@ -294,13 +294,13 @@
         </div>
     </div>
 
-    <script src="../helpers/comment-image-preview.js"></script>
-    <script src="../helpers/get-current-time.js"></script>
+    <script src="../ui/comment-image-preview.js"></script>
+    <script src="../ui/get-current-time.js"></script>
     <script src="../handlers/like-comment.js"></script>
     <script src="../handlers/check-like-button-state-thread.js"></script>
-    <script src="../helpers/view-full-date.js"></script>
-    <script src="../helpers/view-post.js"></script>
-    <script type="module" src="../helpers/photo-gallery.js"></script>
+    <script src="../ui/view-full-date.js"></script>
+    <script src="../ui/view-post.js"></script>
+    <script type="module" src="../ui/photo-gallery.js"></script>
     <script>
         // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
         // y despues utilizarla para evaluar una respuesta con AJAX.

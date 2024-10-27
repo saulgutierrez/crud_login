@@ -83,8 +83,8 @@
             <div class="menu-opciones hidden"></div>
         </ul>
     </nav>
-    <script src="../src/helpers/navbar.js"></script>
-    <script src="../src/helpers/custom-select-to-filter-game.js"></script>
+    <script src="../src/ui/navbar.js"></script>
+    <script src="../src/ui/custom-select-to-filter-game.js"></script>
     <script src="../src/handlers/filter-game-by-category.js"></script>
 </body>
 </html>

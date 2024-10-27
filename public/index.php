@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/css/index.css">
     <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="../src/helpers/goto-top.js"></script>
-    <script src="../src/helpers/game-details.js"></script>
+    <script src="../src/ui/goto-top.js"></script>
+    <script src="../src/ui/game-details.js"></script>
 </head>
 
 <body>

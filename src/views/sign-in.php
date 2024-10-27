@@ -37,6 +37,6 @@
         </div>
         <div id="message" class="message"></div>
     </form>
-    <script src="../helpers/sign-in.js"></script>
+    <script src="../ui/sign-in.js"></script>
 </body>
 </html>

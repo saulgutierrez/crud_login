@@ -762,20 +762,20 @@
             </div>
         </section>
     </main>
-    <script src="../helpers/check-profile-or-user.js"></script>
+    <script src="../ui/check-profile-or-user.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css" integrity="sha512-LFWtdAXHQuwUGH9cImO9blA3a3GfQNkpF2uRlhaOpSbDevNyK1rmAjs13mtpjvWyi+flP7zYWboqY+8Mkd42xA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/umd/photoswipe-lightbox.umd.min.js" integrity="sha512-D16CBrIrVF48W0Ou0ca3D65JFo/HaEAjTugBXeWS/JH+1KNu54ZOtHPccxJ7PQ44rTItUT6DSI6xNL+U34SuuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/umd/photoswipe.umd.min.js" integrity="sha512-BXwwGU7zCXVgpT2jpXnTbioT9q1Byf7NEXVxovTZPlNvelL2I/4LjOaoiB2a19L+g5za8RbkoJFH4fMPQcjFFw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/photoswipe@5.3.8/dist/photoswipe-lightbox.min.js"></script>
     <script src="https://unpkg.com/photoswipe@5.3.8/dist/photoswipe.min.js"></script>
     <script src="../../public/js/jquery-3.7.1.min.js"></script>
-    <script src="../helpers/profile.js"></script>
+    <script src="../ui/profile.js"></script>
     <script src="../handlers/delete-post.js"></script>
     <script src="../handlers/delete-comment.js"></script>
     <script src="../handlers/follow-user.js"></script>
-    <script src="../helpers/view-full-date.js"></script>
-    <script type="module" src="../helpers/view-profile-image.js"></script>
-    <script type="module" src="../helpers/photo-gallery.js"></script>
+    <script src="../ui/view-full-date.js"></script>
+    <script type="module" src="../ui/view-profile-image.js"></script>
+    <script type="module" src="../ui/photo-gallery.js"></script>
     <style>
         .pswp--one-slide .pswp__button--arrow {
             display: flex;

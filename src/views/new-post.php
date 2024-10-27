@@ -84,8 +84,8 @@
         </div>
         <div id="new-post-result" class="new-post-result"></div>
     </form>
-    <script src="../helpers/image-preview.js"></script>
-    <script src="../helpers/custom-select.js"></script>
+    <script src="../ui/image-preview.js"></script>
+    <script src="../ui/custom-select.js"></script>
     <script>
         tinymce.init({
             selector:   '#post_content',

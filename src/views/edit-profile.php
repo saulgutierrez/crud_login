@@ -89,6 +89,6 @@
         <div id="edit-result" class="edit-result"></div>
     </form>
 
-    <script src="../helpers/custom-select.js"></script>
+    <script src="../ui/custom-select.js"></script>
 </body>
 </html>
