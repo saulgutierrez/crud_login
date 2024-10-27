@@ -52,9 +52,7 @@
         <input type="hidden" id="id_user" name="id_user" value="<?php echo $idAutor; ?>">
         <!-- Nombre del autor del post -->
         <input type="hidden" id="user" name="user" value="<?php echo $autorPost; ?>">
-        <label for="post-title">Titulo</label>
         <input type="text" name="post_title" id="post_title" class="post_title" placeholder="Titulo del post" value="<?php echo $tituloPost; ?>">
-        <label for="post-content">Contenido</label>
         <textarea name="post_content" id="post_content" rows="4" cols="35"><?php echo $contenidoPost; ?></textarea>
         <div class="category-content">
             <label for="category">Categoria</label>
@@ -110,13 +108,16 @@
 <script>
     tinymce.init({
         selector:   '#post_content',
-        plugins: 'image link media table emoticons',
-        toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media emoticons',
+        plugins: 'link emoticons codesample lists',
+        toolbar: 'bold italic underline strikethrough superscript | link emoticons codesample | numlist bullist',
         width: 450,
         height: 200,
         resize: false,
         skin: 'oxide-dark',
         content_css: 'dark',
+        statusbar: false,
+        menubar: false,
+        branding: false,
     });
 </script>
 </html>

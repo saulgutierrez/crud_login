@@ -43,9 +43,7 @@
     <form method="POST" id="newPostForm" enctype="multipart/form-data">
         <input type="hidden" id="id_user" name="id_user" value="<?php echo $idPerfil;?>">
         <input type="hidden" id="user" name="user" value="<?php echo $user;?>">
-        <label for="post-title">Titulo</label>
         <input type="text" name="post_title" id="post_title" class="post_title" placeholder="Titulo del post">
-        <label for="post-content">Contenido</label>
         <textarea name="post_content" id="post_content" rows="4" cols="35"></textarea>
         <div class="category-content">
             <label for="category">Categoria</label>
@@ -89,14 +87,17 @@
     <script>
         tinymce.init({
             selector:   '#post_content',
-            plugins: 'image link media table emoticons',
-            toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media emoticons',
+            plugins: 'link emoticons codesample lists',
+            toolbar: 'bold italic underline strikethrough superscript | link emoticons codesample | numlist bullist',
             width: 450,
             height: 200,
             resize: false,
             skin: 'oxide-dark',
             content_css: 'dark',
-        });
+            statusbar: false,
+            menubar: false,
+            branding: false,
+    });
     </script>
 </body>
 </html>
