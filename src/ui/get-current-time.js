@@ -1,4 +1,5 @@
 setInterval(function() {
-    var fechaActual = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    document.getElementById('comment-time').value = fechaActual;
+    const fechaActual = new Date();
+    const fechaLocal = fechaActual.toLocaleString(); // Muestra en formato local
+    document.getElementById('comment-time').value = fechaLocal;
 }, 1000);

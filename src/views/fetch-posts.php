@@ -5,6 +5,7 @@
 
     use Carbon\Carbon;
     Carbon::setLocale('es');
+    date_default_timezone_set('America/Mexico_City'); 
 
     # Si no existe varible de sesion, quiere decir que el usuario no se ha autenticado
     # Negamos el acceso

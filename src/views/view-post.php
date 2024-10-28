@@ -5,6 +5,7 @@
 
     use Carbon\Carbon;
     Carbon::setLocale('es');
+    date_default_timezone_set('America/Mexico_City'); 
 
     if (!isset($_SESSION)) {
         session_start();
@@ -153,7 +154,8 @@
                 $autorComentario = $fila['autor_comentario'];
                 $comentario = $fila['comentario'];
                 $imagen = $fila['foto_comentario'];
-                $fecha = Carbon::parse($fila['fecha_publicacion']);
+                $formato = 'd/m/Y, g:i:s A';
+                $fecha = Carbon::createFromFormat($formato, $fila['fecha_publicacion']);
                 $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
                 $fotografiaAutorComentario = $fila['fotografia']; // Fotografía del usuario
 
