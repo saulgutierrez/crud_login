@@ -5,6 +5,7 @@
 
     use Carbon\Carbon;
     Carbon::setLocale('es');
+    date_default_timezone_set('America/Mexico_City'); 
 
     // Estamos viendo el perfil de otro usuario
     if (isset($_GET['id'])) {
@@ -229,7 +230,12 @@
                     </div>
                     <div>Eliminar cuenta</div>
                 </a>
-                <a id="btn-3" class="follow-profile-btn" href="" data-id="<?php echo $idPerfil; ?>">Seguir usuario</a>
+                <a id="btn-3" class="follow-profile-btn" href="" data-id="<?php echo $idPerfil; ?>">
+                    <div class="imgBox">
+                        <img src="../../public/svg/follow-user.svg" alt="">
+                    </div>
+                    <div>Seguir usuario</div>
+                </a>
             </article>
         </nav>
         <section>
@@ -453,7 +459,8 @@
                         $comentarioItem = $rowComments['comentario'];
                         $fotoComentario = $rowComments['foto_comentario'];
                         $hasImageComment = !empty($fotoComentario) ? 'imgBoxContent' : 'noImage';
-                        $fecha = Carbon::parse($rowComments['fecha_publicacion']);
+                        $formato = 'd/m/Y, g:i:s a';
+                        $fecha = Carbon::createFromFormat($formato, $rowComments['fecha_publicacion']);
                         $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
                 ?>
                 <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">

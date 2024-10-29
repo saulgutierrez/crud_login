@@ -33,7 +33,7 @@ body {
 
 body main {
     position: relative;
-    width: 85%;
+    width: 90%;
     height: calc(100vh - 80px);
     display: flex;
     flex-direction: column;
@@ -43,14 +43,14 @@ body main {
 
 body main nav {
     position: fixed;
+    left: 0%;
     top: 70px;
-    left: 0;
     width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: flex-end;
+    justify-content: center;
     height: 170px;
-    padding: 20px 8%;
+    padding: 20px 0px;
     z-index: 1000;
     background-color: #18191a;
 }
@@ -411,11 +411,12 @@ body main section {
     position: relative;
     display: none;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
     gap: 10px;
+    align-self: flex-end;
 }
 
 .post-card .post-card-top {
@@ -564,11 +565,12 @@ body main section {
     position: relative;
     display: none;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
     gap: 10px;
+    align-self: flex-end;
 }
 
 .comment-card .comment-card-top {
@@ -694,7 +696,7 @@ body main section {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
+    width: 100%;
     height: 300px;
 }
 
@@ -722,10 +724,11 @@ body main section {
 .following-card {
     position: relative;
     display: none;
-    width: 100%;
+    width: 90%;
     background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
+    align-self: flex-end;
 }
 
 .following-card h2 {
@@ -794,10 +797,11 @@ body main section {
 .follower-card {
     position: relative;
     display: none;
-    width: 100%;
+    width: 90%;
     background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
+    align-self: flex-end;
 }
 
 .follower-card h2 {
@@ -867,11 +871,12 @@ body main section {
     position: relative;
     display: none;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
     gap: 10px;
+    align-self: flex-end;
 }
 
 .likes-card .likes-card-top {

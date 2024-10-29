@@ -2,7 +2,7 @@
     require('../../config/connection.php');
     require('../models/session.php');
     date_default_timezone_set('America/Mexico_City');
-    $fecha_actual = date("d-m-Y h:i:s");
+    $fecha_actual = date("d-m-Y H:i:s");
 
     if (!isset($_SESSION)) {
         session_start();
