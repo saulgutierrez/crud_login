@@ -234,7 +234,7 @@
                     <div class="imgBox">
                         <img src="../../public/svg/follow-user.svg" alt="">
                     </div>
-                    <div>Seguir usuario</div>
+                    <div class="follow-text">Seguir</div>
                 </a>
             </article>
         </nav>

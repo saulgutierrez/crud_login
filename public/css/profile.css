@@ -138,10 +138,37 @@ body main nav article h3 {
     color: #fff;
     text-decoration: none;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .follow-profile-btn:hover {
     background-color: #0069d9;
+}
+
+.follow-profile-btn .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.follow-profile-btn .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+.follow-profile-btn div {
+    margin-left: 5px;
 }
 
 .unfollow-profile-btn {

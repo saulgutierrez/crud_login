@@ -58,15 +58,3 @@ if (params.has('user')) {
         });
     }
 }
-
-btn3.addEventListener('mouseover', () => {
-    if (btn3.innerText === 'Siguiendo') {
-        btn3.innerText = 'Dejar de seguir';
-    }
-});
-
-btn3.addEventListener('mouseleave', () => {
-    if (btn3.innerText === 'Dejar de seguir') {
-        btn3.innerText = 'Siguiendo';
-    }
-});
