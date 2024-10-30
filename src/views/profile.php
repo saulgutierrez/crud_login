@@ -330,6 +330,12 @@
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
                     <div class="menu-opciones" id="menu-opciones">
+                        <a href="view-post.php?id=<?php echo $idPost; ?>">
+                            <div class="imgBox">
+                                <img src="../../public/svg/view-thread.svg" alt="">
+                            </div>
+                            <div>Ver hilo</div>
+                        </a>
                         <a href="edit-post.php?id_post=<?php echo $idPost; ?>">
                             <div class="imgBox">
                                 <img src="../../public/svg/new-post.svg" alt="">
@@ -423,6 +429,12 @@
                                 <img src="../../public/svg/view-thread.svg" alt="">
                             </div>
                             <div>Ver hilo</div>
+                        </a>
+                        <a href="">
+                            <div class="imgBox">
+                                <img src="../../public/svg/edit-comment.svg" alt="">
+                            </div>
+                            <div>Editar comentario</div>
                         </a>
                         <a href="" class="delete-comment-btn" data-id="<?php echo $idComentarioItem; ?>">
                             <div class="imgBox">
