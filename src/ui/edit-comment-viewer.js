@@ -1,0 +1,55 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("myModal");
+    const commentInput = document.getElementById("commentInput");
+    const commentImage = document.getElementById("commentImage");
+    const newCommentImage = document.getElementById("newCommentImage");
+    const closeButton = modal.querySelector(".close");
+    const commentIdInput = document.getElementById('commentIdInput');
+
+    const openModalLinks = document.querySelectorAll(".openModalLink");
+
+    openModalLinks.forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const commentId = link.dataset.id;
+            const commentText = link.dataset.comment;
+            const imagePath = link.dataset.image;
+
+            commentIdInput.value = commentId;
+            commentInput.value = commentText;
+
+            if (imagePath) {
+                commentImage.src = imagePath;
+                commentImage.style.display = "block";
+            } else {
+                commentImage.style.display = "none";
+            }
+
+            modal.style.display = "block";
+        });
+    });
+
+    // Escucha cambios en el campo de archivo
+    newCommentImage.addEventListener("change", function () {
+        const file = newCommentImage.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                commentImage.src = e.target.result;
+                commentImage.style.display = "block";
+            };
+            reader.readAsDataURL(file); // Lee el archivo y muestra la vista previa
+        }
+    });
+
+    closeButton.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+});

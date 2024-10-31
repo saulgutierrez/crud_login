@@ -240,48 +240,48 @@
         </nav>
         <section>
             <div class="menu-lateral">
-                <a class="info" id="info">
+                <a class="info" id="info" href="#">
                     <div class="imgBox">
                         <img src="../../public/svg/info.svg" alt="">
                     </div>
                     <div>Info</div>
                 </a>
-                <a class="posts" id="posts">
+                <a class="posts" id="posts" href="#post-content">
                     <div class="imgBox">
                         <img src="../../public/svg/new-post.svg" alt="">
                     </div>
                     <div>Posts</div>
                     <div><?php echo $post_count; ?></div>
                 </a>
-                <a class="comments" id="comments">
+                <a class="comments" id="comments" href="#comment-content">
                     <div class="imgBox">
                         <img src="../../public/svg/comment.svg" alt="">
                     </div>
                     <div>Comentarios</div>
                     <div><?php echo $comments_count; ?></div>
                 </a>
-                <a class="followers" id="followers">
+                <a class="followers" id="followers" href="#followers-content">
                     <div class="imgBox">
                         <img src="../../public/svg/follower.svg" alt="">
                     </div>
                     <div>Seguidores</div>
                     <div><?php echo $followers_count; ?></div>
                 </a>
-                <a class="following" id="following">
+                <a class="following" id="following" href="#following-content">
                     <div class="imgBox">
                         <img src="../../public/svg/following.svg" alt="">
                     </div>
                     <div>Siguiendo</div>
                     <div><?php echo $following_count; ?></div>
                 </a>
-                <a class="likes" id="likes">
+                <a class="likes" id="likes" href="#likes-content">
                     <div class="imgBox">
                         <img src="../../public/svg/like.svg" alt="">
                     </div>
                     <div>Liked Posts</div> 
                     <div><?php echo $likes_count; ?></div>
                 </a>
-                <a class="photos" id="photos">
+                <a class="photos" id="photos" href="#photos-content">
                     <div class="imgBox">
                         <img src="../../public/svg/photos.svg" alt="">
                     </div>
@@ -430,7 +430,7 @@
                             </div>
                             <div>Ver hilo</div>
                         </a>
-                        <a href="">
+                        <a href="" class="openModalLink" data-id="<?php echo $idComentarioItem; ?>" data-comment="<?php echo $comentarioItem; ?>" data-image="<?php echo $fotoComentario; ?>">
                             <div class="imgBox">
                                 <img src="../../public/svg/edit-comment.svg" alt="">
                             </div>
@@ -450,7 +450,7 @@
                         </div>
                         <h2><?php echo $autorComentarioItem; ?></h2>
                     </div>
-                    <h3><?php echo $comentarioItem; ?></h3>
+                    <h3 id="comentarioItem<?php echo $idComentarioItem; ?>"><?php echo $comentarioItem; ?></h3>
                     <div class="<?php echo $hasImageComment; ?>">
                         <img src="<?php echo $fotoComentario; ?>" alt="">
                     </div>
@@ -780,6 +780,22 @@
                 </div>
             </div>
         </section>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <form>
+                    <input type="hidden" name="commentIdInput" id="commentIdInput" value="">
+                    <input type="text" name="commentInput" id="commentInput" value="">
+                    <div class="imgBoxComment">
+                        <img id="commentImage" src="" alt="Imagen del comentario" style="max-width: 100%; display: none;">
+                    </div>
+                    <input type="file" id="newCommentImage" name="newCommentImage" accept="image/*">
+                    <button id="saveComment">Actualizar</button>
+                </form>
+            </div>
+        </div>
+
     </main>
     <script src="../ui/check-profile-or-user.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css" integrity="sha512-LFWtdAXHQuwUGH9cImO9blA3a3GfQNkpF2uRlhaOpSbDevNyK1rmAjs13mtpjvWyi+flP7zYWboqY+8Mkd42xA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -795,6 +811,8 @@
     <script src="../ui/view-full-date.js"></script>
     <script type="module" src="../ui/view-profile-image.js"></script>
     <script type="module" src="../ui/photo-gallery.js"></script>
+    <script src="../ui/edit-comment-viewer.js"></script>
+    <script src="../handlers/edit-comment.js"></script>
     <style>
         .pswp--one-slide .pswp__button--arrow {
             display: flex;
