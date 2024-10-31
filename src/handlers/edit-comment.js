@@ -18,6 +18,11 @@ document.getElementById("saveComment").onclick = function (event) {
     .then(data => {
         const messageContainer = document.getElementById(`comentarioItem${commentIdInput.value}`);
         const modal = document.getElementById("myModal");
+        const editLink = document.querySelector(`.openModalLink[data-id="${commentIdInput.value}"]`);
+
+        if (editLink) {
+            editLink.setAttribute("data-comment", data.comment);
+        }
         
         if (messageContainer) {
             messageContainer.textContent = data.comment;

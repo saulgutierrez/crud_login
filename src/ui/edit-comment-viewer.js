@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
         link.addEventListener("click", function (event) {
             event.preventDefault();
 
-            const commentId = link.dataset.id;
-            const commentText = link.dataset.comment;
-            const imagePath = link.dataset.image;
+            const commentId = this.getAttribute('data-id');
+            const commentText = this.getAttribute('data-comment');
+            const imagePath = this.getAttribute('data-image');
 
             commentIdInput.value = commentId;
             commentInput.value = commentText;
