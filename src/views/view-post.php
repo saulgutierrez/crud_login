@@ -112,7 +112,16 @@
                     <div class="imgBoxProfileImage">
                         <img src="<?php echo $fotoUsuario; ?>" alt="">
                     </div>
-                    <a href="profile.php?id=<?php echo $id_autor;?>" data-id="<?php echo $id_autor; ?>" data-autor="<?php echo $autor; ?>" data-foto="<?php echo $fotoUsuario?>" id="username">
+                    <?php
+                    // Determinar si el autor del post es el usuario actual para redirigir al perfil adecuado
+                    $redirectPost;
+                    if ($id_autor == $idAutorComentario) {
+                        $redirectPost = "profile.php?user=$username";
+                    } else {
+                        $redirectPost = "profile.php?id=$id_autor";
+                    }
+                    ?>
+                    <a href="<?php echo $redirectPost; ?>" data-id="<?php echo $id_autor; ?>" data-autor="<?php echo $autor; ?>" data-foto="<?php echo $fotoUsuario; ?>" id="username">
                         <?php echo $autor; ?>
                     </a>
                 </h2>

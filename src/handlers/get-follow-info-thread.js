@@ -62,25 +62,33 @@ $(document).ready(function() {
                 type:   'POST',
                 data:   { id: userId },
                 success: function (response) {
-                    let data = JSON.parse(response);
+                        let data = JSON.parse(response);
 
-                    let followButtonText = data.status;
+                        let followButtonText = data.status;
 
-                    if (followButtonText === 'following') {
-                        followButtonText = "Siguiendo";
-                    } else if (followButtonText === 'not_following') {
-                        followButtonText = 'Seguir';
-                    }
+                        if (followButtonText === 'following') {
+                            followButtonText = "Siguiendo";
+                        } else if (followButtonText === 'not_following') {
+                            followButtonText = 'Seguir';
+                        }
 
-                    console.log(followButtonText);
-
-                    // Agregar botón "Seguir/Siguiendo" al popup
-                    let followButtonHTML = `
-                        <button class="follow-btn" data-id="${userId}">
-                            ${followButtonText}
-                        </button>
-                    `;
-                    popup.append(followButtonHTML);
+                        if (userId != authUserId) {
+                            // Agregar botón "Seguir/Siguiendo" al popup
+                            let followButtonHTML = `
+                            <button class="follow-btn" data-id="${userId}">
+                                ${followButtonText}
+                            </button>
+                            `;
+                            popup.append(followButtonHTML);
+                        } else {
+                            // Agregar boton "Editar perfil" al popup si el creador del post es el usuario de la cuenta
+                            let followButtonHTML = `
+                                <a href='edit-profile.php?user=${autor}' class='edit-profile-btn'>
+                                    Editar perfil
+                                </a>
+                            `;
+                            popup.append(followButtonHTML);
+                        }
                     }
                 });
 
