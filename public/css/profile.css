@@ -1054,7 +1054,11 @@ body main section {
     border-radius: 20px;
     height: 35px;
     padding: 15px 40px 15px 15px;
-    width: 250px;   
+    width: 250px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content form button {
@@ -1065,7 +1069,10 @@ body main section {
     color: #fff;
     border-radius: 20px;
     padding: 10px 10px;
-    width: 100px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 form input[type=submit]:hover {
@@ -1079,4 +1086,62 @@ form input[type=submit]:hover {
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.close-icon {
+	position: absolute;
+	filter: invert(23%) sepia(71%) saturate(6752%) hue-rotate(358deg) brightness(88%) contrast(134%);
+	width: 30px;
+	height: 30px;
+	top: -15px;
+	right: -15px;
+	display: none;
+}
+
+.image-upload {
+    width: 0%;
+}
+
+.image-upload > input {
+	display: none;
+}
+
+.image-upload img {
+    width: 20px;
+    cursor: pointer;
+    filter: invert(1);
+}
+
+.contentInput {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.imgBoxSaveComment {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.imgBoxSaveComment img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.update-label {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

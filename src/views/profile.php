@@ -786,12 +786,25 @@
                 <span class="close">&times;</span>
                 <form>
                     <input type="hidden" name="commentIdInput" id="commentIdInput" value="">
-                    <input type="text" name="commentInput" id="commentInput" value="">
+                    <div class="contentInput">
+                        <input type="text" name="commentInput" id="commentInput" value="" placeholder="Comentar">
+                        <div class="image-upload">
+                            <label for="newCommentImage">
+                                <img src="../../public/svg/image-icon.svg" alt="">
+                            </label>
+                            <input type="file" id="newCommentImage" name="newCommentImage" accept="image/*">
+                        </div>
+                    </div>
                     <div class="imgBoxComment">
                         <img id="commentImage" src="" alt="Imagen del comentario" style="max-width: 100%; display: none;">
+                        <img src="../../public/svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
                     </div>
-                    <input type="file" id="newCommentImage" name="newCommentImage" accept="image/*">
-                    <button id="saveComment">Actualizar</button>
+                    <button id="saveComment">
+                        <div class="imgBoxSaveComment">
+                            <img src="../../public/svg/save.svg" alt="">
+                        </div>
+                        <div class="update-label">Actualizar</div>
+                    </button>
                 </form>
             </div>
         </div>

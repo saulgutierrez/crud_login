@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const newCommentImage = document.getElementById("newCommentImage");
     const closeButton = modal.querySelector(".close");
     const commentIdInput = document.getElementById('commentIdInput');
+    const closeIcon = document.getElementById('close-icon');
 
     const openModalLinks = document.querySelectorAll(".openModalLink");
 
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
             reader.onload = function (e) {
                 commentImage.src = e.target.result;
                 commentImage.style.display = "block";
+                closeIcon.style.display = "flex";
             };
             reader.readAsDataURL(file); // Lee el archivo y muestra la vista previa
         }
@@ -46,6 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
     closeButton.onclick = function () {
         modal.style.display = "none";
     };
+
+    closeIcon.addEventListener('click', function () {
+        commentImage.src = "";
+        newCommentImage.style.display = "none";
+        this.style.display = "none";
+        newCommentImage.value = "";
+        commentImage.alt = "";
+    });
 
     window.onclick = function (event) {
         if (event.target === modal) {
