@@ -236,6 +236,12 @@
                     </div>
                     <div class="follow-text">Seguir</div>
                 </a>
+                <a id="btn-4" class="block-profile-btn" href="" data-id="<?php echo $idPerfil; ?>">
+                    <div class="imgBox">
+                        <img src="../../public/svg/block-user.svg" alt="">
+                    </div>
+                    <div>Bloquear</div>
+                </a>
             </article>
         </nav>
         <section>
