@@ -17,18 +17,31 @@ document.getElementById("saveComment").onclick = function (event) {
     // Peticion al backend para actualizar el contenedor del comentario en el frontend
     .then(data => {
         const messageContainer = document.getElementById(`comentarioItem${commentIdInput.value}`);
+        const commentImageContent = document.getElementById(`imageBoxContent${commentIdInput.value}`);
+        const commentImageElement = document.getElementById(`commentImage${commentIdInput.value}`);
         const modal = document.getElementById("myModal");
         const editLink = document.querySelector(`.openModalLink[data-id="${commentIdInput.value}"]`);
-
+        
+        // Establecer el atributo data-comment, para mantener el campo de edicion actualizado para la proxima vez
         if (editLink) {
             editLink.setAttribute("data-comment", data.comment);
         }
         
+        // Actualizar el comentario en la interfaz del perfil
         if (messageContainer) {
             messageContainer.textContent = data.comment;
             modal.style.display = "none";
         }
 
+        // Mostrar la imagen en la interfaz del perfil en caso de que la actualizacion incluya la subida de una imagen
+        if (data.image != undefined) {
+            commentImageElement.src = data.image;
+            commentImageElement.style.display = "block";
+            commentImageContent.classList.remove('noImage');
+            commentImageContent.classList.add('imgBoxContent');
+        }
+
+        // Hacemos una nueva peticion, para actualizar el campo de edicion del comentario
         return fetch(`../models/get-comment.php?commentId=${commentIdInput.value}`);
     })
     .then(response => response.json())

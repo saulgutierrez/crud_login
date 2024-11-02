@@ -29,8 +29,10 @@ if (isset($_POST['commentText'],$_POST['commentId'])) {
 
     // Verificar si se ha subido un archivo y si no hay errores
     if (isset($_FILES['newCommentImage']) && $_FILES['newCommentImage']['error'] == UPLOAD_ERR_OK) {
-        $filename = basename($_FILES["newCommentImage"]["name"]);
-        $target_file = $target_dir . $filename;
+        // Crear nombre de archivo aleatorio
+        $file_extension = pathinfo($_FILES["newCommentImage"]["name"], PATHINFO_EXTENSION);
+        $random_filename = uniqid('img_', true) . '.' . $file_extension;
+        $target_file = $target_dir . $random_filename;
 
         // Verificar tipo MIME del archivo
         $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif'];
@@ -68,6 +70,7 @@ if (isset($_POST['commentText'],$_POST['commentId'])) {
             $response['comment'] = $comment;
             if ($file_uploaded) {
                 $response['message'] .= " El archivo se ha subido correctamente";
+                $response['image'] = $target_file;
             }
         } else {
             $response['status'] = 'error';

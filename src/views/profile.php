@@ -451,8 +451,8 @@
                         <h2><?php echo $autorComentarioItem; ?></h2>
                     </div>
                     <h3 id="comentarioItem<?php echo $idComentarioItem; ?>"><?php echo $comentarioItem; ?></h3>
-                    <div class="<?php echo $hasImageComment; ?>">
-                        <img src="<?php echo $fotoComentario; ?>" alt="">
+                    <div class="<?php echo $hasImageComment; ?>" id="imageBoxContent<?php echo $idComentarioItem;?>">
+                        <img id="commentImage<?php echo $idComentarioItem; ?>" class="foto-comentario" src="<?php echo $fotoComentario; ?>" alt="">
                     </div>
                 </div>
 
@@ -493,8 +493,8 @@
                         <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
                     </div>
                     <div><?php echo $comentarioItem; ?></div>
-                    <div class="<?php echo $hasImageComment; ?>">
-                        <img src="<?php echo $fotoComentario; ?>" alt="">
+                    <div class="<?php echo $hasImageComment; ?>" id="imageBoxContent<?php echo $idComentarioItem;?>">
+                        <img id="commentImage<?php echo $idComentarioItem; ?>" class="foto-comentario" src="<?php echo $fotoComentario; ?>" alt="">
                     </div>
                 </div>
                 <?php
