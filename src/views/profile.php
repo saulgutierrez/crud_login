@@ -240,7 +240,7 @@
                     <div class="imgBox">
                         <img src="../../public/svg/block-user.svg" alt="">
                     </div>
-                    <div>Bloquear</div>
+                    <div class="blocked-text">Bloquear</div>
                 </a>
             </article>
         </nav>
@@ -827,6 +827,7 @@
     <script src="../handlers/delete-post.js"></script>
     <script src="../handlers/delete-comment.js"></script>
     <script src="../handlers/follow-user.js"></script>
+    <script src="../handlers/block-user.js"></script>
     <script src="../ui/view-full-date.js"></script>
     <script type="module" src="../ui/view-profile-image.js"></script>
     <script type="module" src="../ui/photo-gallery.js"></script>
