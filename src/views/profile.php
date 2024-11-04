@@ -2,14 +2,31 @@
     require('../../config/connection.php');
     require('../models/session.php');
     require '../../public/libs/Carbon/autoload.php';
+    include '../models/get-block-state.php';
 
     use Carbon\Carbon;
     Carbon::setLocale('es');
     date_default_timezone_set('America/Mexico_City'); 
 
+    if (isset($_SESSION['user'])) {
+        $username = $_SESSION['user'];
+        // Consulta para obtener el ID del usuario en base al nombre de usuario
+        // Obtengo el el del usuario autenticado
+        $userId = "SELECT id FROM usuarios WHERE usuario = '$username'";
+        $getUser = $conn->query($userId);
+
+        if ($getUser->num_rows > 0) {
+            while ($row = $getUser->fetch_assoc()) {
+                $idOfMyProfile = $row['id'];
+            }
+        }
+    }
+
+
     // Estamos viendo el perfil de otro usuario
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
+        $idOfViewerProfile = $_GET['id'];
 
         $sqlGetInfo = "SELECT * FROM usuarios WHERE id = '$id'";
         $queryGetInfo = mysqli_query($conn, $sqlGetInfo);
@@ -96,6 +113,14 @@
     // Estamos viendo mi perfil
     } else if (isset($_SESSION['user'])) {
         $user = $_SESSION['user']; # Si el usuario esta logueado en el sistema, recibimos el nombre de usuario
+        $userId = "SELECT id FROM usuarios WHERE usuario = '$user'";
+        $getUser = $conn->query($userId);
+
+        if ($getUser->num_rows > 0) {
+            while ($row = $getUser->fetch_assoc()) {
+                $idOfMyProfile = $row['id'];
+            }
+        }
         # Consultamos por el nombre de usuario en la base de datos
         $sqlGetInfo = "SELECT * FROM usuarios WHERE usuario = '$user'";
         $queryGetInfo = $conn->query($sqlGetInfo);
@@ -296,28 +321,39 @@
                 </a>
             </div>
             <div class="info-perfil" id="info-perfil">
-                <!-- Mostrar informacion referente al perfil, o los posteos del perfil -->
-                <h1>
-                    <div>Nombre: </div> 
-                    <div> <?php if ($nombrePerfil != '' && $apellidoPerfil != '') { echo $nombrePerfil. " ".$apellidoPerfil; } else { echo "anon"; } ?> </div>
-                </h1>
-                <h1>
-                    <div>Correo: </div>
-                    <div><?php echo $correoPerfil;?></div>
-                </h1>
-                <h1>
-                    <div>Telefono: </div>
-                    <div><?php echo $telefonoPerfil; ?></div>
-                </h1>
-                <h1>
-                    <div>Fecha de Nacimiento: </div>
-                    <div><?php echo $fechaNacimientoPerfil; ?></div>
-                </h1>
-                <h1>
-                    <div>Género: </div>
-                    <div><?php echo $generoPerfil; ?></div>
-                </h1>
+                <?php
+                // Comprobar si el usuario está bloqueado
+                if (isset($_GET['id']) && isUserBlocked($idOfMyProfile, $idOfViewerProfile, $conn)) {
+                    // Mostrar un mensaje si el perfil está bloqueado
+                    echo "<p>No puedes ver el perfil de este usuario.</p>";
+                } else {
+                    // Mostrar la información del perfil si no está bloqueado
+                ?>
+                    <h1>
+                        <div>Nombre: </div>
+                        <div> <?php echo ($nombrePerfil != '' && $apellidoPerfil != '') ? $nombrePerfil . " " . $apellidoPerfil : "anon"; ?> </div>
+                    </h1>
+                    <h1>
+                        <div>Correo: </div>
+                        <div><?php echo $correoPerfil; ?></div>
+                    </h1>
+                    <h1>
+                        <div>Teléfono: </div>
+                        <div><?php echo $telefonoPerfil; ?></div>
+                    </h1>
+                    <h1>
+                        <div>Fecha de Nacimiento: </div>
+                        <div><?php echo $fechaNacimientoPerfil; ?></div>
+                    </h1>
+                    <h1>
+                        <div>Género: </div>
+                        <div><?php echo $generoPerfil; ?></div>
+                    </h1>
+                <?php
+                }
+                ?>
             </div>
+
             <div class="post-content" id="post-content">
                 <?php
                 $counter = 0;
@@ -375,41 +411,45 @@
                 <?php
                 // Ver posteos de otros usuarios
                 } else if ($result->num_rows > 0 && isset($_GET['id'])) {
-                    $counter = 0;
-                    while ($row = $result->fetch_assoc()) {
-                        $counter++;
-                        $id_post = $row['id_post'];
-                        $id = $row['id_autor'];
-                        $autor = $row['autor_post'];
-                        $titulo = $row['titulo_post'];
-                        $contenido = $row['contenido_post'];
-                        $foto = $row['foto_post'];
-                        $hasImage = !empty($foto) ? 'imgBoxContent' : 'noImage';
-                        $fecha = Carbon::parse($row['fecha_publicacion']);
-                        $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
-                    ?>
-                    <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
-                        <div class="square-menu-perfil"></div>
-                        <img src="../../public/svg/menu.svg" alt="" class="menu-icon">
-                        <div class="post-card-top">
-                            <div class="wrapper-main-profile-items">
-                                <div class="imgBox">
-                                    <img src="<?php echo $sqlGetProfile['fotografia'];?>" alt="">
+                    if (isUserBlocked($idOfMyProfile, $_GET['id'], $conn)) {
+                        echo "<p>No puedes ver los posteos de este usuario.</p>";
+                    } else {
+                            $counter = 0;
+                            while ($row = $result->fetch_assoc()) {
+                                $counter++;
+                                $id_post = $row['id_post'];
+                                $id = $row['id_autor'];
+                                $autor = $row['autor_post'];
+                                $titulo = $row['titulo_post'];
+                                $contenido = $row['contenido_post'];
+                                $foto = $row['foto_post'];
+                                $hasImage = !empty($foto) ? 'imgBoxContent' : 'noImage';
+                                $fecha = Carbon::parse($row['fecha_publicacion']);
+                                $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+                            ?>
+                            <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
+                                <div class="square-menu-perfil"></div>
+                                <img src="../../public/svg/menu.svg" alt="" class="menu-icon">
+                                <div class="post-card-top">
+                                    <div class="wrapper-main-profile-items">
+                                        <div class="imgBox">
+                                            <img src="<?php echo $sqlGetProfile['fotografia'];?>" alt="">
+                                        </div>
+                                        <h2><?php echo $autor; ?></h2>
+                                    </div>
+                                    <div class="fecha" style="width: auto;"><?php echo $fecha->diffForHumans(); ?></div>
+                                    <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
                                 </div>
-                                <h2><?php echo $autor; ?></h2>
+                                <h3><?php echo $titulo; ?></h3>
+                                <div class="contenido"><?php echo $contenido; ?></div>
+                                <div class="<?php echo $hasImage; ?>">
+                                    <img src="<?php echo $foto; ?>" alt="">
+                                </div>
                             </div>
-                            <div class="fecha" style="width: auto;"><?php echo $fecha->diffForHumans(); ?></div>
-                            <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
-                        </div>
-                        <h3><?php echo $titulo; ?></h3>
-                        <div class="contenido"><?php echo $contenido; ?></div>
-                        <div class="<?php echo $hasImage; ?>">
-                            <img src="<?php echo $foto; ?>" alt="">
-                        </div>
-                    </div>
-                <?php
+                        <?php
+                            }
+                        }
                     }
-                }
                 ?>
             </div>
             <div class="comment-content" id="comment-content">
@@ -468,42 +508,46 @@
                 <?php
                 // Ver comentarios de otro perfil
                 } else if ($queryGetComments->num_rows > 0 && isset($_GET['id'])) {
-                    while ($rowComments = $queryGetComments->fetch_assoc()) {
-                        $counterComments++;
-                        $idPostItem = $rowComments['id_post'];
-                        $idAutorItem = $rowComments['id_autor'];
-                        $idComentarioItem = $rowComments['id_comentario'];
-                        $autorComentarioItem = $rowComments['autor_comentario'];
-                        $comentarioItem = $rowComments['comentario'];
-                        $fotoComentario = $rowComments['foto_comentario'];
-                        $hasImageComment = !empty($fotoComentario) ? 'imgBoxContent' : 'noImage';
-                        $formato = 'd/m/Y, g:i:s a';
-                        $fecha = Carbon::createFromFormat($formato, $rowComments['fecha_publicacion']);
-                        $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
-                ?>
-                <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">
-                    <div class="square-menu-perfil-comments"></div>
-                    <div class="menu-opciones-comments" id="menu-opciones-comments">
-                        <a href="edit-comment.php?id_comment=<?php echo $idComentarioItem;?>">Editar comentario</a>
-                        <a href="" class="delete-comment-btn" data-id="<?php echo $idComment; ?>">Eliminar comentario</a>
-                    </div>
-                    <img src="../../public/svg/menu.svg" alt="" class="menu-icon-comments">
-                    <div class="comment-card-top">
-                        <div class="wrapper-main-profile-items">
-                            <div class="imgBox">
-                                <img src="<?php echo $sqlGetProfile['fotografia'];?>" alt="">
-                            </div>
-                            <h2><?php echo $autorComentarioItem; ?></h2>
+                    if (isUserBlocked($idOfMyProfile, $_GET['id'], $conn)) {
+                        echo "<p>No puedes ver los comentarios de este usuario.</p>";
+                    } else {
+                        while ($rowComments = $queryGetComments->fetch_assoc()) {
+                            $counterComments++;
+                            $idPostItem = $rowComments['id_post'];
+                            $idAutorItem = $rowComments['id_autor'];
+                            $idComentarioItem = $rowComments['id_comentario'];
+                            $autorComentarioItem = $rowComments['autor_comentario'];
+                            $comentarioItem = $rowComments['comentario'];
+                            $fotoComentario = $rowComments['foto_comentario'];
+                            $hasImageComment = !empty($fotoComentario) ? 'imgBoxContent' : 'noImage';
+                            $formato = 'd/m/Y, g:i:s a';
+                            $fecha = Carbon::createFromFormat($formato, $rowComments['fecha_publicacion']);
+                            $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+                    ?>
+                    <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">
+                        <div class="square-menu-perfil-comments"></div>
+                        <div class="menu-opciones-comments" id="menu-opciones-comments">
+                            <a href="edit-comment.php?id_comment=<?php echo $idComentarioItem;?>">Editar comentario</a>
+                            <a href="" class="delete-comment-btn" data-id="<?php echo $idComment; ?>">Eliminar comentario</a>
                         </div>
-                        <div class="fecha" style="width: auto;"><?php echo $fecha->diffForHumans(); ?></div>
-                        <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
+                        <img src="../../public/svg/menu.svg" alt="" class="menu-icon-comments">
+                        <div class="comment-card-top">
+                            <div class="wrapper-main-profile-items">
+                                <div class="imgBox">
+                                    <img src="<?php echo $sqlGetProfile['fotografia'];?>" alt="">
+                                </div>
+                                <h2><?php echo $autorComentarioItem; ?></h2>
+                            </div>
+                            <div class="fecha" style="width: auto;"><?php echo $fecha->diffForHumans(); ?></div>
+                            <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
+                        </div>
+                        <div><?php echo $comentarioItem; ?></div>
+                        <div class="<?php echo $hasImageComment; ?>" id="imageBoxContent<?php echo $idComentarioItem;?>">
+                            <img id="commentImage<?php echo $idComentarioItem; ?>" class="foto-comentario" src="<?php echo $fotoComentario; ?>" alt="">
+                        </div>
                     </div>
-                    <div><?php echo $comentarioItem; ?></div>
-                    <div class="<?php echo $hasImageComment; ?>" id="imageBoxContent<?php echo $idComentarioItem;?>">
-                        <img id="commentImage<?php echo $idComentarioItem; ?>" class="foto-comentario" src="<?php echo $fotoComentario; ?>" alt="">
-                    </div>
-                </div>
-                <?php
+                    <?php
+                        }
                     }
                 }
                 ?>
@@ -536,18 +580,23 @@
                 <?php endif; ?>
 
                 <?php
-                // Ver los seguidores de otros usuarios
-                $followersCounter2 = 0;
-                $followers2 = []; // Inicializar el array para almacenar los registros
-                $rutaFotoPorDefecto = "../../public/img/profile-default.svg";
-                if ($queryGetFollowers->num_rows > 0 && isset($_GET['id'])) {
-                    while ($rowOtherFollowers = $queryGetFollowers->fetch_assoc()) {
-                        $followers2[] = $rowOtherFollowers;
-                    }
+            // Ver los seguidores de otros usuarios
+            $followersCounter2 = 0;
+            $followers2 = []; // Inicializar el array para almacenar los registros
+            $rutaFotoPorDefecto = "../../public/img/profile-default.svg";
+
+            if ($queryGetFollowers->num_rows > 0 && isset($_GET['id'])) {
+                while ($rowOtherFollowers = $queryGetFollowers->fetch_assoc()) {
+                    $followers2[] = $rowOtherFollowers;
                 }
-                ?>
-                <?php if (!empty($followers2)):?>
-                    <?php foreach ($followers2 as $rowOtherFollowers): ?>
+            }
+
+            // Verifica si el usuario actual está bloqueado para ver este perfil
+            if (isset($_GET['id']) && isUserBlocked($idOfMyProfile, $_GET['id'], $conn)) {
+                echo "<p>No puedes ver los seguidores de este usuario.</p>";
+            } else {
+                if (!empty($followers2)):
+                    foreach ($followers2 as $rowOtherFollowers): ?>
                         <div class="follower-card">
                             <div class="imgBoxFollower">
                                 <img src="<?php echo !empty($rowOtherFollowers['fotografia']) ? $rowOtherFollowers['fotografia'] : $rutaFotoPorDefecto; ?>" alt="">
@@ -559,9 +608,8 @@
                                     $user = $_SESSION['user'];
                                     $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
                                     $queryGetIdUser = $conn->query($sqlGetIdUser);
-                                    # Evaluamos, en caso de que el id que seguimos corresponda al id que esta logueado,
-                                    # es decir, nuestro propio perfil, nos envie hacia la pantalla de gestion de nuestro
-                                    # perfil, en lugar de dar lo opcion de "seguirnos a nosotros mismos".
+                                    
+                                    // Obtiene el id del usuario logueado y verifica si es el mismo del seguidor
                                     if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
                                         $idUser = $sqlGetId['id'];
                                         if ($rowOtherFollowers['id'] == $idUser) {
@@ -576,12 +624,15 @@
                                 <?php echo $rowOtherFollowers['usuario']; ?>
                             </h2>
                         </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <?php if (isset($_GET['id'])): ?>
+                    <?php endforeach;
+                else: 
+                    if (isset($_GET['id'])): ?>
                         <p class="error-fetching-following">Sin seguidores</p>
-                    <?php endif; ?>
-                <?php endif; ?>
+                    <?php endif;
+                endif;
+            }
+            ?>
+
             </div>
             <div class="following-content" id="following-content">
                 <?php
@@ -613,49 +664,56 @@
                 // Ver usuarios que otros usuarios siguen en sus perfiles
                 $followingCounter2 = 0;
                 $followings2 = []; // Inicializar el array para almacenar los registros
+
                 if ($queryGetFollowing->num_rows > 0 && isset($_GET['id'])) {
                     while($rowFollowing2 = $queryGetFollowing->fetch_assoc()) {
                         $followings2[] = $rowFollowing2;
                     }
                 }
-                ?>
-                <?php if (!empty($followings2)): ?>
-                    <?php foreach ($followings2 as $rowFollowing2): ?>
-                        <div class="following-card">
-                            <div class="imgBoxFollowing">
-                                <img src="<?php echo $rowFollowing2['foto_seguido']?>" alt="">
-                            </div>
-                            <?php
-                            // Generar la URL de redirección
-                            $redirectUrl = 'profile.php?';
 
-                            if (isset($_SESSION['user'])) {
-                                $user = $_SESSION['user'];
-                                $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
-                                $queryGetIdUser = $conn->query($sqlGetIdUser);
-                                # Evaluamos, en caso de que el id que seguimos corresponda al id que esta logueado,
-                                # es decir, nuestro propio perfil, nos envie hacia la pantalla de gestion de nuestro
-                                # perfil, en lugar de dar lo opcion de "seguirnos a nosotros mismos".
-                                if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
-                                    $idUser = $sqlGetId['id'];
-                                    if ($rowFollowing2['id_seguido'] == $idUser) {
-                                        $redirectUrl .= 'user=' . $idUser;
-                                    } else {
-                                        $redirectUrl .= 'id=' . $rowFollowing2['id_seguido'];
+                // Verifica si el usuario actual está bloqueado para ver este perfil
+                if (isset($_GET['id']) && isUserBlocked($idOfMyProfile, $_GET['id'], $conn)) {
+                    echo "<p>No puedes ver a quién sigue este usuario.</p>";
+                } else {
+                    if (!empty($followings2)): ?>
+                        <?php foreach ($followings2 as $rowFollowing2): ?>
+                            <div class="following-card">
+                                <div class="imgBoxFollowing">
+                                    <img src="<?php echo $rowFollowing2['foto_seguido'] ?>" alt="">
+                                </div>
+                                <?php
+                                // Generar la URL de redirección
+                                $redirectUrl = 'profile.php?';
+
+                                if (isset($_SESSION['user'])) {
+                                    $user = $_SESSION['user'];
+                                    $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
+                                    $queryGetIdUser = $conn->query($sqlGetIdUser);
+
+                                    // Verifica si el seguidor es el usuario logueado para ajustar el enlace
+                                    if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
+                                        $idUser = $sqlGetId['id'];
+                                        if ($rowFollowing2['id_seguido'] == $idUser) {
+                                            $redirectUrl .= 'user=' . $idUser;
+                                        } else {
+                                            $redirectUrl .= 'id=' . $rowFollowing2['id_seguido'];
+                                        }
                                     }
                                 }
-                            }
-                            ?>
-                            <h2 onclick="window.location.href='<?php echo $redirectUrl; ?>'">
-                                <?php echo $rowFollowing2['nombre_usuario_seguido']; ?>
-                            </h2>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <?php if (isset($_GET['id'])): ?>
-                        <p class="error-fetching-following">Este usuario no sigue a nadie</p>
-                    <?php endif; ?>
-                <?php endif; ?>
+                                ?>
+                                <h2 onclick="window.location.href='<?php echo $redirectUrl; ?>'">
+                                    <?php echo $rowFollowing2['nombre_usuario_seguido']; ?>
+                                </h2>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <?php if (isset($_GET['id'])): ?>
+                            <p class="error-fetching-following">Este usuario no sigue a nadie</p>
+                        <?php endif; ?>
+                    <?php endif;
+                }
+                ?>
+
             </div>
             <div class="likes-content" id="likes-content">
                 <?php
@@ -698,42 +756,50 @@
                 ?>
                 <?php
                 // Ver likes de otro perfil
-                } else if ($queryGetLikes->num_rows > 0 && isset($_GET['id'])) {
-                    while ($rowLikes = $queryGetLikes->fetch_assoc()) {
-                        $counterLikes++;
-                        $idLikedPost = $rowLikes['id_post'];
-                        $autorLikedPost = $rowLikes['autor_post'];
-                        $tituloLikedPost = $rowLikes['titulo_post'];
-                        $contenidoLikedPost = $rowLikes['contenido_post'];
-                        $fotoLikedPost = $rowLikes['foto_post'];
-                        $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
-                        $fechaPublicacionLikedPost = Carbon::parse($rowLikes['fecha_publicacion']);
-                        $fechaFormateada = $fechaPublicacionLikedPost->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
-                        $fotoPerfilLikedPost = $rowLikes['fotografia'];
+                } else if (isset($_GET['id'])) {
+                    // Verifica si el usuario actual está bloqueado para ver los likes de este perfil
+                    if (isUserBlocked($idOfMyProfile, $_GET['id'], $conn)) {
+                        echo "<p>No puedes ver los likes de este usuario.</p>";
+                    } else {
+                        if ($queryGetLikes->num_rows > 0) {
+                            while ($rowLikes = $queryGetLikes->fetch_assoc()) {
+                                $counterLikes++;
+                                $idLikedPost = $rowLikes['id_post'];
+                                $autorLikedPost = $rowLikes['autor_post'];
+                                $tituloLikedPost = $rowLikes['titulo_post'];
+                                $contenidoLikedPost = $rowLikes['contenido_post'];
+                                $fotoLikedPost = $rowLikes['foto_post'];
+                                $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
+                                $fechaPublicacionLikedPost = Carbon::parse($rowLikes['fecha_publicacion']);
+                                $fechaFormateada = $fechaPublicacionLikedPost->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+                                $fotoPerfilLikedPost = $rowLikes['fotografia'];
                 ?>
-                <div class="likes-card" onclick="window.location.href='view-post.php?id=<?php echo $idLikedPost; ?>'">
-                    <div class="likes-card-top">
-                        <div class="wrapper-main-profile-items">
-                            <div class="imgBox">
-                                <img src="<?php echo $fotoPerfilLikedPost; ?>" alt="">
-                            </div>
-                            <h2><?php echo $autorLikedPost; ?></h2>
-                        </div>
-                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
-                        <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
-                    </div>
-                    <h2><?php echo $tituloLikedPost; ?></h2>
-                    <h3><?php echo $contenidoLikedPost; ?></h3>
-                    <div class="<?php echo $hasImageLikedPost; ?>">
-                        <img src="<?php echo $fotoLikedPost; ?>" alt="">
-                    </div>
-                </div>
+                                <div class="likes-card" onclick="window.location.href='view-post.php?id=<?php echo $idLikedPost; ?>'">
+                                    <div class="likes-card-top">
+                                        <div class="wrapper-main-profile-items">
+                                            <div class="imgBox">
+                                                <img src="<?php echo $fotoPerfilLikedPost; ?>" alt="">
+                                            </div>
+                                            <h2><?php echo $autorLikedPost; ?></h2>
+                                        </div>
+                                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
+                                        <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
+                                    </div>
+                                    <h2><?php echo $tituloLikedPost; ?></h2>
+                                    <h3><?php echo $contenidoLikedPost; ?></h3>
+                                    <div class="<?php echo $hasImageLikedPost; ?>">
+                                        <img src="<?php echo $fotoLikedPost; ?>" alt="">
+                                    </div>
+                                </div>
                 <?php
+                            }
+                        } else {
+                            echo "<p>Este usuario no ha dado 'like' a ninguna publicación.</p>";
+                        }
                     }
                 }
                 ?>
             </div>
-
             <div class="photos-content" id="photos-content">
                 <?php
                 // Ver fotos de mi perfil
