@@ -179,21 +179,35 @@
         $sqlGetUserLikes = "SELECT u.usuario, u.fotografia, u.id, p.id_post, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion FROM likes l JOIN post p ON l.liked_id_post = p.id_post JOIN usuarios u ON p.id_autor = u.id WHERE l.liked_by = '$idUser'";
         $queryGetLikes = $conn->query($sqlGetUserLikes);
 
-         // Consulta para obtener el numero de posts que he marcado como "Like"
-         $likes_count_sql = "SELECT COUNT(*) as likes_count FROM likes WHERE liked_by = '$idUser'";
-         $likes_count_result = $conn->query($likes_count_sql);
-         $likes_count_row = $likes_count_result->fetch_assoc();
-         $likes_count = $likes_count_row['likes_count'];
+        // Consulta para obtener el numero de posts que he marcado como "Like"
+        $likes_count_sql = "SELECT COUNT(*) as likes_count FROM likes WHERE liked_by = '$idUser'";
+        $likes_count_result = $conn->query($likes_count_sql);
+        $likes_count_row = $likes_count_result->fetch_assoc();
+        $likes_count = $likes_count_row['likes_count'];
 
-         // Obtenemos nuestras fotos
-         $sqlGetUserPhotos = "SELECT p.foto_post AS fotografia FROM post p WHERE p.id_autor = '$idUser' AND p.foto_post <> '' UNION ALL SELECT c.foto_comentario AS fotografia FROM comentarios c WHERE c.id_autor_comentario = '$idUser' AND c.foto_comentario <> '';";
-         $queryGetPhotos = $conn->query($sqlGetUserPhotos);
+        // Obtenemos nuestras fotos
+        $sqlGetUserPhotos = "SELECT p.foto_post AS fotografia FROM post p WHERE p.id_autor = '$idUser' AND p.foto_post <> '' UNION ALL SELECT c.foto_comentario AS fotografia FROM comentarios c WHERE c.id_autor_comentario = '$idUser' AND c.foto_comentario <> '';";
+        $queryGetPhotos = $conn->query($sqlGetUserPhotos);
 
-         // Consulta para obtener el numero de fotos que el usuario ha subido en sus posteos y comentarios
-         $photos_count_sql = "SELECT COUNT(*) as photos_count FROM (SELECT p.id_autor FROM post p WHERE p.id_autor = '$idUser' AND p.foto_post <> '' UNION ALL SELECT c.id_autor_comentario FROM comentarios c WHERE c.id_autor_comentario = '$idUser' AND c.foto_comentario <> '') AS total;";
-         $photos_count_result = $conn->query($photos_count_sql);
-         $photos_count_row = $photos_count_result->fetch_assoc();
-         $photos_count = $photos_count_row['photos_count'];
+        // Consulta para obtener el numero de fotos que el usuario ha subido en sus posteos y comentarios
+        $photos_count_sql = "SELECT COUNT(*) as photos_count FROM (SELECT p.id_autor FROM post p WHERE p.id_autor = '$idUser' AND p.foto_post <> '' UNION ALL SELECT c.id_autor_comentario FROM comentarios c WHERE c.id_autor_comentario = '$idUser' AND c.foto_comentario <> '') AS total;";
+        $photos_count_result = $conn->query($photos_count_sql);
+        $photos_count_row = $photos_count_result->fetch_assoc();
+        $photos_count = $photos_count_row['photos_count'];
+
+        // Consulta para obtener los usuarios que hemos bloqueado
+        $sqlGetUserBlocks = "SELECT usuarios.id, usuarios.usuario, usuarios.fotografia FROM user_blocks JOIN usuarios ON user_blocks.blocked_id = usuarios.id WHERE user_blocks.blocker_id = ?";
+        $sqlPrepareQuery = $conn->prepare($sqlGetUserBlocks);
+        $sqlPrepareQuery->bind_param("i", $idUser);
+        $sqlPrepareQuery->execute();
+        $resultGetUserBlocks = $sqlPrepareQuery->get_result();
+
+        // Consulta para obtener el numero de bloqueos
+        $blocks_count_sql = "SELECT COUNT(*) as blocks_count FROM user_blocks WHERE blocker_id = '$idUser'";
+        $blocks_count_result = $conn->query($blocks_count_sql);
+        $blocks_count_row = $blocks_count_result->fetch_assoc();
+        $blocks_count = $blocks_count_row['blocks_count'];
+
 
         # Recuperamos la informacion asociada a la consulta
         if ($sqlGetProfile = mysqli_fetch_assoc($queryGetInfo)) {
@@ -318,6 +332,13 @@
                     </div>
                     <div>Fotos</div>
                     <div><?php echo $photos_count; ?></div>
+                </a>
+                <a class="blocks" id="blocks" href="#blocks-content">
+                    <div class="imgBox">
+                        <img src="../../public/svg/block-user.svg" alt="">
+                    </div>
+                    <div>Bloqueos</div>
+                    <div><?php echo $blocks_count; ?></div>
                 </a>
             </div>
             <div class="info-perfil" id="info-perfil">
@@ -815,17 +836,28 @@
                         $counterPhotos++;
                     }
                     echo '</div>';
-                } else if ($queryGetPhotos->num_rows > 0 && isset($_GET['id'])) {
-                    echo '<div class="my-gallery">';
-                    while ($rowPhotos = $queryGetPhotos->fetch_assoc()) {
-                        echo '<figure class="photo-content">';
-                        echo '<a href="'.$rowPhotos['fotografia'].'" data-pswp-width="500" data-pswp-height="500" class="pswp-link" data-pswp-index="'.$counterPhotos.'" onclick="return false;">';
-                        echo '<img src="'.$rowPhotos['fotografia'].'" alt="Photo '.$counterPhotos.'">';
-                        echo '</a>';
-                        echo '</figure>';
-                        $counterPhotos++;
+                    // Ver fotos de otros usuarios
+                } else if (isset($_GET['id'])) {
+                    // Verificar si el usuario actual está bloqueado para ver las fotos de este perfil
+                    if (isUserBlocked($idOfMyProfile, $_GET['id'], $conn)) {
+                        echo "<p>No puedes ver las fotos de este usuario.</p>";
+                    } else {
+                        if ($queryGetPhotos->num_rows > 0) {
+                            echo '<div class="my-gallery">';
+                            $counterPhotos = 0;
+                            while ($rowPhotos = $queryGetPhotos->fetch_assoc()) {
+                                echo '<figure class="photo-content">';
+                                echo '<a href="'.$rowPhotos['fotografia'].'" data-pswp-width="500" data-pswp-height="500" class="pswp-link" data-pswp-index="'.$counterPhotos.'" onclick="return false;">';
+                                echo '<img src="'.$rowPhotos['fotografia'].'" alt="Photo '.$counterPhotos.'">';
+                                echo '</a>';
+                                echo '</figure>';
+                                $counterPhotos++;
+                            }
+                            echo '</div>';
+                        } else {
+                            echo "<p>Este usuario no tiene fotos para mostrar.</p>";
+                        }
                     }
-                    echo '</div>';
                 }
                 ?>
                 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -850,6 +882,25 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="blocks-content" id="blocks-content">
+                <?php
+                    if (!isset($_GET['id'])) {
+                        if ($resultGetUserBlocks->num_rows > 0) {
+                            while ($row = $resultGetUserBlocks->fetch_assoc()) {
+                                echo '<div class="blocks-card">';
+                                echo '<div class="imgBoxBlocksCard">';
+                                echo '<img src="'.$row['fotografia'].'">';
+                                echo '</div>';
+                                echo '<h2 onclick="window.location.href=\'profile.php?id='.$row['id']. '\'">';
+                                echo $row['usuario'];
+                                echo '</h2>';
+                                echo '</div>';
+
+                            }
+                        }
+                    }
+                ?>
             </div>
         </section>
 

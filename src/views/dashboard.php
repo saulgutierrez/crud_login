@@ -50,7 +50,6 @@
     <script src="https://unpkg.com/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="module" src="../ui/view-fullscreen-photo.js"></script>
     <link rel="stylesheet" href="../../public/css/dashboard.css">
     <title>Home</title>
     <style>

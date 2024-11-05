@@ -4,6 +4,7 @@ const btn1 = document.getElementById('btn-1');
 const btn2 = document.getElementById('btn-2');
 const btn3 = document.getElementById('btn-3');
 const btn4 = document.getElementById('btn-4');
+const btn5 = document.getElementById('blocks');
 const menuIconos = document.querySelectorAll('.menu-icon');
 const menuIconosComments = document.querySelectorAll('.menu-icon-comments');
 
@@ -53,6 +54,10 @@ if (params.has('user')) {
 
      if (btn4) {
         btn4.classList.remove('hidden');
+     }
+
+     if (btn5) {
+        btn5.classList.toggle('hidden');
      }
 
     if (menuIconos) {

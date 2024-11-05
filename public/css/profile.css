@@ -49,7 +49,7 @@ body main nav {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    height: 170px;
+    height: 160px;
     padding: 20px 0px;
     z-index: 1000;
     background-color: #18191a;
@@ -236,7 +236,7 @@ body main section {
     color: #fff;
     z-index: 1;
     width: 100%;
-    margin-top: 160px;
+    margin-top: 150px;
 }
 
 .menu-lateral {
@@ -248,7 +248,7 @@ body main section {
 }
 
 .menu-lateral a {
-    padding: 7px 30px;
+    padding: 5px 30px;
     font-weight: 600;
     font-size: 1.8rem;
     text-decoration: none;
@@ -256,6 +256,10 @@ body main section {
     background-color: #18191a;
     display: flex;
     flex-direction: row;
+}
+
+.menu-lateral a.hidden {
+    display: none;
 }
 
 .menu-lateral .info div:nth-child(2) {
@@ -406,6 +410,29 @@ body main section {
 }
 
 .menu-lateral .photos div:nth-child(3) {
+    justify-content: flex-end;
+}
+
+.menu-lateral .blocks .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+}
+
+.menu-lateral .blocks .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: invert(1);
+}
+
+.menu-lateral .blocks div:nth-child(3) {
     justify-content: flex-end;
 }
 

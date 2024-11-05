@@ -4,6 +4,7 @@ let infoPerfil = document.querySelector('.info-perfil');
 let comments = document.querySelector('.comments');
 let following = document.querySelector('.following');
 let photos = document.querySelector('.photos');
+let blocks = document.querySelector('.blocks');
 const followingScreen = document.querySelectorAll('.following-card');
 const followingContent = document.querySelectorAll('.following-content');
 const followers = document.querySelector('.followers');
@@ -23,10 +24,21 @@ const menuIconComments = document.querySelectorAll('.menu-icon-comments');
 const menuComments = document.querySelectorAll('.menu-opciones-comments');
 const squareComments = document.querySelectorAll('.square-menu-perfil-comments')
 const photosContent = document.querySelector('.photos-content');
+const blocksScreen = document.querySelectorAll('.blocks-card');
+const blocksContent = document.querySelector('.blocks-content');
 
     info.style.backgroundColor = "hsl(211, 100%, 50%)"; 
     info.style.borderRadius = "20px";
     photosContent.style.display = "none";
+    if (blocksContent) {
+        blocksContent.style.display = "none";
+    }
+
+    if (blocksScreen) {
+        blocksScreen.forEach(element => {
+            element.style.display = "none";
+        });
+    }
 
 info.addEventListener("click", () => {
     info.style.backgroundColor = "hsl(211, 100%, 50%)"; 
@@ -69,6 +81,16 @@ info.addEventListener("click", () => {
         element.style.display = "none";
     });
     photosContent.style.display = "none";
+
+    if (blocksScreen) {
+        blocksScreen.forEach(element => {
+            element.style.display = "none";
+        });
+    }
+
+    if (blocksContent) {
+        blocksContent.style.display = "none";
+    }
 });
 
 posts.addEventListener("click", () => {
@@ -112,6 +134,16 @@ posts.addEventListener("click", () => {
         element.style.display = "none";
     });
     photosContent.style.display = "none";
+
+    if (blocksScreen) {
+        blocksScreen.forEach(element => {
+            element.style.display = "none";
+        });
+    }
+
+    if (blocksContent) {
+        blocksContent.style.display = "none";
+    }
 });
 
 comments.addEventListener("click", () => {
@@ -155,6 +187,16 @@ comments.addEventListener("click", () => {
         element.style.display = "none";
     });
     photosContent.style.display = "none";
+
+    if (blocksScreen) {
+        blocksScreen.forEach(element => {
+            element.style.display = "none";
+        });
+    }
+
+    if (blocksContent) {
+        blocksContent.style.display = "none";
+    }
 });
 
 following.addEventListener("click", () => {
@@ -198,6 +240,16 @@ following.addEventListener("click", () => {
         element.style.display = "none";
     });
     photosContent.style.display = "none";
+
+    if (blocksScreen) {
+        blocksScreen.forEach(element => {
+            element.style.display = "none";
+        });
+    }
+
+    if (blocksContent) {
+        blocksContent.style.display = "none";
+    }
 });
 
 followers.addEventListener("click", () => {
@@ -241,6 +293,16 @@ followers.addEventListener("click", () => {
         element.style.display = "none";
     });
     photosContent.style.display = "none";
+
+    if (blocksScreen) {
+        blocksScreen.forEach(element => {
+            element.style.display = "none";
+        });
+    }
+
+    if (blocksContent) {
+        blocksContent.style.display = "none";
+    }
 });
 
 likes.addEventListener('click', () => {
@@ -284,6 +346,16 @@ likes.addEventListener('click', () => {
         element.style.display = "none";
     });
     photosContent.style.display = "none";
+
+    if (blocksScreen) {
+        blocksScreen.forEach(element => {
+            element.style.display = "none";
+        });
+    }
+
+    if (blocksContent) {
+        blocksContent.style.display = "none";
+    }
 });
 
 menuIcon.forEach((elemento, index) => {
