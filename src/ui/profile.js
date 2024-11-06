@@ -49,6 +49,7 @@ info.addEventListener("click", () => {
     followers.style.backgroundColor = "hsl(210, 4%, 10%)";
     likes.style.backgroundColor = "hsl(210, 4%, 10%)";
     photos.style.backgroundColor = "hsl(210, 4%, 10%)";
+    blocks.style.backgroundColor = "hsl(210, 4%, 10%)";
     infoPerfil.style.display = "flex";
     postsScreen.forEach(element => {
         element.style.display = "none";
@@ -102,6 +103,7 @@ posts.addEventListener("click", () => {
     followers.style.backgroundColor = "hsl(210, 4%, 10%)";
     likes.style.backgroundColor = "hsl(210, 4%, 10%)";
     photos.style.backgroundColor = "hsl(210, 4%, 10%)";
+    blocks.style.backgroundColor = "hsl(210, 4%, 10%)";
     infoPerfil.style.display = "none";
     postsScreen.forEach(element => {
         element.style.display = "flex";
@@ -155,6 +157,7 @@ comments.addEventListener("click", () => {
     followers.style.backgroundColor = "hsl(210, 4%, 10%)";
     likes.style.backgroundColor = "hsl(210, 4%, 10%)";
     photos.style.backgroundColor = "hsl(210, 4%, 10%)";
+    blocks.style.backgroundColor = "hsl(210, 4%, 10%)";
     infoPerfil.style.display = "none";
     commentsScreen.forEach(element => {
         element.style.display = "flex";
@@ -208,6 +211,7 @@ following.addEventListener("click", () => {
     followers.style.backgroundColor = "hsl(210, 4%, 10%)";
     likes.style.backgroundColor = "hsl(210, 4%, 10%)";
     photos.style.backgroundColor = "hsl(210, 4%, 10%)";
+    blocks.style.backgroundColor = "hsl(210, 4%, 10%)";
     infoPerfil.style.display = "none";
     followingScreen.forEach(element => {
         element.style.display = "flex";
@@ -261,6 +265,7 @@ followers.addEventListener("click", () => {
     following.style.backgroundColor = "hsl(210, 4%, 10%)";
     likes.style.backgroundColor = "hsl(210, 4%, 10%)";
     photos.style.backgroundColor = "hsl(210, 4%, 10%)";
+    blocks.style.backgroundColor = "hsl(210, 4%, 10%)";
     infoPerfil.style.display = "none";
     followerScreen.forEach(element => {
         element.style.display = "flex";
@@ -314,6 +319,7 @@ likes.addEventListener('click', () => {
     following.style.backgroundColor = "hsl(210, 4%, 10%)";
     followers.style.backgroundColor = "hsl(210, 4%, 10%)";
     photos.style.backgroundColor = "hsl(210, 4%, 10%)";
+    blocks.style.backgroundColor = "hsl(210, 4%, 10%)";
     infoPerfil.style.display = "none";
     likesScreen.forEach(element => {
         element.style.display = "flex";
@@ -464,6 +470,7 @@ photos.addEventListener('click', () => {
     following.style.backgroundColor = "hsl(210, 4%, 10%)";
     followers.style.backgroundColor = "hsl(210, 4%, 10%)";
     likes.style.backgroundColor = "hsl(210, 4%, 10%)";
+    blocks.style.backgroundColor = "hsl(210, 4%, 10%)";
     infoPerfil.style.display = "none";
     likesScreen.forEach(element => {
         element.style.display = "none";
@@ -496,5 +503,65 @@ photos.addEventListener('click', () => {
         element.style.display = "none";
     });
 
+    if (blocksScreen) {
+        blocksScreen.forEach(element => {
+            element.style.display = "none";
+        });
+    }
+
+    if (blocksContent) {
+        blocksContent.style.display = "none";
+    }
+
     photosContent.style.display = "flex";
+});
+
+blocks.addEventListener('click', () => {
+    blocks.style.backgroundColor = "hsl(211, 100%, 50%)";
+    blocks.style.borderRadius = "20px";
+    info.style.backgroundColor = "hsl(210, 4%, 10%)";
+    posts.style.backgroundColor = "hsl(210, 4%, 10%)";
+    comments.style.backgroundColor = "hsl(210, 4%, 10%)";
+    following.style.backgroundColor = "hsl(210, 4%, 10%)";
+    followers.style.backgroundColor = "hsl(210, 4%, 10%)";
+    likes.style.backgroundColor = "hsl(210, 4%, 10%)";
+    photos.style.backgroundColor = "hsl(210, 4%, 10%)";
+    infoPerfil.style.display = "none";
+    likesScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    likesContent.forEach(element => {
+        element.style.display = "none";
+    });
+    postsScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    postContent.forEach(element => {
+        element.style.display = "none";
+    });
+    commentsScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    commentsContent.forEach(element => {
+        element.style.display = "none";
+    });
+    followingScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    followingContent.forEach(element => {
+        element.style.display = "none";
+    });
+    followerScreen.forEach(element => {
+        element.style.display = "none";
+    });
+    followerContent.forEach(element => {
+        element.style.display = "none";
+    });
+    photosContent.style.display = "none";
+
+    blocksContent.style.display = "flex";
+
+    blocksScreen.forEach(element => {
+        element.style.display = "flex";
+    });
 });

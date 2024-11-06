@@ -248,14 +248,16 @@ body main section {
 }
 
 .menu-lateral a {
-    padding: 5px 30px;
+    padding: 0px 30px;
     font-weight: 600;
     font-size: 1.8rem;
     text-decoration: none;
     color: #fff;
     background-color: #18191a;
     display: flex;
+    align-items: center;
     flex-direction: row;
+    height: 42px;
 }
 
 .menu-lateral a.hidden {
@@ -267,7 +269,22 @@ body main section {
     margin-left: 15px;
 }
 
+.menu-lateral .info .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+
 .menu-lateral .info .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     filter: invert(1);
 }
 
@@ -1214,4 +1231,51 @@ form input[type=submit]:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.blocks-content {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 30%;
+}
+
+.blocks-card {
+    position: relative;
+    display: none;
+    width: 90%;
+    background-color: #242526;
+    padding: 30px 30px;
+    border-radius: 10px;
+    align-self: flex-end;
+}
+
+.blocks-card h2 {
+    width: fit-content;
+}
+
+.blocks-card h2:hover {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.imgBoxBlocksCard {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.imgBoxBlocksCard img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
