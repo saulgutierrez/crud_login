@@ -19,10 +19,35 @@
     # En caso contrario, mostramos todos los registros.
     $category = isset($_POST['category']) ? $_POST['category'] : '';
 
+    $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$username'";
+    $resultGetIdUser = $conn->query($sqlGetIdUser);
+    if ($resultGetIdUser->num_rows > 0) {
+        while ($rowGetIdUser = $resultGetIdUser->fetch_assoc()) {
+            $id_user = $rowGetIdUser['id'];
+        }
+    }
+
     if (!empty($category)) {
-        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion, u.fotografia FROM post p JOIN usuarios u ON p.id_autor = u.id WHERE p.autor_post != '$username' AND p.id_categoria = '$category' ORDER BY fecha_publicacion DESC";
+        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, 
+           p.foto_post, p.fecha_publicacion, u.fotografia
+            FROM post p
+            JOIN usuarios u ON p.id_autor = u.id
+            LEFT JOIN user_blocks b
+                ON (b.blocked_id = p.id_autor AND b.blocker_id = '$id_user')
+                OR (b.blocker_id = p.id_autor AND b.blocked_id = '$id_user')
+            WHERE p.autor_post != '$username' AND b.blocked_id IS NULL
+            AND p.id_categoria = '$category'
+            ORDER BY p.fecha_publicacion DESC";
     } else {
-        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, p.fecha_publicacion, u.fotografia FROM post p JOIN usuarios u ON p.id_autor = u.id WHERE p.autor_post != '$username' ORDER BY p.fecha_publicacion DESC";
+        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, 
+           p.foto_post, p.fecha_publicacion, u.fotografia
+            FROM post p
+            JOIN usuarios u ON p.id_autor = u.id
+            LEFT JOIN user_blocks b
+                ON (b.blocked_id = p.id_autor AND b.blocker_id = '$id_user')
+                OR (b.blocker_id = p.id_autor AND b.blocked_id = '$id_user')
+            WHERE p.autor_post != '$username' AND b.blocked_id IS NULL
+            ORDER BY p.fecha_publicacion DESC";
     }
     $result = $conn->query($sql);
 

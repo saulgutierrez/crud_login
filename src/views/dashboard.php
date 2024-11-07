@@ -10,9 +10,6 @@
      # Si existe, tomamos su nombre de usuario
     $username = $_SESSION['user'];
 
-    $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post, foto_post, fecha_publicacion FROM post WHERE autor_post != '$username' ORDER BY fecha_publicacion DESC";
-    $result = $conn->query($sql);
-
     // Obtengo el el del usuario autenticado
     $userId = "SELECT id FROM usuarios WHERE usuario = '$username'";
     $getUser = $conn->query($userId);
