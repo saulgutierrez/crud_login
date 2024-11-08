@@ -158,9 +158,27 @@ body main {
 }
 
 .like-count {
-    margin-left: 40px;
+    margin-left: 30px;
     text-decoration: none;
     color: #fff;
+    padding: 0px 15px 0px 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.like-count:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 50%;
+}
+
+.comment-count {
+    position: absolute;
+    left: 130px;
+    bottom: 10px;
 }
 
 .stats-container-child {
@@ -181,6 +199,7 @@ body main {
 .imgBoxLike {
     position: absolute;
     left: 0px;
+    bottom: 5px;
     width: 20px;
     height: 20px;
 }
@@ -217,6 +236,7 @@ body main {
     left: 90px;
     width: 20px;
     height: 20px;
+    bottom: 5px;
 }
 
 .imgBoxComment img {

@@ -238,15 +238,19 @@ p {
 
 .like-count {
     position: absolute;
-    bottom: 17px;
-    left: 70px;
+    bottom: 10px;
+    left: 60px;
     text-decoration: none;
     color: #fff;
+    padding: 7px 15px 7px 15px;
+    margin-top: 5px;
 }
 
 .like-count:hover {
     text-decoration: none;
     color: #fff;
+    background-color: #007bff;
+    border-radius: 50%;
 }
 
 .comment-count {

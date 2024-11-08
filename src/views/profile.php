@@ -242,7 +242,7 @@
 
 <?php include "includes/header.php"; ?>
 
-<body>
+<body class="main-screen">
     <main>
         <nav>
             <div>
@@ -389,6 +389,18 @@
                         $contenido = $row['contenido_post'];
                         $foto = $row['foto_post'];
                         $hasImage = !empty($foto) ? 'imgBoxContent' : 'noImage';
+
+                        // Consulta para obtener el numero de likes de este post
+                        $likes_sql = "SELECT COUNT(*) as like_count FROM likes WHERE liked_id_post = '$idPost'";
+                        $likes_result = $conn->query($likes_sql);
+                        $likes_row = $likes_result->fetch_assoc();
+                        $like_count = $likes_row['like_count'];
+
+                        // Consulta para obtener el numero de comentarios de cada post
+                        $comments_sql = "SELECT COUNT(*) as comment_count FROM comentarios WHERE id_post = '$idPost'";
+                        $comments_result = $conn->query($comments_sql);
+                        $comments_row = $comments_result->fetch_assoc();
+                        $comments_count = $comments_row['comment_count'];
                 ?>
                 <div class="post-card">
                     <div class="square-menu-perfil"></div>
@@ -421,8 +433,26 @@
                     </div>
                     <h3><?php echo $titulo; ?></h3>
                     <div class="contenido"><?php echo $contenido; ?></div>
-                    <div class="<?php echo $hasImage; ?>">
-                        <img src="<?php echo $foto; ?>" alt="">
+                    <div class="my-gallery w-100">
+                        <div class="<?php echo $hasImage; ?>">
+                            <a href="<?php echo $foto; ?>" data-pswp-width="500" data-pswp-height="500" class="pswp-link" data-pswp-index="1" onclick="return false;">
+                                <img src="<?php echo $foto; ?>" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="stats-container">
+                        <div class="stats-container-child">
+                        <a href="#" class="like-count" data-id=" <?php echo $idPost; ?>"> <?php echo $like_count; ?> </a>
+                            <div class="comment-count"><?php echo $comments_count; ?></div>
+                        </div>
+                        <a class="like-button" data-id="<?php echo $idPost; ?>">Like</a>
+                        <div class="imgBoxLike">
+                            <img src="../../public/svg/heart.svg" alt="">
+                        </div>
+                        <div class="imgBoxComment">
+                            <img src="../../public/svg/comment.svg" alt="">
+                        </div>
                     </div>
                 </div>
 
@@ -447,8 +477,20 @@
                                 $hasImage = !empty($foto) ? 'imgBoxContent' : 'noImage';
                                 $fecha = Carbon::parse($row['fecha_publicacion']);
                                 $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+
+                                // Consulta para obtener el numero de likes de este post
+                                $likes_sql = "SELECT COUNT(*) as like_count FROM likes WHERE liked_id_post = '$id_post'";
+                                $likes_result = $conn->query($likes_sql);
+                                $likes_row = $likes_result->fetch_assoc();
+                                $like_count = $likes_row['like_count'];
+
+                                // Consulta para obtener el numero de comentarios de cada post
+                                $comments_sql = "SELECT COUNT(*) as comment_count FROM comentarios WHERE id_post = '$id_post'";
+                                $comments_result = $conn->query($comments_sql);
+                                $comments_row = $comments_result->fetch_assoc();
+                                $comments_count = $comments_row['comment_count'];
                             ?>
-                            <div class="post-card" onclick="window.location.href='view-post.php?id=<?php echo $id_post;?>'">
+                            <div class="post-card">
                                 <div class="square-menu-perfil"></div>
                                 <img src="../../public/svg/menu.svg" alt="" class="menu-icon">
                                 <div class="post-card-top">
@@ -463,8 +505,26 @@
                                 </div>
                                 <h3><?php echo $titulo; ?></h3>
                                 <div class="contenido"><?php echo $contenido; ?></div>
-                                <div class="<?php echo $hasImage; ?>">
-                                    <img src="<?php echo $foto; ?>" alt="">
+                                <div class="my-gallery w-100">
+                                    <div class="<?php echo $hasImage; ?>">
+                                        <a href="<?php echo $foto;?>" data-pswp-width="500" data-pswp-height="500" class="pswp-link" data-pswp-index="1" onclick="return false;">
+                                            <img src="<?php echo $foto; ?>" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="stats-container">
+                                    <div class="stats-container-child">
+                                    <a onclick="#" class="like-count like-count-hover" data-id="<?php echo $id_post; ?>"> <?php echo $like_count; ?> </a>
+                                        <a class="comment-count comment-count-hover" href="view-post.php?id=<?php echo $id_post;?>"><?php echo $comments_count; ?></a>
+                                    </div>
+                                    <a class="like-button" data-id="<?php echo $idPost; ?>">Like</a>
+                                    <div class="imgBoxLike">
+                                        <img src="../../public/svg/heart.svg" alt="">
+                                    </div>
+                                    <div class="imgBoxComment">
+                                        <img src="../../public/svg/comment.svg" alt="">
+                                    </div>
                                 </div>
                             </div>
                         <?php
@@ -932,6 +992,13 @@
             </div>
         </div>
 
+            <div id="likeModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-button">&times;</span>
+                    <h2>Usuarios que han dado like</h2>
+                    <ul id="likesList" class="list-group"></ul>
+                </div>
+            </div>
     </main>
     <script src="../ui/check-profile-or-user.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.4.4/photoswipe.min.css" integrity="sha512-LFWtdAXHQuwUGH9cImO9blA3a3GfQNkpF2uRlhaOpSbDevNyK1rmAjs13mtpjvWyi+flP7zYWboqY+8Mkd42xA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -950,6 +1017,12 @@
     <script type="module" src="../ui/photo-gallery.js"></script>
     <script src="../ui/edit-comment-viewer.js"></script>
     <script src="../handlers/edit-comment.js"></script>
+    <script src="../handlers/likes-profile.js"></script>
+    <script>
+        // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
+        // y despues utilizarla para evaluar una respuesta con AJAX.
+        var authUserId = <?php echo json_encode($idUser); ?>
+    </script>
     <style>
         .pswp--one-slide .pswp__button--arrow {
             display: flex;
