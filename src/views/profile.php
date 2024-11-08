@@ -978,7 +978,7 @@
                             <input type="file" id="newCommentImage" name="newCommentImage" accept="image/*">
                         </div>
                     </div>
-                    <div class="imgBoxComment">
+                    <div class="imgBoxCommentUpdate">
                         <img id="commentImage" src="" alt="Imagen del comentario" style="max-width: 100%; display: none;">
                         <img src="../../public/svg/close-circle.svg" alt="" class="close-icon" id="close-icon">
                     </div>
@@ -992,11 +992,15 @@
             </div>
         </div>
 
-            <div id="likeModal" class="modal">
-                <div class="modal-content">
-                    <span class="close-button">&times;</span>
-                    <h2>Usuarios que han dado like</h2>
-                    <ul id="likesList" class="list-group"></ul>
+            <div id="likeModal" class="modal-likes modal-likes-hidden">
+                <div class="modal-content-likes">
+                    <div class="modal-header">
+                        <h2>Likes</h2>
+                    </div>
+                    <hr>
+                    <div class="modal-body">
+                        <ul id="likesList" class="list-group"></ul>
+                    </div>
                 </div>
             </div>
     </main>
