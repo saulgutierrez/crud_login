@@ -1383,10 +1383,6 @@ hr {
     height: fit-content;
 }
 
-.liked-btn {
-    background-color: #dc3545;
-}
-
 .like-button {
     cursor: pointer;
     padding: 5px 10px 5px 10px;
@@ -1410,7 +1406,6 @@ hr {
 }
 
 .modal-likes {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo transparente */
     z-index: 1000;
     position: fixed; /* Usamos 'fixed' para centrarlo en toda la ventana */
     width: 100%;
@@ -1469,4 +1464,8 @@ hr {
 
 .list-group-item .liked-usernames:hover {
     color: #007bff;
+}
+
+.liked-btn {
+    background-color: #dc3545 !important;
 }

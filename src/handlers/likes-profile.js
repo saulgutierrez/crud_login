@@ -43,7 +43,7 @@ $(document).ready(function () {
                         likesList.append('<li class="list-group-item">No likes yet</li>');
                     }
                 } catch (e) {
-                    likesList.append('<li class="list-group-item">Error loading likes</li>');
+                    likesList.append('<li class="list-group-item">Error loading likes'+ e +'</li>');
                 }
     
                 // Mostrar el modal

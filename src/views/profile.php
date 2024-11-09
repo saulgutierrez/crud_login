@@ -22,7 +22,6 @@
         }
     }
 
-
     // Estamos viendo el perfil de otro usuario
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -518,7 +517,7 @@
                                     <a onclick="#" class="like-count like-count-hover" data-id="<?php echo $id_post; ?>"> <?php echo $like_count; ?> </a>
                                         <a class="comment-count comment-count-hover" href="view-post.php?id=<?php echo $id_post;?>"><?php echo $comments_count; ?></a>
                                     </div>
-                                    <a class="like-button" data-id="<?php echo $idPost; ?>">Like</a>
+                                    <a class="like-button" data-id="<?php echo $id_post; ?>">Like</a>
                                     <div class="imgBoxLike">
                                         <img src="../../public/svg/heart.svg" alt="">
                                     </div>
@@ -1023,9 +1022,7 @@
     <script src="../handlers/edit-comment.js"></script>
     <script src="../handlers/likes-profile.js"></script>
     <script>
-        // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
-        // y despues utilizarla para evaluar una respuesta con AJAX.
-        var authUserId = <?php echo json_encode($idUser); ?>
+        let authUserId = "<?php echo $idOfMyProfile; ?>";
     </script>
     <style>
         .pswp--one-slide .pswp__button--arrow {
