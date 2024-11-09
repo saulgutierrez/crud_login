@@ -23,6 +23,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../public/svg/gamepad-icon-black.svg" rel="icon" media="(prefers-color-scheme: light)">
+    <link href="../public/svg/gamepad-icon-white.svg" rel="icon" media="(prefers-color-scheme: dark)">
     <script src="../public/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="../../public/css/navbar.css">
     <link rel="stylesheet" href="../public/css/navbar.css">

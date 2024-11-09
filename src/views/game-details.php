@@ -25,6 +25,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../public/svg/gamepad-icon-black.svg" rel="icon" media="(prefers-color-scheme: light)">
+    <link href="../../public/svg/gamepad-icon-white.svg" rel="icon" media="(prefers-color-scheme: dark)">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intense-images/1.0.6/intense.min.css">
     <link rel="stylesheet" href="../../public/css/game-details.css">
     <title><?php echo htmlspecialchars($gameData['title']); ?></title>
