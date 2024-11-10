@@ -1027,36 +1027,47 @@
         let authUserId = "<?php echo $idOfMyProfile; ?>";
     </script>
     <script>
-        setInterval(function() {
-            fetchUserBlockedStatus();
-        }, 5000);
-        
-        function fetchUserBlockedStatus() {
-            let myProfileId = "<?php echo $idOfMyProfile;?>";
-            let otherUserId = "<?php echo $_GET['id'];?>";
+    // Asignar el evento al botón para ejecutar la función manualmente
+    const toggleButton = document.getElementById('btn-4');
+    toggleButton.addEventListener('click', fetchUserBlockedStatus);
 
-            const formData = new FormData();
-            formData.append('myProfileId', myProfileId);
-            formData.append('otherUserId', otherUserId);
+    let intervalId = setInterval(function() {
+        fetchUserBlockedStatus();
+    }, 5000);
 
-            fetch('../models/get-block-state.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.isBlocked) {
-                    // Ocultar elementos si el usuario está bloqueado
-                    document.getElementById('btn-3').style.display = 'none';
-                } else {
-                    // Mostrar elementos si el usuario no está bloqueado
-                    document.getElementById('btn-3').style.display = 'flex';
-                }
-            })
-            .catch(error => console.error('Error:', error));
+    function fetchUserBlockedStatus() {
+        let myProfileId = "<?php echo $idOfMyProfile;?>";
+        let otherUserId = "<?php echo $_GET['id'];?>";
+
+        const formData = new FormData();
+        formData.append('myProfileId', myProfileId);
+        formData.append('otherUserId', otherUserId);
+
+        fetch('../models/get-block-state.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.isBlocked) {
+                // Ocultar elementos si el usuario está bloqueado
+                document.getElementById('btn-3').style.display = 'none';
+                document.getElementById('info-perfil').style.display = 'none';
+                document.getElementById('post-card').style.display = 'none';
+            } else {
+                // Mostrar elementos si el usuario no está bloqueado
+                document.getElementById('btn-3').style.display = 'flex';
+                document.getElementById('info-perfil').style.display = 'flex';
+
+                // Detener el intervalo si el usuario no está bloqueado
+                clearInterval(intervalId);
             }
+        })
+        .catch(error => console.error('Error:', error));
+    }
 
-            fetchUserBlockedStatus();
+// Ejecutar la función una vez al cargar
+fetchUserBlockedStatus();
     </script>
     <style>
         .pswp--one-slide .pswp__button--arrow {
