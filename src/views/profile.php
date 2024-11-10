@@ -1026,6 +1026,38 @@
     <script>
         let authUserId = "<?php echo $idOfMyProfile; ?>";
     </script>
+    <script>
+        setInterval(function() {
+            fetchUserBlockedStatus();
+        }, 5000);
+        
+        function fetchUserBlockedStatus() {
+            let myProfileId = "<?php echo $idOfMyProfile;?>";
+            let otherUserId = "<?php echo $_GET['id'];?>";
+
+            const formData = new FormData();
+            formData.append('myProfileId', myProfileId);
+            formData.append('otherUserId', otherUserId);
+
+            fetch('../models/get-block-state.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.isBlocked) {
+                    // Ocultar elementos si el usuario está bloqueado
+                    document.getElementById('btn-3').style.display = 'none';
+                } else {
+                    // Mostrar elementos si el usuario no está bloqueado
+                    document.getElementById('btn-3').style.display = 'flex';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+            }
+
+            fetchUserBlockedStatus();
+    </script>
     <style>
         .pswp--one-slide .pswp__button--arrow {
             display: flex;
