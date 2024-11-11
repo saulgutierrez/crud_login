@@ -1016,7 +1016,6 @@
     <script src="../handlers/delete-post.js"></script>
     <script src="../handlers/delete-comment.js"></script>
     <script src="../handlers/follow-user.js"></script>
-    <script src="../handlers/block-user.js"></script>
     <script src="../ui/view-full-date.js"></script>
     <script type="module" src="../ui/view-profile-image.js"></script>
     <script type="module" src="../ui/photo-gallery.js"></script>
@@ -1024,51 +1023,17 @@
     <script src="../handlers/edit-comment.js"></script>
     <script src="../handlers/likes-profile.js"></script>
     <script>
+        // Este id sirve para evaluar el id de cada usuario de la lista de likes en los posteos,
+        // para evaluar si se trata de un "autolike"
         let authUserId = "<?php echo $idOfMyProfile; ?>";
     </script>
     <script>
-    // Asignar el evento al botón para ejecutar la función manualmente
-    const toggleButton = document.getElementById('btn-4');
-    toggleButton.addEventListener('click', fetchUserBlockedStatus);
-
-    let intervalId = setInterval(function() {
-        fetchUserBlockedStatus();
-    }, 5000);
-
-    function fetchUserBlockedStatus() {
-        let myProfileId = "<?php echo $idOfMyProfile;?>";
-        let otherUserId = "<?php echo $_GET['id'];?>";
-
-        const formData = new FormData();
-        formData.append('myProfileId', myProfileId);
-        formData.append('otherUserId', otherUserId);
-
-        fetch('../models/get-block-state.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.isBlocked) {
-                // Ocultar elementos si el usuario está bloqueado
-                document.getElementById('btn-3').style.display = 'none';
-                document.getElementById('info-perfil').style.display = 'none';
-                document.getElementById('post-card').style.display = 'none';
-            } else {
-                // Mostrar elementos si el usuario no está bloqueado
-                document.getElementById('btn-3').style.display = 'flex';
-                document.getElementById('info-perfil').style.display = 'flex';
-
-                // Detener el intervalo si el usuario no está bloqueado
-                clearInterval(intervalId);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    }
-
-// Ejecutar la función una vez al cargar
-fetchUserBlockedStatus();
+        // Estos id's sirven para evaluar el estado del bloqueo, y ocultar los datos de perfil
+        // de forma dinamica
+        const myProfileId = "<?php echo $idOfMyProfile; ?>";
+        const otherUserId = "<?php echo $_GET['id']; ?>";
     </script>
+    <script src="../handlers/block-user.js"></script>
     <style>
         .pswp--one-slide .pswp__button--arrow {
             display: flex;
