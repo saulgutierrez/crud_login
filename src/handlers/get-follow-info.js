@@ -71,8 +71,6 @@ $(document).ready(function() {
             data:   { id: userId },
             success: function (response) {
                 let data = JSON.parse(response);
-                //  
-
                 let followButtonText = data.status;
 
                 if (followButtonText === 'following') {
@@ -105,7 +103,7 @@ $(document).ready(function() {
             if (!popup.is(':hover')) {
                 popup.hide();
             }
-        }, 500); // Ajusta el tiempo si es necesario
+        }, 500);
     });
 
     // Ocultar el popup cuando el cursor sale del popup

@@ -66,8 +66,9 @@ $(document).ready(function () {
         .then(response => response.json())
         .then(data => {
             if (data.isBlocked) {
-                // Ocultar elementos si el usuario está bloqueado
+                // Ocultar boton de seguimiento si el usuario está bloqueado
                 document.getElementById('btn-3').style.display = 'none';
+                // Seleccionamos los botones que muestran la informacion, en el menu lateral
                 let info = document.querySelector('.info');
                 let posts = document.querySelector('.posts');
                 let comments = document.querySelector('.comments');
@@ -76,6 +77,7 @@ $(document).ready(function () {
                 let likes = document.querySelector('.likes');
                 let photos = document.querySelector('.photos');
 
+                // Ocultamos todas las pantallas cuando se hace click en cualquier boton
                 info.addEventListener('click', function () {
                     document.getElementById('info-perfil').style.display = 'none';
                 });
@@ -104,6 +106,7 @@ $(document).ready(function () {
                     document.getElementById('photos-content').style.display = 'none';
                 });
 
+                // Todas las pantallas se ocultan por defecto
                 document.getElementById('info-perfil').style.display = 'none';
                 document.getElementById('post-content').style.display = 'none';
                 document.getElementById('comment-content').style.display = 'none';
@@ -112,25 +115,79 @@ $(document).ready(function () {
                 document.getElementById('likes-content').style.display = 'none';
                 document.getElementById('photos-content').style.display = 'none';
             } else {
+                // Mostramos el boton seguir
                 document.getElementById('btn-3').style = 'flex';
-                // let info = document.querySelector('.info');
-                // let posts = document.querySelector('.posts');
+                // Seleccionamos los botones que muestrar la informacion, en el menu lateral
+                let info = document.querySelector('.info');
+                let posts = document.querySelector('.posts');
+                let comments = document.querySelector('.comments');
+                let followers = document.querySelector('.followers');
+                let following = document.querySelector('.following');
+                let likes = document.querySelector('.likes');
+                let photos = document.querySelector('.photos');
 
                 // Obtenemos el color de fondo actual de los botones
-                // let infoBgColor = window.getComputedStyle(info).backgroundColor;
-                // let postsBgColor = window.getComputedStyle(posts).backgroundColor;
+                let infoBgColor = window.getComputedStyle(info).backgroundColor;
+                let postsBgColor = window.getComputedStyle(posts).backgroundColor;
+                let commentsBgColor = window.getComputedStyle(comments).backgroundColor;
+                let followersBgColor = window.getComputedStyle(followers).backgroundColor;
+                let followingBgColor = window.getComputedStyle(following).backgroundColor;
+                let likesBgColor = window.getComputedStyle(likes).backgroundColor;
+                let photosBgColor = window.getComputedStyle(photos).backgroundColor;
 
-                // if (infoBgColor === "rgb(0, 104, 255)") {
-                //     alert('Estamos en la pagina info');
-                // } else if (postsBgColor === "rgb(0, 104, 255)") {
-                //     alert('Estamos en la página posts');
-                // }
+                // Evaluamos el color de fondo actual de cada boton, que indica que esta seleccionado,
+                // para mostrar la pantalla de informacion que corresponde (En un primer momento, cuando se
+                // desbloquea el usuario)
+                if (infoBgColor === "rgb(0, 123, 255)") {
+                    document.getElementById('info-perfil').style.display = 'flex';
+                } else if (postsBgColor === "rgb(0, 123, 255)") {
+                    document.getElementById('post-content').style.display = 'flex';
+                } else if (commentsBgColor == "rgb(0, 123, 255)") {
+                    document.getElementById('comment-content').style.display = 'flex';
+                } else if (followersBgColor == "rgb(0, 123, 255)") {
+                    document.getElementById('follower-content').style.display = 'flex';
+                } else if (followingBgColor == "rgb(0, 123, 255)") {
+                    document.getElementById('following-content').style.display = 'flex';
+                } else if (likesBgColor == "rgb(0, 123, 255)") {
+                    document.getElementById('likes-content').style.display = 'flex';
+                } else if (photosBgColor == "rgb(0, 123, 255)") {
+                    document.getElementById('photos-content').style.display = 'flex';
+                }
+
+                // Cada que hacemos click en cualquier boton que muestre informacion del usuario, mostramos
+                // la pantalla que corresponde
+                info.addEventListener('click', function () {
+                    document.getElementById('info-perfil').style.display = 'flex';
+                });
+
+                posts.addEventListener('click', function () {
+                    document.getElementById('post-content').style.display = 'flex';
+                });
+
+                comments.addEventListener('click', function () {
+                    document.getElementById('comment-content').style.display = 'flex';
+                });
+
+                followers.addEventListener('click', function () {
+                    document.getElementById('follower-content').style.display = 'flex';
+                });
+
+                following.addEventListener('click', function () {
+                    document.getElementById('following-content').style.display = 'flex';
+                });
+
+                likes.addEventListener('click', function () {
+                    document.getElementById('likes-content').style.display = 'flex';
+                });
+
+                photos.addEventListener('click', function () {
+                    document.getElementById('photos-content').style.display = 'flex';
+                });
             }
         })
         .catch(error => console.error('Error:', error));
     }
     
-    // Ejecutar la función una vez al cargar la página
-    //fetchUserBlockedStatus();
-    
+    //Ejecutar la función una vez al cargar la página
+    fetchUserBlockedStatus();
 });

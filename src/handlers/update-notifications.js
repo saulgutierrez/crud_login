@@ -54,6 +54,6 @@ $(document).ready(function() {
     actualizarListadoNotificaciones();
     actualizarContadorNotificaciones();
     // Actualizar cada 10 segundos, tanto el contador, como el listado
-    setInterval(actualizarContadorNotificaciones, 10000);
-    setInterval(actualizarListadoNotificaciones, 10000);
+    setInterval(actualizarContadorNotificaciones, 60000);
+    setInterval(actualizarListadoNotificaciones, 60000);
 });
