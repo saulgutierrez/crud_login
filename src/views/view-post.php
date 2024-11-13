@@ -150,7 +150,10 @@
         $sqlComments = "SELECT c.*, u.fotografia 
                         FROM comentarios c 
                         JOIN usuarios u ON c.id_autor_comentario = u.id 
-                        WHERE c.id_post = '$id_post' 
+                        LEFT JOIN user_blocks b
+                            ON (b.blocked_id = c.id_autor_comentario AND b.blocker_id = '$idAutorComentario')
+                            OR (b.blocker_id = c.id_autor_comentario AND b.blocked_id = '$idAutorComentario')
+                        WHERE b.blocked_id IS NULL AND c.id_post = '$id_post'
                         ORDER BY c.fecha_publicacion DESC";
         $playQuery = $conn->query($sqlComments);
 

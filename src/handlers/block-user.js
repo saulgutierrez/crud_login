@@ -54,7 +54,7 @@ $(document).ready(function () {
     });
     
     // Configurar la función para verificar el estado de bloqueo dinámicamente
-    function fetchUserBlockedStatus() {    
+    function fetchUserBlockedStatus() {
         const formData = new FormData();
         formData.append('myProfileId', myProfileId);
         formData.append('otherUserId', otherUserId);
