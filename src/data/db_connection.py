@@ -47,3 +47,29 @@ def fetch_posts_data():
         close_connection(connection)
 
         return posts_data
+
+# Funcion para obtener los datos de los posteos en los que un usuario especifico ha dado like
+def fetch_user_likes(user_id):
+    connection = create_connection()
+    if connection is None:
+        return []
+    
+    query = """SELECT post.titulo_post, post.contenido_post FROM likes INNER JOIN post ON likes.liked_id_post = post.id_post WHERE likes.liked_by = %s"""
+    cursor = connection.cursor()
+    liked_posts = []
+
+    try:
+        cursor.execute(query, (user_id,))
+        result = cursor.fetchall()
+        for row in result:
+            liked_post = {
+                'title' :   row[0],
+                'content' : row[1]
+            }
+            liked_posts.append(liked_post)
+    except Error as e:
+        print(f"Error al obtener los likes del usuario: {e}")
+    finally:
+        cursor.close()
+        close_connection(connection)
+    return liked_posts
