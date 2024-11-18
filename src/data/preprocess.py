@@ -35,11 +35,11 @@ def lemmatize_text(text):
 # - Aplica lematizacion
 def preprocess_text(text):
     # Convertir a minusculas
-    text = text.lower()
+    text = text.lower().strip()
     
     # Eliminar caracteres especiales
     text = re.sub(r'\s+', ' ', text)  # Eliminar espacios adicionales
-    text = re.sub(r'[0-9]', '', text) # Eliminar dígitos (opcional)
+    text = re.sub(r'[0-9]', '', text) # Eliminar dígitos
 
     # Eliminar puntuacion
     text = remove_punctuation(text)

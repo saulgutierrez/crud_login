@@ -1,14 +1,11 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
+# Llamada al archivo de conexion para obtener la informacion
 from db_connection import fetch_posts_data, fetch_user_likes
 from sklearn.metrics.pairwise import cosine_similarity
-
-# Función para preprocesar el texto y aplicar limpieza basica
-def preprocess_text(text):
-    # Convertir a minusculas y eliminar los espacios al principio y al final
-    text = text.lower().strip()
-    return text
+# Llamada al archivo preprocess.py para limpieza de datos
+from preprocess import preprocess_text
 
 # Funcion para obtener y preprocesar datos de posteos y "Likes" del usuario
 def get_data_for_knn(user_id):
