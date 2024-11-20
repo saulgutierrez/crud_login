@@ -15,7 +15,7 @@ def get_data_for_knn(user_id):
     user_likes = fetch_user_likes(user_id)
 
     # Preprocesar el texto de cada posteo
-    all_posts = [{'title': preprocess_text(post['title']), 'content': preprocess_text(post['content'])} for post in post_data]
+    all_posts = [{'title': preprocess_text(post['titulo_post']), 'content': preprocess_text(post['contenido_post'])} for post in post_data]
     liked_posts = [{'title': preprocess_text(like['title']), 'content': preprocess_text(like['content'])} for like in user_likes]
 
     return all_posts, liked_posts
@@ -40,7 +40,7 @@ def knn_recommendations(user_id, n_recommendations=5):
     liked_matrix = vectorizer.transform(likes_df['text']) # Vectorizacion de los posteos Liked por el usuario
 
     # Inicializar el modelo KNN
-    knn = NearestNeighbors(n_neighbors=n_recommendations, metric='cousine')
+    knn = NearestNeighbors(n_neighbors=n_recommendations, metric='cosine')
     knn.fit(tfidf_matrix)
 
     # Encontrar los posteos mas similares a los "Likes" del usuario
@@ -58,3 +58,13 @@ def knn_recommendations(user_id, n_recommendations=5):
     # Ordenar las recomendaciones por puntaje de similitud
     recommendations = sorted(recommendations, key=lambda x: x['similarity_score'], reverse=True)
     return recommendations[:n_recommendations] # Limitar a las mejores recomendaciones
+
+if __name__ == "__main__":
+    user_id = 23
+    recommendations = knn_recommendations(user_id)
+    for idx, rec in enumerate(recommendations, 1):
+        print(f"Recomendacion {idx}:")
+        print(f"Titulo: {rec['title']}")
+        print(f"Contenido: {rec['content']}")
+        print(f"Puntaje de similitud: {rec['similarity_score']:.4f}")
+        print()
