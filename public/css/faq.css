@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.1rem;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #18191a;
+    color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #18191a;
+    border-radius: 10px;
+}
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background: #3e4142;
+    border-radius: 10px;
+}
+
+main {
+    width: 100%;
+    display: grid;
+    height: calc(100% - 90px);
+    grid-template-areas: 
+        "nav main"
+        "nav main";
+    grid-template-rows: 50px 200px;
+    grid-template-columns: 300px 1fr;
+    margin-top: 90px;
+}
+
+main > aside {
+    grid-area: nav;
+    position: fixed;
+    overflow-y: auto;
+    height: 85%;
+}
+
+main > aside::-webkit-scrollbar {
+    width: 7px;
+}
+
+main > aside::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #18191a;
+    border-radius: 10px;
+}
+   
+  /* Handle */
+main > aside::-webkit-scrollbar-thumb {
+    background: #3e4142;
+    border-radius: 10px;
+}
+
+main > .registros {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
