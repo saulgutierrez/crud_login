@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 # Llamada al archivo de conexion para obtener la informacion
@@ -59,6 +60,10 @@ def knn_recommendations(user_id, n_recommendations=5):
     recommendations = sorted(recommendations, key=lambda x: x['similarity_score'], reverse=True)
     return recommendations[:n_recommendations] # Limitar a las mejores recomendaciones
 
+def save_results(results):
+    with open("results.json", "w") as f:
+        json.dump(results, f)
+
 if __name__ == "__main__":
     user_id = 23
     recommendations = knn_recommendations(user_id)
@@ -68,3 +73,5 @@ if __name__ == "__main__":
         print(f"Contenido: {rec['content']}")
         print(f"Puntaje de similitud: {rec['similarity_score']:.4f}")
         print()
+
+        save_results(recommendations)
