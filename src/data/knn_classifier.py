@@ -1,5 +1,6 @@
 import pandas as pd
 import json
+import argparse
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 # Llamada al archivo de conexion para obtener la informacion
@@ -65,7 +66,12 @@ def save_results(results):
         json.dump(results, f)
 
 if __name__ == "__main__":
-    user_id = 23
+    # Recuperamos el id del usuario logueado del argumento pasado como parametro
+    # y mostramos las recomendaciones propias de cada usuario
+    parser = argparse.ArgumentParser(description="KNN Recommendation Script")
+    parser.add_argument("user_id", type=int, help="ID del usuario logueado")
+    args = parser.parse_args()
+    user_id = args.user_id
     recommendations = knn_recommendations(user_id)
     for idx, rec in enumerate(recommendations, 1):
         print(f"Recomendacion {idx}:")

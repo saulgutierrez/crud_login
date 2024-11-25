@@ -94,8 +94,8 @@
         </aside>
         <div id="registros" class="registros"></div>
         <div class="suggestions" id="suggestions">
-            <div class="title">People you may know</div>
-            <div class="title">Trends</div>
+            <!-- <div class="title">People you may know</div>
+            <div class="title">Trends</div> -->
         </div>
     </main>
 
@@ -156,5 +156,6 @@
         // y despues utilizarla para evaluar una respuesta con AJAX.
         var authUserId = <?php echo json_encode($id); ?>;
     </script>
+    <script src="../handlers/get-knn-results.js" defer></script>
 </body>
 </html>
