@@ -80,13 +80,23 @@ main > .registros {
 
 main > .suggestions {
     grid-area: suggestions;
-    position: fixed;
-    right: 150px;
+    right: 0px;
     top: 100px;
 }
 
+main > .suggestions .recommendation {
+    background-color: #242526;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+main > .suggestions .recommendation h3 {
+    margin-left: 40px;
+}
+
 main > .suggestions .title {
-    font-size: 1.4rem;
+    font-size: 2rem;
+    margin-bottom: 15px;
 }
 
 main > .registros .post-card {

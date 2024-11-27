@@ -10,9 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 recommendation.classList.add("recommendation");
                 // Imprimimos las recomendaciones en el frontend
                 recommendation.innerHTML = `
-                    <h3>Recomendación ${idx + 1}</h3>
-                    <p><strong>Título:</strong> ${rec.title}</p>
-                    <p><strong>Contenido:</strong> ${rec.content}</p>
+                    <h3>${rec.title}</h3>
+                    <p>${rec.content}</p>
                     <p><strong>Puntaje de similitud:</strong> ${rec.similarity_score.toFixed(4)}</p>
                 `;
 
