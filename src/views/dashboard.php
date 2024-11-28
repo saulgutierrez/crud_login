@@ -92,9 +92,12 @@
                 }
             ?>
         </aside>
+        <div id="switch" class="switch">
+            <div>Todo</div>
+            <div>Para ti</div>
+        </div>
         <div id="registros" class="registros"></div>
         <div class="suggestions" id="suggestions">
-            <div class="title">Recomendado para tí</div>
             <!-- <div class="title">People you may know</div>
             <div class="title">Trends</div> -->
         </div>
