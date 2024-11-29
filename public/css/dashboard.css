@@ -98,7 +98,7 @@ main > .registros {
 }
 
 main > .suggestions {
-    grid-area: suggestions;
+    grid-area: main;
     right: 0px;
     top: 100px;
     display: none;
