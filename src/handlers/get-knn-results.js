@@ -4,8 +4,11 @@ const recordsBtn = document.querySelector('#all-btn');
 suggestionsBtn.addEventListener("click", function () {
     const container = document.getElementById("suggestions");
     const records = document.querySelector('#registros');
+    const recordsBtn = document.querySelector('#all-btn');
     container.innerHTML = "";
     records.style.display = "none";
+    this.classList.add('suggestions-btn');
+    recordsBtn.classList.remove('all-btn');
 
     // Peticion AJAX para recuperar las recomendaciones
     fetch("../models/run-knn.php")
@@ -35,6 +38,9 @@ suggestionsBtn.addEventListener("click", function () {
 recordsBtn.addEventListener("click", function () {
     const container = document.getElementById("suggestions");
     const records = document.querySelector('#registros');
+    const suggestionsBtn = document.querySelector('#suggestions-btn');
+    this.classList.add('all-btn');
+    suggestionsBtn.classList.remove('suggestions-btn');
     container.style.display = "none";
     records.style.display = "flex";
 });

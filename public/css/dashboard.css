@@ -67,7 +67,7 @@ main {
     font-size: 1.6rem;
 }
 
-.switch .all-btn {
+.all-btn {
     color: #fff;
     padding: 5px 30px;
     border: 1px solid #007bff;
@@ -75,19 +75,27 @@ main {
     background-color: #007bff;
 }
 
-.switch .suggestions-btn {
+#all-btn:hover {
+    cursor: pointer;
+}
+
+.suggestions-btn {
     color: #fff;
     padding: 5px 30px;
     border: 1px solid #007bff;
     border-radius: 20px;
     background-color: #007bff;
+}
+
+#suggestions-btn:hover {
+    cursor: pointer;
 }
 
 main > aside {
     grid-area: nav;
     position: fixed;
     overflow-y: auto;
-    height: 85%;
+    height: calc(100vh - 80px);
 }
 
 main > aside::-webkit-scrollbar {
@@ -121,13 +129,25 @@ main > .suggestions {
 }
 
 main > .suggestions .recommendation {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
     background-color: #242526;
     border-radius: 10px;
-    gap: 10px;
+    margin-bottom: 20px;
+    padding: 30px 30px 60px 30px;
+    justify-self: center;
 }
 
-main > .suggestions .recommendation h3 {
-    margin-left: 40px;
+main > .suggestions .recommendation p {
+    padding: 0;
+}
+
+main > .suggestions .recommendation:hover,
+main > .suggestions .recommendation p {
+    cursor: auto;
+    background-color: #242526;
 }
 
 main > .suggestions .title {

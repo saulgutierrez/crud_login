@@ -94,7 +94,7 @@
         </aside>
         <div id="switch" class="switch">
             <div class="all-btn" id="all-btn">Todo</div>
-            <div class="suggestions-btn" id="suggestions-btn">Para ti</div>
+            <div id="suggestions-btn">Para ti</div>
         </div>
         <div id="registros" class="registros"></div>
         <div class="suggestions" id="suggestions">
