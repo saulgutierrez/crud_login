@@ -67,6 +67,22 @@ main {
     font-size: 1.6rem;
 }
 
+.switch .all-btn {
+    color: #fff;
+    padding: 5px 30px;
+    border: 1px solid #007bff;
+    border-radius: 20px;
+    background-color: #007bff;
+}
+
+.switch .suggestions-btn {
+    color: #fff;
+    padding: 5px 30px;
+    border: 1px solid #007bff;
+    border-radius: 20px;
+    background-color: #007bff;
+}
+
 main > aside {
     grid-area: nav;
     position: fixed;
