@@ -97,6 +97,9 @@
             <div id="suggestions-btn">Para ti</div>
         </div>
         <div id="registros" class="registros"></div>
+        <div id="loader" class="loader" style="display: none;">
+            <img src="../../public/resources/loader.gif" alt="">
+        </div>
         <div class="suggestions" id="suggestions">
             <!-- <div class="title">People you may know</div>
             <div class="title">Trends</div> -->

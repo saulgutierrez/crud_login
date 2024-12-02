@@ -121,6 +121,14 @@ main > .registros {
     gap: 20px;
 }
 
+main > .loader {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 main > .suggestions {
     grid-area: main;
     right: 0px;

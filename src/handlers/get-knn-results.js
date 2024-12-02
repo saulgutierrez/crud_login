@@ -2,6 +2,7 @@ const suggestionsBtn = document.querySelector('#suggestions-btn');
 const recordsBtn = document.querySelector('#all-btn');
 
 suggestionsBtn.addEventListener("click", function () {
+    const loader = document.getElementById("loader");
     const container = document.getElementById("suggestions");
     const records = document.querySelector('#registros');
     const recordsBtn = document.querySelector('#all-btn');
@@ -9,11 +10,13 @@ suggestionsBtn.addEventListener("click", function () {
     records.style.display = "none";
     this.classList.add('suggestions-btn');
     recordsBtn.classList.remove('all-btn');
+    loader.style.display = 'flex';
 
     // Peticion AJAX para recuperar las recomendaciones
     fetch("../models/run-knn.php")
         .then((response) => response.json())
         .then((data) => {
+            loader.style.display = 'none';
             data.forEach((rec, idx) => {
                 const recommendation = document.createElement("div");
                 recommendation.classList.add("recommendation");
@@ -29,6 +32,7 @@ suggestionsBtn.addEventListener("click", function () {
         })
         .catch((error) => {
             console.error("Error al obtener las recomendaciones:", error);
+            loader.style.display = 'none';
             container.innerHTML = "<p>No se pudieron cargar las recomendaciones</p>";
         });
 
