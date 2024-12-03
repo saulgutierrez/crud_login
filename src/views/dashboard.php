@@ -93,8 +93,18 @@
             ?>
         </aside>
         <div id="switch" class="switch">
-            <div class="all-btn" id="all-btn">Todo</div>
-            <div id="suggestions-btn">Para ti</div>
+            <div class="all-btn" id="all-btn">
+                <div class="imgBoxAllIcon">
+                    <img src="../../public/svg/all.svg" alt="">
+                </div>
+                <div>Todo</div>
+            </div>
+            <div id="suggestions-btn">
+                <div class="imgBoxSuggestionsIcon">
+                    <img src="../../public/svg/recommended.svg" alt="">
+                </div>
+                <div>Para ti</div>
+            </div>
         </div>
         <div id="registros" class="registros"></div>
         <div id="loader" class="loader" style="display: none;">

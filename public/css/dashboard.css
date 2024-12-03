@@ -75,6 +75,32 @@ main {
     background-color: #007bff;
 }
 
+#all-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#all-btn > .imgBoxAllIcon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+#all-btn .imgBoxAllIcon img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: invert(1);
+}
+
 #all-btn:hover {
     cursor: pointer;
 }
@@ -87,8 +113,34 @@ main {
     background-color: #007bff;
 }
 
+#suggestions-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 #suggestions-btn:hover {
     cursor: pointer;
+}
+
+#suggestions-btn > .imgBoxSuggestionsIcon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+#suggestions-btn > .imgBoxSuggestionsIcon img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: invert(1);
 }
 
 main > aside {
