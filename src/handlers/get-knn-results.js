@@ -27,6 +27,10 @@ suggestionsBtn.addEventListener("click", function () {
                     <p><strong>Puntaje de similitud:</strong> ${rec.similarity_score.toFixed(4)}</p>
                 `;
 
+                recommendation.onclick = () => {
+                    window.location.href = `view-post.php?id=${rec.id}`;
+                }
+
                 container.appendChild(recommendation);
             });
         })

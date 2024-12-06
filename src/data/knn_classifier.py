@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import json
 import argparse
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -17,8 +18,8 @@ def get_data_for_knn(user_id):
     user_likes = fetch_user_likes(user_id)
 
     # Preprocesar el texto de cada posteo
-    all_posts = [{'title': preprocess_text(post['titulo_post']), 'content': preprocess_text(post['contenido_post'])} for post in post_data]
-    liked_posts = [{'title': preprocess_text(like['title']), 'content': preprocess_text(like['content'])} for like in user_likes]
+    all_posts = [{'id': post['id_post'], 'title': preprocess_text(post['titulo_post']), 'content': preprocess_text(post['contenido_post'])} for post in post_data]
+    liked_posts = [{'id': like['id'], 'title': preprocess_text(like['title']), 'content': preprocess_text(like['content'])} for like in user_likes]
 
     return all_posts, liked_posts
 
@@ -51,6 +52,7 @@ def knn_recommendations(user_id, n_recommendations=5):
         distances, indices = knn.kneighbors(liked_post_vector, n_neighbors=n_recommendations)
         for index in indices.flatten():
             recommended_post = {
+                'id'        :   posts_df.iloc[index]['id'],
                 'title'     :   posts_df.iloc[index]['title'],
                 'content'   :   posts_df.iloc[index]['content'],
                 'similarity_score'  :   cosine_similarity(liked_post_vector, tfidf_matrix[index])[0][0]
@@ -62,6 +64,13 @@ def knn_recommendations(user_id, n_recommendations=5):
     return recommendations[:n_recommendations] # Limitar a las mejores recomendaciones
 
 def save_results(results):
+     # Convertir valores no serializables
+    for rec in recommendations:
+        for key, value in rec.items():
+            if isinstance(value, (np.int64, np.float64)):  # Convertir tipos de NumPy
+                rec[key] = value.item()
+    
+    # Escribir en un archivo JSON
     with open("results.json", "w") as f:
         json.dump(results, f)
 
@@ -75,6 +84,7 @@ if __name__ == "__main__":
     recommendations = knn_recommendations(user_id)
     for idx, rec in enumerate(recommendations, 1):
         print(f"Recomendacion {idx}:")
+        print(f"ID post: {rec['id']}")
         print(f"Titulo: {rec['title']}")
         print(f"Contenido: {rec['content']}")
         print(f"Puntaje de similitud: {rec['similarity_score']:.4f}")
