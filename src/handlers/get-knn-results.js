@@ -22,6 +22,7 @@ suggestionsBtn.addEventListener("click", function () {
                 recommendation.classList.add("recommendation");
                 // Imprimimos las recomendaciones en el frontend
                 recommendation.innerHTML = `
+                    <h2>${rec.author}</h2>
                     <h3>${rec.title}</h3>
                     <p>${rec.content}</p>
                     <p><strong>Puntaje de similitud:</strong> ${rec.similarity_score.toFixed(4)}</p>
