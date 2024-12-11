@@ -20,13 +20,24 @@ suggestionsBtn.addEventListener("click", function () {
             data.forEach((rec, idx) => {
                 const recommendation = document.createElement("div");
                 recommendation.classList.add("recommendation");
+
+                // Generar el enlace
+                const authorLink = document.createElement("a");
+                authorLink.href = `profile.php?id=${rec.id_author}`;
+                authorLink.textContent = rec.author;
+                authorLink.onclick = (event) => {
+                    event.stopPropagation();
+                };
+
                 // Imprimimos las recomendaciones en el frontend
                 recommendation.innerHTML = `
-                    <h2>${rec.author}</h2>
                     <h3>${rec.title}</h3>
                     <p>${rec.content}</p>
                     <p><strong>Puntaje de similitud:</strong> ${rec.similarity_score.toFixed(4)}</p>
                 `;
+
+                // Agregar el enlace al contenedor
+                recommendation.prepend(authorLink);
 
                 recommendation.onclick = () => {
                     window.location.href = `view-post.php?id=${rec.id}`;

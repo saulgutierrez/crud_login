@@ -27,7 +27,7 @@ def fetch_posts_data():
     if connection is None:
         return []
 
-    query = "SELECT id_post, autor_post, titulo_post, contenido_post FROM post"
+    query = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post"
     cursor = connection.cursor()
     posts_data = []
 
@@ -37,9 +37,10 @@ def fetch_posts_data():
         for row in result:
             post = {
                 'id_post':      row[0],
-                'autor_post':   row[1],
-                'titulo_post':    row[2],
-                'contenido_post':   row[3]
+                'id_autor':     row[1],
+                'autor_post':   row[2],
+                'titulo_post':    row[3],
+                'contenido_post':   row[4]
             }
             posts_data.append(post)
     except Error as e:
@@ -56,7 +57,7 @@ def fetch_user_likes(user_id):
     if connection is None:
         return []
     
-    query = """SELECT post.id_post, post.autor_post, post.titulo_post, post.contenido_post FROM likes INNER JOIN post ON likes.liked_id_post = post.id_post WHERE likes.liked_by = %s"""
+    query = """SELECT post.id_post, post.id_autor, post.autor_post, post.titulo_post, post.contenido_post FROM likes INNER JOIN post ON likes.liked_id_post = post.id_post WHERE likes.liked_by = %s"""
     cursor = connection.cursor()
     liked_posts = []
 
@@ -66,9 +67,10 @@ def fetch_user_likes(user_id):
         for row in result:
             liked_post = {
                 'id' :  row[0],
-                'author' : row[1],
-                'title' :   row[2],
-                'content' : row[3]
+                'id_author' : row[1],
+                'author' : row[2],
+                'title' :   row[3],
+                'content' : row[4]
             }
             liked_posts.append(liked_post)
     except Error as e:
