@@ -27,7 +27,19 @@ def fetch_posts_data():
     if connection is None:
         return []
 
-    query = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post"
+    query = """
+    SELECT 
+        p.id_post, 
+        p.id_autor, 
+        p.autor_post, 
+        p.titulo_post, 
+        p.contenido_post,
+        u.fotografia
+    FROM 
+        post p
+    INNER JOIN 
+        usuarios u ON p.id_autor = u.id
+    """
     cursor = connection.cursor()
     posts_data = []
 
@@ -36,11 +48,12 @@ def fetch_posts_data():
         result = cursor.fetchall()
         for row in result:
             post = {
-                'id_post':      row[0],
-                'id_autor':     row[1],
-                'autor_post':   row[2],
-                'titulo_post':    row[3],
-                'contenido_post':   row[4]
+                'id_post': row[0],
+                'id_autor': row[1],
+                'autor_post': row[2],
+                'titulo_post': row[3],
+                'contenido_post': row[4],
+                'fotografia_autor': row[5]
             }
             posts_data.append(post)
     except Error as e:
@@ -49,7 +62,7 @@ def fetch_posts_data():
         cursor.close()
         close_connection(connection)
 
-        return posts_data
+    return posts_data
 
 # Funcion para obtener los datos de los posteos en los que un usuario especifico ha dado like
 def fetch_user_likes(user_id):
@@ -57,7 +70,23 @@ def fetch_user_likes(user_id):
     if connection is None:
         return []
     
-    query = """SELECT post.id_post, post.id_autor, post.autor_post, post.titulo_post, post.contenido_post FROM likes INNER JOIN post ON likes.liked_id_post = post.id_post WHERE likes.liked_by = %s"""
+    query = """
+    SELECT 
+        p.id_post, 
+        p.id_autor, 
+        p.autor_post, 
+        p.titulo_post, 
+        p.contenido_post,
+        u.fotografia
+    FROM 
+        likes l
+    INNER JOIN 
+        post p ON l.liked_id_post = p.id_post
+    INNER JOIN 
+        usuarios u ON p.id_autor = u.id
+    WHERE 
+        l.liked_by = %s
+    """
     cursor = connection.cursor()
     liked_posts = []
 
@@ -70,7 +99,8 @@ def fetch_user_likes(user_id):
                 'id_author' : row[1],
                 'author' : row[2],
                 'title' :   row[3],
-                'content' : row[4]
+                'content' : row[4],
+                'author_photo' : row[5]
             }
             liked_posts.append(liked_post)
     except Error as e:

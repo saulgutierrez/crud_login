@@ -20,31 +20,45 @@ suggestionsBtn.addEventListener("click", function () {
             data.forEach((rec, idx) => {
                 const recommendation = document.createElement("div");
                 recommendation.classList.add("recommendation");
-
-                // Generar el enlace
+            
+                // Crear el enlace
                 const authorLink = document.createElement("a");
                 authorLink.href = `profile.php?id=${rec.id_author}`;
                 authorLink.textContent = rec.author;
                 authorLink.onclick = (event) => {
                     event.stopPropagation();
                 };
-
-                // Imprimimos las recomendaciones en el frontend
+            
+                // Crear el contenedor de la imagen
+                const imgBox = document.createElement("div");
+                imgBox.classList.add("imgBox");
+            
+                const img = document.createElement("img");
+                img.src = rec.author_photo;
+                imgBox.appendChild(img);
+            
+                // Crear el contenedor flex
+                const authorContainer = document.createElement("div");
+                authorContainer.classList.add("authorContainer");
+                authorContainer.appendChild(imgBox);
+                authorContainer.appendChild(authorLink);
+            
+                // Configurar el contenido principal
                 recommendation.innerHTML = `
                     <h3>${rec.title}</h3>
                     <p>${rec.content}</p>
                     <p><strong>Puntaje de similitud:</strong> ${rec.similarity_score.toFixed(4)}</p>
                 `;
-
-                // Agregar el enlace al contenedor
-                recommendation.prepend(authorLink);
-
+            
+                // Insertar el contenedor flex al inicio
+                recommendation.prepend(authorContainer);
+            
                 recommendation.onclick = () => {
                     window.location.href = `view-post.php?id=${rec.id}`;
-                }
-
+                };
+            
                 container.appendChild(recommendation);
-            });
+            });            
         })
         .catch((error) => {
             console.error("Error al obtener las recomendaciones:", error);

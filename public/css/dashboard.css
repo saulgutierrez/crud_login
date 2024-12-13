@@ -196,7 +196,8 @@ main > .suggestions .recommendation {
     background-color: #242526;
     border-radius: 10px;
     margin-bottom: 20px;
-    padding: 30px 30px 60px 30px;
+    padding: 30px 30px;
+    gap: 10px;
     justify-self: center;
 }
 
@@ -229,6 +230,29 @@ main > .suggestions .recommendation p {
 main > .suggestions .title {
     font-size: 2rem;
     margin-bottom: 15px;
+}
+
+.authorContainer {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre imagen y enlace */
+}
+
+.authorContainer .imgBox {
+    position: relative;
+    display: flex;
+    width: 50px;
+    height: 50px;
+}
+
+.authorContainer .imgBox img  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 main > .registros .post-card {

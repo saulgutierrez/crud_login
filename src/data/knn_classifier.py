@@ -18,8 +18,8 @@ def get_data_for_knn(user_id):
     user_likes = fetch_user_likes(user_id)
 
     # Preprocesar el texto de cada posteo
-    all_posts = [{'id': post['id_post'], 'id_author': post['id_autor'], 'author': post['autor_post'], 'title': preprocess_text(post['titulo_post']), 'content': preprocess_text(post['contenido_post'])} for post in post_data]
-    liked_posts = [{'id': like['id'], 'id_author': like['id_author'], 'author': like['author'], 'title': preprocess_text(like['title']), 'content': preprocess_text(like['content'])} for like in user_likes]
+    all_posts = [{'id': post['id_post'], 'id_author': post['id_autor'], 'author': post['autor_post'], 'title': preprocess_text(post['titulo_post']), 'content': preprocess_text(post['contenido_post']), 'author_photo': post['fotografia_autor']} for post in post_data]
+    liked_posts = [{'id': like['id'], 'id_author': like['id_author'], 'author': like['author'], 'title': preprocess_text(like['title']), 'content': preprocess_text(like['content']), 'author_photo': like['author_photo']} for like in user_likes]
 
     return all_posts, liked_posts
 
@@ -31,11 +31,11 @@ def knn_recommendations(user_id, n_recommendations=5):
     # Crear un dataframe para todos los posteos
     posts_df = pd.DataFrame(all_post)
     # Concatenar titulo y contenido
-    posts_df['text'] = posts_df['author'] + " " + posts_df['title'] + " " + posts_df['content']
+    posts_df['text'] = posts_df['title'] + " " + posts_df['content']
 
     # Crear un dataframe para los "Likes" del usuario
     likes_df = pd.DataFrame(liked_posts)
-    likes_df['text'] = likes_df['author'] + " " + likes_df['title'] + " " + likes_df['content']
+    likes_df['text'] = likes_df['title'] + " " + likes_df['content']
 
     # Vectorizar el texto usando TF-IDF
     vectorizer = TfidfVectorizer()
@@ -57,6 +57,7 @@ def knn_recommendations(user_id, n_recommendations=5):
                 'author'    :   posts_df.iloc[index]['author'],
                 'title'     :   posts_df.iloc[index]['title'],
                 'content'   :   posts_df.iloc[index]['content'],
+                'author_photo'  :   posts_df.iloc[index]['author_photo'],
                 'similarity_score'  :   cosine_similarity(liked_post_vector, tfidf_matrix[index])[0][0]
             }
             recommendations.append(recommended_post)
@@ -89,6 +90,7 @@ if __name__ == "__main__":
         print(f"ID post: {rec['id']}")
         print(f"ID autor: {rec['id_author']}")
         print(f"Autor: {rec['author']}")
+        print(f"Foto autor: {rec['author_photo']}")
         print(f"Titulo: {rec['title']}")
         print(f"Contenido: {rec['content']}")
         print(f"Puntaje de similitud: {rec['similarity_score']:.4f}")
