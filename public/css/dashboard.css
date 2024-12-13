@@ -335,6 +335,44 @@ main > aside h3 {
     width: 100%;
 }
 
+.people-suggestions {
+    grid-area: suggestions;
+    top: 105px;
+    position: sticky;
+    align-self: start;
+    display: flex;
+    height: fit-content;
+    max-height: calc(100vh - 100px);
+}
+
+.people-suggestions div {
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.people-suggestions div .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+
+.people-suggestions div .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0%;
+    filter: invert(1);
+}
+
 summary {
     list-style: none;
     position: relative;

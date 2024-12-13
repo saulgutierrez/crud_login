@@ -111,8 +111,14 @@
             <img src="../../public/resources/loader.gif" alt="">
         </div>
         <div class="suggestions" id="suggestions">
-            <!-- <div class="title">People you may know</div>
-            <div class="title">Trends</div> -->
+        </div>
+        <div class="people-suggestions">
+            <div>
+                <div class="imgBox">
+                    <img src="../../public/svg/people.svg" alt="">
+                </div>
+                <div>People you may know</div>
+            </div>
         </div>
     </main>
 
