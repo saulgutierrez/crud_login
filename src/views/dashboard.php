@@ -117,7 +117,7 @@
                 <div class="imgBox">
                     <img src="../../public/svg/people.svg" alt="">
                 </div>
-                <div>People you may know</div>
+                <div class="show-suggestions" id="show-suggestions">People you may know</div>
             </div>
         </div>
     </main>
@@ -179,6 +179,7 @@
         // y despues utilizarla para evaluar una respuesta con AJAX.
         var authUserId = <?php echo json_encode($id); ?>;
     </script>
-    <script src="../handlers/get-knn-results.js" defer></script>
+    <script src="../handlers/get-post-suggestions.js" defer></script>
+    <script src="../handlers/get-user-suggestions.js" defer></script>
 </body>
 </html>

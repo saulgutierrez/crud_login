@@ -13,7 +13,7 @@ suggestionsBtn.addEventListener("click", function () {
     loader.style.display = 'flex';
 
     // Peticion AJAX para recuperar las recomendaciones
-    fetch("../models/run-knn.php")
+    fetch("../models/run-knn-post-suggestions.php")
         .then((response) => response.json())
         .then((data) => {
             loader.style.display = 'none';
