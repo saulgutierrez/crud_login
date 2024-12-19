@@ -1,0 +1,39 @@
+import pandas as pd
+from db_setup import connect_to_db
+
+def generate_dataset():
+    connection = connect_to_db()
+
+    # Query: Seguidores en comun
+    query_followers = """
+    SELECT 
+        s1.id_seguidor AS user1,
+        s2.id_seguidor AS user2,
+        COUNT(*) AS seguidores_comunes
+    FROM seguidores AS s1
+    JOIN seguidores AS s2 ON s1.id_seguido = S2.id_seguido
+    WHERE s1.id_seguidor != s2.id_seguidor
+    GROUP BY s1.id_seguidor, s2.id_seguidor;
+    """
+    followers = pd.read_sql(query_followers, connection)
+
+    # Query: Likes en publicaciones
+    query_likes = """
+    SELECT
+        p.id_autor AS post_owner,
+        l.liked_by AS liker,
+        COUNT(*) AS likes
+    FROM posts AS p
+    JOIN posts_likes AS l ON p.id_post = l.liked_id_post
+    WHERE p.id_autor != l.liked_by
+    GROUP BY p.id_autor, l.liked_by;
+    """
+    likes = pd.read_sql(query_likes, connection)
+
+    # Merge datasets
+    dataset = pd.merge(followers, likes, left_on=['user1', 'user2'], right_on=['post_owner', 'liker'], how='outer').fillna(0)
+    dataset['seguidores_comunes'] = dataset['seguidores_comunes'].astype(int)
+    dataset['likes'] = dataset['likes'].astype(int)
+
+    connection.close()
+    return dataset

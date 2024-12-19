@@ -14,4 +14,10 @@
     $result = $stmt->get_result();
     $id_fetch = $result->fetch_assoc();
     $user_id = $id_fetch['id'];
+    // Construir el comando para ejecutar el script de Python, enviando como parámetro el id del usuario logueado
+    $command = escapeshellcmd("python3 ../data/knn_classifier_users.py " . escapeshellarg($user_id));
+    $output = shell_exec($command);
+    $jsonData = file_get_contents('results-suggestions.json');
+    $results = json_decode($jsonData, true);
+    echo json_encode($results);
 ?>
