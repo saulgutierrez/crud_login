@@ -87,7 +87,9 @@
             ?>
             <details>
                 <summary>
-                    <img src="<?php echo $category_icon; ?>" alt="">
+                    <div class="imgBox">
+                        <img src="<?php echo $category_icon; ?>" alt="">
+                    </div>
                     <a href="#" data-category="<?php echo $category_id; ?>"><?php echo $category_name; ?></a>
                 </summary>
             </details>
