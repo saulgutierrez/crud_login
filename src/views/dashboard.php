@@ -83,9 +83,13 @@
                     while ($rowCategories = $resultGetCategories->fetch_assoc()) {
                         $category_id = $rowCategories['id_categoria'];
                         $category_name = $rowCategories['nombre_categoria'];
+                        $category_icon = $rowCategories['imagen_categoria'];
             ?>
             <details>
-                <summary><a href="#" data-category="<?php echo $category_id; ?>"><?php echo $category_name; ?></a></summary>
+                <summary>
+                    <img src="<?php echo $category_icon; ?>" alt="">
+                    <a href="#" data-category="<?php echo $category_id; ?>"><?php echo $category_name; ?></a>
+                </summary>
             </details>
             <?php
                     }
