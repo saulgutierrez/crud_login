@@ -186,6 +186,10 @@ main > aside > details > summary > .imgBox img {
     border-radius: 0%;
 }
 
+main > aside > details > summary > a {
+    font-size: 1.3rem;
+}
+
 main > .registros {
     grid-area: main;
     display: flex;
@@ -323,6 +327,7 @@ main > .registros .post-card hr {
 .text-content p {
     padding: 0;
     background-color: #242526;
+    font-size: 1.3rem;
 }
 
 .text-content p:hover {

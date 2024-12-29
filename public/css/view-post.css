@@ -151,6 +151,10 @@ body main {
     border-radius: 0%;
 }
 
+p {
+    font-size: 1.3rem;
+}
+
 .stats-container {
     position: relative;
     display: flex;

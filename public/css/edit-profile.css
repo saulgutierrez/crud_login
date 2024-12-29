@@ -23,6 +23,10 @@ body {
     margin-top: 100px;
 }
 
+label {
+  font-size: 1.4rem;
+}
+
 #editProfileForm {
     position: relative;
     background-color: #18191a;

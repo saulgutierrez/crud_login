@@ -796,7 +796,25 @@
                             <div class="imgBox">
                                 <img src="<?php echo $fotoPerfilLikedPost; ?>" alt="">
                             </div>
-                            <a href='profile.php?id=<?php echo $idAutorPost; ?>'" onclick="event.stopPropagation();"><?php echo $autorLikedPost; ?></a>
+                            <?php
+                                $redirectUrl = 'profile.php?';
+                                if (isset($_SESSION['user'])) {
+                                    $user = $_SESSION['user'];
+                                    $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
+                                    $queryGetIdUser = $conn->query($sqlGetIdUser);
+
+                                    // Obtiene el id del usuario logueado y verifica si es el mismo del usuario que dio like (autolike)
+                                    if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
+                                        $idUser = $sqlGetId['id'];
+                                        if ($idAutorPost == $idUser) {
+                                            $redirectUrl .= 'user=' . $autorLikedPost;
+                                        } else {
+                                            $redirectUrl .= 'id=' . $idAutorPost;
+                                        }
+                                    }
+                                }
+                            ?>
+                            <a href='<?php echo $redirectUrl; ?>'" onclick="event.stopPropagation();"><?php echo $autorLikedPost; ?></a>
                         </div>
                         <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
                         <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
