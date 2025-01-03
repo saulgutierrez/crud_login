@@ -124,6 +124,7 @@
                     <img src="../../public/svg/people.svg" alt="">
                 </div>
                 <div class="show-suggestions" id="show-suggestions">People you may know</div>
+                <div class="user-suggestions" id="user-suggestions"></div>
             </div>
         </div>
     </main>
