@@ -4,7 +4,7 @@ from db_setup import connect_to_db
 def generate_dataset():
     connection = connect_to_db()
 
-    # Query: Seguidores en comun
+    # Query: Seguidores en común
     query_followers = """
     SELECT 
         s1.id_seguidor AS user1,
@@ -35,5 +35,8 @@ def generate_dataset():
     dataset['seguidores_comunes'] = dataset['seguidores_comunes'].astype(int)
     dataset['likes'] = dataset['likes'].astype(int)
 
+    # Eliminar columnas adicionales tras el merge
+    dataset = dataset[['user1', 'user2', 'seguidores_comunes', 'likes']]
+    
     connection.close()
     return dataset

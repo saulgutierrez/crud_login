@@ -1,11 +1,20 @@
 from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 
-def knn_recommendations(user_id, dataset, k=5):
+def knn_recommendations(user_id, dataset, k=3):
     users = dataset[['seguidores_comunes', 'likes']]
+    
+    # Entrenar el modelo con un DataFrame
     model = NearestNeighbors(n_neighbors=k)
     model.fit(users)
 
-    distances, indices = model.kneighbors([dataset.loc[user_id, ['seguidores_comunes', 'likes']]])
+    # Crear un DataFrame con los datos del usuario
+    user_data = pd.DataFrame([{
+        'seguidores_comunes': dataset.loc[dataset['user1'] == user_id, 'seguidores_comunes'].sum(),
+        'likes': dataset.loc[dataset['user1'] == user_id, 'likes'].sum()
+    }])
+    
+    # Predecir vecinos más cercanos
+    distances, indices = model.kneighbors(user_data)
     recommendations = dataset.iloc[indices[0]]
     return recommendations.to_dict('records')
