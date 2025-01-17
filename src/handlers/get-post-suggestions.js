@@ -42,12 +42,22 @@ suggestionsBtn.addEventListener("click", function () {
                 authorContainer.classList.add("authorContainer");
                 authorContainer.appendChild(imgBox);
                 authorContainer.appendChild(authorLink);
+
+                // Porcentaje de similitud
+                let similarityScore = rec.similarity_score.toFixed(4);
+                let percentaje = (similarityScore * 100).toFixed(4);
             
                 // Configurar el contenido principal
                 recommendation.innerHTML = `
-                    <h3>${rec.title}</h3>
-                    <p>${rec.content}</p>
-                    <p><strong>Puntaje de similitud:</strong> ${rec.similarity_score.toFixed(4)}</p>
+                    <div class='suggestion-container'>
+                        <div>
+                            <h3>${rec.title}</h3>
+                            <p>${rec.content}</p>
+                        </div>
+                        <div>
+                            <p class='similarity-score'> ${percentaje} %</p>
+                        </div>
+                    </div>
                 `;
             
                 // Insertar el contenedor flex al inicio

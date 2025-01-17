@@ -3,6 +3,7 @@ import string
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from bs4 import BeautifulSoup
 
 # Descargar recursos necesarios de NLTK la primera vez que se usa el archivo
 nltk.download('stopwords')
@@ -28,6 +29,15 @@ def lemmatize_text(text):
     lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
     return ' '.join(lemmatized_words)
 
+# Remover etiquetas HTML
+def remove_html_tags_and_special_chars(text):
+    # Eliminar etiquetas HTML
+    text = BeautifulSoup(text, "html.parser")
+    text = text.get_text()
+    text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
+    return text
+
+
 # Aplica los pasos de preprocesamiento de texto en secuencia:
 # - Convierte a minusculas
 # - Elimina caracteres especiales y puntuacion
@@ -36,6 +46,9 @@ def lemmatize_text(text):
 def preprocess_text(text):
     # Convertir a minusculas
     text = text.lower().strip()
+
+    # Eliminar caracteres HTML
+    text = remove_html_tags_and_special_chars(text)
     
     # Eliminar caracteres especiales
     text = re.sub(r'\s+', ' ', text)  # Eliminar espacios adicionales
