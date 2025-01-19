@@ -393,6 +393,7 @@ main > aside h3 {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    flex-direction: column;
 }
 
 .people-suggestions div .imgBox {

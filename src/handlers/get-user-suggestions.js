@@ -15,7 +15,7 @@ peopleSuggestionsBtn.addEventListener("click", () => {
             div.classList.add("recommendation");
             div.innerHTML = `
                 <p>Seguidores comunes: ${rec.seguidores_comunes}</p>
-                <p>Likes comunes: ${rec.likes_comunes}</p>
+                <p>Likes comunes: ${rec.likes}</p>
             `;
             container.appendChild(div);
         });
