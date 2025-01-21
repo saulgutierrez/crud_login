@@ -396,6 +396,11 @@ main > aside h3 {
     flex-direction: column;
 }
 
+.people-suggestions div .suggestion-title {
+    flex-direction: row;
+    gap: 10px;
+}
+
 .people-suggestions div .imgBox {
     position: relative;
     display: flex;

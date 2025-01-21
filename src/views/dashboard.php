@@ -120,10 +120,12 @@
         </div>
         <div class="people-suggestions">
             <div>
-                <div class="imgBox">
-                    <img src="../../public/svg/people.svg" alt="">
+                <div class="suggestion-title">
+                    <div class="imgBox">
+                        <img src="../../public/svg/people.svg" alt="">
+                    </div>
+                    <div class="show-suggestions" id="show-suggestions">People you may know</div>
                 </div>
-                <div class="show-suggestions" id="show-suggestions">People you may know</div>
                 <div class="user-suggestions" id="user-suggestions"></div>
             </div>
         </div>
