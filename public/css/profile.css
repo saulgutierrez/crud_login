@@ -596,7 +596,7 @@ body main section {
     display: none;
     flex-direction: column;
     gap: 20px;
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
 .menu-icon {
@@ -687,7 +687,7 @@ body main section {
     display: none;
     flex-direction: column;
     gap: 20px;
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
 .comment-card {
@@ -847,7 +847,7 @@ body main section {
     display: none;
     flex-direction: column;
     gap: 20px;
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
 .following-card {
@@ -920,7 +920,7 @@ body main section {
     display: none;
     flex-direction: column;
     gap: 20px;
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
 .follower-card {
@@ -993,7 +993,7 @@ body main section {
     display: none;
     flex-direction: column;
     gap: 20px;
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
 .likes-card {
@@ -1253,7 +1253,7 @@ form input[type=submit]:hover {
     display: none;
     flex-direction: column;
     gap: 20px;
-    margin-left: 30%;
+    margin-left: 20%;
 }
 
 .blocks-card {

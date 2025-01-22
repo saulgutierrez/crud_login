@@ -148,6 +148,7 @@ main > aside {
     position: fixed;
     overflow-y: auto;
     height: calc(100vh - 80px);
+    background-color: #171717;
 }
 
 main > aside::-webkit-scrollbar {
@@ -380,11 +381,13 @@ main > aside h3 {
 .people-suggestions {
     grid-area: suggestions;
     top: 105px;
-    position: sticky;
-    align-self: start;
+    position: fixed;
+    right: 0;
+    width: 300px;
     display: flex;
-    height: fit-content;
-    max-height: calc(100vh - 100px);
+    flex-direction: column;
+    height: calc(100vh - 100px);
+    overflow-y: auto;
 }
 
 .people-suggestions div {
@@ -419,6 +422,11 @@ main > aside h3 {
     object-fit: cover;
     border-radius: 0%;
     filter: invert(1);
+}
+
+.show-suggestions:hover {
+    cursor: pointer;
+    color: #007bff;
 }
 
 summary {
