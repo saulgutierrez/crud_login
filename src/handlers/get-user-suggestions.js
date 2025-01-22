@@ -14,9 +14,16 @@ peopleSuggestionsBtn.addEventListener("click", () => {
             const div = document.createElement("div");
             div.classList.add("recommendation");
             div.innerHTML = `
+                <p>Usuario: ${rec.usuario}</p>
                 <p>Seguidores comunes: ${rec.seguidores_comunes}</p>
                 <p>Likes comunes: ${rec.likes}</p>
             `;
+
+            div.onclick = () => {
+                window.location.href = `profile.php?id=${rec.user2}`;
+            }
+
+
             container.appendChild(div);
         });
     })

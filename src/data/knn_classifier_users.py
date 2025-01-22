@@ -17,4 +17,4 @@ def knn_recommendations(user_id, dataset, k=3):
     # Predecir vecinos más cercanos
     distances, indices = model.kneighbors(user_data)
     recommendations = dataset.iloc[indices[0]]
-    return recommendations.to_dict('records')
+    return recommendations[['user2', 'usuario', 'seguidores_comunes', 'likes']].to_dict('records')

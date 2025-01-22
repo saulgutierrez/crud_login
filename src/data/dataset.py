@@ -30,13 +30,21 @@ def generate_dataset():
     """
     likes = pd.read_sql(query_likes, connection)
 
+    # Query: Informacion de usuarios
+    query_users = """
+    SELECT id, usuario
+    FROM usuarios;
+    """
+
+    users = pd.read_sql(query_users, connection)
+
     # Merge datasets
     dataset = pd.merge(followers, likes, left_on=['user1', 'user2'], right_on=['post_owner', 'liker'], how='outer').fillna(0)
     dataset['seguidores_comunes'] = dataset['seguidores_comunes'].astype(int)
     dataset['likes'] = dataset['likes'].astype(int)
 
-    # Eliminar columnas adicionales tras el merge
-    dataset = dataset[['user1', 'user2', 'seguidores_comunes', 'likes']]
+    # Merge con informacion de usuarios
+    dataset = pd.merge(dataset, users, left_on='user2', right_on='id', how='left')
     
     connection.close()
     return dataset
