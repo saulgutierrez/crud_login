@@ -126,6 +126,9 @@
                     </div>
                     <div class="show-suggestions" id="show-suggestions">People you may know</div>
                 </div>
+                <div class="loader-user-suggestions" id="loader-user-suggestions" style="display: none;">
+                    <img src="../../public/resources/loader.gif" alt="">
+                </div>
                 <div class="user-suggestions" id="user-suggestions"></div>
             </div>
         </div>

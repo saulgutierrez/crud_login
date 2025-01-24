@@ -1,6 +1,10 @@
 const peopleSuggestionsBtn = document.querySelector('#show-suggestions');
 
 peopleSuggestionsBtn.addEventListener("click", () => {
+    const loader = document.getElementById('loader-user-suggestions');
+    loader.style.display = "flex";
+
+    // Peticion AJAX para recuperar las recomendaciones
     fetch("../models/run-knn-user-suggestions.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -8,6 +12,7 @@ peopleSuggestionsBtn.addEventListener("click", () => {
     })
     .then((response) => response.json())
     .then((data) => {
+        loader.style.display = "none";
         const container = document.getElementById("user-suggestions");
         container.innerHTML = "";
         data.forEach((rec) => {

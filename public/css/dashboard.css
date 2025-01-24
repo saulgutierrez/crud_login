@@ -429,6 +429,14 @@ main > aside h3 {
     color: #007bff;
 }
 
+main .loader-user-suggestions {
+    grid-area: suggestions;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 summary {
     list-style: none;
     position: relative;
