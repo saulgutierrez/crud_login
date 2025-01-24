@@ -11,6 +11,10 @@ if (isset($_POST['user'], $_POST['password'])) {
     $user = $_POST['user'];
     $pass = $_POST['password'];
 
+    # Evitar inyeccion SQL
+    $user = htmlspecialchars($_POST['user'], ENT_QUOTES, 'UTF-8');
+    $pass = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
+
     $cryptPass = sha1($pass);
     
     $sql = $conn->prepare("SELECT * FROM usuarios WHERE usuario = ? AND contrasenia = ?");

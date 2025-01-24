@@ -26,6 +26,17 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
     $genero = $_POST['genero'];
     $rutaImagenPorDefecto = "../../public/img/profile-default.svg";
 
+    // Evitar inyeccion SQL
+    $id = htmlspecialchars($_POST['id'], ENT_QUOTES, 'UTF-8');
+    $user = htmlspecialchars($_POST['user'], ENT_QUOTES, 'UTF-8');
+    $pass = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
+    $nombre = htmlspecialchars($_POST['nombre'], ENT_QUOTES, 'UTF-8');
+    $apellido = htmlspecialchars($_POST['apellido'], ENT_QUOTES, 'UTF-8');
+    $correo = htmlspecialchars($_POST['correo'], ENT_QUOTES, 'UTF-8');
+    $telefono = htmlspecialchars($_POST['telefono'], ENT_QUOTES, 'UTF-8');
+    $fechaNacimiento = htmlspecialchars($_POST['fechanacimiento'], ENT_QUOTES, 'UTF-8');
+    $genero = htmlspecialchars($_POST['genero'], ENT_QUOTES, 'UTF-8');
+
     $cryptPass = sha1($pass);
 
     $file_uploaded = false;

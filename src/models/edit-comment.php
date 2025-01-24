@@ -24,6 +24,10 @@ if (isset($_POST['commentText'],$_POST['commentId'])) {
     $comment_id = $_POST['commentId'];
     $comment = $_POST['commentText'];
 
+    // Evitar inyeccion SQL
+    $comment_id = htmlspecialchars($_POST['commentId'], ENT_QUOTES, 'UTF-8');
+    $comment = htmlspecialchars($_POST['commentText'], ENT_QUOTES, 'UTF-8');
+
     $file_uploaded = false;
     $target_file = false;
 

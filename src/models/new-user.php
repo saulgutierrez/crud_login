@@ -7,6 +7,11 @@ session_start();
 if (isset($_POST['user'], $_POST['password'])) {
     $user = $_POST['user'];
     $pass = $_POST['password'];
+
+    # Evitar inyeccion SQL
+    $user = htmlspecialchars($_POST['user'], ENT_QUOTES, 'UTF-8');
+    $pass = htmlspecialchars($_POST['password'], ENT_QUOTES, 'UTF-8');
+
     $rutaFotoPorDefecto = "../../public/img/profile-default.svg";
 
     $cryptPass = sha1($pass); # Encriptamos la contraseña

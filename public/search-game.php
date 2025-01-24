@@ -2,6 +2,8 @@
 # Se captura la query desde el frontend
 if (isset($_GET['query'])) {
     $query = $_GET['query'];
+    # Evitar inyeccion SQL
+    $query = htmlspecialchars($query, ENT_QUOTES, 'UTF-8');
     # Endpoint de busqueda
     $url = "https://www.freetogame.com/api/games";
     # Almacenamoes el contenido de la API en formato JSON

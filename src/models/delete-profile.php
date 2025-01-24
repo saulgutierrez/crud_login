@@ -10,6 +10,11 @@
         $pass = $_POST['confirm-delete'];
         $id_user = $_POST['id_user'];
 
+        # Evitar inyeccion SQL
+        $user = htmlspecialchars($_POST['user'], ENT_QUOTES, 'UTF-8');
+        $pass = htmlspecialchars($_POST['confirm-delete'], ENT_QUOTES, 'UTF-8');
+        $id_user = htmlspecialchars($_POST['id_user'], ENT_QUOTES, 'UTF-8');
+
         $cryptPass = sha1($pass);
 
         $sql_check = "SELECT COUNT(*) AS count, fotografia FROM usuarios WHERE usuario = '$user' AND contrasenia = '$cryptPass'";

@@ -27,6 +27,14 @@ if (isset($_POST['comment-input'])) {
     $comentario = $_POST['comment-input'];
     $fecha = $_POST['comment-time'];
 
+    // Evitar inyeccion SQL
+    $idPost = htmlspecialchars($_POST['id-post'], ENT_QUOTES, 'UTF-8');
+    $idAutorPost = htmlspecialchars($_POST['id-autor-post'], ENT_QUOTES, 'UTF-8');
+    $idAutorComentario = htmlspecialchars($_POST['id-autor-comentario']);
+    $autorComentario = htmlspecialchars($_POST['autor-comentario'], ENT_QUOTES, 'UTF-8');
+    $comentario = htmlspecialchars($_POST['comment-input'], ENT_QUOTES, 'UTF-8');
+    $fecha = htmlspecialchars($_POST['comment-time'], ENT_QUOTES, 'UTF-8');
+
     $file_uploaded = false;
 
     // Verifica si se subió un archivo y si no hubo errores

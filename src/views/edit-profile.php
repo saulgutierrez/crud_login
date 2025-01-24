@@ -51,21 +51,21 @@
 
 <body>
     <form method="POST" id="editProfileForm">
-        <input type="hidden" id="id" name="id" value="<?php echo $idPerfil; ?>">
+        <input type="hidden" id="id" name="id" value="<?php echo htmlspecialchars($idPerfil); ?>">
         <label for="user">Usuario</label>
-        <input type="text" id="user" name="user" value="<?php echo $nombreUsuario; ?>">
+        <input type="text" id="user" name="user" value="<?php echo htmlspecialchars($nombreUsuario); ?>">
         <label for="pass">Contraseña</label>
         <input type="password" id="password" name="password">
         <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" value="<?php echo $nombrePerfil; ?>">
+        <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($nombrePerfil); ?>">
         <label for="apellido">Apellido</label>
-        <input type="text" id="apellido" name="apellido" value="<?php echo $apellidoPerfil; ?>">
+        <input type="text" id="apellido" name="apellido" value="<?php echo htmlspecialchars($apellidoPerfil); ?>">
         <label for="correo">Correo</label>
-        <input type="email" id="correo" name="correo" value="<?php echo $correoPerfil; ?>">
+        <input type="email" id="correo" name="correo" value="<?php echo htmlspecialchars($correoPerfil); ?>">
         <label for="telefono">Telefono</label>
-        <input type="number" id="telefono" name="telefono" value="<?php echo $telefonoPerfil; ?>">
+        <input type="number" id="telefono" name="telefono" value="<?php echo htmlspecialchars($telefonoPerfil); ?>">
         <label for="fechanacimiento">Fecha de nacimiento</label>
-        <input type="date" id="fechanacimiento" name="fechanacimiento" value="<?php echo $fechaNacimientoPerfil; ?>">
+        <input type="date" id="fechanacimiento" name="fechanacimiento" value="<?php echo htmlspecialchars($fechaNacimientoPerfil); ?>">
         <label for="genero">Genero</label>
         <div class="custom-select" style="width: 250px;">
             <select name="genero" id="genero" class="genero">

@@ -22,7 +22,7 @@
         $getUserId = $getUserIdRow['id'];
 
         // Evitar inyeccion SQL
-        $searchQuery = htmlspecialchars($searchQuery);
+        $searchQuery = htmlspecialchars($searchQuery, ENT_QUOTES, 'UTF-8');
         $searchQuery = "%$searchQuery%";
 
         // Preparar y ejecutar la consulta
