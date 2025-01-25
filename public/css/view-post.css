@@ -152,7 +152,7 @@ body main {
 }
 
 p {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 
 .stats-container {
@@ -393,10 +393,11 @@ button .imgBox img {
 
 .comment-card-body .comment-content {
     width: 65%;
+    font-size: 1.5rem;
 }
 
 .comment-user {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     text-decoration: none;
     color: #fff;
     font-weight: 700;
