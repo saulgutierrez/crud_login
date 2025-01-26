@@ -406,6 +406,7 @@ main > aside h3 {
 .people-suggestions div .suggestion-title {
     flex-direction: row;
     gap: 10px;
+    margin-bottom: 15px;
 }
 
 .people-suggestions div .imgBox {
@@ -449,6 +450,7 @@ main .loader-user-suggestions {
 
 .people-suggestions div .user-suggestions .recommendation p {
     padding: 0px 40px;
+    margin-bottom: 0px;
 }
 
 .people-suggestions div .user-suggestions .recommendation p:hover {
@@ -458,6 +460,42 @@ main .loader-user-suggestions {
 
 .people-suggestions div .user-suggestions .recommendation:hover {
     cursor: pointer;
+}
+
+.people-suggestions div .user-suggestions .recommendation .recommendation-header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.people-suggestions div .user-suggestions .recommendation .recommendation-header > p {
+    width: fit-content;
+    padding-left: 10px;
+    padding-right: 0px;
+    margin-bottom: 0px;
+}
+
+.people-suggestions div .user-suggestions .recommendation .recommendation-header .imgBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+}
+
+.people-suggestions div .user-suggestions .recommendation .recommendation-header .imgBox img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: none;
 }
 
 .recommendation-username {
