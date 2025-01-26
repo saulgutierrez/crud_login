@@ -32,7 +32,7 @@ def generate_dataset():
 
     # Query: Informacion de usuarios
     query_users = """
-    SELECT id, usuario
+    SELECT id, usuario, fotografia
     FROM usuarios;
     """
 

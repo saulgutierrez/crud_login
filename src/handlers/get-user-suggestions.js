@@ -19,9 +19,14 @@ peopleSuggestionsBtn.addEventListener("click", () => {
             const div = document.createElement("div");
             div.classList.add("recommendation");
             div.innerHTML = `
-                <p>Usuario: ${rec.usuario}</p>
-                <p>Seguidores comunes: ${rec.seguidores_comunes}</p>
-                <p>Likes comunes: ${rec.likes}</p>
+                <div class="recommendation-header">
+                    <div class="imgBox">
+                        <img src="${rec.fotografia}">
+                    </div>
+                    <p>${rec.usuario}</p>
+                </div>
+                <p>${rec.seguidores_comunes} seguidores en comun</p>
+                <p>${rec.likes} likes en comun</p>
             `;
 
             div.onclick = () => {
