@@ -51,6 +51,27 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
 
     if ($row['count'] == 0) {
         if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
+            
+            // Borramos la imagen de perfil anterior en caso de que exista, junto con el archivo asociado
+            // Solo se puede tener una imagen de perfil por cada cuenta
+            $sql_get_image = $conn->prepare("SELECT fotografia FROM usuarios WHERE id = ?");
+            $sql_get_image->bind_param('i', $id);
+            $sql_get_image->execute();
+            $sql_get_image_result = $sql_get_image->get_result();
+            
+            while ($row_image = $sql_get_image_result->fetch_assoc()) {
+                $previous_image = $row_image['fotografia'];
+                if (!empty($previous_image)) {
+                    if (file_exists($previous_image) && ($previous_image !== $rutaImagenPorDefecto)) {
+                        unlink($previous_image);
+                    }
+                } else {
+                    $response['test'] = "Ruta de imagen vacia en la base de datos";
+                    echo json_encode($response);
+                    exit;
+                }
+            }
+
             // Create random filename
             $file_extension = pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
             $random_filename = uniqid('img_', true) . '.' . $file_extension;
