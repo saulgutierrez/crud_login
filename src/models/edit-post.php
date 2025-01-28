@@ -33,8 +33,27 @@ if (isset($_POST['id_user'], $_POST['id_post'], $_POST['user'], $_POST['post_tit
 
     // Verificar si se ha subido un archivo y si no hay errores
     if (isset($_FILES['file']) && $_FILES['file']['error'] == UPLOAD_ERR_OK) {
-        $filename = basename($_FILES["file"]["name"]);
-        $target_file = $target_dir . $filename;
+
+        // Borramos la imagen del post anterior en caso de que exista, junto con el archivo asociado
+        // Solo se puede tener una foto por cada post
+        $sql_get_image_post = $conn->prepare("SELECT foto_post FROM post WHERE id_post = ?");
+        $sql_get_image_post->bind_param('i', $idPost);
+        $sql_get_image_post->execute();
+        $sql_get_image_post_result = $sql_get_image_post->get_result();
+
+        while ($row_image_post = $sql_get_image_post_result->fetch_assoc()) {
+            $previous_image_post = $row_image_post['foto_post'];
+            if (!empty($previous_image_post)) {
+                if (file_exists($previous_image_post)) {
+                    unlink($previous_image_post);
+                }
+            }
+        }
+
+        // Create random filename
+        $file_extension_image_post = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+        $random_filename_image_post = uniqid('img_', true) . '.' . $file_extension_image_post;
+        $target_file = $target_dir . $random_filename_image_post;
 
         // Verificar tipo MIME del archivo
         $allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif'];

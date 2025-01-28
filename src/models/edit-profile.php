@@ -103,8 +103,18 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
                 $sql = $conn->prepare("UPDATE usuarios SET usuario = ?, contrasenia = ?, nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, genero = ?, fotografia = ? WHERE id = ?");
                 $sql->bind_param('sssssssssi', $user, $cryptPass, $nombre, $apellido, $correo, $telefono, $fechaNacimiento, $genero, $target_file, $id);
             } else {
+                // En caso de no actualizar la foto de perfil, mantenemos la que usa la cuenta actualmente
+                $sql_get_settled_image = $conn->prepare("SELECT fotografia FROM usuarios WHERE id = ?");
+                $sql_get_settled_image->bind_param('i', $id);
+                $sql_get_settled_image->execute();
+                $sql_get_settled_image_result = $sql_get_settled_image->get_result();
+                
+                while ($row_settled_image = $sql_get_settled_image_result->fetch_assoc()) {
+                    $previous_settled_image = $row_settled_image['fotografia'];
+                }
+
                 $sql = $conn->prepare("UPDATE usuarios SET usuario = ?, contrasenia = ?, nombre = ?, apellido = ?, correo = ?, telefono = ?, fecha_nacimiento = ?, genero = ?, fotografia = ? WHERE id = ?");
-                $sql->bind_param('sssssssssi', $user, $cryptPass, $nombre, $apellido, $correo, $telefono, $fechaNacimiento, $genero, $rutaImagenPorDefecto, $id);
+                $sql->bind_param('sssssssssi', $user, $cryptPass, $nombre, $apellido, $correo, $telefono, $fechaNacimiento, $genero, $previous_settled_image, $id);
             }
 
             if (!$sql->execute()) {
@@ -127,8 +137,8 @@ if (isset($_POST['id'], $_POST['user'], $_POST['password'], $_POST['nombre'], $_
                 $sql4 = $conn->prepare("UPDATE siguiendo SET nombre_usuario_seguido = ?, nombre_seguido = ?, apellido_seguido = ?, foto_seguido = ? WHERE id_seguido = ?");
                 $sql4->bind_param('ssssi', $user, $nombre, $apellido, $target_file, $id);
             } else {
-                $sql4 = $conn->prepare("UPDATE siguiendo SET nombre_usuario_seguido = ?, nombre_seguido = ?, apellido_seguido = ? WHERE id_seguido = ?");
-                $sql4->bind_param('sssi', $user, $nombre, $apellido, $id);
+                $sql4 = $conn->prepare("UPDATE siguiendo SET nombre_usuario_seguido = ?, nombre_seguido = ?, apellido_seguido = ?, foto_seguido = ? WHERE id_seguido = ?");
+                $sql4->bind_param('ssssi', $user, $nombre, $apellido, $rutaImagenPorDefecto, $id);
             }
             if (!$sql4->execute()) {
                 throw new Exception("Error al actualizar la tabla de seguidores: " . $sql4->error);
