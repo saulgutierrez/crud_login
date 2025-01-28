@@ -33,6 +33,23 @@ if (isset($_POST['commentText'],$_POST['commentId'])) {
 
     // Verificar si se ha subido un archivo y si no hay errores
     if (isset($_FILES['newCommentImage']) && $_FILES['newCommentImage']['error'] == UPLOAD_ERR_OK) {
+       
+        // Borramos la imagen del comentario anterior en caso de que exista, junto con el archivo asociado
+        // Solo se puede tenr una foto por cada comentario
+        $sql_get_image_comment = $conn->prepare("SELECT foto_comentario FROM comentarios WHERE id_comentario = ?");
+        $sql_get_image_comment->bind_param('i', $comment_id);
+        $sql_get_image_comment->execute();
+        $sql_get_image_comment_result = $sql_get_image_comment->get_result();
+
+        while ($row_image_comment = $sql_get_image_comment_result->fetch_assoc()) {
+            $previous_image_comment = $row_image_comment['foto_comentario'];
+            if (!empty($previous_image_comment)) {
+                if (file_exists($previous_image_comment)) {
+                    unlink($previous_image_comment);
+                }
+            }
+        }
+
         // Crear nombre de archivo aleatorio
         $file_extension = pathinfo($_FILES["newCommentImage"]["name"], PATHINFO_EXTENSION);
         $random_filename = uniqid('img_', true) . '.' . $file_extension;
