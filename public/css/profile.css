@@ -60,7 +60,7 @@ body main nav {
     position: fixed;
     left: 10%;
     top: 70px;
-    width: 80%;
+    width: 85%;
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -1483,4 +1483,15 @@ hr {
 
 .liked-btn {
     background-color: #dc3545 !important;
+}
+
+.my-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 2px;
+}
+
+.mt-40 {
+    margin-top: 40px;
 }

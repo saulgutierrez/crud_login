@@ -875,7 +875,7 @@
                 // Ver fotos de mi perfil
                 $counterPhotos = 0;
                 if ($queryGetPhotos->num_rows > 0 && !isset($_GET['id'])) {
-                    echo '<div class="my-gallery">';
+                    echo '<div class="my-gallery mt-40">';
                     while ($rowPhotos = $queryGetPhotos->fetch_assoc()) {
                         echo '<figure class="photo-content">';
                         echo '<a href="'.$rowPhotos['fotografia'].'" data-pswp-width="500" data-pswp-height="500" class="pswp-link" data-pswp-index="'.$counterPhotos.'" onclick="return false;">';
