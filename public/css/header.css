@@ -372,11 +372,11 @@ header h2 a:hover {
 .notification-container {
     position: relative;
     display: flex;
-    justify-content: space-between;
     max-height: 500px;
     height: auto;
     align-items: center;
     padding: 20px 40px;
+    gap: 30px;
 }
 
 .notification-container:hover {

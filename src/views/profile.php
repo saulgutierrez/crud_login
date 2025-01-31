@@ -533,6 +533,12 @@
                         $comentarioItem = $rowComments['comentario'];
                         $fotoComentario = $rowComments['foto_comentario'];
                         $hasImageComment = !empty($fotoComentario) ? 'imgBoxContent' : 'noImage';
+
+                        // Consulta para obtener el numero de likes de este comentario
+                        $likes_comment_sql = "SELECT COUNT(*) as like_comment_count FROM likes_comentarios WHERE id_comentario = '$idComentarioItem'";
+                        $likes_comment_result = $conn->query($likes_comment_sql);
+                        $likes_comment_row = $likes_comment_result->fetch_assoc();
+                        $like_comment_count = $likes_comment_row['like_comment_count'];
                 ?>
                 <div class="comment-card">
                     <div class="square-menu-perfil-comments"></div>
@@ -563,9 +569,19 @@
                         </div>
                         <h2><?php echo $autorComentarioItem; ?></h2>
                     </div>
-                    <h3 id="comentarioItem<?php echo $idComentarioItem; ?>"><?php echo $comentarioItem; ?></h3>
+                    <h3 id="comentarioItem<?php echo $idComentarioItem; ?>" class="comment-item"><?php echo $comentarioItem; ?></h3>
                     <div class="<?php echo $hasImageComment; ?>" id="imageBoxContent<?php echo $idComentarioItem;?>">
                         <img id="commentImage<?php echo $idComentarioItem; ?>" class="foto-comentario" src="<?php echo $fotoComentario; ?>" alt="">
+                    </div>
+                    <hr>
+                    <div class="stats-container">
+                        <div class="stats-container-child">
+                            <a href="#" class="like-comment-count" data-id="<?php echo $idComentarioItem; ?>"> <?php echo $like_comment_count; ?> </a>
+                        </div>
+                        <a class="like-comment-button" data-id="<?php echo $idComentarioItem; ?>">Like</a>
+                        <div class="imgBoxLike">
+                            <img src="../../public/svg/heart.svg" alt="">
+                        </div>
                     </div>
                 </div>
 
@@ -587,6 +603,12 @@
                         $formato = 'd/m/Y, g:i:s a';
                         $fecha = Carbon::createFromFormat($formato, $rowComments['fecha_publicacion']);
                         $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+
+                        // Consulta para obtener el numero de likes de este comentario
+                        $likes_comment_sql = "SELECT COUNT(*) as like_comment_count FROM likes_comentarios WHERE id_comentario = '$idComentarioItem'";
+                        $likes_comment_result = $conn->query($likes_comment_sql);
+                        $likes_comment_row = $likes_comment_result->fetch_assoc();
+                        $like_comment_count = $likes_comment_row['like_comment_count'];
                 ?>
                 <div class="comment-card" onclick="window.location.href='view-post.php?id=<?php echo $idPostItem; ?>'">
                     <div class="square-menu-perfil-comments"></div>
@@ -605,9 +627,19 @@
                         <div class="fecha" style="width: auto;"><?php echo $fecha->diffForHumans(); ?></div>
                         <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
                     </div>
-                    <div><?php echo $comentarioItem; ?></div>
+                    <div class="comment-item"><?php echo $comentarioItem; ?></div>
                     <div class="<?php echo $hasImageComment; ?>" id="imageBoxContent<?php echo $idComentarioItem;?>">
                         <img id="commentImage<?php echo $idComentarioItem; ?>" class="foto-comentario" src="<?php echo $fotoComentario; ?>" alt="">
+                    </div>
+                    <hr>
+                    <div class="stats-container">
+                        <div class="stats-container-child">
+                            <a href="#" class="like-comment-count" data-id="<?php echo $idComentarioItem; ?>"> <?php echo $like_comment_count; ?></a>
+                        </div>
+                        <a class="like-comment-button" data-id="<?php echo $idComentarioItem; ?>">Like</a>
+                        <div class="imgBoxLike">
+                            <img src="../../public/svg/heart.svg" alt="">
+                        </div>
                     </div>
                 </div>
                 <?php
@@ -1006,6 +1038,7 @@
     <script src="../ui/edit-comment-viewer.js"></script>
     <script src="../handlers/edit-comment.js"></script>
     <script src="../handlers/likes-profile.js"></script>
+    <script src ="../handlers/likes-comment-profile.js"></script>
     <script>
         // Este id sirve para evaluar el id de cada usuario de la lista de likes en los posteos,
         // para evaluar si se trata de un "autolike"

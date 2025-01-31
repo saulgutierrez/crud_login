@@ -194,10 +194,18 @@ p {
 
 .like-count-comment {
     position: absolute;
-    right: 70px;
+    right: 65px;
     text-decoration: none;
     color: #fff;
     font-weight: 200;
+    padding: 5px 12px 5px 12px;
+}
+
+.like-count-comment:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 50%;
 }
 
 .imgBoxLike {
@@ -220,7 +228,7 @@ p {
 
 .imgBoxLikeComment {
     position: absolute;
-    right: 90px;
+    right: 110px;
     width: 20px;
     height: 20px;
 }
@@ -288,6 +296,7 @@ p {
     height: 35px;
     padding: 15px 45px 15px 15px;
     width: 100%;
+    font-size: 1.5rem;
 }
 
 button {

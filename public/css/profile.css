@@ -587,7 +587,7 @@ body main section {
 }
 
 .post-card .contenido {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     flex-direction: column;
     width: 100%;
 }
@@ -737,6 +737,10 @@ body main section {
 
 .comment-card div, .comment-card h3 {
     font-weight: 400;
+}
+
+.comment-item {
+    font-size: 1.5rem;
 }
 
 .square-menu-perfil-comments {
@@ -1494,4 +1498,45 @@ hr {
 
 .mt-40 {
     margin-top: 40px;
+}
+
+.like-comment-button {
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+    background-color: #007bff;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.4rem;
+    position: absolute;
+    right: 0;
+}
+
+.like-comment-button:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.like-comment-count {
+    margin-left: 30px;
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 50%;
+}
+
+.like-comment-count:hover {
+    cursor: pointer;
+    background-color: #007bff;
+}
+
+.like-comment-count-hover {
+    padding: 7px 15px 7px 15px;
+    margin-top: 5px;
+}
+
+.like-comment-count-hover:hover {
+    cursor: pointer;
+    background-color: #007bff;
 }
