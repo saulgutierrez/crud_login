@@ -739,10 +739,18 @@
                 <?php if (!empty($followings)): ?>
                     <?php foreach ($followings as $rowFollowing): ?>
                         <div class="following-card">
-                            <div class="imgBoxFollowing">
-                                <img src="<?php echo !empty($rowFollowing['foto_seguido']) ? $rowFollowing['foto_seguido'] : $rutaFotoPorDefecto; ?>" alt="">
+                            <div class="following-username-content">
+                                <div class="imgBoxFollowing">
+                                    <img src="<?php echo !empty($rowFollowing['foto_seguido']) ? $rowFollowing['foto_seguido'] : $rutaFotoPorDefecto; ?>" alt="">
+                                </div>
+                                <h2 onclick="window.location.href='profile.php?id=<?php echo $rowFollowing['id_seguido']; ?>'"><?php echo $rowFollowing['nombre_usuario_seguido']; ?></h2>
                             </div>
-                            <h2 onclick="window.location.href='profile.php?id=<?php echo $rowFollowing['id_seguido']; ?>'"><?php echo $rowFollowing['nombre_usuario_seguido']; ?></h2>
+                            <a href="" class="follow-profile-btn-list"data-id="<?php echo $rowFollowing['id_seguido']; ?>">
+                                <div class="imgBox">
+                                    <img src="../../public/svg/follow-user.svg" alt="">
+                                </div>
+                                <div class="follow-text-profile-btn-list">Seguir</div>
+                            </a>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -1032,6 +1040,7 @@
     <script src="../handlers/delete-post.js"></script>
     <script src="../handlers/delete-comment.js"></script>
     <script src="../handlers/follow-user.js"></script>
+    <script src="../handlers/check-follow-button-status.js"></script>
     <script src="../ui/view-full-date.js"></script>
     <script type="module" src="../ui/view-profile-image.js"></script>
     <script type="module" src="../ui/photo-gallery.js"></script>
