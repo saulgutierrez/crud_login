@@ -662,10 +662,18 @@
                 <?php if (!empty($followers)):?>
                     <?php foreach ($followers as $rowFollowers): ?>
                         <div class="follower-card">
-                            <div class="imgBoxFollower">
-                                <img src="<?php echo !empty($rowFollowers['fotografia']) ? $rowFollowers['fotografia'] : $rutaFotoPorDefecto; ?>" alt="">
+                            <div class="follower-username-content">
+                                <div class="imgBoxFollower">
+                                    <img src="<?php echo !empty($rowFollowers['fotografia']) ? $rowFollowers['fotografia'] : $rutaFotoPorDefecto; ?>" alt="">
+                                </div>
+                                <h2 onclick="window.location.href='profile.php?id=<?php echo $rowFollowers['id']; ?>'"><?php echo $rowFollowers['usuario']; ?></h2>
                             </div>
-                            <h2 onclick="window.location.href='profile.php?id=<?php echo $rowFollowers['id']; ?>'"><?php echo $rowFollowers['usuario']; ?></h2>
+                            <a href="" class="follower-profile-btn-list" data-id="<?php echo $rowFollowers['id']; ?>">
+                                <div class="imgBox">
+                                    <img src="../../public/svg/follow-user.svg" alt="">
+                                </div>
+                                <div class="follower-text-profile-btn-list">Seguir</div>
+                            </a>
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
@@ -1041,6 +1049,7 @@
     <script src="../handlers/delete-comment.js"></script>
     <script src="../handlers/follow-user.js"></script>
     <script src="../handlers/check-follow-button-status.js"></script>
+    <script src="../handlers/check-follower-button-status.js"></script>
     <script src="../ui/view-full-date.js"></script>
     <script type="module" src="../ui/view-profile-image.js"></script>
     <script type="module" src="../ui/photo-gallery.js"></script>

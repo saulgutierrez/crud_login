@@ -1,5 +1,5 @@
 // En este fichero manejamos el estado del boton seguir/siguiendo,
-// dentro de la lista de siguiendo de nuestro perfil
+// dentro de la lista seguidores de nuestro perfil
 // (profle.php/user=)
 
 $(document).ready(function () {
@@ -8,13 +8,13 @@ $(document).ready(function () {
         $.ajax({
             url: '../models/get-button-state.php',
             method: 'GET',
-            data: { 'id': $('.follow-profile-btn-list').data('id') },
+            data: { 'id': $('.follower-profile-btn-list').data('id') },
             dataType: 'json',
             success: function (response) {
                 if (response.status === 'following') {
-                    $('.follow-text-profile-btn-list').text('Siguiendo');
+                    $('.follower-text-profile-btn-list').text('Siguiendo');
                 } else {
-                    $('.follow-text-profile-btn-list').text('Seguir');
+                    $('.follower-text-profile-btn-list').text('Seguir');
                 }
             },
             error: function(error) {
@@ -25,11 +25,11 @@ $(document).ready(function () {
 
     getButtonState();
 
-    $('.follow-profile-btn-list').click(function (event) {
+    $('.follower-profile-btn-list').click(function (event) {
         event.preventDefault();
         
         var $btn = $(this); // Guardamos el boton clickeado
-        var $textElement = $btn.find('.follow-text-profile-btn-list'); // Buscamos el texto dentro del botón
+        var $textElement = $btn.find('.follower-text-profile-btn-list'); // Buscamos el texto dentro del botón
 
         var datosEnviados = {
             'id': $btn.data('id'),
