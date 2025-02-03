@@ -23,12 +23,14 @@ $(document).ready(function () {
 
     $('.follow-profile-btn-list').click(function (event) {
         event.preventDefault();
-        var datosEnviados = {
-            'id': $(this).data('id')
-        };
+        
+        var $btn = $(this); // Guardamos el boton clickeado
+        var $textElement = $btn.find('.follow-text-profile-btn-list'); // Buscamos el texto dentro del botón
 
-        var btnText = $('.follow-text-profile-btn-list').text();
-        datosEnviados['action'] = btnText === 'Seguir' ? 'follow' : 'unfollow';
+        var datosEnviados = {
+            'id': $btn.data('id'),
+            'action': $textElement.text() === 'Seguir' ? 'follow' : 'unfollow'
+        };
 
         $.ajax({
             url: '../models/toggle-follow.php',
@@ -37,9 +39,9 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (response) {
                 if (response.status === 'followed') {
-                    $('.follow-text-profile-btn-list').text('Siguiendo');
+                    $textElement.text('Siguiendo');
                 } else if (response.status === 'unfollowed') {
-                    $('.follow-text-profile-btn-list').text('Seguir');
+                    $textElement.text('Seguir');
                 } else {
                     alert('Error: ' + response.message);
                 }
