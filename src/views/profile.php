@@ -1034,12 +1034,22 @@
                         if ($resultGetUserBlocks->num_rows > 0) {
                             while ($row = $resultGetUserBlocks->fetch_assoc()) {
                                 echo '<div class="blocks-card">';
+                                echo '<div class="blocks-username-content">';
                                 echo '<div class="imgBoxBlocksCard">';
                                 echo '<img src="'.$row['fotografia'].'">';
                                 echo '</div>';
                                 echo '<h2 onclick="window.location.href=\'profile.php?id='.$row['id']. '\'">';
                                 echo $row['usuario'];
                                 echo '</h2>';
+                                echo '</div>';
+                                echo '<a class="blocked-profile-btn-list" data-id="'.$row['id'].'">';
+                                echo '<div class="imgBox">';
+                                echo '<img src="../../public/svg/block-user.svg" alt>';
+                                echo '</div>';
+                                echo '<div class="blocked-text-profile-btn-list">';
+                                echo 'Bloquear';
+                                echo '</div>';
+                                echo '</a>';
                                 echo '</div>';
 
                             }
@@ -1109,6 +1119,7 @@
     <script src="../handlers/edit-comment.js"></script>
     <script src="../handlers/likes-profile.js"></script>
     <script src ="../handlers/likes-comment-profile.js"></script>
+    <script src="../handlers/check-block-button-status.js"></script>
     <script>
         // Este id sirve para evaluar el id de cada usuario de la lista de likes en los posteos,
         // para evaluar si se trata de un "autolike"

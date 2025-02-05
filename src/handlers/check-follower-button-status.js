@@ -1,6 +1,6 @@
 // En este fichero manejamos el estado del boton seguir/siguiendo,
 // dentro de la lista seguidores de nuestro perfil
-// (profle.php/user=)
+// (profle.php?user=)
 
 $(document).ready(function () {
 
