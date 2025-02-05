@@ -918,6 +918,18 @@
                                 $fechaPublicacionLikedPost = Carbon::parse($rowLikes['fecha_publicacion']);
                                 $fechaFormateada = $fechaPublicacionLikedPost->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
                                 $fotoPerfilLikedPost = $rowLikes['fotografia'];
+
+                                // Consulta para obtener el numero de likes de este post
+                                $likes_sql_liked_posts = "SELECT COUNT(*) as like_count_liked_posts FROM likes WHERE liked_id_post = '$idLikedPost'";
+                                $likes_result_liked_posts = $conn->query($likes_sql_liked_posts);
+                                $likes_row_liked_posts = $likes_result_liked_posts->fetch_assoc();
+                                $like_count_liked_posts = $likes_row_liked_posts['like_count_liked_posts'];
+
+                                // Consulta para obtener el numero de comentarios de cada post
+                                $comments_sql_liked_posts = "SELECT COUNT(*) as comment_count_liked_posts FROM comentarios WHERE id_post = '$idLikedPost'";
+                                $comments_result_liked_posts = $conn->query($comments_sql_liked_posts);
+                                $comments_row_liked_posts = $comments_result_liked_posts->fetch_assoc();
+                                $comments_count_liked_posts = $comments_row_liked_posts['comment_count_liked_posts'];
                 ?>
                                 <div class="likes-card" onclick="window.location.href='view-post.php?id=<?php echo $idLikedPost; ?>'">
                                     <div class="likes-card-top">
@@ -934,6 +946,20 @@
                                     <h3><?php echo $contenidoLikedPost; ?></h3>
                                     <div class="<?php echo $hasImageLikedPost; ?>">
                                         <img src="<?php echo $fotoLikedPost; ?>" alt="">
+                                    </div>
+                                    <hr>
+                                    <div class="stats-container">
+                                        <div class="stats-container-child">
+                                            <a class="like-count like-count-hover" data-id="<?php echo $idLikedPost; ?>"> <?php echo $like_count_liked_posts; ?></a>
+                                            <div class="comment-count mt-5"><?php echo $comments_count_liked_posts; ?></div>
+                                        </div>
+                                        <a class="like-button" data-id="<?php echo $idLikedPost; ?>">Like</a>
+                                        <div class="imgBoxLike">
+                                            <img src="../../public/svg/heart.svg" alt="">
+                                        </div>
+                                        <div class="imgBoxComment">
+                                            <img src="../../public/svg/comment.svg" alt="">
+                                        </div>
                                     </div>
                                 </div>
                 <?php

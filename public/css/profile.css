@@ -1260,17 +1260,17 @@ form input[type=submit]:hover {
     display: none;
     flex-direction: column;
     gap: 20px;
-    margin-left: 20%;
+    margin-left: 35%;
 }
 
 .blocks-card {
     position: relative;
     display: none;
-    width: 90%;
+    width: 80%;
     background-color: #242526;
     padding: 30px 30px;
     border-radius: 10px;
-    align-self: flex-end;
+    align-self: flex-start;
 }
 
 .blocks-card h2 {
