@@ -703,13 +703,12 @@
                                 </div>
                                 <?php
                                     $redirectUrl = 'profile.php?';
-
+                    
                                     if (isset($_SESSION['user'])) {
                                         $user = $_SESSION['user'];
                                         $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
                                         $queryGetIdUser = $conn->query($sqlGetIdUser);
                                         
-                                        // Obtiene el id del usuario logueado y verifica si es el mismo del seguidor
                                         if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
                                             $idUser = $sqlGetId['id'];
                                             if ($rowOtherFollowers['id'] == $idUser) {
@@ -724,16 +723,19 @@
                                     <?php echo $rowOtherFollowers['usuario']; ?>
                                 </h2>
                             </div>
-                            <a href="" class="follower-profile-btn-list" data-id="<?php echo $rowOtherFollowers['id']; ?>">
-                                <div class="imgBox">
-                                    <img src="../../public/svg/follow-user.svg" alt="">
-                                </div>
-                                <div class="follower-text-profile-btn-list">Seguir</div>
-                            </a>
+                            <?php if ($rowOtherFollowers['id'] != $idUser): ?>
+                                <a href="" class="follower-profile-btn-list" data-id="<?php echo $rowOtherFollowers['id']; ?>">
+                                    <div class="imgBox">
+                                        <img src="../../public/svg/follow-user.svg" alt="">
+                                    </div>
+                                    <div class="follower-text-profile-btn-list">Seguir</div>
+                                </a>
+                            <?php endif; ?>
                         </div>
-                    <?php endforeach;
-                else: 
-                    if (isset($_GET['id'])): ?>
+                    <?php endforeach; ?>
+                    
+                <?php else: ?>: 
+                    <?php if (isset($_GET['id'])): ?>
                         <p class="error-fetching-following">Sin seguidores</p>
                     <?php endif;
                 endif;
