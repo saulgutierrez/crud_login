@@ -1,25 +1,32 @@
 // En este fichero manejamos el estado del boton seguir/siguiendo,
-// dentro de la lista seguidores de nuestro perfil
-// (profle.php?user=)
+// dentro de la lista seguidores
 
 $(document).ready(function () {
 
     function getButtonState() {
-        $.ajax({
-            url: '../models/get-button-state.php',
-            method: 'GET',
-            data: { 'id': $('.follower-profile-btn-list').data('id') },
-            dataType: 'json',
-            success: function (response) {
-                if (response.status === 'following') {
-                    $('.follower-text-profile-btn-list').text('Siguiendo');
-                } else {
-                    $('.follower-text-profile-btn-list').text('Seguir');
+        $('.follower-profile-btn-list').each(function() {
+            var $btn = $(this); // Botón actual
+            var userId = $btn.data('id'); // ID del usuario asociado al botón
+    
+            $.ajax({
+                url: '../models/get-button-state.php',
+                method: 'GET',
+                data: { 'id': userId }, // Enviar el ID individualmente
+                dataType: 'json',
+                success: function(response) {
+                    console.log("Respuesta del servidor para ID", userId, ":", response);
+                    var $textElement = $btn.find('.follower-text-profile-btn-list'); // Buscar el texto dentro del botón específico
+    
+                    if (response.status === 'following') {
+                        $textElement.text('Siguiendo');
+                    } else {
+                        $textElement.text('Seguir');
+                    }
+                },
+                error: function(error) {
+                    console.log("Error recuperando el estado del botón:", error);
                 }
-            },
-            error: function(error) {
-                console.log("Error recuperando el estado del boton:", error);
-            }
+            });
         });
     }
 

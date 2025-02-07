@@ -697,31 +697,39 @@
                 if (!empty($followers2)):
                     foreach ($followers2 as $rowOtherFollowers): ?>
                         <div class="follower-card">
-                            <div class="imgBoxFollower">
-                                <img src="<?php echo !empty($rowOtherFollowers['fotografia']) ? $rowOtherFollowers['fotografia'] : $rutaFotoPorDefecto; ?>" alt="">
-                            </div>
-                            <?php
-                                $redirectUrl = 'profile.php?';
+                            <div class="follower-username-content">
+                                <div class="imgBoxFollower">
+                                    <img src="<?php echo !empty($rowOtherFollowers['fotografia']) ? $rowOtherFollowers['fotografia'] : $rutaFotoPorDefecto; ?>" alt="">
+                                </div>
+                                <?php
+                                    $redirectUrl = 'profile.php?';
 
-                                if (isset($_SESSION['user'])) {
-                                    $user = $_SESSION['user'];
-                                    $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
-                                    $queryGetIdUser = $conn->query($sqlGetIdUser);
-                                    
-                                    // Obtiene el id del usuario logueado y verifica si es el mismo del seguidor
-                                    if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
-                                        $idUser = $sqlGetId['id'];
-                                        if ($rowOtherFollowers['id'] == $idUser) {
-                                            $redirectUrl .= 'user=' . $idUser;
-                                        } else {
-                                            $redirectUrl .= 'id=' . $rowOtherFollowers['id'];
+                                    if (isset($_SESSION['user'])) {
+                                        $user = $_SESSION['user'];
+                                        $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
+                                        $queryGetIdUser = $conn->query($sqlGetIdUser);
+                                        
+                                        // Obtiene el id del usuario logueado y verifica si es el mismo del seguidor
+                                        if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
+                                            $idUser = $sqlGetId['id'];
+                                            if ($rowOtherFollowers['id'] == $idUser) {
+                                                $redirectUrl .= 'user=' . $idUser;
+                                            } else {
+                                                $redirectUrl .= 'id=' . $rowOtherFollowers['id'];
+                                            }
                                         }
                                     }
-                                }
-                            ?>
-                            <h2 onclick="window.location.href='<?php echo $redirectUrl; ?>'">
-                                <?php echo $rowOtherFollowers['usuario']; ?>
-                            </h2>
+                                ?>
+                                <h2 onclick="window.location.href='<?php echo $redirectUrl; ?>'">
+                                    <?php echo $rowOtherFollowers['usuario']; ?>
+                                </h2>
+                            </div>
+                            <a href="" class="follower-profile-btn-list" data-id="<?php echo $rowOtherFollowers['id']; ?>">
+                                <div class="imgBox">
+                                    <img src="../../public/svg/follow-user.svg" alt="">
+                                </div>
+                                <div class="follower-text-profile-btn-list">Seguir</div>
+                            </a>
                         </div>
                     <?php endforeach;
                 else: 
@@ -783,32 +791,40 @@
                     if (!empty($followings2)): ?>
                         <?php foreach ($followings2 as $rowFollowing2): ?>
                             <div class="following-card">
-                                <div class="imgBoxFollowing">
-                                    <img src="<?php echo $rowFollowing2['foto_seguido'] ?>" alt="">
-                                </div>
-                                <?php
-                                // Generar la URL de redirección
-                                $redirectUrl = 'profile.php?';
+                                <div class="following-username-content">
+                                    <div class="imgBoxFollowing">
+                                        <img src="<?php echo $rowFollowing2['foto_seguido'] ?>" alt="">
+                                    </div>
+                                    <?php
+                                    // Generar la URL de redirección
+                                    $redirectUrl = 'profile.php?';
 
-                                if (isset($_SESSION['user'])) {
-                                    $user = $_SESSION['user'];
-                                    $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
-                                    $queryGetIdUser = $conn->query($sqlGetIdUser);
+                                    if (isset($_SESSION['user'])) {
+                                        $user = $_SESSION['user'];
+                                        $sqlGetIdUser = "SELECT id FROM usuarios WHERE usuario = '$user'";
+                                        $queryGetIdUser = $conn->query($sqlGetIdUser);
 
-                                    // Verifica si el seguidor es el usuario logueado para ajustar el enlace
-                                    if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
-                                        $idUser = $sqlGetId['id'];
-                                        if ($rowFollowing2['id_seguido'] == $idUser) {
-                                            $redirectUrl .= 'user=' . $idUser;
-                                        } else {
-                                            $redirectUrl .= 'id=' . $rowFollowing2['id_seguido'];
+                                        // Verifica si el seguidor es el usuario logueado para ajustar el enlace
+                                        if ($sqlGetId = mysqli_fetch_assoc($queryGetIdUser)) {
+                                            $idUser = $sqlGetId['id'];
+                                            if ($rowFollowing2['id_seguido'] == $idUser) {
+                                                $redirectUrl .= 'user=' . $idUser;
+                                            } else {
+                                                $redirectUrl .= 'id=' . $rowFollowing2['id_seguido'];
+                                            }
                                         }
                                     }
-                                }
-                                ?>
-                                <h2 onclick="window.location.href='<?php echo $redirectUrl; ?>'">
-                                    <?php echo $rowFollowing2['nombre_usuario_seguido']; ?>
-                                </h2>
+                                    ?>
+                                    <h2 onclick="window.location.href='<?php echo $redirectUrl; ?>'">
+                                        <?php echo $rowFollowing2['nombre_usuario_seguido']; ?>
+                                    </h2>
+                                </div>
+                                <a href="" class="follower-profile-btn-list" data-id="<?php echo $rowFollowing2['id_seguido']; ?>">
+                                    <div class="imgBox">
+                                        <img src="../../public/svg/follow-user.svg" alt="">
+                                    </div>
+                                    <div class="follower-text-profile-btn-list">Seguir</div>
+                                </a>
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
