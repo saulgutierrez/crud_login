@@ -821,12 +821,14 @@
                                         <?php echo $rowFollowing2['nombre_usuario_seguido']; ?>
                                     </h2>
                                 </div>
-                                <a href="" class="follower-profile-btn-list" data-id="<?php echo $rowFollowing2['id_seguido']; ?>">
-                                    <div class="imgBox">
-                                        <img src="../../public/svg/follow-user.svg" alt="">
-                                    </div>
-                                    <div class="follower-text-profile-btn-list">Seguir</div>
-                                </a>
+                                <?php if ($rowFollowing2['id_seguido'] != $idUser): ?>
+                                    <a href="" class="follower-profile-btn-list" data-id="<?php echo $rowFollowing2['id_seguido']; ?>">
+                                        <div class="imgBox">
+                                            <img src="../../public/svg/follow-user.svg" alt="">
+                                        </div>
+                                        <div class="follower-text-profile-btn-list">Seguir</div>
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>
