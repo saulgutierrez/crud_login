@@ -1,11 +1,10 @@
-FROM php:8.1-apache-bullseye
+# Usa una imagen base con PHP 8.2 y Apache
+FROM php:8.2-apache
 
 # Instala paquetes adicionales necesarios para PHP y Python
 RUN apt-get update && apt-get install -y \
-    apache2 \
     python3 \
     python3-pip \
-    libapache2-mod-php \
     && rm -rf /var/lib/apt/lists/*
 
 # Habilitar mod_rewrite si usas .htaccess
