@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
 # Habilitar mod_rewrite si usas .htaccess
 RUN a2enmod rewrite
 
+# Evita el warning de ServerName
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 # Establecer el directorio de trabajo
 WORKDIR /var/www/html/
 
