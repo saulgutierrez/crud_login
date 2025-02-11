@@ -20,7 +20,7 @@ WORKDIR /var/www/html/
 COPY . .
 
 # Expone el puerto 80 para Apache
-EXPOSE 80
+EXPOSE $PORT
 
 # Comando de inicio del servidor Apache
 CMD ["apachectl", "-D", "FOREGROUND"]
