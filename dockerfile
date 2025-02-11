@@ -5,12 +5,19 @@ FROM php:8.1-apache
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
+    libapache2-mod-php \
     && rm -rf /var/lib/apt/lists/*
 
-# Copia los archivos del proyecto PHP al directorio de Apache
-COPY . /var/www/html/
+# Habilitar mod_rewrite si usas .htaccess
+RUN a2enmod rewrite
 
-# Expone el puerto 80 para el servidor web
+# Establecer el directorio de trabajo
+WORKDIR /var/www/html/
+
+# Copia los archivos del proyecto al contenedor
+COPY . .
+
+# Expone el puerto 80 para Apache
 EXPOSE 80
 
 # Comando de inicio del servidor Apache
