@@ -1,9 +1,5 @@
 {
-    "build": {
-      "dockerfile": "Dockerfile"
-    },
-    "deploy": {
-      "startCommand": "apache2-foreground"
-    }
+  "build": {
+    "dockerfilePath": "Dockerfile"
   }
-  
+}
