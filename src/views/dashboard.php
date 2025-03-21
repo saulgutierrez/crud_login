@@ -105,7 +105,7 @@
                 </div>
                 <div>Todo</div>
             </div>
-            <div id="suggestions-btn">
+            <div id="suggestions-btn" data-id="<?php echo $id; ?>">
                 <div class="imgBoxSuggestionsIcon">
                     <img src="../../public/svg/recommended.svg" alt="">
                 </div>

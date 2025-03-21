@@ -212,6 +212,8 @@ main > .suggestions {
     right: 0px;
     top: 100px;
     display: none;
+    flex-direction: column;
+    align-items: center;
 }
 
 main > .suggestions .recommendation {
