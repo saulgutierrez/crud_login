@@ -26,7 +26,7 @@
 
     // Obtener todos los posteos y convertirlos en vectores
     function obtenerCaracteristicasPosteos($conn) {
-        $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post";
+        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, u.fotografia, u.id FROM post p JOIN usuarios u ON p.id_autor = u.id";
         $result = $conn->query($sql);
 
         $posteos = [];
@@ -38,6 +38,8 @@
                 'autor_post' => $row['autor_post'],
                 'titulo_post' => $row['titulo_post'],
                 'contenido_post' => $row['contenido_post'],
+                'fotografia' => $row['fotografia'],
+                'id' => $row['id'],
                 'palabras' => array_count_values($palabras) // Frecuencia de palabras
             ];
         }
@@ -96,7 +98,7 @@
 
         // Obtener datos de los posteos recomendados
         $placeholders = implode(",", array_fill(0, count($post_ids), "?"));
-        $sql = "SELECT id_post, id_autor, autor_post, titulo_post, contenido_post FROM post WHERE id_post IN ($placeholders)";
+        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, u.fotografia, u.id FROM post p JOIN usuarios u ON p.id_autor = u.id WHERE id_post IN ($placeholders)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param(str_repeat("i", count($post_ids)), ...$post_ids);
         $stmt->execute();

@@ -20,6 +20,7 @@ suggestionsBtn.addEventListener("click", function () {
                         <div class="recommendation" onclick="location.href='view-post.php?id=${post.id_post}'">
                             <div class="card-header">
                                 <div onclick="event.stopPropagation(); location.href='profile.php?id=${post.id_autor}'">${post.autor_post}</div>
+                                <img src="${post.fotografia}" alt="Avatar">
                                 ${post.titulo_post}
                             </div>
                             <div class="card-body">
