@@ -262,6 +262,23 @@ main > .suggestions .title {
     margin-bottom: 15px;
 }
 
+main .suggestions .recommendation .imgBoxPost {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+}
+
+main .suggestions .recommendation .imgBoxPost img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 .authorContainer {
     display: flex;
     align-items: center;

@@ -4,7 +4,7 @@ const records = document.querySelector('#registros');
 
 suggestionsBtn.addEventListener("click", function () {
     $.ajax({
-        url: '../models/run-knn-post-suggestions.php',
+        url: '../models/knn-post-suggestions.php',
         type: 'POST',
         data: { usuario_id: $(this).data('id') },
         dataType: 'json',
@@ -27,6 +27,7 @@ suggestionsBtn.addEventListener("click", function () {
                             <div class="card-body">
                                 <h3>${post.titulo_post}</h3>
                                 <p>${post.contenido_post}</p>
+                                ${post.foto_post ? `<div class="imgBoxPost"><img src="${post.foto_post}" alt="Post image"></div>` : ''}
                             </div>
                         </div>
                     `);

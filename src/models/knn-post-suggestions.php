@@ -98,7 +98,7 @@
 
         // Obtener datos de los posteos recomendados
         $placeholders = implode(",", array_fill(0, count($post_ids), "?"));
-        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, u.fotografia, u.id FROM post p JOIN usuarios u ON p.id_autor = u.id WHERE id_post IN ($placeholders)";
+        $sql = "SELECT p.id_post, p.id_autor, p.autor_post, p.titulo_post, p.contenido_post, p.foto_post, u.fotografia, u.id FROM post p JOIN usuarios u ON p.id_autor = u.id WHERE id_post IN ($placeholders)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param(str_repeat("i", count($post_ids)), ...$post_ids);
         $stmt->execute();
