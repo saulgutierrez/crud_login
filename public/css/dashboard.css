@@ -229,7 +229,7 @@ main > .suggestions .recommendation {
     justify-self: center;
 }
 
-main > .suggestions .recommendation a {
+main > .suggestions .recommendation .username {
     text-decoration: none;
     color: #fff;
     font-weight: 600;
@@ -237,8 +237,9 @@ main > .suggestions .recommendation a {
     width: fit-content;
 }
 
-main > .suggestions .recommendation a:hover {
+main > .suggestions .recommendation .username:hover {
     color: #007bff;
+    cursor: pointer;
 }
 
 main > .suggestions .recommendation h3 {

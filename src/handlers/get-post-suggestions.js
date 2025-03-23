@@ -18,13 +18,15 @@ suggestionsBtn.addEventListener("click", function () {
                 response.forEach(function (post) {
                     $('#suggestions').append(`
                         <div class="recommendation" onclick="location.href='view-post.php?id=${post.id_post}'">
-                            <div class="card-header">
-                                <div onclick="event.stopPropagation(); location.href='profile.php?id=${post.id_autor}'">${post.autor_post}</div>
-                                <img src="${post.fotografia}" alt="Avatar">
-                                ${post.titulo_post}
+                            <div class="authorContainer">
+                                <div class="imgBox">
+                                    <img src="${post.fotografia}" alt="Avatar">
+                                </div>
+                                <div class="username" onclick="event.stopPropagation(); location.href='profile.php?id=${post.id_autor}'">${post.autor_post}</div>
                             </div>
                             <div class="card-body">
-                                <p class="card-text">${post.contenido_post}</p>
+                                <h3>${post.titulo_post}</h3>
+                                <p>${post.contenido_post}</p>
                             </div>
                         </div>
                     `);
