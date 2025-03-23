@@ -67,8 +67,8 @@
     }
 
     // Ejecutar KNN para encontrar posteos similares
-    function obtenerSugerenciasKNN($usuario_id, $k, $conn) {
-        $posteos_likeados = obtenerPosteosLikeados($usuario_id, $conn);
+    function obtenerSugerenciasKNN($user_id, $k, $conn) {
+        $posteos_likeados = obtenerPosteosLikeados($user_id, $conn);
         $caracteristicas_posteos = obtenerCaracteristicasPosteos($conn);
         
         $similitudes = [];
