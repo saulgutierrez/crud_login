@@ -1,10 +1,6 @@
 <?php
     require('../../config/connection.php');
     require('../models/session.php');
-    require '../../public/libs/Carbon/autoload.php';
-
-    use Carbon\Carbon;
-    Carbon::setLocale('es');
     date_default_timezone_set('America/Mexico_City'); 
 
     # Si no existe varible de sesion, quiere decir que el usuario no se ha autenticado
@@ -63,8 +59,7 @@ if ($result->num_rows > 0) {
         $contenido = $row['contenido_post'];
         $foto = $row['foto_post'];
         $hasImage = !empty($foto) ? 'imgBoxPost' : 'noImage';
-        $fecha = Carbon::parse($row['fecha_publicacion']);
-        $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+        $fecha = $row['fecha_publicacion'];
         $foto_perfil = $row['fotografia'];
 
         // Consulta para obtener el numero de "likes" de cada post
@@ -88,8 +83,7 @@ if ($result->num_rows > 0) {
         echo '<div class="imgBoxProfileImage"><img src="'. $foto_perfil .'"></div>';
         echo '<h2><a href="profile.php?id=' . $id . '" data-id="' . $id . '" data-autor="' . $autor . '" data-foto="' . $foto_perfil . '" onclick="event.stopPropagation();">' . $autor . '</a></h2>';
         echo '</div>';
-        echo '<div class="fecha">' . $fecha->diffForHumans() . '</div>';
-        echo '<div class="fecha-formateada">' . $fechaFormateada . '</div>';
+        echo '<div class="fecha">' . $fecha . '</div>';
         echo '</div>';
         echo '<div class="imgBoxComment">';
         echo '<img src="../../public/svg/comment.svg">';

@@ -1,10 +1,6 @@
 <?php
     require('../../config/connection.php');
     require('../models/session.php');
-    require '../../public/libs/Carbon/autoload.php';
-
-    use Carbon\Carbon;
-    Carbon::setLocale('es');
     date_default_timezone_set('America/Mexico_City'); 
 
     if (!isset($_SESSION)) {
@@ -31,8 +27,7 @@
             $titulo = $row['titulo_post'];
             $contenido = $row['contenido_post'];
             $fotoPost = $row['foto_post'];
-            $fecha = Carbon::parse($row['fecha_publicacion']);
-            $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+            $fecha = $row['fecha_publicacion'];
         }
     }
 
@@ -127,7 +122,7 @@
                         <?php echo $autor; ?>
                     </a>
                 </h2>
-                <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
+                <div class="fecha"><?php echo $fecha; ?></div>
                 <div class="fecha-formateada"><?php echo $fechaFormateada; ?></div>
             </div>
             <h3>
@@ -169,8 +164,7 @@
                 $comentario = $fila['comentario'];
                 $imagen = $fila['foto_comentario'];
                 $formato = 'd/m/Y, g:i:s A';
-                $fecha = Carbon::createFromFormat($formato, $fila['fecha_publicacion']);
-                $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+                $fecha = $fila['fecha_publicacion'];
                 $fotografiaAutorComentario = $fila['fotografia']; // Fotografía del usuario
 
                 // Consulta para contar los likes de este comentario
@@ -199,8 +193,7 @@
                         </div>
                         <a class="comment-user" href="<?php echo $redirect; ?>" data-id="<?php echo $idAutorComentarioArray; ?>" data-autor="<?php echo $autorComentario; ?>" data-foto="<?php echo $fotografiaAutorComentario; ?>"><?php echo $autorComentario; ?></a>
                     </h2>
-                    <div class="fecha"><?php echo $fecha->diffForHumans(); ?></div>
-                    <div class="fecha-formateada"><?php echo $fechaFormateada; ?></div>
+                    <div class="fecha"><?php echo $fecha; ?></div>
                 </div>
                 <div class="comment-card-body">
                     <div class="comment-content"><?php echo $comentario; ?></div>

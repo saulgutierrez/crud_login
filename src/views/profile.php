@@ -1,11 +1,7 @@
 <?php
     require('../../config/connection.php');
     require('../models/session.php');
-    require '../../public/libs/Carbon/autoload.php';
     include '../models/get-block-state.php';
-
-    use Carbon\Carbon;
-    Carbon::setLocale('es');
     date_default_timezone_set('America/Mexico_City'); 
 
     if (isset($_SESSION['user'])) {
@@ -462,8 +458,7 @@
                         $contenido = $row['contenido_post'];
                         $foto = $row['foto_post'];
                         $hasImage = !empty($foto) ? 'imgBoxContent' : 'noImage';
-                        $fecha = Carbon::parse($row['fecha_publicacion']);
-                        $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+                        $fecha = $row['fecha_publicacion'];
 
                         // Consulta para obtener el numero de likes de este post
                         $likes_sql = "SELECT COUNT(*) as like_count FROM likes WHERE liked_id_post = '$id_post'";
@@ -487,8 +482,7 @@
                                 </div>
                                 <h2><?php echo $autor; ?></h2>
                             </div>
-                            <div class="fecha" style="width: auto;"><?php echo $fecha->diffForHumans(); ?></div>
-                            <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
+                            <div class="fecha" style="width: auto;"><?php echo $fecha; ?></div>
                         </div>
                         <h3><?php echo $titulo; ?></h3>
                         <div class="contenido"><?php echo $contenido; ?></div>
@@ -600,9 +594,7 @@
                         $comentarioItem = $rowComments['comentario'];
                         $fotoComentario = $rowComments['foto_comentario'];
                         $hasImageComment = !empty($fotoComentario) ? 'imgBoxContent' : 'noImage';
-                        $formato = 'd/m/Y, g:i:s a';
-                        $fecha = Carbon::createFromFormat($formato, $rowComments['fecha_publicacion']);
-                        $fechaFormateada = $fecha->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+                        $fecha = $rowComments['fecha_publicacion'];
 
                         // Consulta para obtener el numero de likes de este comentario
                         $likes_comment_sql = "SELECT COUNT(*) as like_comment_count FROM likes_comentarios WHERE id_comentario = '$idComentarioItem'";
@@ -624,8 +616,7 @@
                             </div>
                             <h2><?php echo $autorComentarioItem; ?></h2>
                         </div>
-                        <div class="fecha" style="width: auto;"><?php echo $fecha->diffForHumans(); ?></div>
-                        <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
+                        <div class="fecha" style="width: auto;"><?php echo $fecha; ?></div>
                     </div>
                     <div class="comment-item"><?php echo $comentarioItem; ?></div>
                     <div class="<?php echo $hasImageComment; ?>" id="imageBoxContent<?php echo $idComentarioItem;?>">
@@ -854,8 +845,7 @@
                         $contenidoLikedPost = $rowLikes['contenido_post'];
                         $fotoLikedPost = $rowLikes['foto_post'];
                         $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
-                        $fechaPublicacionLikedPost = Carbon::parse($rowLikes['fecha_publicacion']);
-                        $fechaFormateada = $fechaPublicacionLikedPost->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+                        $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion'];
                         $fotoPerfilLikedPost = $rowLikes['fotografia'];
 
                         // Consulta para obtener el numero de likes de este post
@@ -896,8 +886,7 @@
                             ?>
                             <a href='<?php echo $redirectUrl; ?>'" onclick="event.stopPropagation();"><?php echo $autorLikedPost; ?></a>
                         </div>
-                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
-                        <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
+                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost; ?></div>
                     </div>
                     <h2><?php echo $tituloLikedPost; ?></h2>
                     <h3><?php echo $contenidoLikedPost; ?></h3>
@@ -935,8 +924,7 @@
                                 $contenidoLikedPost = $rowLikes['contenido_post'];
                                 $fotoLikedPost = $rowLikes['foto_post'];
                                 $hasImageLikedPost = !empty($fotoLikedPost) ? 'imgBoxContent' : 'noImage';
-                                $fechaPublicacionLikedPost = Carbon::parse($rowLikes['fecha_publicacion']);
-                                $fechaFormateada = $fechaPublicacionLikedPost->isoFormat('dddd, D [de] MMMM [de] YYYY [a las] h:mm a');
+                                $fechaPublicacionLikedPost = $rowLikes['fecha_publicacion'];
                                 $fotoPerfilLikedPost = $rowLikes['fotografia'];
 
                                 // Consulta para obtener el numero de likes de este post
@@ -959,8 +947,7 @@
                                             </div>
                                             <h2><?php echo $autorLikedPost; ?></h2>
                                         </div>
-                                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost->diffForHumans(); ?></div>
-                                        <div class="fecha-formateada" style="width: auto;"><?php echo $fechaFormateada; ?></div>
+                                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost; ?></div>
                                     </div>
                                     <h2><?php echo $tituloLikedPost; ?></h2>
                                     <h3><?php echo $contenidoLikedPost; ?></h3>
