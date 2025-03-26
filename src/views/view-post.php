@@ -122,8 +122,8 @@
                         <?php echo $autor; ?>
                     </a>
                 </h2>
-                <div class="fecha"><?php echo $fecha; ?></div>
-                <div class="fecha-formateada"><?php echo $fechaFormateada; ?></div>
+                <div class="fecha" data-fecha="<?php echo htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8'); ?></div>
+                <div class="fecha-formateada"></div>
             </div>
             <h3>
                 <div><?php echo $titulo; ?></div>
@@ -193,7 +193,8 @@
                         </div>
                         <a class="comment-user" href="<?php echo $redirect; ?>" data-id="<?php echo $idAutorComentarioArray; ?>" data-autor="<?php echo $autorComentario; ?>" data-foto="<?php echo $fotografiaAutorComentario; ?>"><?php echo $autorComentario; ?></a>
                     </h2>
-                    <div class="fecha"><?php echo $fecha; ?></div>
+                    <div class="fecha-comment" data-fecha="<?php echo htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8'); ?></div>
+                    <div class="fecha-formateada"></div>
                 </div>
                 <div class="comment-card-body">
                     <div class="comment-content"><?php echo $comentario; ?></div>
@@ -308,8 +309,12 @@
     <script src="../handlers/like-comment.js"></script>
     <script src="../handlers/check-like-button-state-thread.js"></script>
     <script src="../ui/view-full-date.js"></script>
+    <script src="../ui/view-full-date-comment.js"></script>
     <script src="../ui/view-post.js"></script>
     <script type="module" src="../ui/photo-gallery.js"></script>
+    <!-- date-fns -->
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/4.1.0/locale/cdn.min.js" integrity="sha512-JSQaWOYLr6A/XyM8RJ0G0zhxvaX/PEzbH61gH77hj8UtE6BKhpYemtDCDVS0nDBsT5h3azCkK9pOABcC5ioGmw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         // Pasamos la variable PHP del id de nuestro usuario para almacenarla con Javascript,
         // y despues utilizarla para evaluar una respuesta con AJAX.

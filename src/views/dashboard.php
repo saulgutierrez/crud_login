@@ -193,5 +193,8 @@
     </script>
     <script src="../handlers/get-post-suggestions.js" defer></script>
     <script src="../handlers/get-user-suggestions.js" defer></script>
+    <!-- date-fns -->
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/4.1.0/locale/cdn.min.js" integrity="sha512-JSQaWOYLr6A/XyM8RJ0G0zhxvaX/PEzbH61gH77hj8UtE6BKhpYemtDCDVS0nDBsT5h3azCkK9pOABcC5ioGmw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

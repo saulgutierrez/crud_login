@@ -83,7 +83,8 @@ if ($result->num_rows > 0) {
         echo '<div class="imgBoxProfileImage"><img src="'. $foto_perfil .'"></div>';
         echo '<h2><a href="profile.php?id=' . $id . '" data-id="' . $id . '" data-autor="' . $autor . '" data-foto="' . $foto_perfil . '" onclick="event.stopPropagation();">' . $autor . '</a></h2>';
         echo '</div>';
-        echo '<div class="fecha">' . $fecha . '</div>';
+        echo '<div class="fecha" data-fecha="' . htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8') . '</div>';
+        echo '<div class="fecha-formateada"></div>';
         echo '</div>';
         echo '<div class="imgBoxComment">';
         echo '<img src="../../public/svg/comment.svg">';
