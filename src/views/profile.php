@@ -482,7 +482,8 @@
                                 </div>
                                 <h2><?php echo $autor; ?></h2>
                             </div>
-                            <div class="fecha" style="width: auto;"><?php echo $fecha; ?></div>
+                            <div class="fecha" style="width: auto;" data-fecha="<?php echo htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8'); ?></div>
+                            <div class="fecha-formateada"></div>
                         </div>
                         <h3><?php echo $titulo; ?></h3>
                         <div class="contenido"><?php echo $contenido; ?></div>
@@ -616,7 +617,8 @@
                             </div>
                             <h2><?php echo $autorComentarioItem; ?></h2>
                         </div>
-                        <div class="fecha" style="width: auto;"><?php echo $fecha; ?></div>
+                        <div class="fecha-comment" style="width: auto;" data-fecha="<?php echo htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($fecha, ENT_QUOTES, 'UTF-8'); ?></div>
+                        <div class="fecha-formateada"></div>
                     </div>
                     <div class="comment-item"><?php echo $comentarioItem; ?></div>
                     <div class="<?php echo $hasImageComment; ?>" id="imageBoxContent<?php echo $idComentarioItem;?>">
@@ -886,7 +888,8 @@
                             ?>
                             <a href='<?php echo $redirectUrl; ?>'" onclick="event.stopPropagation();"><?php echo $autorLikedPost; ?></a>
                         </div>
-                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost; ?></div>
+                        <div class="fecha" data-fecha="<?php echo htmlspecialchars($fechaPublicacionLikedPost, ENT_QUOTES, 'UTF-8'); ?>" style="width: auto;"><?php echo htmlspecialchars($fechaPublicacionLikedPost, ENT_QUOTES, 'UTF-8'); ?></div>
+                        <div class="fecha-formateada"></div>
                     </div>
                     <h2><?php echo $tituloLikedPost; ?></h2>
                     <h3><?php echo $contenidoLikedPost; ?></h3>
@@ -947,7 +950,8 @@
                                             </div>
                                             <h2><?php echo $autorLikedPost; ?></h2>
                                         </div>
-                                        <div class="fecha" style="width: auto;"><?php echo $fechaPublicacionLikedPost; ?></div>
+                                        <div class="fecha" data-fecha="<?php echo htmlspecialchars($fechaPublicacionLikedPost, ENT_QUOTES, 'UTF-8'); ?>" style="width: auto;"><?php echo htmlspecialchars($fechaPublicacionLikedPost, ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="fecha-formateada"></div>
                                     </div>
                                     <h2><?php echo $tituloLikedPost; ?></h2>
                                     <h3><?php echo $contenidoLikedPost; ?></h3>
@@ -1120,6 +1124,7 @@
     <script src="../handlers/check-follow-button-status.js"></script>
     <script src="../handlers/check-follower-button-status.js"></script>
     <script src="../ui/view-full-date.js"></script>
+    <script src="../ui/view-full-date-comment.js"></script>
     <script type="module" src="../ui/view-profile-image.js"></script>
     <script type="module" src="../ui/photo-gallery.js"></script>
     <script src="../ui/edit-comment-viewer.js"></script>
@@ -1127,6 +1132,9 @@
     <script src="../handlers/likes-profile.js"></script>
     <script src ="../handlers/likes-comment-profile.js"></script>
     <script src="../handlers/check-block-button-status.js"></script>
+    <!-- date-fns -->
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/4.1.0/locale/cdn.min.js" integrity="sha512-JSQaWOYLr6A/XyM8RJ0G0zhxvaX/PEzbH61gH77hj8UtE6BKhpYemtDCDVS0nDBsT5h3azCkK9pOABcC5ioGmw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         // Este id sirve para evaluar el id de cada usuario de la lista de likes en los posteos,
         // para evaluar si se trata de un "autolike"
