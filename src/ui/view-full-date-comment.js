@@ -25,6 +25,6 @@ $(document).ready(function () {
         const fechaJS = dateFns.parse(fecha, "d/M/yyyy, h:m:s a", new Date());
         // Obtener la fecha relativa
         const fechaRelativa = dateFns.formatDistanceToNow(fechaJS, { locale: dateFns.locale.es, addSuffix: true });
-        $(this).text('hace ' + fechaRelativa);
+        $(this).text(fechaRelativa);
     });
 });
