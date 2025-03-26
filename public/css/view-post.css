@@ -544,6 +544,11 @@ button .imgBox img {
     text-decoration: underline;
 }
 
+.fecha-comment:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .info-popup {
     display: none; /* Oculto por defecto */
     position: absolute;

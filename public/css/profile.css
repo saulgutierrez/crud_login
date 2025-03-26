@@ -1082,6 +1082,7 @@ body main section {
     color: #0f0f11;
     padding: 5px 10px;
     border-radius: 10px;
+    width: fit-content !important;
 }
 
 .fecha {
@@ -1089,6 +1090,14 @@ body main section {
 }
 
 .fecha:hover {
+    text-decoration: underline;
+}
+
+.fecha-comment {
+    cursor: pointer;
+}
+
+.fecha-comment:hover {
     text-decoration: underline;
 }
 
