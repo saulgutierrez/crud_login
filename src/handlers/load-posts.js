@@ -172,5 +172,5 @@ $(document).ready(function() {
         loadPosts(category);
     });
 
-    setInterval(loadPosts, 60000); // Intervalo de recarga de informacion
+    setInterval(loadPosts, 90000000); // Intervalo de recarga de informacion (cada 1500 minutos = 25 horas)
 });
