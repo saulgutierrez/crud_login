@@ -1,8 +1,8 @@
 <?php
-    $servidor = 'localhost';
+    $servidor = 'mysql.railway.internal';
     $usuario = 'root';
-    $password = '';
-    $nombre_db = 'crud_login';
+    $password = 'UmqSJjAexYIJikmoUWtJDNCmAuPEsqGN';
+    $nombre_db = 'railway';
 
     // Conexion
     $conn = new mysqli($servidor, $usuario, $password, $nombre_db);
