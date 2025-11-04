@@ -17,7 +17,8 @@ El proyecto fue desarrollado como **trabajo final de grado** para optar al títu
 - **Sistema de comentarios**, que permite incluir texto y/o imagen.  
 - **Reacciones ("likes")** a los posteos de otros usuarios.  
 - **Funcionalidad de seguimiento** (seguir/dejar de seguir usuarios).  
-- **Bloqueo de usuarios** para restringir interacciones no deseadas.  
+- **Bloqueo de usuarios** para restringir interacciones no deseadas.
+- **Busqueda de usuarios** por nombre de usuario, para acceder a sus perfiles, sus datos, su contenido y la oportunidad de seguir o bloquear.
 - **Notificaciones** de acciones de los usuarios seguidos.  
 - **Eliminación de datos relacionados**, asegurando la integridad de la base de datos y la limpieza del servidor (por ejemplo, al eliminar un usuario, también se eliminan sus posteos, comentarios e imágenes).  
 - **Galería de imágenes interactiva** con **PhotoSwipe**, para visualizar fotos en pantalla completa.  
