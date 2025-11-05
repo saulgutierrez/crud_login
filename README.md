@@ -20,7 +20,8 @@ El proyecto fue desarrollado como **trabajo final de grado** para optar al títu
 - **Bloqueo de usuarios** para restringir interacciones no deseadas.
 - **Busqueda de usuarios** por nombre de usuario, para acceder a sus perfiles, sus datos, su contenido y la oportunidad de seguir o bloquear.
 - **Notificaciones** de acciones de los usuarios seguidos.  
-- **Eliminación de datos relacionados**, asegurando la integridad de la base de datos y la limpieza del servidor (por ejemplo, al eliminar un usuario, también se eliminan sus posteos, comentarios e imágenes).  
+- **Eliminación de datos relacionados**, asegurando la integridad de la base de datos y la limpieza del servidor (por ejemplo, al eliminar un usuario, también se eliminan sus posteos, comentarios e imágenes).
+- **Filtrado de contenido** por categoría, para acceder a los posteos que mas interés generan por el usuario.
 - **Galería de imágenes interactiva** con **PhotoSwipe**, para visualizar fotos en pantalla completa.  
 - **Interfaz dinámica sin recargas completas**, gracias al uso de **AJAX** y **fetch API**.  
 
@@ -119,6 +120,7 @@ Puedes iniciar sesión con una cuenta de ejemplo o registrar un nuevo usuario en
 - **Seguridad:** validaciones de datos, control de sesión y eliminación de datos relacionados al eliminar cuentas.
 - **Experiencia de usuario:** botones dinámicos con iconos persistentes, modales personalizados y navegación fluida.
 - **Gestión multimedia:** control sobre imágenes subidas por usuarios, con eliminación automática del servidor al borrar contenido.
+- **Algoritmo de recomendación:** Sugiere contenido relacionado con los intereses del usuario, basándose en el algoritmo de clasificación K-Nearest Neighbors.
 ---
 ## 🧠 Posibles mejoras futuras
 - Implementar notificaciones en tiempo real mediante WebSockets.
